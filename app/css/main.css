@@ -199,10 +199,6 @@ div.center {
 		font-size: 16px;
 		bottom: 15px;
 		right: 15px;
-		 -webkit-transition: 1s;
-			-moz-transition: 1s;
-			  -o-transition: 1s;
-				 transition: 1s;
 }
 .footer img {
 		opacity: 0.3;
