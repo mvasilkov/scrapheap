@@ -143,10 +143,10 @@ div.center {
 				 			  0px  0px 12px rgba(255,102,0,0.6);
 
 							/* animooted */
-    -moz-transition: color 900ms ease-out;
-    -webkit-transition: color 900ms ease-out;
-    -o-transition: color 900ms ease-out;
-    transition: color 900ms ease-out;
+    -moz-transition: color 1000ms ease-out;
+    -webkit-transition: color 1000ms ease-out;
+    -o-transition: color 1000ms ease-out;
+    transition: color 1000ms ease-out;
 }
 
 .display.change {
@@ -187,20 +187,4 @@ div.center {
 		color: rgba(255,255,255,0.3);
 		bottom: 3px;
 		left: 80px;
-}
-
-							/* footer */
-.footer {
-		text-decoration: none;
-		opacity: 0.3;
-		position: absolute;
-		color: #fff;
-		font-family: Questrial;
-		font-size: 16px;
-		bottom: 15px;
-		right: 15px;
-}
-.footer img {
-		opacity: 0.3;
-		margin: 0px 0px -8px 6px;
 }
