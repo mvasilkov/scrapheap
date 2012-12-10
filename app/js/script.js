@@ -1,10 +1,3 @@
-$(document).ready(function(){
-	/* This code is executed after the DOM has been completely loaded */
-
-	initClock($('#time'));
-
-});
-
 var initClock = function(block) {
 	block.append(
 		'<div class="clock hour"><div class="display"></div></div>'
@@ -44,3 +37,5 @@ var initClock = function(block) {
 	updateNumbers();
 	setInterval(updateNumbers, 1000);
 };
+
+initClock($('#time'));
