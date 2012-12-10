@@ -1,10 +1,4 @@
 var initClock = function(block) {
-	block.append(
-		'<div class="clock hour"><div class="display"></div></div>'
-		+ '<div class="clock minute"><div class="display"></div></div>'
-		+ '<div class="clock second"><div class="display"></div></div>'
-	);
-	
 	var numbers = [];
 	
 	block.find('.display').each(function() {
