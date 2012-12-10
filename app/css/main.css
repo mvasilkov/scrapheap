@@ -141,6 +141,20 @@ div.center {
 				 			 -1px  1px  0px rgba(0,0,0,0.2),
 				 			  0px  0px  5px rgba(0,0,0,0.8),
 				 			  0px  0px 12px rgba(255,102,0,0.6);
+
+							/* animooted */
+    -moz-transition: color 900ms ease-out;
+    -webkit-transition: color 900ms ease-out;
+    -o-transition: color 900ms ease-out;
+    transition: color 900ms ease-out;
+}
+
+.display.change {
+    color: #d9d697;
+    -moz-transition: color 0ms;
+    -webkit-transition: color 0ms;
+    -o-transition: color 0ms;
+    transition: color 0ms;
 }
 
 .hour, .minute {

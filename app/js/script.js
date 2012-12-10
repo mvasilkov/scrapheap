@@ -28,9 +28,9 @@ var initClock = function(block) {
 		
 		// Animate only if the number has changed and hasn't been empty.
 		if (newNumber !== currNumber && currNumber !== '') {
-			block.stop().animate({ color: '#d9d697' }, 100, function() {
-				block.animate({ color: '#f60' }, 900);
-			});
+			block.addClass("change")
+			block[0].clientHeight
+			block.removeClass("change")
 		}
 	};
 	
