@@ -176,7 +176,7 @@ div.center {
 }
 
 							/* footer */
-.footer a {
+.footer {
 		text-decoration: none;
 		opacity: 0.3;
 		position: absolute;
@@ -189,17 +189,6 @@ div.center {
 			-moz-transition: 1s;
 			  -o-transition: 1s;
 				 transition: 1s;
-}
-.footer:hover a {
-		color: #ff6600;
-		opacity: 1;
-		 -webkit-transition: 1s;
-			-moz-transition: 1s;
-			  -o-transition: 1s;
-				 transition: 1s;
-}
-.footer:hover img {
-		opacity: 0.3;
 }
 .footer img {
 		opacity: 0.3;
