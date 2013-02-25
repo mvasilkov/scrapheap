@@ -1,0 +1,7 @@
+{
+    "jam": {
+        "packageDir": "RequireJS/Build/lib",
+        "dependencies": {
+        }
+    }
+}

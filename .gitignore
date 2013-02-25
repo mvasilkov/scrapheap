@@ -7,3 +7,4 @@ Box2D/Build/Testbed/deps.js
 Box2D/Build/google/closure-compiler/
 Box2D/Build/google/closure-library/
 RequireJS/Build/box2d-html5.js
+RequireJS/Build/lib/
