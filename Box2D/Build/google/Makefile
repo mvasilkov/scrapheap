@@ -1,4 +1,5 @@
 GOOGLE_PATH = .
+CURL = curl -s -S
 
 all:
 	$(MAKE) --no-print-directory sync
@@ -33,11 +34,11 @@ sync-closure-compiler:
 
 SYNC_CLOSURE_COMPILER_COMMAND += mkdir -p $(GOOGLE_PATH)/closure-compiler ;
 SYNC_CLOSURE_COMPILER_COMMAND += if [ -e $(GOOGLE_PATH)/closure-compiler/compiler-latest.tar.gz ] ; then
-SYNC_CLOSURE_COMPILER_COMMAND +=  curl http://closure-compiler.googlecode.com/files/compiler-latest.tar.gz
+SYNC_CLOSURE_COMPILER_COMMAND +=  $(CURL) http://closure-compiler.googlecode.com/files/compiler-latest.tar.gz
 SYNC_CLOSURE_COMPILER_COMMAND +=   -o $(GOOGLE_PATH)/closure-compiler/compiler-latest.tar.gz
 SYNC_CLOSURE_COMPILER_COMMAND +=   -z $(GOOGLE_PATH)/closure-compiler/compiler-latest.tar.gz ;
 SYNC_CLOSURE_COMPILER_COMMAND += else
-SYNC_CLOSURE_COMPILER_COMMAND +=  curl http://closure-compiler.googlecode.com/files/compiler-latest.tar.gz
+SYNC_CLOSURE_COMPILER_COMMAND +=  $(CURL) http://closure-compiler.googlecode.com/files/compiler-latest.tar.gz
 SYNC_CLOSURE_COMPILER_COMMAND +=   -o $(GOOGLE_PATH)/closure-compiler/compiler-latest.tar.gz ;
 SYNC_CLOSURE_COMPILER_COMMAND += fi ;
 SYNC_CLOSURE_COMPILER_COMMAND += tar -zxvf $(GOOGLE_PATH)/closure-compiler/compiler-latest.tar.gz -C $(GOOGLE_PATH)/closure-compiler/ ;
