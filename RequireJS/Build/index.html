@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>RequireJS</title>
+    </head>
+    <body>
+        <script src="lib/require.js"></script>
+        <script>
+            require(["box2d-html5"], function(box2d) {
+                alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
+            })
+        </script>
+    </body>
+</html>

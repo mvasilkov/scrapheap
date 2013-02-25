@@ -3,3 +3,8 @@ all:
 	jam install
 	python RequireJS/build.py
 	@echo done $@
+
+run:
+	if [[ "$${OSTYPE}" == "cygwin" ]]; then cygstart RequireJS/Build/index.html; fi
+	if [[ "$${OSTYPE}" == "darwin"* ]]; then open RequireJS/Build/index.html; fi
+	@echo done $@
