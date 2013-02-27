@@ -29,8 +29,9 @@
                 }
             }
 
-            require(["box2d-html5"], function(box2d) {
+            require(["box2d-html5", "main"], function(box2d, main) {
                 alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
+                main()
             })
         </script>
     </body>
