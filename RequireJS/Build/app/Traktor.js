@@ -1,4 +1,4 @@
-define(["box2d-html5"], function(box2d) {
+define(["box2d-html5", "app/Wheel", "app/Spring"], function(box2d, Wheel, Spring) {
     function Traktor(physics, left, top) {
         var def = new box2d.b2BodyDef()
         def.type = box2d.b2BodyType.b2_dynamicBody
@@ -9,17 +9,21 @@ define(["box2d-html5"], function(box2d) {
 
         var fixdef = new box2d.b2FixtureDef()
         fixdef.density = 2.5
-        fixdef.restitution = 0.5
+        fixdef.restitution = 0.25
         fixdef.shape = shape
 
         this.body = physics.CreateBody(def)
         this.body.CreateFixture(fixdef)
 
-        this.body.ApplyAngularImpulse(8)
+        this.front_wheel = new Wheel(physics, left + 2.5, top + 1.5, 1)
+        this.rear_wheel = new Wheel(physics, left - 2.5, top + 0.5, 2)
+
+        this.front_spring = new Spring(physics, this.body, this.front_wheel.body)
+        this.rear_spring = new Spring(physics, this.body, this.rear_wheel.body)
     }
 
-    Traktor.prototype.width = 4
-    Traktor.prototype.height = 2
+    Traktor.prototype.width = 6
+    Traktor.prototype.height = 3
 
     Traktor.prototype.render = function(canvas) {
         var pos = this.body.GetPosition(),

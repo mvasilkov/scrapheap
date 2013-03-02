@@ -43,6 +43,20 @@ define(["app/Boundary", "app/Traktor"], function(Boundary, Traktor) {
         canvas.stroke()
 
         canvas.closePath()
+
+        // wheels
+        canvas.beginPath()
+
+        traktor.front_wheel.render(canvas)
+        traktor.rear_wheel.render(canvas)
+
+        canvas.fillStyle = "rgba(0, 128, 255, 0.5)"
+        canvas.fill()
+
+        canvas.strokeStyle = "rgb(0, 128, 255)"
+        canvas.stroke()
+
+        canvas.closePath()
     }
 
     return {
