@@ -148,6 +148,7 @@ box2d.b2FixtureDef.prototype.filter = null;
  * broad-phase.
  * @export
  * @constructor
+ * @extends {box2d.b2TreeNode}
  */
 box2d.b2FixtureProxy = function ()
 {
