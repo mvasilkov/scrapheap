@@ -1,5 +1,5 @@
-define(["app/Boundary"], function(Boundary) {
-    var boundaries = Array()
+define(["app/Boundary", "app/Traktor"], function(Boundary, Traktor) {
+    var boundaries = Array(), traktor = null
 
     function start(canvas, physics) {
         function addBoundary(left, top, width, height) {
@@ -13,6 +13,8 @@ define(["app/Boundary"], function(Boundary) {
         addBoundary(real_width / 2, real_height, real_width, 1)
         addBoundary(0, real_height / 2, 1, real_height - 1)
         addBoundary(real_width, real_height / 2, 1, real_height - 1)
+
+        traktor = new Traktor(physics, real_width / 2, real_height / 2)
     }
 
     function render(canvas, upd) {
@@ -25,6 +27,19 @@ define(["app/Boundary"], function(Boundary) {
         canvas.fill()
 
         canvas.strokeStyle = "rgb(128, 255, 0)"
+        canvas.stroke()
+
+        canvas.closePath()
+
+        // traktor
+        canvas.beginPath()
+
+        traktor.render(canvas)
+
+        canvas.fillStyle = "rgba(255, 0, 0, 0.5)"
+        canvas.fill()
+
+        canvas.strokeStyle = "rgb(255, 0, 0)"
         canvas.stroke()
 
         canvas.closePath()
