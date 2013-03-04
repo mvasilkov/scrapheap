@@ -26,8 +26,9 @@
         <script src="lib/require.js"></script>
         <script>
             if (typeof window.console != "undefined") {
-                function alert() {
-                    console.log.apply(console, arguments)
+                function alert(str) {
+                    console.log(str)
+                    document.title = str
                 }
             }
 
