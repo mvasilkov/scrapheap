@@ -1,10 +1,5 @@
 all:
 	$(MAKE) --no-print-directory -C Box2D/Build
-	jam install
-	python RequireJS/build.py
-	@echo done $@
-
-run:
-	if [[ "$${OSTYPE}" == "cygwin" ]]; then cygstart RequireJS/Build/index.html; fi
-	if [[ "$${OSTYPE}" == "darwin"* ]]; then open RequireJS/Build/index.html; fi
+	ln -f Box2D/Build/Box2D/box2d-html5.js RequireJS/box2d-html5.build.js
+	$(MAKE) --no-print-directory -C RequireJS
 	@echo done $@

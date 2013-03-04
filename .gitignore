@@ -8,3 +8,4 @@ Box2D/Build/google/closure-compiler/
 Box2D/Build/google/closure-library/
 RequireJS/Build/box2d-html5.js
 RequireJS/Build/lib/
+RequireJS/box2d-html5.build.js
