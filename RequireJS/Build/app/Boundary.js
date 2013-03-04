@@ -8,6 +8,7 @@ define(["box2d-html5"], function(box2d) {
         shape.SetAsBox(width / 2, height / 2)
 
         var fixdef = new box2d.b2FixtureDef()
+        fixdef.friction = 0.9
         fixdef.restitution = 0.5
         fixdef.shape = shape
 

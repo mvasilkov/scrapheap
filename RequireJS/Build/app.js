@@ -1,4 +1,4 @@
-define(["app/Boundary", "app/Traktor"], function(Boundary, Traktor) {
+define(["app/Boundary", "app/Traktor", "keyboard"], function(Boundary, Traktor, keyboard) {
     var boundaries = Array(), traktor = null
 
     function start(canvas, physics) {
@@ -15,6 +15,8 @@ define(["app/Boundary", "app/Traktor"], function(Boundary, Traktor) {
         addBoundary(real_width, real_height / 2, 1, real_height - 1)
 
         traktor = new Traktor(physics, real_width / 2, real_height / 2)
+
+        keyboard.control(traktor.rear_spring.joint)
     }
 
     function render(canvas, upd) {
