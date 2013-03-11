@@ -1039,7 +1039,7 @@ box2d.b2Vec3.prototype.SetZero = function ()
  * @param {number} y
  * @param {number} z
  */
-box2d.b2Vec3.prototype.SetXYZ = function (x, y, z)
+box2d.b2Vec3.prototype.Set = function (x, y, z)
 {
 	this.x = x;
 	this.y = y;
@@ -1621,9 +1621,9 @@ box2d.b2Mat33.prototype.Copy = function (other)
  */
 box2d.b2Mat33.prototype.SetIdentity = function ()
 {
-	this.ex.SetXYZ(1, 0, 0);
-	this.ey.SetXYZ(0, 1, 0);
-	this.ez.SetXYZ(0, 0, 1);
+	this.ex.Set(1, 0, 0);
+	this.ey.Set(0, 1, 0);
+	this.ez.Set(0, 0, 1);
 	return this;
 }
 

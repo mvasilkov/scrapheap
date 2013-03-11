@@ -799,11 +799,11 @@ box2d.b2PrismaticJoint.prototype.SolvePositionConstraints = function (data)
 //		box2d.b2Mat33 K;
 		var K = this.m_K3;
 //		K.ex.Set(k11, k12, k13);
-		K.ex.SetXYZ(k11, k12, k13);
+		K.ex.Set(k11, k12, k13);
 //		K.ey.Set(k12, k22, k23);
-		K.ey.SetXYZ(k12, k22, k23);
+		K.ey.Set(k12, k22, k23);
 //		K.ez.Set(k13, k23, k33);
-		K.ez.SetXYZ(k13, k23, k33);
+		K.ez.Set(k13, k23, k33);
 
 //		box2d.b2Vec3 C;
 //		C.x = C1.x;
