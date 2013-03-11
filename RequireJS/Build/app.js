@@ -6,17 +6,17 @@ define(["app/Boundary", "app/Traktor", "keyboard"], function(Boundary, Traktor, 
             boundaries.push(new Boundary(physics, left, top, width, height))
         }
 
-        var real_width = physics.real_width,
-            real_height = physics.real_height
+        var width = physics._width,
+            height = physics._height
 
-        addBoundary(real_width / 2, 0, real_width, 1)
-        addBoundary(real_width / 2, real_height, real_width, 1)
-        addBoundary(0, real_height / 2, 1, real_height - 1)
-        addBoundary(real_width, real_height / 2, 1, real_height - 1)
+        addBoundary(0.5 * width, 0, width, 1)
+        addBoundary(0.5 * width, height, width, 1)
+        addBoundary(0, 0.5 * height, 1, height - 1)
+        addBoundary(width, 0.5 * height, 1, height - 1)
 
-        traktor = new Traktor(physics, real_width / 2, real_height / 2)
+        traktor = new Traktor(physics, 0.5 * width, 0.5 * height)
 
-        keyboard.control(traktor.rear_spring.joint)
+        keyboard.control(traktor.rspring.joint)
     }
 
     function render(canvas, upd) {
@@ -25,10 +25,10 @@ define(["app/Boundary", "app/Traktor", "keyboard"], function(Boundary, Traktor, 
 
         boundaries.forEach(function(b) { b.render(canvas) })
 
-        canvas.fillStyle = "rgba(128, 255, 0, 0.5)"
+        canvas.fillStyle = "rgba(128,255,0,0.5)"
         canvas.fill()
 
-        canvas.strokeStyle = "rgb(128, 255, 0)"
+        canvas.strokeStyle = "rgb(128,255,0)"
         canvas.stroke()
 
         canvas.closePath()
@@ -38,10 +38,10 @@ define(["app/Boundary", "app/Traktor", "keyboard"], function(Boundary, Traktor, 
 
         traktor.render(canvas)
 
-        canvas.fillStyle = "rgba(255, 0, 0, 0.5)"
+        canvas.fillStyle = "rgba(255,0,0,0.5)"
         canvas.fill()
 
-        canvas.strokeStyle = "rgb(255, 0, 0)"
+        canvas.strokeStyle = "rgb(255,0,0)"
         canvas.stroke()
 
         canvas.closePath()
@@ -49,13 +49,13 @@ define(["app/Boundary", "app/Traktor", "keyboard"], function(Boundary, Traktor, 
         // wheels
         canvas.beginPath()
 
-        traktor.front_wheel.render(canvas)
-        traktor.rear_wheel.render(canvas)
+        traktor.fwheel.render(canvas)
+        traktor.rwheel.render(canvas)
 
-        canvas.fillStyle = "rgba(0, 128, 255, 0.5)"
+        canvas.fillStyle = "rgba(0,128,255,0.5)"
         canvas.fill()
 
-        canvas.strokeStyle = "rgb(0, 128, 255)"
+        canvas.strokeStyle = "rgb(0,128,255)"
         canvas.stroke()
 
         canvas.closePath()

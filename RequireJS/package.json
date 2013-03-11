@@ -1,6 +1,6 @@
 {
     "name": "box2d-html5",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A 2D Physics Engine for HTML5 Games",
     "jam": {
         "include": ["box2d-html5.js"],
