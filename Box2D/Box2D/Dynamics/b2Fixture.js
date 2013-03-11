@@ -709,7 +709,7 @@ box2d.b2Fixture.prototype.Dump = function (bodyIndex)
 				/*b2CircleShape*/ var s = this.m_shape;
 				box2d.b2Log("    /*box2d.b2CircleShape*/ var shape = new box2d.b2CircleShape();\n");
 				box2d.b2Log("    shape.m_radius = %.15f;\n", s.m_radius);
-				box2d.b2Log("    shape.m_p.SetXY(%.15f, %.15f);\n", s.m_p.x, s.m_p.y);
+				box2d.b2Log("    shape.m_p.Set(%.15f, %.15f);\n", s.m_p.x, s.m_p.y);
 			}
 			break;
 
@@ -718,10 +718,10 @@ box2d.b2Fixture.prototype.Dump = function (bodyIndex)
 				/*b2EdgeShape*/ var s = this.m_shape;
 				box2d.b2Log("    /*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();\n");
 				box2d.b2Log("    shape.m_radius = %.15f;\n", s.m_radius);
-				box2d.b2Log("    shape.m_vertex0.SetXY(%.15f, %.15f);\n", s.m_vertex0.x, s.m_vertex0.y);
-				box2d.b2Log("    shape.m_vertex1.SetXY(%.15f, %.15f);\n", s.m_vertex1.x, s.m_vertex1.y);
-				box2d.b2Log("    shape.m_vertex2.SetXY(%.15f, %.15f);\n", s.m_vertex2.x, s.m_vertex2.y);
-				box2d.b2Log("    shape.m_vertex3.SetXY(%.15f, %.15f);\n", s.m_vertex3.x, s.m_vertex3.y);
+				box2d.b2Log("    shape.m_vertex0.Set(%.15f, %.15f);\n", s.m_vertex0.x, s.m_vertex0.y);
+				box2d.b2Log("    shape.m_vertex1.Set(%.15f, %.15f);\n", s.m_vertex1.x, s.m_vertex1.y);
+				box2d.b2Log("    shape.m_vertex2.Set(%.15f, %.15f);\n", s.m_vertex2.x, s.m_vertex2.y);
+				box2d.b2Log("    shape.m_vertex3.Set(%.15f, %.15f);\n", s.m_vertex3.x, s.m_vertex3.y);
 				box2d.b2Log("    shape.m_hasVertex0 = %s;\n", s.m_hasVertex0);
 				box2d.b2Log("    shape.m_hasVertex3 = %s;\n", s.m_hasVertex3);
 			}
@@ -734,7 +734,7 @@ box2d.b2Fixture.prototype.Dump = function (bodyIndex)
 				box2d.b2Log("    /*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(%d);\n", box2d.b2_maxPolygonVertices);
 				for (var i = 0; i < s.m_count; ++i)
 				{
-					box2d.b2Log("    vs[%d].SetXY(%.15f, %.15f);\n", i, s.m_vertices[i].x, s.m_vertices[i].y);
+					box2d.b2Log("    vs[%d].Set(%.15f, %.15f);\n", i, s.m_vertices[i].x, s.m_vertices[i].y);
 				}
 				box2d.b2Log("    shape.SetAsVector(vs, %d);\n", s.m_count);
 			}
@@ -747,11 +747,11 @@ box2d.b2Fixture.prototype.Dump = function (bodyIndex)
 				box2d.b2Log("    /*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(%d);\n", box2d.b2_maxPolygonVertices);
 				for (var i = 0; i < s.m_count; ++i)
 				{
-					box2d.b2Log("    vs[%d].SetXY(%.15f, %.15f);\n", i, s.m_vertices[i].x, s.m_vertices[i].y);
+					box2d.b2Log("    vs[%d].Set(%.15f, %.15f);\n", i, s.m_vertices[i].x, s.m_vertices[i].y);
 				}
 				box2d.b2Log("    shape.CreateChain(vs, %d);\n", s.m_count);
-				box2d.b2Log("    shape.m_prevVertex.SetXY(%.15f, %.15f);\n", s.m_prevVertex.x, s.m_prevVertex.y);
-				box2d.b2Log("    shape.m_nextVertex.SetXY(%.15f, %.15f);\n", s.m_nextVertex.x, s.m_nextVertex.y);
+				box2d.b2Log("    shape.m_prevVertex.Set(%.15f, %.15f);\n", s.m_prevVertex.x, s.m_prevVertex.y);
+				box2d.b2Log("    shape.m_nextVertex.Set(%.15f, %.15f);\n", s.m_nextVertex.x, s.m_nextVertex.y);
 				box2d.b2Log("    shape.m_hasPrevVertex = %s;\n", (s.m_hasPrevVertex)?('true'):('false'));
 				box2d.b2Log("    shape.m_hasNextVertex = %s;\n", (s.m_hasNextVertex)?('true'):('false'));
 			}

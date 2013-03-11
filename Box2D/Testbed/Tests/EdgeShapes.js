@@ -217,7 +217,7 @@ box2d.Testbed.EdgeShapes.prototype.CreateBody = function (index)
 
 	var x = box2d.b2RandomRange(-10.0, 10.0);
 	var y = box2d.b2RandomRange(10.0, 20.0);
-	bd.position.SetXY(x, y);
+	bd.position.Set(x, y);
 	bd.angle = box2d.b2RandomRange(-box2d.b2_pi, box2d.b2_pi);
 	bd.type = box2d.b2BodyType.b2_dynamicBody;
 

@@ -34,7 +34,7 @@ box2d.Testbed.BulletTest = function (canvas, settings)
 	if (true)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(0.0, 0.0);
+		bd.position.Set(0.0, 0.0);
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		/*box2d.b2EdgeShape*/ var edge = new box2d.b2EdgeShape();
@@ -51,7 +51,7 @@ box2d.Testbed.BulletTest = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 4.0);
+		bd.position.Set(0.0, 4.0);
 
 		/*box2d.b2PolygonShape*/ var box = new box2d.b2PolygonShape();
 		box.SetAsBox(2.0, 0.1);
@@ -63,7 +63,7 @@ box2d.Testbed.BulletTest = function (canvas, settings)
 
 		//this.m_x = box2d.b2RandomRange(-1.0, 1.0);
 		this.m_x = 0.20352793;
-		bd.position.SetXY(this.m_x, 10.0);
+		bd.position.Set(this.m_x, 10.0);
 		bd.bullet = true;
 
 		this.m_bullet = this.m_world.CreateBody(bd);

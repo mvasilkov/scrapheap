@@ -607,7 +607,7 @@ box2d.b2Body.prototype.SetTransformXYRadians = function (x, y, angle)
 	}
 
 	this.m_xf.q.SetAngleRadians(angle);
-	this.m_xf.p.SetXY(x, y);
+	this.m_xf.p.Set(x, y);
 
 	box2d.b2MulXV(this.m_xf, this.m_sweep.localCenter, this.m_sweep.c);
 	this.m_sweep.a = angle;
@@ -1726,9 +1726,9 @@ box2d.b2Body.prototype.Dump = function ()
 			break;
 		}
 		box2d.b2Log("  bd.type = %s;\n", type_str);
-		box2d.b2Log("  bd.position.SetXY(%.15f, %.15f);\n", this.m_xf.p.x, this.m_xf.p.y);
+		box2d.b2Log("  bd.position.Set(%.15f, %.15f);\n", this.m_xf.p.x, this.m_xf.p.y);
 		box2d.b2Log("  bd.angle = %.15f;\n", this.m_sweep.a);
-		box2d.b2Log("  bd.linearVelocity.SetXY(%.15f, %.15f);\n", this.m_linearVelocity.x, this.m_linearVelocity.y);
+		box2d.b2Log("  bd.linearVelocity.Set(%.15f, %.15f);\n", this.m_linearVelocity.x, this.m_linearVelocity.y);
 		box2d.b2Log("  bd.angularVelocity = %.15f;\n", this.m_angularVelocity);
 		box2d.b2Log("  bd.linearDamping = %.15f;\n", this.m_linearDamping);
 		box2d.b2Log("  bd.angularDamping = %.15f;\n", this.m_angularDamping);

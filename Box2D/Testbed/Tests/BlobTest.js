@@ -64,7 +64,7 @@ box2d.Testbed.BlobTest = function (canvas, settings)
 
 			var x = cx + rx * Math.cos(angle);
 			var y = cy + ry * Math.sin(angle);
-			bd.position.SetXY(x, y);
+			bd.position.Set(x, y);
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
 			var body = this.m_world.CreateBody(bd);
 

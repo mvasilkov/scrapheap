@@ -73,10 +73,10 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 		var ground = this.m_world.CreateBody(bd);
 
 		/*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(4);
-		vs[0].SetXY(5.0, 7.0);
-		vs[1].SetXY(6.0, 8.0);
-		vs[2].SetXY(7.0, 8.0);
-		vs[3].SetXY(8.0, 7.0);
+		vs[0].Set(5.0, 7.0);
+		vs[1].Set(6.0, 8.0);
+		vs[2].Set(7.0, 8.0);
+		vs[3].Set(8.0, 7.0);
 		/*box2d.b2ChainShape*/ var shape = new box2d.b2ChainShape();
 		shape.CreateChain(vs, 4);
 		ground.CreateFixture2(shape, 0.0);
@@ -106,10 +106,10 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 		var ground = this.m_world.CreateBody(bd);
 
 		/*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(4);
-		vs[0].SetXY(-1.0, 3.0);
-		vs[1].SetXY(1.0, 3.0);
-		vs[2].SetXY(1.0, 5.0);
-		vs[3].SetXY(-1.0, 5.0);
+		vs[0].Set(-1.0, 3.0);
+		vs[1].Set(1.0, 3.0);
+		vs[2].Set(1.0, 5.0);
+		vs[3].Set(-1.0, 5.0);
 		/*box2d.b2ChainShape*/ var shape = new box2d.b2ChainShape();
 		shape.CreateChain(vs, 4);
 		ground.CreateFixture2(shape, 0.0);
@@ -119,20 +119,20 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-10.0, 4.0);
+		bd.position.Set(-10.0, 4.0);
 		var ground = this.m_world.CreateBody(bd);
 
 		/*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(10);
-		vs[0].SetXY(0.0, 0.0);
-		vs[1].SetXY(6.0, 0.0);
-		vs[2].SetXY(6.0, 2.0);
-		vs[3].SetXY(4.0, 1.0);
-		vs[4].SetXY(2.0, 2.0);
-		vs[5].SetXY(0.0, 2.0);
-		vs[6].SetXY(-2.0, 2.0);
-		vs[7].SetXY(-4.0, 3.0);
-		vs[8].SetXY(-6.0, 2.0);
-		vs[9].SetXY(-6.0, 0.0);
+		vs[0].Set(0.0, 0.0);
+		vs[1].Set(6.0, 0.0);
+		vs[2].Set(6.0, 2.0);
+		vs[3].Set(4.0, 1.0);
+		vs[4].Set(2.0, 2.0);
+		vs[5].Set(0.0, 2.0);
+		vs[6].Set(-2.0, 2.0);
+		vs[7].Set(-4.0, 3.0);
+		vs[8].Set(-6.0, 2.0);
+		vs[9].Set(-6.0, 0.0);
 		/*box2d.b2ChainShape*/ var shape = new box2d.b2ChainShape();
 		shape.CreateChain(vs, 10);
 		ground.CreateFixture2(shape, 0.0);
@@ -142,7 +142,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-3.0, 8.0);
+		bd.position.Set(-3.0, 8.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.fixedRotation = true;
 		bd.allowSleep = false;
@@ -162,7 +162,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-5.0, 5.0);
+		bd.position.Set(-5.0, 5.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.fixedRotation = true;
 		bd.allowSleep = false;
@@ -182,7 +182,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-5.0, 8.0);
+		bd.position.Set(-5.0, 8.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.fixedRotation = true;
 		bd.allowSleep = false;
@@ -194,7 +194,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 		var vertices = box2d.b2Vec2.MakeArray(6);
 		for (var i = 0; i < 6; ++i)
 		{
-			vertices[i].SetXY(0.5 * box2d.b2Cos(angle), 0.5 * box2d.b2Sin(angle));
+			vertices[i].Set(0.5 * box2d.b2Cos(angle), 0.5 * box2d.b2Sin(angle));
 			angle += delta;
 		}
 
@@ -211,7 +211,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(3.0, 5.0);
+		bd.position.Set(3.0, 5.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.fixedRotation = true;
 		bd.allowSleep = false;
@@ -231,7 +231,7 @@ box2d.Testbed.CharacterCollision = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-7.0, 6.0);
+		bd.position.Set(-7.0, 6.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.allowSleep = false;
 

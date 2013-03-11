@@ -58,7 +58,7 @@ box2d.Testbed.VaryingRestitution = function (canvas, settings)
 		{
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(-10.0 + 3.0 * i, 20.0);
+			bd.position.Set(-10.0 + 3.0 * i, 20.0);
 
 			var body = this.m_world.CreateBody(bd);
 

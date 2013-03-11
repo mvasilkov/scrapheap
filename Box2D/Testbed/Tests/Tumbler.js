@@ -43,7 +43,7 @@ box2d.Testbed.Tumbler = function (canvas, settings)
 		/*b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.allowSleep = false;
-		bd.position.SetXY(0.0, 10.0);
+		bd.position.Set(0.0, 10.0);
 		/*b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		/*b2PolygonShape*/ var shape = new box2d.b2PolygonShape();
@@ -59,8 +59,8 @@ box2d.Testbed.Tumbler = function (canvas, settings)
 		/*b2RevoluteJointDef*/ var jd = new box2d.b2RevoluteJointDef();
 		jd.bodyA = ground;
 		jd.bodyB = body;
-		jd.localAnchorA.SetXY(0.0, 10.0);
-		jd.localAnchorB.SetXY(0.0, 0.0);
+		jd.localAnchorA.Set(0.0, 10.0);
+		jd.localAnchorB.Set(0.0, 0.0);
 		jd.referenceAngle = 0.0;
 		jd.motorSpeed = 0.05 * box2d.b2_pi;
 		jd.maxMotorTorque = 1e8;
@@ -104,7 +104,7 @@ box2d.Testbed.Tumbler.prototype.Step = function (settings)
 	{
 		/*b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 10.0);
+		bd.position.Set(0.0, 10.0);
 		/*b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		/*b2PolygonShape*/ var shape = new box2d.b2PolygonShape();

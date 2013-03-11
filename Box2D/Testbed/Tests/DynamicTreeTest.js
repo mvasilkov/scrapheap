@@ -86,13 +86,13 @@ box2d.Testbed.DynamicTreeTest = function (canvas, settings)
 	this.m_stepCount = 0;
 
 	var h = this.m_worldExtent;
-	this.m_queryAABB.lowerBound.SetXY(-3.0, -4.0 + h);
-	this.m_queryAABB.upperBound.SetXY(5.0, 6.0 + h);
+	this.m_queryAABB.lowerBound.Set(-3.0, -4.0 + h);
+	this.m_queryAABB.upperBound.Set(5.0, 6.0 + h);
 
-	this.m_rayCastInput.p1.SetXY(-5.0, 5.0 + h);
-	this.m_rayCastInput.p2.SetXY(7.0, -4.0 + h);
-	//this.m_rayCastInput.p1.SetXY(0.0, 2.0 + h);
-	//this.m_rayCastInput.p2.SetXY(0.0, -2.0 + h);
+	this.m_rayCastInput.p1.Set(-5.0, 5.0 + h);
+	this.m_rayCastInput.p2.Set(7.0, -4.0 + h);
+	//this.m_rayCastInput.p1.Set(0.0, 2.0 + h);
+	//this.m_rayCastInput.p2.Set(0.0, -2.0 + h);
 	this.m_rayCastInput.maxFraction = 1.0;
 
 	this.m_automated = false;
@@ -303,7 +303,7 @@ box2d.Testbed.DynamicTreeTest.prototype.RayCastCallback = function (input, proxy
  */
 box2d.Testbed.DynamicTreeTest.prototype.GetRandomAABB = function (aabb)
 {
-	var w = new box2d.b2Vec2(); w.SetXY(2.0 * this.m_proxyExtent, 2.0 * this.m_proxyExtent);
+	var w = new box2d.b2Vec2(); w.Set(2.0 * this.m_proxyExtent, 2.0 * this.m_proxyExtent);
 	//aabb.lowerBound.x = -this.m_proxyExtent;
 	//aabb.lowerBound.y = -this.m_proxyExtent + this.m_worldExtent;
 	aabb.lowerBound.x = box2d.b2RandomRange(-this.m_worldExtent, this.m_worldExtent);

@@ -51,7 +51,7 @@ box2d.Testbed.BodyTypes = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 3.0);
+		bd.position.Set(0.0, 3.0);
 		this.m_attachment = this.m_world.CreateBody(bd);
 
 		/*box2d.b2PolygonShape*/ var shape = new box2d.b2PolygonShape();
@@ -64,7 +64,7 @@ box2d.Testbed.BodyTypes = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-4.0, 5.0);
+		bd.position.Set(-4.0, 5.0);
 		this.m_platform = this.m_world.CreateBody(bd);
 
 		/*box2d.b2PolygonShape*/ var shape = new box2d.b2PolygonShape();
@@ -101,7 +101,7 @@ box2d.Testbed.BodyTypes = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 8.0);
+		bd.position.Set(0.0, 8.0);
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		/*box2d.b2PolygonShape*/ var shape = new box2d.b2PolygonShape();

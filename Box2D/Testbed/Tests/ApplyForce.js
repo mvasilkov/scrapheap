@@ -41,7 +41,7 @@ box2d.Testbed.ApplyForce = function (canvas, settings)
 	if (true)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(0.0, 20.0);
+		bd.position.Set(0.0, 20.0);
 		ground = this.m_world.CreateBody(bd);
 
 		/*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();
@@ -106,7 +106,7 @@ box2d.Testbed.ApplyForce = function (canvas, settings)
 		bd.angularDamping = 5.0;
 		bd.linearDamping = 0.1;
 
-		bd.position.SetXY(0.0, 2.0);
+		bd.position.Set(0.0, 2.0);
 		bd.angle = box2d.b2_pi;
 		bd.allowSleep = false;
 		this.m_body = this.m_world.CreateBody(bd);
@@ -129,7 +129,7 @@ box2d.Testbed.ApplyForce = function (canvas, settings)
 			/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
 
-			bd.position.SetXY(0.0, 5.0 + 1.54 * i);
+			bd.position.Set(0.0, 5.0 + 1.54 * i);
 			/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 
 			body.CreateFixture(fd);

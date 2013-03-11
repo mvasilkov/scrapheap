@@ -44,7 +44,7 @@ box2d.Testbed.ConveyorBelt = function (canvas, settings)
 	// Platform
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-5.0, 5.0);
+		bd.position.Set(-5.0, 5.0);
 		/*b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		var shape = new box2d.b2PolygonShape();
@@ -61,7 +61,7 @@ box2d.Testbed.ConveyorBelt = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-10.0 + 2.0 * i, 7.0);
+		bd.position.Set(-10.0 + 2.0 * i, 7.0);
 		/*b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		var shape = new box2d.b2PolygonShape();

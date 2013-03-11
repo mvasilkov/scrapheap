@@ -707,8 +707,8 @@ box2d.b2ContactSolver.prototype.InitializeVelocityConstraints = function ()
 			if (k11 * k11 < k_maxConditionNumber * (k11 * k22 - k12 * k12))
 			{
 				// K is safe to invert.
-				vc.K.ex.SetXY(k11, k12);
-				vc.K.ey.SetXY(k12, k22);
+				vc.K.ex.Set(k11, k12);
+				vc.K.ey.Set(k12, k22);
 				vc.K.GetInverse(vc.normalMass);
 			}
 			else
@@ -999,7 +999,7 @@ box2d.b2ContactSolver.prototype.SolveVelocityConstraints = function ()
 			cp2 = vc.points[1];
 
 //			b2Vec2 a(cp1->normalImpulse, cp2->normalImpulse);
-			a.SetXY(cp1.normalImpulse, cp2.normalImpulse);
+			a.Set(cp1.normalImpulse, cp2.normalImpulse);
 			if (box2d.ENABLE_ASSERTS) { box2d.b2Assert(a.x >= 0 && a.y >= 0); }
 
 			// Relative velocity at contact

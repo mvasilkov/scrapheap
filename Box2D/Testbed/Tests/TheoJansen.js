@@ -177,7 +177,7 @@ box2d.Testbed.TheoJansen.prototype.CreateLeg = function (s, wheelAnchor)
  */
 box2d.Testbed.TheoJansen.prototype.Construct = function ()
 {
-	this.m_offset.SetXY(0.0, 8.0);
+	this.m_offset.Set(0.0, 8.0);
 	this.m_motorSpeed = 2.0;
 	this.m_motorOn = true;
 	var pivot = new box2d.b2Vec2(0.0, 0.8);
@@ -207,7 +207,7 @@ box2d.Testbed.TheoJansen.prototype.Construct = function ()
 
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-40.0 + 2.0 * i, 0.5);
+		bd.position.Set(-40.0 + 2.0 * i, 0.5);
 
 		var body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(shape, 1.0);

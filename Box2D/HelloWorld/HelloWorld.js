@@ -48,7 +48,7 @@ box2d.HelloWorld.main = function (argc, argv)
 
 	// Define the ground body.
 	/** @type {box2d.b2BodyDef} */ var groundBodyDef = new box2d.b2BodyDef();
-	groundBodyDef.position.SetXY(0, -10);
+	groundBodyDef.position.Set(0, -10);
 
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
@@ -67,7 +67,7 @@ box2d.HelloWorld.main = function (argc, argv)
 	// Define the dynamic body. We set its position and call the body factory.
 	/** @type {box2d.b2BodyDef} */ var bodyDef = new box2d.b2BodyDef();
 	bodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	bodyDef.position.SetXY(0, 4);
+	bodyDef.position.Set(0, 4);
 	/** @type {box2d.b2Body} */ var body = world.CreateBody(bodyDef);
 
 	// Define another box shape for our dynamic body.

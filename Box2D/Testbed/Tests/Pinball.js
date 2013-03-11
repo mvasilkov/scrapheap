@@ -41,11 +41,11 @@ box2d.Testbed.Pinball = function (canvas, settings)
 		ground = this.m_world.CreateBody(bd);
 
 		/*box2d.b2Vec2*/ var vs = box2d.b2Vec2.MakeArray(5);
-		vs[0].SetXY(0.0, -2.0);
-		vs[1].SetXY(8.0, 6.0);
-		vs[2].SetXY(8.0, 20.0);
-		vs[3].SetXY(-8.0, 20.0);
-		vs[4].SetXY(-8.0, 6.0);
+		vs[0].Set(0.0, -2.0);
+		vs[1].Set(8.0, 6.0);
+		vs[2].Set(8.0, 20.0);
+		vs[3].Set(-8.0, 20.0);
+		vs[4].Set(-8.0, 6.0);
 
 		/*box2d.b2ChainShape*/ var loop = new box2d.b2ChainShape();
 		loop.CreateLoop(vs, 5);
@@ -105,7 +105,7 @@ box2d.Testbed.Pinball = function (canvas, settings)
 	if (true)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(1.0, 15.0);
+		bd.position.Set(1.0, 15.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		bd.bullet = true;
 

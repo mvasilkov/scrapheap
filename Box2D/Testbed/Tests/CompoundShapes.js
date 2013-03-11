@@ -44,18 +44,18 @@ box2d.Testbed.CompoundShapes = function (canvas, settings)
 	{
 		var circle1 = new box2d.b2CircleShape();
 		circle1.m_radius = 0.5;
-		circle1.m_p.SetXY(-0.5, 0.5);
+		circle1.m_p.Set(-0.5, 0.5);
 
 		var circle2 = new box2d.b2CircleShape();
 		circle2.m_radius = 0.5;
-		circle2.m_p.SetXY(0.5, 0.5);
+		circle2.m_p.Set(0.5, 0.5);
 
 		for (var i = 0; i < 10; ++i)
 		{
 			var x = box2d.b2RandomRange(-0.1, 0.1);
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(x + 5.0, 1.05 + 2.5 * i);
+			bd.position.Set(x + 5.0, 1.05 + 2.5 * i);
 			bd.angle = box2d.b2RandomRange(-box2d.b2_pi, box2d.b2_pi);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(circle1, 2.0);
@@ -76,7 +76,7 @@ box2d.Testbed.CompoundShapes = function (canvas, settings)
 			var x = box2d.b2RandomRange(-0.1, 0.1);
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(x - 5.0, 1.05 + 2.5 * i);
+			bd.position.Set(x - 5.0, 1.05 + 2.5 * i);
 			bd.angle = box2d.b2RandomRange(-box2d.b2_pi, box2d.b2_pi);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(polygon1, 2.0);
@@ -113,7 +113,7 @@ box2d.Testbed.CompoundShapes = function (canvas, settings)
 			var x = box2d.b2RandomRange(-0.1, 0.1);
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(x, 2.05 + 2.5 * i);
+			bd.position.Set(x, 2.05 + 2.5 * i);
 			bd.angle = 0;
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(triangle1, 2.0);
@@ -134,7 +134,7 @@ box2d.Testbed.CompoundShapes = function (canvas, settings)
 
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY( 0.0, 2.0 );
+		bd.position.Set( 0.0, 2.0 );
 		var body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(bottom, 4.0);
 		body.CreateFixture2(left, 4.0);

@@ -46,7 +46,7 @@ box2d.Testbed.OneSidedPlatform = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(0.0, 10.0);
+		bd.position.Set(0.0, 10.0);
 		var body = this.m_world.CreateBody(bd);
 
 		var shape = new box2d.b2PolygonShape();
@@ -62,7 +62,7 @@ box2d.Testbed.OneSidedPlatform = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 12.0);
+		bd.position.Set(0.0, 12.0);
 		var body = this.m_world.CreateBody(bd);
 
 		this.m_radius = 0.5;

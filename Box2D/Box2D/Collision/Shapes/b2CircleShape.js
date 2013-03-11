@@ -153,8 +153,8 @@ box2d.b2CircleShape.prototype.RayCast.s_r = new box2d.b2Vec2();
 box2d.b2CircleShape.prototype.ComputeAABB = function (aabb, transform, childIndex)
 {
 	var p = box2d.b2MulXV(transform, this.m_p, box2d.b2CircleShape.prototype.ComputeAABB.s_p);
-	aabb.lowerBound.SetXY(p.x - this.m_radius, p.y - this.m_radius);
-	aabb.upperBound.SetXY(p.x + this.m_radius, p.y + this.m_radius);
+	aabb.lowerBound.Set(p.x - this.m_radius, p.y - this.m_radius);
+	aabb.upperBound.Set(p.x + this.m_radius, p.y + this.m_radius);
 }
 box2d.b2CircleShape.prototype.ComputeAABB.s_p = new box2d.b2Vec2();
 

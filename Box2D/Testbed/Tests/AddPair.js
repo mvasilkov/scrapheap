@@ -61,7 +61,7 @@ box2d.Testbed.AddPair = function (canvas, settings)
 		shape.SetAsBox(1.5, 1.5);
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-40.0,5.0);
+		bd.position.Set(-40.0,5.0);
 		bd.bullet = true;
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(shape, 1.0);

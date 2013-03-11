@@ -65,7 +65,7 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.density = 1.0;
 		fd.friction = 0.4;
 		fd.restitution = 0.3;
-		bd.position.SetXY(startX, startY);
+		bd.position.Set(startX, startY);
 		var head = this.m_world.CreateBody(bd);
 		head.CreateFixture(fd);
 		//if (i == 0)
@@ -79,17 +79,17 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.density = 1.0;
 		fd.friction = 0.4;
 		fd.restitution = 0.1;
-		bd.position.SetXY(startX, (startY - 2.8));
+		bd.position.Set(startX, (startY - 2.8));
 		var torso1 = this.m_world.CreateBody(bd);
 		torso1.CreateFixture(fd);
 		// Torso2
 		fd.shape.SetAsBox(1.5, 1.0);
-		bd.position.SetXY(startX, (startY - 4.3));
+		bd.position.Set(startX, (startY - 4.3));
 		var torso2 = this.m_world.CreateBody(bd);
 		torso2.CreateFixture(fd);
 		// Torso3
 		fd.shape.SetAsBox(1.5, 1.0);
-		bd.position.SetXY(startX, (startY - 5.8));
+		bd.position.Set(startX, (startY - 5.8));
 		var torso3 = this.m_world.CreateBody(bd);
 		torso3.CreateFixture(fd);
 
@@ -99,12 +99,12 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.restitution = 0.1;
 		// L
 		fd.shape.SetAsBox(1.8, 0.65);
-		bd.position.SetXY((startX - 3.0), (startY - 2.0));
+		bd.position.Set((startX - 3.0), (startY - 2.0));
 		var upperArmL = this.m_world.CreateBody(bd);
 		upperArmL.CreateFixture(fd);
 		// R
 		fd.shape.SetAsBox(1.8, 0.65);
-		bd.position.SetXY((startX + 3.0), (startY - 2.0));
+		bd.position.Set((startX + 3.0), (startY - 2.0));
 		var upperArmR = this.m_world.CreateBody(bd);
 		upperArmR.CreateFixture(fd);
 
@@ -114,12 +114,12 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.restitution = 0.1;
 		// L
 		fd.shape.SetAsBox(1.7, 0.6);
-		bd.position.SetXY((startX - 5.7), (startY - 2.0));
+		bd.position.Set((startX - 5.7), (startY - 2.0));
 		var lowerArmL = this.m_world.CreateBody(bd);
 		lowerArmL.CreateFixture(fd);
 		// R
 		fd.shape.SetAsBox(1.7, 0.6);
-		bd.position.SetXY((startX + 5.7), (startY - 2.0));
+		bd.position.Set((startX + 5.7), (startY - 2.0));
 		var lowerArmR = this.m_world.CreateBody(bd);
 		lowerArmR.CreateFixture(fd);
 
@@ -129,12 +129,12 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.restitution = 0.1;
 		// L
 		fd.shape.SetAsBox(0.75, 2.2);
-		bd.position.SetXY((startX - 0.8), (startY - 8.5));
+		bd.position.Set((startX - 0.8), (startY - 8.5));
 		var upperLegL = this.m_world.CreateBody(bd);
 		upperLegL.CreateFixture(fd);
 		// R
 		fd.shape.SetAsBox(0.75, 2.2);
-		bd.position.SetXY((startX + 0.8), (startY - 8.5));
+		bd.position.Set((startX + 0.8), (startY - 8.5));
 		var upperLegR = this.m_world.CreateBody(bd);
 		upperLegR.CreateFixture(fd);
 
@@ -144,12 +144,12 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 		fd.restitution = 0.1;
 		// L
 		fd.shape.SetAsBox(0.6, 2.0);
-		bd.position.SetXY((startX - 0.8), (startY - 12.0));
+		bd.position.Set((startX - 0.8), (startY - 12.0));
 		var lowerLegL = this.m_world.CreateBody(bd);
 		lowerLegL.CreateFixture(fd);
 		// R
 		fd.shape.SetAsBox(0.6, 2.0);
-		bd.position.SetXY((startX + 0.8), (startY - 12.0));
+		bd.position.Set((startX + 0.8), (startY - 12.0));
 		var lowerLegR = this.m_world.CreateBody(bd);
 		lowerLegR.CreateFixture(fd);
 
@@ -231,7 +231,7 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 	for (var j = 1; j <= 10; ++j)
 	{
 		fd.shape.SetAsBox((1.0*j), 1.0);
-		bd.position.SetXY((1.0*j - 30.0), (21.0 - 2.0*j));
+		bd.position.Set((1.0*j - 30.0), (21.0 - 2.0*j));
 		this.m_world.CreateBody(bd).CreateFixture(fd);
 	}
 
@@ -239,12 +239,12 @@ box2d.Testbed.TestRagdoll = function (canvas, settings)
 	for (var k = 1; k <= 10; ++k)
 	{
 		fd.shape.SetAsBox((1.0 * k), 1.0);
-		bd.position.SetXY((30.0 - 1.0*k), (21.0 - 2.0*k));
+		bd.position.Set((30.0 - 1.0*k), (21.0 - 2.0*k));
 		this.m_world.CreateBody(bd).CreateFixture(fd);
 	}
 
 	fd.shape.SetAsBox(3.0, 4.0);
-	bd.position.SetXY(0.0, 4.0);
+	bd.position.Set(0.0, 4.0);
 	this.m_world.CreateBody(bd).CreateFixture(fd);
 }
 

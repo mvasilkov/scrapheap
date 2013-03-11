@@ -47,7 +47,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		shape.SetAsBox(13.0, 0.25);
 
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-4.0, 22.0);
+		bd.position.Set(-4.0, 22.0);
 		bd.angle = -0.25;
 
 		var ground = this.m_world.CreateBody(bd);
@@ -60,7 +60,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		shape.SetAsBox(0.25, 1.0);
 
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(10.5, 19.0);
+		bd.position.Set(10.5, 19.0);
 
 		var ground = this.m_world.CreateBody(bd);
 		ground.CreateFixture2(shape, 0.0);
@@ -72,7 +72,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		shape.SetAsBox(13.0, 0.25);
 
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(4.0, 14.0);
+		bd.position.Set(4.0, 14.0);
 		bd.angle = 0.25;
 
 		var ground = this.m_world.CreateBody(bd);
@@ -85,7 +85,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		shape.SetAsBox(0.25, 1.0);
 
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-10.5, 11.0);
+		bd.position.Set(-10.5, 11.0);
 
 		var ground = this.m_world.CreateBody(bd);
 		ground.CreateFixture2(shape, 0.0);
@@ -97,7 +97,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		shape.SetAsBox(13.0, 0.25);
 
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(-4.0, 6.0);
+		bd.position.Set(-4.0, 6.0);
 		bd.angle = -0.25;
 
 		var ground = this.m_world.CreateBody(bd);
@@ -119,7 +119,7 @@ box2d.Testbed.VaryingFriction = function (canvas, settings)
 		{
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(-15.0 + 4.0 * i, 28.0);
+			bd.position.Set(-15.0 + 4.0 * i, 28.0);
 			var body = this.m_world.CreateBody(bd);
 
 			fd.friction = friction[i];

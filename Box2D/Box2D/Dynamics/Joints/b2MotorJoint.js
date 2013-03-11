@@ -592,7 +592,7 @@ box2d.b2MotorJoint.prototype.Dump = function ()
 		box2d.b2Log("  jd.bodyB = bodies[%d];\n", indexB);
 		box2d.b2Log("  jd.collideConnected = %s;\n", (this.m_collideConnected)?('true'):('false'));
 
-		box2d.b2Log("  jd.linearOffset.SetXY(%.15f, %.15f);\n", this.m_linearOffset.x, this.m_linearOffset.y);
+		box2d.b2Log("  jd.linearOffset.Set(%.15f, %.15f);\n", this.m_linearOffset.x, this.m_linearOffset.y);
 		box2d.b2Log("  jd.angularOffset = %.15f;\n", this.m_angularOffset);
 		box2d.b2Log("  jd.maxForce = %.15f;\n", this.m_maxForce);
 		box2d.b2Log("  jd.maxTorque = %.15f;\n", this.m_maxTorque);

@@ -350,7 +350,7 @@ box2d.b2WeldJoint.prototype.InitVelocityConstraints = function (data)
 		this.m_impulse.SelfMul(data.step.dtRatio);
 
 //		box2d.b2Vec2 P(m_impulse.x, m_impulse.y);
-		var P = box2d.b2WeldJoint.prototype.InitVelocityConstraints.s_P.SetXY(this.m_impulse.x, this.m_impulse.y);
+		var P = box2d.b2WeldJoint.prototype.InitVelocityConstraints.s_P.Set(this.m_impulse.x, this.m_impulse.y);
 
 //		vA -= mA * P;
 		vA.SelfMulSub(mA, P);
@@ -436,7 +436,7 @@ box2d.b2WeldJoint.prototype.SolveVelocityConstraints = function (data)
 		this.m_impulse.SelfAdd(impulse);
 
 //		box2d.b2Vec2 P(impulse.x, impulse.y);
-		var P = box2d.b2WeldJoint.prototype.SolveVelocityConstraints.s_P.SetXY(impulse.x, impulse.y);
+		var P = box2d.b2WeldJoint.prototype.SolveVelocityConstraints.s_P.Set(impulse.x, impulse.y);
 
 //		vA -= mA * P;
 		vA.SelfMulSub(mA, P);
@@ -535,7 +535,7 @@ box2d.b2WeldJoint.prototype.SolvePositionConstraints = function (data)
 		/*box2d.b2Vec3*/ var impulse = K.Solve33(C1.x, C1.y, C2, box2d.b2WeldJoint.prototype.SolvePositionConstraints.s_impulse).SelfNeg();
 
 //		b2Vec2 P(impulse.x, impulse.y);
-		var P = box2d.b2WeldJoint.prototype.SolvePositionConstraints.s_P.SetXY(impulse.x, impulse.y);
+		var P = box2d.b2WeldJoint.prototype.SolvePositionConstraints.s_P.Set(impulse.x, impulse.y);
 
 //		cA -= mA * P;
 		cA.SelfMulSub(mA, P);
@@ -587,7 +587,7 @@ box2d.b2WeldJoint.prototype.GetReactionForce = function (inv_dt, out)
 {
 //	box2d.b2Vec2 P(this.m_impulse.x, this.m_impulse.y);
 //	return inv_dt * P;
-	return out.SetXY(inv_dt * this.m_impulse.x, inv_dt * this.m_impulse.y);
+	return out.Set(inv_dt * this.m_impulse.x, inv_dt * this.m_impulse.y);
 }
 
 /**
@@ -661,8 +661,8 @@ box2d.b2WeldJoint.prototype.Dump = function ()
 		box2d.b2Log("  jd.bodyA = bodies[%d];\n", indexA);
 		box2d.b2Log("  jd.bodyB = bodies[%d];\n", indexB);
 		box2d.b2Log("  jd.collideConnected = %s;\n", (this.m_collideConnected)?('true'):('false'));
-		box2d.b2Log("  jd.localAnchorA.SetXY(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
-		box2d.b2Log("  jd.localAnchorB.SetXY(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
+		box2d.b2Log("  jd.localAnchorA.Set(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
+		box2d.b2Log("  jd.localAnchorB.Set(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
 		box2d.b2Log("  jd.referenceAngle = %.15f;\n", this.m_referenceAngle);
 		box2d.b2Log("  jd.frequencyHz = %.15f;\n", this.m_frequencyHz);
 		box2d.b2Log("  jd.dampingRatio = %.15f;\n", this.m_dampingRatio);

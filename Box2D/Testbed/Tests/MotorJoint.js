@@ -49,7 +49,7 @@ box2d.Testbed.MotorJoint = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 8.0);
+		bd.position.Set(0.0, 8.0);
 		/*b2Body*/ var body = this.m_world.CreateBody(bd);
 
 		var shape = new box2d.b2PolygonShape();

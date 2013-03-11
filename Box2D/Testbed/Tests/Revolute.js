@@ -57,7 +57,7 @@ box2d.Testbed.Revolute = function (canvas, settings)
 
 		var rjd = new box2d.b2RevoluteJointDef();
 
-		bd.position.SetXY(-10.0, 20.0);
+		bd.position.Set(-10.0, 20.0);
 		var body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(shape, 5.0);
 
@@ -83,7 +83,7 @@ box2d.Testbed.Revolute = function (canvas, settings)
 
 		var circle_bd = new box2d.b2BodyDef();
 		circle_bd.type = box2d.b2BodyType.b2_dynamicBody;
-		circle_bd.position.SetXY(5.0, 30.0);
+		circle_bd.position.Set(5.0, 30.0);
 
 		/*box2d.b2FixtureDef*/ var fd = new box2d.b2FixtureDef();
 		fd.density = 5.0;
@@ -97,7 +97,7 @@ box2d.Testbed.Revolute = function (canvas, settings)
 		polygon_shape.SetAsOrientedBox(10.0, 0.2, new box2d.b2Vec2(-10.0, 0.0), 0.0);
 
 		var polygon_bd = new box2d.b2BodyDef();
-		polygon_bd.position.SetXY(20.0, 10.0);
+		polygon_bd.position.Set(20.0, 10.0);
 		polygon_bd.type = box2d.b2BodyType.b2_dynamicBody;
 		polygon_bd.bullet = true;
 		/*box2d.b2Body*/ var polygon_body = this.m_world.CreateBody(polygon_bd);
@@ -119,9 +119,9 @@ box2d.Testbed.Revolute = function (canvas, settings)
 
 		/*box2d.b2PolygonShape*/ var polyShape = new box2d.b2PolygonShape();
 		/*box2d.b2Vec2*/ var verts = box2d.b2Vec2.MakeArray(3);
-		verts[0].SetXY( 17.63, 36.31 );
-		verts[1].SetXY( 17.52, 36.69 );
-		verts[2].SetXY( 17.19, 36.36 );
+		verts[0].Set( 17.63, 36.31 );
+		verts[1].Set( 17.52, 36.69 );
+		verts[2].Set( 17.19, 36.36 );
 		polyShape.SetAsVector(verts, 3);
 
 		/*box2d.b2FixtureDef*/ var polyFixtureDef = new box2d.b2FixtureDef();

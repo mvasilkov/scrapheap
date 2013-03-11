@@ -84,7 +84,7 @@ box2d.Testbed.EdgeTest = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-0.5, 0.6);
+		bd.position.Set(-0.5, 0.6);
 		bd.allowSleep = false;
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 
@@ -98,7 +98,7 @@ box2d.Testbed.EdgeTest = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(1.0, 0.6);
+		bd.position.Set(1.0, 0.6);
 		bd.allowSleep = false;
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 

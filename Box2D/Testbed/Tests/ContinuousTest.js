@@ -34,7 +34,7 @@ box2d.Testbed.ContinuousTest = function (canvas, settings)
 	if (true)
 	{
 		var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(0.0, 0.0);
+		bd.position.Set(0.0, 0.0);
 		var body = this.m_world.CreateBody(bd);
 
 		var edge = new box2d.b2EdgeShape();
@@ -51,7 +51,7 @@ box2d.Testbed.ContinuousTest = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 20.0);
+		bd.position.Set(0.0, 20.0);
 		//bd.angle = 0.1;
 
 		var shape = new box2d.b2PolygonShape();
@@ -70,7 +70,7 @@ box2d.Testbed.ContinuousTest = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 2.0);
+		bd.position.Set(0.0, 2.0);
 		var body = this.m_world.CreateBody(bd);
 
 		var shape = new box2d.b2CircleShape();
@@ -79,7 +79,7 @@ box2d.Testbed.ContinuousTest = function (canvas, settings)
 		body.CreateFixture2(shape, 1.0);
 
 		bd.bullet = true;
-		bd.position.SetXY(0.0, 10.0);
+		bd.position.Set(0.0, 10.0);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(shape, 1.0);
 		body.SetLinearVelocity(new box2d.b2Vec2(0.0, -100.0));

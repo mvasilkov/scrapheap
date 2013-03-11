@@ -168,7 +168,7 @@ box2d.b2EdgeShape.prototype.RayCast = function (output, input, xf, childIndex)
 	var v1 = this.m_vertex1;
 	var v2 = this.m_vertex2;
 	var e = box2d.b2SubVV(v2, v1, box2d.b2EdgeShape.prototype.RayCast.s_e);
-	var normal = output.normal.SetXY(e.y, -e.x).SelfNormalize();
+	var normal = output.normal.Set(e.y, -e.x).SelfNormalize();
 
 	// q = p1 + t * d
 	// dot(normal, q - v1) = 0

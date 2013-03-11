@@ -73,7 +73,7 @@ box2d.b2GravityController.prototype.Step = function (step)
 				var r2 = dx * dx + dy * dy;
 				if (r2 < box2d.b2_epsilon)
 					continue;
-				var f = box2d.b2GravityController.prototype.Step.s_f.SetXY(dx, dy);
+				var f = box2d.b2GravityController.prototype.Step.s_f.Set(dx, dy);
 				f.SelfMul(this.G / r2 / box2d.b2Sqrt(r2) * mass1 * mass2);
 				if (body1.IsAwake())
 					body1.ApplyForce(f, p1);
@@ -99,7 +99,7 @@ box2d.b2GravityController.prototype.Step = function (step)
 				var r2 = dx * dx + dy * dy;
 				if (r2 < box2d.b2_epsilon)
 					continue;
-				var f = box2d.b2GravityController.prototype.Step.s_f.SetXY(dx, dy);
+				var f = box2d.b2GravityController.prototype.Step.s_f.Set(dx, dy);
 				f.SelfMul(this.G / r2 * mass1 * mass2);
 				if (body1.IsAwake())
 					body1.ApplyForce(f, p1);

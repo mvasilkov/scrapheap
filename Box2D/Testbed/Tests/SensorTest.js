@@ -61,7 +61,7 @@ box2d.Testbed.SensorTest = function (canvas, settings)
 	{
 		var shape = new box2d.b2CircleShape();
 		shape.m_radius = 5.0;
-		shape.m_p.SetXY(0.0, 10.0);
+		shape.m_p.Set(0.0, 10.0);
 
 		var fd = new box2d.b2FixtureDef();
 		fd.shape = shape;
@@ -78,7 +78,7 @@ box2d.Testbed.SensorTest = function (canvas, settings)
 		{
 			//var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(-10.0 + 3.0 * i, 20.0);
+			bd.position.Set(-10.0 + 3.0 * i, 20.0);
 			bd.userData = this.m_touching[i];
 
 			this.m_touching[i][0] = false;

@@ -585,7 +585,7 @@ box2d.b2Simplex.prototype.GetClosestPoint = function (out)
 		return out.Copy(this.m_v1.w);
 
 	case 2:
-		return out.SetXY(
+		return out.Set(
 			this.m_v1.a * this.m_v1.w.x + this.m_v2.a * this.m_v2.w.x,
 			this.m_v1.a * this.m_v1.w.y + this.m_v2.a * this.m_v2.w.y);
 

@@ -104,14 +104,14 @@ box2d.b2PolygonShape.prototype.Copy = function (other)
 box2d.b2PolygonShape.prototype.SetAsBox = function (hx, hy)
 {
 	this.m_count = 4;
-	this.m_vertices[0].SetXY((-hx), (-hy));
-	this.m_vertices[1].SetXY(hx, (-hy));
-	this.m_vertices[2].SetXY(hx, hy);
-	this.m_vertices[3].SetXY((-hx), hy);
-	this.m_normals[0].SetXY(0, (-1));
-	this.m_normals[1].SetXY(1, 0);
-	this.m_normals[2].SetXY(0, 1);
-	this.m_normals[3].SetXY((-1), 0);
+	this.m_vertices[0].Set((-hx), (-hy));
+	this.m_vertices[1].Set(hx, (-hy));
+	this.m_vertices[2].Set(hx, hy);
+	this.m_vertices[3].Set((-hx), hy);
+	this.m_normals[0].Set(0, (-1));
+	this.m_normals[1].Set(1, 0);
+	this.m_normals[2].Set(0, 1);
+	this.m_normals[3].Set((-1), 0);
 	this.m_centroid.SetZero();
 	return this;
 }
@@ -128,14 +128,14 @@ box2d.b2PolygonShape.prototype.SetAsBox = function (hx, hy)
 box2d.b2PolygonShape.prototype.SetAsOrientedBox = function (hx, hy, center, angle)
 {
 	this.m_count = 4;
-	this.m_vertices[0].SetXY((-hx), (-hy));
-	this.m_vertices[1].SetXY(hx, (-hy));
-	this.m_vertices[2].SetXY(hx, hy);
-	this.m_vertices[3].SetXY((-hx), hy);
-	this.m_normals[0].SetXY(0, (-1));
-	this.m_normals[1].SetXY(1, 0);
-	this.m_normals[2].SetXY(0, 1);
-	this.m_normals[3].SetXY((-1), 0);
+	this.m_vertices[0].Set((-hx), (-hy));
+	this.m_vertices[1].Set(hx, (-hy));
+	this.m_vertices[2].Set(hx, hy);
+	this.m_vertices[3].Set((-hx), hy);
+	this.m_normals[0].Set(0, (-1));
+	this.m_normals[1].Set(1, 0);
+	this.m_normals[2].Set(0, 1);
+	this.m_normals[3].Set((-1), 0);
 	this.m_centroid.Copy(center);
 
 	var xf = new box2d.b2Transform();
@@ -690,10 +690,10 @@ box2d.b2PolygonShape.prototype.ComputeSubmergedArea = function (normal, offset, 
 	var intoLamdda = (0 - depths[intoIndex]) / (depths[intoIndex2] - depths[intoIndex]);
 	var outoLamdda = (0 - depths[outoIndex]) / (depths[outoIndex2] - depths[outoIndex]);
 
-	var intoVec = box2d.b2PolygonShape.prototype.ComputeSubmergedArea.s_intoVec.SetXY(
+	var intoVec = box2d.b2PolygonShape.prototype.ComputeSubmergedArea.s_intoVec.Set(
 		this.m_vertices[intoIndex].x * (1 - intoLamdda) + this.m_vertices[intoIndex2].x * intoLamdda,
 		this.m_vertices[intoIndex].y * (1 - intoLamdda) + this.m_vertices[intoIndex2].y * intoLamdda);
-	var outoVec = box2d.b2PolygonShape.prototype.ComputeSubmergedArea.s_outoVec.SetXY(
+	var outoVec = box2d.b2PolygonShape.prototype.ComputeSubmergedArea.s_outoVec.Set(
 		this.m_vertices[outoIndex].x * (1 - outoLamdda) + this.m_vertices[outoIndex2].x * outoLamdda,
 		this.m_vertices[outoIndex].y * (1 - outoLamdda) + this.m_vertices[outoIndex2].y * outoLamdda);
 

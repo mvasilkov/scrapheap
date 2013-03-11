@@ -51,7 +51,7 @@ box2d.Testbed.Breakable = function (canvas, settings)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 40.0);
+		bd.position.Set(0.0, 40.0);
 		bd.angle = 0.25 * box2d.b2_pi;
 		this.m_body1 = this.m_world.CreateBody(bd);
 

@@ -40,9 +40,9 @@ if (true)
 {
   /*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
   bd.type = box2d.b2BodyType.b2_staticBody;
-  bd.position.SetXY(0.000000000000000, 0.000000000000000);
+  bd.position.Set(0.000000000000000, 0.000000000000000);
   bd.angle = 0.000000000000000;
-  bd.linearVelocity.SetXY(0.000000000000000, 0.000000000000000);
+  bd.linearVelocity.Set(0.000000000000000, 0.000000000000000);
   bd.angularVelocity = 0.000000000000000;
   bd.linearDamping = 0.000000000000000;
   bd.angularDamping = 0.000000000000000;
@@ -67,10 +67,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();
     shape.m_radius = 0.009999999776483;
-    shape.m_vertex0.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex1.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex2.SetXY(44.521739959716797, 0.000000000000000);
-    shape.m_vertex3.SetXY(0.000000000000000, 0.000000000000000);
+    shape.m_vertex0.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex1.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex2.Set(44.521739959716797, 0.000000000000000);
+    shape.m_vertex3.Set(0.000000000000000, 0.000000000000000);
     shape.m_hasVertex0 = false;
     shape.m_hasVertex3 = false;
 
@@ -90,10 +90,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();
     shape.m_radius = 0.009999999776483;
-    shape.m_vertex0.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex1.SetXY(0.000000000000000, 16.695652008056641);
-    shape.m_vertex2.SetXY(44.521739959716797, 16.695652008056641);
-    shape.m_vertex3.SetXY(0.000000000000000, 0.000000000000000);
+    shape.m_vertex0.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex1.Set(0.000000000000000, 16.695652008056641);
+    shape.m_vertex2.Set(44.521739959716797, 16.695652008056641);
+    shape.m_vertex3.Set(0.000000000000000, 0.000000000000000);
     shape.m_hasVertex0 = false;
     shape.m_hasVertex3 = false;
 
@@ -113,10 +113,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();
     shape.m_radius = 0.009999999776483;
-    shape.m_vertex0.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex1.SetXY(0.000000000000000, 16.695652008056641);
-    shape.m_vertex2.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex3.SetXY(0.000000000000000, 0.000000000000000);
+    shape.m_vertex0.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex1.Set(0.000000000000000, 16.695652008056641);
+    shape.m_vertex2.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex3.Set(0.000000000000000, 0.000000000000000);
     shape.m_hasVertex0 = false;
     shape.m_hasVertex3 = false;
 
@@ -136,10 +136,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2EdgeShape*/ var shape = new box2d.b2EdgeShape();
     shape.m_radius = 0.009999999776483;
-    shape.m_vertex0.SetXY(0.000000000000000, 0.000000000000000);
-    shape.m_vertex1.SetXY(44.521739959716797, 16.695652008056641);
-    shape.m_vertex2.SetXY(44.521739959716797, 0.000000000000000);
-    shape.m_vertex3.SetXY(0.000000000000000, 0.000000000000000);
+    shape.m_vertex0.Set(0.000000000000000, 0.000000000000000);
+    shape.m_vertex1.Set(44.521739959716797, 16.695652008056641);
+    shape.m_vertex2.Set(44.521739959716797, 0.000000000000000);
+    shape.m_vertex3.Set(0.000000000000000, 0.000000000000000);
     shape.m_hasVertex0 = false;
     shape.m_hasVertex3 = false;
 
@@ -152,9 +152,9 @@ if (true)
 {
   /*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
   bd.type = box2d.b2BodyType.b2_dynamicBody;
-  bd.position.SetXY(0.847826063632965, 2.500000000000000);
+  bd.position.Set(0.847826063632965, 2.500000000000000);
   bd.angle = 0.000000000000000;
-  bd.linearVelocity.SetXY(0.000000000000000, 0.000000000000000);
+  bd.linearVelocity.Set(0.000000000000000, 0.000000000000000);
   bd.angularVelocity = 0.000000000000000;
   bd.linearDamping = 0.500000000000000;
   bd.angularDamping = 0.500000000000000;
@@ -179,10 +179,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2PolygonShape*/ var shape = new box2d.b2PolygonShape();
     /*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(8);
-    vs[0].SetXY(6.907599925994873, 0.327199995517731);
-    vs[1].SetXY(-0.322800010442734, 0.282599985599518);
-    vs[2].SetXY(-0.322800010442734, -0.295700013637543);
-    vs[3].SetXY(6.885900020599365, -0.364100009202957);
+    vs[0].Set(6.907599925994873, 0.327199995517731);
+    vs[1].Set(-0.322800010442734, 0.282599985599518);
+    vs[2].Set(-0.322800010442734, -0.295700013637543);
+    vs[3].Set(6.885900020599365, -0.364100009202957);
     shape.SetAsVector(vs, 4);
 
     fd.shape = shape;
@@ -194,9 +194,9 @@ if (true)
 {
   /*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
   bd.type = box2d.b2BodyType.b2_dynamicBody;
-  bd.position.SetXY(13.043478012084959, 2.500000000000000);
+  bd.position.Set(13.043478012084959, 2.500000000000000);
   bd.angle = 0.000000000000000;
-  bd.linearVelocity.SetXY(0.000000000000000, 0.000000000000000);
+  bd.linearVelocity.Set(0.000000000000000, 0.000000000000000);
   bd.angularVelocity = 0.000000000000000;
   bd.linearDamping = 0.500000000000000;
   bd.angularDamping = 0.500000000000000;
@@ -221,10 +221,10 @@ if (true)
     fd.filter.groupIndex = 0;
     /*box2d.b2PolygonShape*/ var shape = new box2d.b2PolygonShape();
     /*box2d.b2Vec2[]*/ var vs = box2d.b2Vec2.MakeArray(8);
-    vs[0].SetXY(0.200000002980232, -0.300000011920929);
-    vs[1].SetXY(0.200000002980232, 0.200000002980232);
-    vs[2].SetXY(-6.900000095367432, 0.200000002980232);
-    vs[3].SetXY(-6.900000095367432, -0.300000011920929);
+    vs[0].Set(0.200000002980232, -0.300000011920929);
+    vs[1].Set(0.200000002980232, 0.200000002980232);
+    vs[2].Set(-6.900000095367432, 0.200000002980232);
+    vs[3].Set(-6.900000095367432, -0.300000011920929);
     shape.SetAsVector(vs, 4);
 
     fd.shape = shape;
@@ -236,9 +236,9 @@ if (true)
 {
   /*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
   bd.type = box2d.b2BodyType.b2_staticBody;
-  bd.position.SetXY(0.000000000000000, 0.000000000000000);
+  bd.position.Set(0.000000000000000, 0.000000000000000);
   bd.angle = 0.000000000000000;
-  bd.linearVelocity.SetXY(0.000000000000000, 0.000000000000000);
+  bd.linearVelocity.Set(0.000000000000000, 0.000000000000000);
   bd.angularVelocity = 0.000000000000000;
   bd.linearDamping = 0.000000000000000;
   bd.angularDamping = 0.000000000000000;
@@ -258,8 +258,8 @@ if (true)
   jd.bodyA = bodies[1];
   jd.bodyB = bodies[0];
   jd.collideConnected = false;
-  jd.localAnchorA.SetXY(0.000000000000000, 0.000000000000000);
-  jd.localAnchorB.SetXY(0.847826063632965, 2.500000000000000);
+  jd.localAnchorA.Set(0.000000000000000, 0.000000000000000);
+  jd.localAnchorB.Set(0.847826063632965, 2.500000000000000);
   jd.referenceAngle = 0.000000000000000;
   jd.enableLimit = false;
   jd.lowerAngle = 0.000000000000000;
@@ -275,9 +275,9 @@ if (true)
   jd.bodyA = bodies[1];
   jd.bodyB = bodies[2];
   jd.collideConnected = false;
-  jd.localAnchorA.SetXY(0.000000000000000, 0.000000000000000);
-  jd.localAnchorB.SetXY(-12.195652008056641, 0.000000000000000);
-  jd.localAxisA.SetXY(-1.000000000000000, 0.000000000000000);
+  jd.localAnchorA.Set(0.000000000000000, 0.000000000000000);
+  jd.localAnchorB.Set(-12.195652008056641, 0.000000000000000);
+  jd.localAxisA.Set(-1.000000000000000, 0.000000000000000);
   jd.referenceAngle = 0.000000000000000;
   jd.enableLimit = true;
   jd.lowerTranslation = -20.000000000000000;

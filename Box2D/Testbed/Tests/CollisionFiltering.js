@@ -64,7 +64,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 
 	var triangleBodyDef = new box2d.b2BodyDef();
 	triangleBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	triangleBodyDef.position.SetXY(-5.0, 2.0);
+	triangleBodyDef.position.Set(-5.0, 2.0);
 
 	var body1 = this.m_world.CreateBody(triangleBodyDef);
 	body1.CreateFixture(triangleShapeDef);
@@ -75,7 +75,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 	vertices[2].SelfMul(2.0);
 	polygon.SetAsArray(vertices, 3);
 	triangleShapeDef.filter.groupIndex = box2d.Testbed.CollisionFiltering.k_largeGroup;
-	triangleBodyDef.position.SetXY(-5.0, 6.0);
+	triangleBodyDef.position.Set(-5.0, 6.0);
 	triangleBodyDef.fixedRotation = true; // look at me!
 
 	var body2 = this.m_world.CreateBody(triangleBodyDef);
@@ -85,7 +85,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 	{
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-5.0, 10.0);
+		bd.position.Set(-5.0, 10.0);
 		var body = this.m_world.CreateBody(bd);
 
 		var p = new box2d.b2PolygonShape();
@@ -96,9 +96,9 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 		jd.bodyA = body2;
 		jd.bodyB = body;
 		jd.enableLimit = true;
-		jd.localAnchorA.SetXY(0.0, 4.0);
+		jd.localAnchorA.Set(0.0, 4.0);
 		jd.localAnchorB.SetZero();
-		jd.localAxisA.SetXY(0.0, 1.0);
+		jd.localAxisA.Set(0.0, 1.0);
 		jd.lowerTranslation = -1.0;
 		jd.upperTranslation = 1.0;
 
@@ -118,7 +118,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 
 	var boxBodyDef = new box2d.b2BodyDef();
 	boxBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	boxBodyDef.position.SetXY(0.0, 2.0);
+	boxBodyDef.position.Set(0.0, 2.0);
 
 	var body3 = this.m_world.CreateBody(boxBodyDef);
 	body3.CreateFixture(boxShapeDef);
@@ -126,7 +126,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 	// Large box (recycle definitions)
 	polygon.SetAsBox(2.0, 1.0);
 	boxShapeDef.filter.groupIndex = box2d.Testbed.CollisionFiltering.k_largeGroup;
-	boxBodyDef.position.SetXY(0.0, 6.0);
+	boxBodyDef.position.Set(0.0, 6.0);
 
 	var body4 = this.m_world.CreateBody(boxBodyDef);
 	body4.CreateFixture(boxShapeDef);
@@ -145,7 +145,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 
 	var circleBodyDef = new box2d.b2BodyDef();
 	circleBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	circleBodyDef.position.SetXY(5.0, 2.0);
+	circleBodyDef.position.Set(5.0, 2.0);
 
 	var body5 = this.m_world.CreateBody(circleBodyDef);
 	body5.CreateFixture(circleShapeDef);
@@ -153,7 +153,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 	// Large circle
 	circle.m_radius *= 2.0;
 	circleShapeDef.filter.groupIndex = box2d.Testbed.CollisionFiltering.k_largeGroup;
-	circleBodyDef.position.SetXY(5.0, 6.0);
+	circleBodyDef.position.Set(5.0, 6.0);
 
 	var body6 = this.m_world.CreateBody(circleBodyDef);
 	body6.CreateFixture(circleShapeDef);

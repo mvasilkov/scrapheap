@@ -46,7 +46,7 @@ box2d.Testbed.PolyCollision = function (canvas, settings)
 	if (true)
 	{
 		this.m_polygonB.SetAsBox(0.5, 0.5);
-		this.m_positionB.SetXY(19.345284, 1.5632932);
+		this.m_positionB.Set(19.345284, 1.5632932);
 		this.m_angleB = 1.9160721;
 		this.m_transformB.SetPositionAngleRadians(this.m_positionB, this.m_angleB);
 	}

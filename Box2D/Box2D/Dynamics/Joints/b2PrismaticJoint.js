@@ -829,9 +829,9 @@ box2d.b2PrismaticJoint.prototype.SolvePositionConstraints = function (data)
 //		box2d.b2Mat22 K;
 		var K2 = this.m_K2;
 //		K.ex.Set(k11, k12);
-		K2.ex.SetXY(k11, k12);
+		K2.ex.Set(k11, k12);
 //		K.ey.Set(k12, k22);
-		K2.ey.SetXY(k12, k22);
+		K2.ey.Set(k12, k22);
 
 //		b2Vec2 impulse1 = K.Solve(-C1);
 		var impulse1 = K2.Solve((-C1_x), (-C1_y), box2d.b2PrismaticJoint.prototype.SolvePositionConstraints.s_impulse1);
@@ -898,7 +898,7 @@ box2d.b2PrismaticJoint.prototype.GetAnchorB = function (out)
 box2d.b2PrismaticJoint.prototype.GetReactionForce = function (inv_dt, out)
 {
 //	return inv_dt * (m_impulse.x * m_perp + (m_motorImpulse + m_impulse.z) * m_axis);
-	return out.SetXY(inv_dt * (this.m_impulse.x * this.m_perp.x + (this.m_motorImpulse + this.m_impulse.z) * this.m_axis.x), inv_dt * (this.m_impulse.x * this.m_perp.y + (this.m_motorImpulse + this.m_impulse.z) * this.m_axis.y));
+	return out.Set(inv_dt * (this.m_impulse.x * this.m_perp.x + (this.m_motorImpulse + this.m_impulse.z) * this.m_axis.x), inv_dt * (this.m_impulse.x * this.m_perp.y + (this.m_motorImpulse + this.m_impulse.z) * this.m_axis.y));
 }
 
 /**
@@ -1151,9 +1151,9 @@ box2d.b2PrismaticJoint.prototype.Dump = function ()
 		box2d.b2Log("  jd.bodyA = bodies[%d];\n", indexA);
 		box2d.b2Log("  jd.bodyB = bodies[%d];\n", indexB);
 		box2d.b2Log("  jd.collideConnected = %s;\n", (this.m_collideConnected)?('true'):('false'));
-		box2d.b2Log("  jd.localAnchorA.SetXY(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
-		box2d.b2Log("  jd.localAnchorB.SetXY(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
-		box2d.b2Log("  jd.localAxisA.SetXY(%.15f, %.15f);\n", this.m_localXAxisA.x, this.m_localXAxisA.y);
+		box2d.b2Log("  jd.localAnchorA.Set(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
+		box2d.b2Log("  jd.localAnchorB.Set(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
+		box2d.b2Log("  jd.localAxisA.Set(%.15f, %.15f);\n", this.m_localXAxisA.x, this.m_localXAxisA.y);
 		box2d.b2Log("  jd.referenceAngle = %.15f;\n", this.m_referenceAngle);
 		box2d.b2Log("  jd.enableLimit = %s;\n", (this.m_enableLimit)?('true'):('false'));
 		box2d.b2Log("  jd.lowerTranslation = %.15f;\n", this.m_lowerTranslation);

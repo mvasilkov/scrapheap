@@ -246,7 +246,7 @@ box2d.Testbed.PolyShapes.prototype.CreateBody = function (index)
 	bd.type = box2d.b2BodyType.b2_dynamicBody;
 
 	var x = box2d.b2RandomRange(-2.0, 2.0);
-	bd.position.SetXY(x, 10.0);
+	bd.position.Set(x, 10.0);
 	bd.angle = box2d.b2RandomRange(-box2d.b2_pi, box2d.b2_pi);
 
 	if (index == 4)
@@ -339,7 +339,7 @@ box2d.Testbed.PolyShapes.prototype.Step = function (settings)
 
 	var callback = new box2d.Testbed.PolyShapesCallback();
 	callback.m_circle.m_radius = 2.0;
-	callback.m_circle.m_p.SetXY(0.0, 1.1);
+	callback.m_circle.m_p.Set(0.0, 1.1);
 	callback.m_transform.SetIdentity();
 	callback.m_debugDraw = this.m_debugDraw;
 

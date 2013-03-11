@@ -65,7 +65,7 @@ box2d.Testbed.CollisionProcessing = function (canvas, settings)
 
 	var triangleBodyDef = new box2d.b2BodyDef();
 	triangleBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	triangleBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	triangleBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body1 = this.m_world.CreateBody(triangleBodyDef);
 	body1.CreateFixture(triangleShapeDef);
@@ -76,7 +76,7 @@ box2d.Testbed.CollisionProcessing = function (canvas, settings)
 	vertices[2].SelfMul(2.0);
 	polygon.SetAsArray(vertices, 3);
 
-	triangleBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	triangleBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body2 = this.m_world.CreateBody(triangleBodyDef);
 	body2.CreateFixture(triangleShapeDef);
@@ -90,14 +90,14 @@ box2d.Testbed.CollisionProcessing = function (canvas, settings)
 
 	var boxBodyDef = new box2d.b2BodyDef();
 	boxBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	boxBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	boxBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body3 = this.m_world.CreateBody(boxBodyDef);
 	body3.CreateFixture(boxShapeDef);
 
 	// Large box (recycle definitions)
 	polygon.SetAsBox(2.0, 1.0);
-	boxBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	boxBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body4 = this.m_world.CreateBody(boxBodyDef);
 	body4.CreateFixture(boxShapeDef);
@@ -112,14 +112,14 @@ box2d.Testbed.CollisionProcessing = function (canvas, settings)
 
 	var circleBodyDef = new box2d.b2BodyDef();
 	circleBodyDef.type = box2d.b2BodyType.b2_dynamicBody;
-	circleBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	circleBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body5 = this.m_world.CreateBody(circleBodyDef);
 	body5.CreateFixture(circleShapeDef);
 
 	// Large circle
 	circle.m_radius *= 2.0;
-	circleBodyDef.position.SetXY(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
+	circleBodyDef.position.Set(box2d.b2RandomRange(xLo, xHi), box2d.b2RandomRange(yLo, yHi));
 
 	var body6 = this.m_world.CreateBody(circleBodyDef);
 	body6.CreateFixture(circleShapeDef);

@@ -365,7 +365,7 @@ box2d.Testbed.Main.prototype.ConvertViewportToElement = function (viewport, out)
 	var rect = this.m_canvas_div.getBoundingClientRect();
 	var element_x = (+viewport.x) + rect.left + (0.5 * rect.width);
 	var element_y = (-viewport.y) + rect.top + (0.5 * rect.height);
-	var element = out.SetXY(element_x, element_y);
+	var element = out.Set(element_x, element_y);
 	return element;
 }
 
@@ -381,7 +381,7 @@ box2d.Testbed.Main.prototype.ConvertElementToViewport = function (element, out)
 	var rect = this.m_canvas_div.getBoundingClientRect();
 	var viewport_x = +(element.x - rect.left - (0.5 * rect.width));
 	var viewport_y = -(element.y - rect.top - (0.5 * rect.height));
-	var viewport = out.SetXY(viewport_x, viewport_y);
+	var viewport = out.Set(viewport_x, viewport_y);
 	return viewport;
 }
 
@@ -507,7 +507,7 @@ box2d.Testbed.Main.prototype.ZoomCamera = function (zoom)
  */
 box2d.Testbed.Main.prototype.HomeCamera = function ()
 {
-	this.m_settings.viewCenter.SetXY(0, 20);
+	this.m_settings.viewCenter.Set(0, 20);
 	this.m_settings.viewRotation.SetAngleRadians(box2d.b2DegToRad(0));
 	this.m_settings.viewZoom = 1;
 }

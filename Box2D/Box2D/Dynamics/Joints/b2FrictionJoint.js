@@ -447,7 +447,7 @@ box2d.b2FrictionJoint.prototype.GetAnchorB = function (out)
  */
 box2d.b2FrictionJoint.prototype.GetReactionForce = function (inv_dt, out)
 {
-	return out.SetXY(inv_dt * this.m_linearImpulse.x, inv_dt * this.m_linearImpulse.y);
+	return out.Set(inv_dt * this.m_linearImpulse.x, inv_dt * this.m_linearImpulse.y);
 }
 
 /**
@@ -532,8 +532,8 @@ box2d.b2FrictionJoint.prototype.Dump = function ()
 		box2d.b2Log("  jd.bodyA = bodies[%d];\n", indexA);
 		box2d.b2Log("  jd.bodyB = bodies[%d];\n", indexB);
 		box2d.b2Log("  jd.collideConnected = %s;\n", (this.m_collideConnected)?('true'):('false'));
-		box2d.b2Log("  jd.localAnchorA.SetXY(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
-		box2d.b2Log("  jd.localAnchorB.SetXY(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
+		box2d.b2Log("  jd.localAnchorA.Set(%.15f, %.15f);\n", this.m_localAnchorA.x, this.m_localAnchorA.y);
+		box2d.b2Log("  jd.localAnchorB.Set(%.15f, %.15f);\n", this.m_localAnchorB.x, this.m_localAnchorB.y);
 		box2d.b2Log("  jd.maxForce = %.15f;\n", this.m_maxForce);
 		box2d.b2Log("  jd.maxTorque = %.15f;\n", this.m_maxTorque);
 		box2d.b2Log("  joints[%d] = this.m_world.CreateJoint(jd);\n", this.m_index);

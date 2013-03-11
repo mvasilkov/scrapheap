@@ -272,7 +272,7 @@ box2d.Testbed.DebugDraw.prototype.DrawString.s_color = new box2d.b2Color(0.9, 0.
  */
 box2d.Testbed.DebugDraw.prototype.DrawStringWorld = function (x, y, format, var_args)
 {
-	var p = box2d.Testbed.DebugDraw.prototype.DrawStringWorld.s_p.SetXY(x, y);
+	var p = box2d.Testbed.DebugDraw.prototype.DrawStringWorld.s_p.Set(x, y);
 
 	// world -> viewport
 	var vt = this.m_settings.viewCenter;
@@ -286,7 +286,7 @@ box2d.Testbed.DebugDraw.prototype.DrawStringWorld = function (x, y, format, var_
 	var cs = this.m_settings.canvasScale;
 	box2d.b2MulSV(cs, p, p);
 	p.y *= -1;
-	var cc = box2d.Testbed.DebugDraw.prototype.DrawStringWorld.s_cc.SetXY(0.5 * this.m_canvas.width, 0.5 * this.m_canvas.height);
+	var cc = box2d.Testbed.DebugDraw.prototype.DrawStringWorld.s_cc.Set(0.5 * this.m_canvas.width, 0.5 * this.m_canvas.height);
 	box2d.b2AddVV(p, cc, p);
 
 	var ctx = this.m_ctx;

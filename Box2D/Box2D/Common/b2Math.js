@@ -375,7 +375,7 @@ box2d.b2Vec2.prototype.SetZero = function ()
  * @param {number} x
  * @param {number} y
  */
-box2d.b2Vec2.prototype.SetXY = function (x, y)
+box2d.b2Vec2.prototype.Set = function (x, y)
 {
 	this.x = x;
 	this.y = y;
@@ -1258,8 +1258,8 @@ box2d.b2Mat22.FromAngleRadians = function (radians)
  */
 box2d.b2Mat22.prototype.SetSSSS = function (r1c1, r1c2, r2c1, r2c2)
 {
-	this.ex.SetXY(r1c1, r2c1);
-	this.ey.SetXY(r1c2, r2c2);
+	this.ex.Set(r1c1, r2c1);
+	this.ey.Set(r1c2, r2c2);
 	return this;
 }
 
@@ -1288,8 +1288,8 @@ box2d.b2Mat22.prototype.SetAngleRadians = function (radians)
 {
 	var c = Math.cos(radians);
 	var s = Math.sin(radians);
-	this.ex.SetXY( c, s);
-	this.ey.SetXY(-s, c);
+	this.ex.Set( c, s);
+	this.ey.Set(-s, c);
 	return this;
 }
 
@@ -1313,8 +1313,8 @@ box2d.b2Mat22.prototype.Copy = function (other)
  */
 box2d.b2Mat22.prototype.SetIdentity = function ()
 {
-	this.ex.SetXY(1, 0);
-	this.ey.SetXY(0, 1);
+	this.ex.Set(1, 0);
+	this.ey.Set(0, 1);
 	return this;
 }
 
@@ -2120,7 +2120,7 @@ box2d.b2Transform.prototype.SetPosition = function (position)
  */
 box2d.b2Transform.prototype.SetPositionXY = function (x, y)
 {
-	this.p.SetXY(x, y);
+	this.p.Set(x, y);
 	return this;
 }
 

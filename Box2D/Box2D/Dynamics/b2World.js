@@ -1558,8 +1558,8 @@ box2d.b2World.prototype.QueryPoint = function (callback, point)
 	};
 
 	/** @type {box2d.b2AABB} */ var aabb = box2d.b2World.prototype.QueryPoint.s_aabb;
-	aabb.lowerBound.SetXY(point.x - box2d.b2_linearSlop, point.y - box2d.b2_linearSlop);
-	aabb.upperBound.SetXY(point.x + box2d.b2_linearSlop, point.y + box2d.b2_linearSlop);
+	aabb.lowerBound.Set(point.x - box2d.b2_linearSlop, point.y - box2d.b2_linearSlop);
+	aabb.upperBound.Set(point.x + box2d.b2_linearSlop, point.y + box2d.b2_linearSlop);
 	broadPhase.Query(WorldQueryWrapper, aabb);
 }
 box2d.b2World.prototype.QueryPoint.s_aabb = new box2d.b2AABB();
@@ -1599,7 +1599,7 @@ box2d.b2World.prototype.RayCast = function (callback, point1, point2)
 		{
 			/** @type {number} */ var fraction = output.fraction;
 			/** @type {box2d.b2Vec2} */ var point = box2d.b2World.prototype.RayCast.s_point;
-			point.SetXY((1 - fraction) * point1.x + fraction * point2.x, (1 - fraction) * point1.y + fraction * point2.y);
+			point.Set((1 - fraction) * point1.x + fraction * point2.x, (1 - fraction) * point1.y + fraction * point2.y);
 
 			if (callback instanceof box2d.b2RayCastCallback)
 			{
@@ -1900,10 +1900,10 @@ box2d.b2World.prototype.DrawDebugData = function ()
 					/** @type {box2d.b2TreeNode} */ var proxy = f.m_proxies[i];
 
 					/** @type {box2d.b2AABB} */ var aabb = bp.GetFatAABB(proxy);
-					vs[0].SetXY(aabb.lowerBound.x, aabb.lowerBound.y);
-					vs[1].SetXY(aabb.upperBound.x, aabb.lowerBound.y);
-					vs[2].SetXY(aabb.upperBound.x, aabb.upperBound.y);
-					vs[3].SetXY(aabb.lowerBound.x, aabb.upperBound.y);
+					vs[0].Set(aabb.lowerBound.x, aabb.lowerBound.y);
+					vs[1].Set(aabb.upperBound.x, aabb.lowerBound.y);
+					vs[2].Set(aabb.upperBound.x, aabb.upperBound.y);
+					vs[3].Set(aabb.lowerBound.x, aabb.upperBound.y);
 
 					this.m_debugDraw.DrawPolygon(vs, 4, color);
 				}

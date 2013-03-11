@@ -39,7 +39,7 @@ box2d.Testbed.Rope = function (canvas, settings)
 
 	for (/*int32*/ var i = 0; i < N; ++i)
 	{
-		vertices[i].SetXY(0.0, 20.0 - 0.25 * i);
+		vertices[i].Set(0.0, 20.0 - 0.25 * i);
 		masses[i] = 1.0;
 	}
 	masses[0] = 0.0;
@@ -48,7 +48,7 @@ box2d.Testbed.Rope = function (canvas, settings)
 	/*box2d.b2RopeDef*/ var def = new box2d.b2RopeDef();
 	def.vertices = vertices;
 	def.count = N;
-	def.gravity.SetXY(0.0, -10.0);
+	def.gravity.Set(0.0, -10.0);
 	def.masses = masses;
 	def.damping = 0.1;
 	def.k2 = 1.0;

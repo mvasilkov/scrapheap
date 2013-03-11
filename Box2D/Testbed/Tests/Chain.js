@@ -61,7 +61,7 @@ box2d.Testbed.Chain = function (canvas, settings)
 		{
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(0.5 + i, y);
+			bd.position.Set(0.5 + i, y);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture(fd);
 

@@ -50,7 +50,7 @@ box2d.Testbed.Prismatic = function (canvas, settings)
 
 		var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(-10.0, 10.0);
+		bd.position.Set(-10.0, 10.0);
 		bd.angle = 0.5 * box2d.b2_pi;
 		bd.allowSleep = false;
 		var body = this.m_world.CreateBody(bd);

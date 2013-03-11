@@ -56,7 +56,7 @@ box2d.Testbed.SliderCrank = function (canvas, settings)
 
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(0.0, 7.0);
+			bd.position.Set(0.0, 7.0);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(shape, 2.0);
 
@@ -78,7 +78,7 @@ box2d.Testbed.SliderCrank = function (canvas, settings)
 
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(0.0, 13.0);
+			bd.position.Set(0.0, 13.0);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(shape, 2.0);
 
@@ -99,7 +99,7 @@ box2d.Testbed.SliderCrank = function (canvas, settings)
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
 			bd.fixedRotation = true;
-			bd.position.SetXY(0.0, 17.0);
+			bd.position.Set(0.0, 17.0);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(shape, 2.0);
 
@@ -124,7 +124,7 @@ box2d.Testbed.SliderCrank = function (canvas, settings)
 
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(0.0, 23.0);
+			bd.position.Set(0.0, 23.0);
 			var body = this.m_world.CreateBody(bd);
 			body.CreateFixture2(shape, 2.0);
 		}

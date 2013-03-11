@@ -461,7 +461,7 @@ box2d.b2WorldManifold.prototype.Initialize = function (manifold, xfA, radiusA, x
 	{
 	case box2d.b2ManifoldType.e_circles:
 		{
-			this.normal.SetXY(1, 0);
+			this.normal.Set(1, 0);
 			var pointA = box2d.b2MulXV(xfA, manifold.localPoint, box2d.b2WorldManifold.prototype.Initialize.s_pointA);
 			var pointB = box2d.b2MulXV(xfB, manifold.points[0].localPoint, box2d.b2WorldManifold.prototype.Initialize.s_pointB);
 			if (box2d.b2DistanceSquaredVV(pointA, pointB) > box2d.b2_epsilon_sq)

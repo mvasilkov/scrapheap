@@ -36,7 +36,7 @@ box2d.Testbed.MobileBalanced = function (canvas, settings)
 	// Create ground body.
 	{
 		var /*b2BodyDef*/ bodyDef = new box2d.b2BodyDef();
-		bodyDef.position.SetXY(0.0, 20.0);
+		bodyDef.position.Set(0.0, 20.0);
 		ground = this.m_world.CreateBody(bodyDef);
 	}
 

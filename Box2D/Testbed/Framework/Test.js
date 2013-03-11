@@ -538,7 +538,7 @@ box2d.Testbed.Test.prototype.MouseDown = function (p)
 	// Make a small box.
 	var aabb = new box2d.b2AABB();
 	var d = new box2d.b2Vec2();
-	d.SetXY(0.001, 0.001);
+	d.Set(0.001, 0.001);
 	box2d.b2SubVV(p, d, aabb.lowerBound);
 	box2d.b2AddVV(p, d, aabb.upperBound);
 

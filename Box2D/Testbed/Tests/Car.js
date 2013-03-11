@@ -98,7 +98,7 @@ box2d.Testbed.Car = function (canvas, settings)
 	if (true)
 	{
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
-		bd.position.SetXY(140.0, 1.0);
+		bd.position.Set(140.0, 1.0);
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 		/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 
@@ -135,7 +135,7 @@ box2d.Testbed.Car = function (canvas, settings)
 		{
 			/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(161.0 + 2.0 * i, -0.125);
+			bd.position.Set(161.0 + 2.0 * i, -0.125);
 			/*box2d.b2Body*/ var body = this.m_world.CreateBody(bd);
 			body.CreateFixture(fd);
 
@@ -161,23 +161,23 @@ box2d.Testbed.Car = function (canvas, settings)
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
 
-		bd.position.SetXY(230.0, 0.5);
+		bd.position.Set(230.0, 0.5);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(box, 0.5);
 
-		bd.position.SetXY(230.0, 1.5);
+		bd.position.Set(230.0, 1.5);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(box, 0.5);
 
-		bd.position.SetXY(230.0, 2.5);
+		bd.position.Set(230.0, 2.5);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(box, 0.5);
 
-		bd.position.SetXY(230.0, 3.5);
+		bd.position.Set(230.0, 3.5);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(box, 0.5);
 
-		bd.position.SetXY(230.0, 4.5);
+		bd.position.Set(230.0, 4.5);
 		body = this.m_world.CreateBody(bd);
 		body.CreateFixture2(box, 0.5);
 	}
@@ -187,12 +187,12 @@ box2d.Testbed.Car = function (canvas, settings)
 	{
 		/*box2d.b2PolygonShape*/ var chassis = new box2d.b2PolygonShape();
 		/*box2d.b2Vec2[]*/ var vertices = box2d.b2Vec2.MakeArray(8);
-		vertices[0].SetXY(-1.5, -0.5);
-		vertices[1].SetXY(1.5, -0.5);
-		vertices[2].SetXY(1.5, 0.0);
-		vertices[3].SetXY(0.0, 0.9);
-		vertices[4].SetXY(-1.15, 0.9);
-		vertices[5].SetXY(-1.5, 0.2);
+		vertices[0].Set(-1.5, -0.5);
+		vertices[1].Set(1.5, -0.5);
+		vertices[2].Set(1.5, 0.0);
+		vertices[3].Set(0.0, 0.9);
+		vertices[4].Set(-1.15, 0.9);
+		vertices[5].Set(-1.5, 0.2);
 		chassis.SetAsVector(vertices, 6);
 
 		/*box2d.b2CircleShape*/ var circle = new box2d.b2CircleShape();
@@ -200,7 +200,7 @@ box2d.Testbed.Car = function (canvas, settings)
 
 		/*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();
 		bd.type = box2d.b2BodyType.b2_dynamicBody;
-		bd.position.SetXY(0.0, 1.0);
+		bd.position.Set(0.0, 1.0);
 		this.m_car = this.m_world.CreateBody(bd);
 		this.m_car.CreateFixture2(chassis, 1.0);
 
@@ -209,11 +209,11 @@ box2d.Testbed.Car = function (canvas, settings)
 		fd.density = 1.0;
 		fd.friction = 0.9;
 
-		bd.position.SetXY(-1.0, 0.35);
+		bd.position.Set(-1.0, 0.35);
 		this.m_wheel1 = this.m_world.CreateBody(bd);
 		this.m_wheel1.CreateFixture(fd);
 
-		bd.position.SetXY(1.0, 0.4);
+		bd.position.Set(1.0, 0.4);
 		this.m_wheel2 = this.m_world.CreateBody(bd);
 		this.m_wheel2.CreateFixture(fd);
 

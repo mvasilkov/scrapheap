@@ -72,7 +72,7 @@ box2d.Testbed.ConvexHull.prototype.Generate = function ()
 		// This will stress the convex hull algorithm.
 		x = box2d.b2Clamp(x, -8.0, 8.0);
 		y = box2d.b2Clamp(y, -8.0, 8.0);
-		this.m_test_points[i].SetXY(x, y);
+		this.m_test_points[i].Set(x, y);
 	}
 }
 

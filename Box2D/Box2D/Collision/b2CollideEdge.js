@@ -145,10 +145,10 @@ box2d.b2CollideEdgeAndCircle = function (manifold, edgeA, xfA, circleB, xfB)
 		return;
 	}
 
-	/** @type {box2d.b2Vec2} */ var n = box2d.b2CollideEdgeAndCircle.s_n.SetXY(-e.y, e.x);
+	/** @type {box2d.b2Vec2} */ var n = box2d.b2CollideEdgeAndCircle.s_n.Set(-e.y, e.x);
 	if (box2d.b2DotVV(n, box2d.b2SubVV(Q, A, box2d.b2Vec2.s_t0)) < 0)
 	{
-		n.SetXY(-n.x, -n.y);
+		n.Set(-n.x, -n.y);
 	}
 	n.Normalize();
 
@@ -468,7 +468,7 @@ box2d.b2EPCollider.prototype.Collide = function (manifold, edgeA, xfA, polygonB,
 
 	/** @type {box2d.b2Vec2} */ var edge1 = box2d.b2SubVV(this.m_v2, this.m_v1, box2d.b2EPCollider.s_edge1);
 	edge1.Normalize();
-	this.m_normal1.SetXY(edge1.y, -edge1.x);
+	this.m_normal1.Set(edge1.y, -edge1.x);
 	/** @type {number} */ var offset1 = box2d.b2DotVV(this.m_normal1, box2d.b2SubVV(this.m_centroidB, this.m_v1, box2d.b2Vec2.s_t0));
 	/** @type {number} */ var offset0 = 0;
 	/** @type {number} */ var offset2 = 0;
@@ -480,7 +480,7 @@ box2d.b2EPCollider.prototype.Collide = function (manifold, edgeA, xfA, polygonB,
 	{
 		/** @type {box2d.b2Vec2} */ var edge0 = box2d.b2SubVV(this.m_v1, this.m_v0, box2d.b2EPCollider.s_edge0);
 		edge0.Normalize();
-		this.m_normal0.SetXY(edge0.y, -edge0.x);
+		this.m_normal0.Set(edge0.y, -edge0.x);
 		convex1 = box2d.b2CrossVV(edge0, edge1) >= 0;
 		offset0 = box2d.b2DotVV(this.m_normal0, box2d.b2SubVV(this.m_centroidB, this.m_v0, box2d.b2Vec2.s_t0));
 	}
@@ -490,7 +490,7 @@ box2d.b2EPCollider.prototype.Collide = function (manifold, edgeA, xfA, polygonB,
 	{
 		/** @type {box2d.b2Vec2} */ var edge2 = box2d.b2SubVV(this.m_v3, this.m_v2, box2d.b2EPCollider.s_edge2);
 		edge2.Normalize();
-		this.m_normal2.SetXY(edge2.y, -edge2.x);
+		this.m_normal2.Set(edge2.y, -edge2.x);
 		convex2 = box2d.b2CrossVV(edge1, edge2) > 0;
 		offset2 = box2d.b2DotVV(this.m_normal2, box2d.b2SubVV(this.m_centroidB, this.m_v2, box2d.b2Vec2.s_t0));
 	}
@@ -777,7 +777,7 @@ box2d.b2EPCollider.prototype.Collide = function (manifold, edgeA, xfA, polygonB,
 		rf.normal.Copy(this.m_polygonB.normals[rf.i1]);
 	}
 
-	rf.sideNormal1.SetXY(rf.normal.y, -rf.normal.x);
+	rf.sideNormal1.Set(rf.normal.y, -rf.normal.x);
 	rf.sideNormal2.Copy(rf.sideNormal1).SelfNeg();
 	rf.sideOffset1 = box2d.b2DotVV(rf.sideNormal1, rf.v1);
 	rf.sideOffset2 = box2d.b2DotVV(rf.sideNormal2, rf.v2);
@@ -893,7 +893,7 @@ box2d.b2EPCollider.prototype.ComputePolygonSeparation = function (out)
 	axis.index = -1;
 	axis.separation = -box2d.b2_maxFloat;
 
-	/** @type {box2d.b2Vec2} */ var perp = box2d.b2EPCollider.s_perp.SetXY(-this.m_normal.y, this.m_normal.x);
+	/** @type {box2d.b2Vec2} */ var perp = box2d.b2EPCollider.s_perp.Set(-this.m_normal.y, this.m_normal.x);
 
 	for (var i = 0, ict = this.m_polygonB.count; i < ict; ++i)
 	{

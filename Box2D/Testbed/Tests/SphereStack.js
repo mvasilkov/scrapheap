@@ -52,7 +52,7 @@ box2d.Testbed.SphereStack = function (canvas, settings)
 		{
 			var bd = new box2d.b2BodyDef();
 			bd.type = box2d.b2BodyType.b2_dynamicBody;
-			bd.position.SetXY(0.0, 4.0 + 3.0 * i);
+			bd.position.Set(0.0, 4.0 + 3.0 * i);
 
 			this.m_bodies[i] = this.m_world.CreateBody(bd);
 
