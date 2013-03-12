@@ -2045,7 +2045,7 @@ box2d.b2World.prototype.Dump = function ()
 		box2d.b2Log("this.m_world.SetGravity(g);\n");
 
 		box2d.b2Log("/** @type {Array.<box2d.b2Body>} */ var bodies = Array(%d);\n", this.m_bodyCount);
-		box2d.b2Log("/** @typ3 {Array.<box2d.b2Joint>} */ var joints = Array(%d);\n", this.m_jointCount);
+		box2d.b2Log("/** @type {Array.<box2d.b2Joint>} */ var joints = Array(%d);\n", this.m_jointCount);
 		var i = 0;
 		for (/** @type {box2d.b2Body} */ var b = this.m_bodyList; b; b = b.m_next)
 		{
