@@ -3,26 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>RequireJS</title>
-        <style>
-            body {
-                background: #f9f9f9;
-                margin: 0;
-            }
-
-            #main {
-                margin: 25px auto 0;
-                width: 960px;
-            }
-
-            canvas {
-                background: #202020;
-            }
-        </style>
     </head>
     <body>
-        <div id="main">
-            <canvas width="960" height="540"></canvas>
-        </div>
         <script src="lib/require.js"></script>
         <script>
             if (typeof window.console != "undefined") {
@@ -32,9 +14,8 @@
                 }
             }
 
-            require(["box2d-html5", "main"], function(box2d, main) {
+            require(["box2d-html5"], function(box2d) {
                 alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
-                main()
             })
         </script>
     </body>
