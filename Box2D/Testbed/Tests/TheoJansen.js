@@ -99,7 +99,7 @@ box2d.Testbed.TheoJansen.prototype.CreateLeg = function (s, wheelAnchor)
 
 	if (s > 0.0)
 	{
-		var vertices = new Array();
+		var vertices = Array();
 
 		vertices[0] = p1;
 		vertices[1] = p2;
@@ -113,7 +113,7 @@ box2d.Testbed.TheoJansen.prototype.CreateLeg = function (s, wheelAnchor)
 	}
 	else
 	{
-		var vertices = new Array();
+		var vertices = Array();
 
 		vertices[0] = p1;
 		vertices[1] = p3;

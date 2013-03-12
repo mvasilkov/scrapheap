@@ -47,7 +47,7 @@ box2d.Testbed.CollisionFiltering = function (canvas, settings)
 	}
 
 	// Small triangle
-	var vertices = new Array();
+	var vertices = Array();
 	vertices[0] = new box2d.b2Vec2(-1.0, 0.0);
 	vertices[1] = new box2d.b2Vec2(1.0, 0.0);
 	vertices[2] = new box2d.b2Vec2(0.0, 2.0);

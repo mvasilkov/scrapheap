@@ -289,7 +289,7 @@ box2d.Testbed.Test = function (canvas, settings)
 	this.m_bomb = null;
 	this.m_textLine = 30;
 	this.m_mouseJoint = null;
-	this.m_points = new Array(box2d.Testbed.Test.k_maxContactPoints);
+	this.m_points = Array(box2d.Testbed.Test.k_maxContactPoints);
 	for (var i = 0; i < box2d.Testbed.Test.k_maxContactPoints; ++i)
 	{
 		this.m_points[i] = new box2d.Testbed.ContactPoint();
@@ -467,8 +467,8 @@ box2d.Testbed.Test.prototype.PreSolve = function (contact, oldManifold)
 		++this.m_pointCount;
 	}
 }
-box2d.Testbed.Test.prototype.PreSolve.s_state1 = new Array(box2d.b2_maxManifoldPoints);
-box2d.Testbed.Test.prototype.PreSolve.s_state2 = new Array(box2d.b2_maxManifoldPoints);
+box2d.Testbed.Test.prototype.PreSolve.s_state1 = Array(box2d.b2_maxManifoldPoints);
+box2d.Testbed.Test.prototype.PreSolve.s_state2 = Array(box2d.b2_maxManifoldPoints);
 box2d.Testbed.Test.prototype.PreSolve.s_worldManifold = new box2d.b2WorldManifold();
 
 /**

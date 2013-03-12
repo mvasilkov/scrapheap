@@ -698,11 +698,11 @@ box2d.b2ContactFactory.prototype.AddType = function (createFcn, destroyFcn, type
  */
 box2d.b2ContactFactory.prototype.InitializeRegisters = function ()
 {
-	this.m_registers = new Array(box2d.b2ShapeType.e_shapeTypeCount);
+	this.m_registers = Array(box2d.b2ShapeType.e_shapeTypeCount);
 
 	for (var i = 0; i < box2d.b2ShapeType.e_shapeTypeCount; i++)
 	{
-		this.m_registers[i] = new Array(box2d.b2ShapeType.e_shapeTypeCount);
+		this.m_registers[i] = Array(box2d.b2ShapeType.e_shapeTypeCount);
 
 		for (var j = 0; j < box2d.b2ShapeType.e_shapeTypeCount; j++)
 		{

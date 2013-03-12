@@ -65,7 +65,7 @@ box2d.Testbed.DynamicTreeTest = function (canvas, settings)
 	this.m_queryAABB = new box2d.b2AABB();
 	this.m_rayCastInput = new box2d.b2RayCastInput();
 	this.m_rayCastOutput = new box2d.b2RayCastOutput();
-	this.m_actors = new Array(box2d.Testbed.DynamicTreeTest.e_actorCount);
+	this.m_actors = Array(box2d.Testbed.DynamicTreeTest.e_actorCount);
 	for (var i = 0; i < box2d.Testbed.DynamicTreeTest.e_actorCount; ++i)
 	{
 		this.m_actors[i] = new box2d.Testbed.Actor();

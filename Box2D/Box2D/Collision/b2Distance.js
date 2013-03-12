@@ -80,7 +80,7 @@ box2d.b2DistanceProxy.prototype.SetShape = function (shape, index)
 	case box2d.b2ShapeType.e_circleShape:
 		{
 			var circle = (shape instanceof box2d.b2CircleShape ? shape : null);
-			this.m_vertices = new Array(1, true);
+			this.m_vertices = Array(1, true);
 			this.m_vertices[0] = circle.m_p;
 			this.m_count = 1;
 			this.m_radius = circle.m_radius;
@@ -99,7 +99,7 @@ box2d.b2DistanceProxy.prototype.SetShape = function (shape, index)
 	case box2d.b2ShapeType.e_edgeShape:
 		{
 			var edge = (shape instanceof box2d.b2EdgeShape ? shape : null);
-			this.m_vertices = new Array(2);
+			this.m_vertices = Array(2);
 			this.m_vertices[0] = edge.m_vertex1;
 			this.m_vertices[1] = edge.m_vertex2;
 			this.m_count = 2;
@@ -432,7 +432,7 @@ box2d.b2Simplex = function ()
 	this.m_v1 = new box2d.b2SimplexVertex();
 	this.m_v2 = new box2d.b2SimplexVertex();
 	this.m_v3 = new box2d.b2SimplexVertex();
-	this.m_vertices = new Array(3);
+	this.m_vertices = Array(3);
 	this.m_vertices[0] = this.m_v1;
 	this.m_vertices[1] = this.m_v2;
 	this.m_vertices[2] = this.m_v3;

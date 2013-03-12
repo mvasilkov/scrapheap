@@ -31,11 +31,11 @@ box2d.Testbed.SensorTest = function (canvas, settings)
 {
 	goog.base(this, canvas, settings); // base class constructor
 
-	this.m_bodies = new Array(box2d.Testbed.SensorTest.e_count);
-	this.m_touching = new Array(box2d.Testbed.SensorTest.e_count);
+	this.m_bodies = Array(box2d.Testbed.SensorTest.e_count);
+	this.m_touching = Array(box2d.Testbed.SensorTest.e_count);
 	for (var i = 0; i < box2d.Testbed.SensorTest.e_count; ++i)
 	{
-		this.m_touching[i] = new Array(1);
+		this.m_touching[i] = Array(1);
 	}
 
 	var bd = new box2d.b2BodyDef();

@@ -54,7 +54,7 @@ box2d.Testbed.Main = function ()
 
 	this.m_settings = new box2d.Testbed.Settings();
 
-	this.m_test_entries = box2d.Testbed.GetTestEntries(new Array());
+	this.m_test_entries = box2d.Testbed.GetTestEntries(Array());
 
 	this.m_projection0 = new box2d.b2Vec2();
 	this.m_viewCenter0 = new box2d.b2Vec2();

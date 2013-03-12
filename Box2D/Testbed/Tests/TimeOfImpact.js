@@ -96,7 +96,7 @@ box2d.Testbed.TimeOfImpact.prototype.Step = function (settings)
 	this.m_debugDraw.DrawString(5, this.m_textLine, "max toi iters = %d, max root iters = %d", box2d.b2_toiMaxIters, box2d.b2_toiMaxRootIters);
 	this.m_textLine += 15;
 
-	var vertices = new Array(box2d.b2_maxPolygonVertices);
+	var vertices = Array(box2d.b2_maxPolygonVertices);
 
 	var transformA = new box2d.b2Transform();
 	sweepA.GetTransform(transformA, 0.0);

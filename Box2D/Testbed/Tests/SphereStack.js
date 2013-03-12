@@ -31,7 +31,7 @@ box2d.Testbed.SphereStack = function (canvas, settings)
 {
 	goog.base(this, canvas, settings); // base class constructor
 
-	this.m_bodies = new Array(box2d.Testbed.SphereStack.e_count);
+	this.m_bodies = Array(box2d.Testbed.SphereStack.e_count);
 
 	if (true)
 	{

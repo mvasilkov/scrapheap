@@ -79,7 +79,7 @@ box2d.b2World = function (gravity)
 
 	this.m_island = new box2d.b2Island();
 
-	this.s_stack = new Array();
+	this.s_stack = Array();
 }
 
 //b2BlockAllocator m_blockAllocator;
@@ -2044,8 +2044,8 @@ box2d.b2World.prototype.Dump = function ()
 		box2d.b2Log("/** @type {box2d.b2Vec2} */ var g = new box2d.b2Vec2(%.15f, %.15f);\n", this.m_gravity.x, this.m_gravity.y);
 		box2d.b2Log("this.m_world.SetGravity(g);\n");
 
-		box2d.b2Log("/** @type {Array.<box2d.b2Body>} */ var bodies = new Array(%d);\n", this.m_bodyCount);
-		box2d.b2Log("/** @typ3 {Array.<box2d.b2Joint>} */ var joints = new Array(%d);\n", this.m_jointCount);
+		box2d.b2Log("/** @type {Array.<box2d.b2Body>} */ var bodies = Array(%d);\n", this.m_bodyCount);
+		box2d.b2Log("/** @typ3 {Array.<box2d.b2Joint>} */ var joints = Array(%d);\n", this.m_jointCount);
 		var i = 0;
 		for (/** @type {box2d.b2Body} */ var b = this.m_bodyList; b; b = b.m_next)
 		{

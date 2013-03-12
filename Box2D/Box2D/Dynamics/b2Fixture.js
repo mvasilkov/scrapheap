@@ -198,7 +198,7 @@ box2d.b2FixtureProxy.MakeArray = function (length)
  */
 box2d.b2Fixture = function ()
 {
-	this.m_proxies = new Array();
+	this.m_proxies = Array();
 	this.m_proxyCount = 0;
 
 	this.m_filter = new box2d.b2Filter();

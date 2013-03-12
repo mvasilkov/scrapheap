@@ -34,7 +34,7 @@ box2d.b2AreaJointDef = function ()
 {
 	goog.base(this, box2d.b2JointType.e_areaJoint); // base class constructor
 
-	this.bodies = new Array();
+	this.bodies = Array();
 }
 
 goog.inherits(box2d.b2AreaJointDef, box2d.b2JointDef);
@@ -106,7 +106,7 @@ box2d.b2AreaJoint = function (def)
 
 	this.m_targetLengths = box2d.b2MakeNumberArray(def.bodies.length);
 	this.m_normals = box2d.b2Vec2.MakeArray(def.bodies.length);
-	this.m_joints = new Array(def.bodies.length);
+	this.m_joints = Array(def.bodies.length);
 	this.m_deltas = box2d.b2Vec2.MakeArray(def.bodies.length);
 	this.m_delta = new box2d.b2Vec2();
 

@@ -51,7 +51,7 @@ box2d.Testbed.CollisionProcessing = function (canvas, settings)
 	var yLo = 2.0, yHi = 35.0;
 
 	// Small triangle
-	var vertices = new Array(3);
+	var vertices = Array(3);
 	vertices[0] = new box2d.b2Vec2(-1.0, 0.0);
 	vertices[1] = new box2d.b2Vec2(1.0, 0.0);
 	vertices[2] = new box2d.b2Vec2(0.0, 2.0);
@@ -140,7 +140,7 @@ box2d.Testbed.CollisionProcessing.prototype.Step = function (settings)
 	// points. We must buffer the bodies that should be destroyed
 	// because they may belong to multiple contact points.
 	var k_maxNuke = 6;
-	var nuke = new Array(k_maxNuke);
+	var nuke = Array(k_maxNuke);
 	var nukeCount = 0;
 
 	// Traverse the contact results. Destroy bodies that

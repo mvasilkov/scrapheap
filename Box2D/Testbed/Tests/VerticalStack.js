@@ -33,9 +33,9 @@ box2d.Testbed.VerticalStack = function (canvas, settings)
 
 	this.m_bullet = null;
 	/** @type {Array.<box2d.b2Body>} */
-	this.m_bodies = new Array(box2d.Testbed.VerticalStack.e_rowCount * box2d.Testbed.VerticalStack.e_columnCount);
+	this.m_bodies = Array(box2d.Testbed.VerticalStack.e_rowCount * box2d.Testbed.VerticalStack.e_columnCount);
 	/** @type {Array.<number>} */
-	this.m_indices = new Array(box2d.Testbed.VerticalStack.e_rowCount * box2d.Testbed.VerticalStack.e_columnCount);
+	this.m_indices = Array(box2d.Testbed.VerticalStack.e_rowCount * box2d.Testbed.VerticalStack.e_columnCount);
 
 	if (true)
 	{

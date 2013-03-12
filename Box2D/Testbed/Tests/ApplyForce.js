@@ -74,7 +74,7 @@ box2d.Testbed.ApplyForce = function (canvas, settings)
 		xf1.q.SetAngleRadians(0.3524 * box2d.b2_pi);
 		xf1.p.Copy(box2d.b2MulRV(xf1.q, new box2d.b2Vec2(1.0, 0.0), new box2d.b2Vec2()));
 
-		/*box2d.b2Vec2[]*/ var vertices = new Array();
+		/*box2d.b2Vec2[]*/ var vertices = Array();
 		vertices[0] = box2d.b2MulXV(xf1, new box2d.b2Vec2(-1.0, 0.0), new box2d.b2Vec2());
 		vertices[1] = box2d.b2MulXV(xf1, new box2d.b2Vec2(1.0, 0.0), new box2d.b2Vec2());
 		vertices[2] = box2d.b2MulXV(xf1, new box2d.b2Vec2(0.0, 0.5), new box2d.b2Vec2());

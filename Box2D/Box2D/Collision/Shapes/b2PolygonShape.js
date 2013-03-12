@@ -785,7 +785,7 @@ box2d.b2PolygonShape.MakeAsArray = function (vertices, count)
 box2d.b2PolygonShape.ComputeOBB = function (obb, vs, count)
 {
 	var i = 0;
-	var p = new Array(count + 1);
+	var p = Array(count + 1);
 	for (i = 0; i < count; ++i)
 	{
 		p[i] = vs[i];

@@ -31,8 +31,8 @@ box2d.Testbed.Web = function (canvas, settings)
 {
 	goog.base(this, canvas, settings); // base class constructor
 
-	this.m_bodies = new Array(4);
-	this.m_joints = new Array(8);
+	this.m_bodies = Array(4);
+	this.m_joints = Array(8);
 
 	var ground = null;
 	if (true)

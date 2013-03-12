@@ -34,8 +34,8 @@ box2d.Testbed.DumpShell = function (canvas, settings)
 // dump begin
 /*box2d.b2Vec2*/ var g = new box2d.b2Vec2(0.000000000000000, 0.000000000000000);
 this.m_world.SetGravity(g);
-/*box2d.b2Body*/ var bodies = new Array(4);
-/*box2d.b2Joint*/ var joints = new Array(2);
+/*box2d.b2Body*/ var bodies = Array(4);
+/*box2d.b2Joint*/ var joints = Array(2);
 if (true)
 {
   /*box2d.b2BodyDef*/ var bd = new box2d.b2BodyDef();

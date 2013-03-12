@@ -170,7 +170,7 @@ box2d.Testbed.Cantilever = function (canvas, settings)
 
 	for (var i = 0; i < 2; ++i)
 	{
-		var vertices = new Array();
+		var vertices = Array();
 		vertices[0] = new box2d.b2Vec2(-0.5, 0.0);
 		vertices[1] = new box2d.b2Vec2(0.5, 0.0);
 		vertices[2] = new box2d.b2Vec2(0.0, 1.5);

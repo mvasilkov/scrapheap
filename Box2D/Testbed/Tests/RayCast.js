@@ -261,8 +261,8 @@ box2d.Testbed.RayCast = function (canvas, settings)
 	goog.base(this, canvas, settings); // base class constructor
 
 	this.m_bodyIndex = 0;
-	this.m_bodies = new Array(box2d.Testbed.RayCast.e_maxBodies);
-	this.m_polygons = new Array(4);
+	this.m_bodies = Array(box2d.Testbed.RayCast.e_maxBodies);
+	this.m_polygons = Array(4);
 	for (var i = 0; i < 4; ++i)
 	{
 		this.m_polygons[i] = new box2d.b2PolygonShape();
@@ -282,7 +282,7 @@ box2d.Testbed.RayCast = function (canvas, settings)
 
 	if (true)
 	{
-		var vertices = new Array(3);
+		var vertices = Array(3);
 		vertices[0] = new box2d.b2Vec2(-0.5, 0.0);
 		vertices[1] = new box2d.b2Vec2(0.5, 0.0);
 		vertices[2] = new box2d.b2Vec2(0.0, 1.5);
@@ -291,7 +291,7 @@ box2d.Testbed.RayCast = function (canvas, settings)
 
 	if (true)
 	{
-		var vertices = new Array(3);
+		var vertices = Array(3);
 		vertices[0] = new box2d.b2Vec2(-0.1, 0.0);
 		vertices[1] = new box2d.b2Vec2(0.1, 0.0);
 		vertices[2] = new box2d.b2Vec2(0.0, 1.5);
@@ -304,7 +304,7 @@ box2d.Testbed.RayCast = function (canvas, settings)
 		var b = w / (2.0 + box2d.b2Sqrt(2.0));
 		var s = box2d.b2Sqrt(2.0) * b;
 
-		var vertices = new Array(8);
+		var vertices = Array(8);
 		vertices[0] = new box2d.b2Vec2(0.5 * s, 0.0);
 		vertices[1] = new box2d.b2Vec2(0.5 * w, b);
 		vertices[2] = new box2d.b2Vec2(0.5 * w, b + s);

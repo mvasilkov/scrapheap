@@ -30,7 +30,7 @@ goog.require('box2d.b2Settings');
  */
 box2d.b2GrowableStack = function (N)
 {
-	this.m_stack = new Array(N);
+	this.m_stack = Array(N);
 }
 
 /**

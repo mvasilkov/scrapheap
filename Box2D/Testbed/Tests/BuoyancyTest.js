@@ -31,7 +31,7 @@ box2d.Testbed.BuoyancyTest = function (canvas, settings)
 {
 	goog.base(this, canvas, settings); // base class constructor
 
-	this.m_bodies = new Array();
+	this.m_bodies = Array();
 
 	var bc = new box2d.b2BuoyancyController();
 	this.m_controller = bc;

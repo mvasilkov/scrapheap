@@ -104,7 +104,7 @@ box2d.Testbed.PolyCollision.prototype.Step = function (settings)
 	if (true)
 	{
 		var color = new box2d.b2Color(0.9, 0.9, 0.9);
-		var v = new Array(box2d.b2_maxPolygonVertices);
+		var v = Array(box2d.b2_maxPolygonVertices);
 		for (var i = 0; i < this.m_polygonA.m_count; ++i)
 		{
 			v[i] = box2d.b2MulXV(this.m_transformA, this.m_polygonA.m_vertices[i], new box2d.b2Vec2());

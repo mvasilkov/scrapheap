@@ -52,8 +52,8 @@ box2d.b2Pair.prototype.proxyB = null;
 box2d.b2BroadPhase = function ()
 {
 	this.m_tree = new box2d.b2DynamicTree();
-	this.m_moveBuffer = new Array();
-	this.m_pairBuffer = new Array();
+	this.m_moveBuffer = Array();
+	this.m_pairBuffer = Array();
 };
 
 /**
