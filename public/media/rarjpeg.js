@@ -23,4 +23,12 @@
 
     canvas.addEventListener("dragover", onDragOver, false)
     canvas.addEventListener("drop", onDrop, false)
+
+    function onResize(event) {
+        canvas.width = innerWidth
+        canvas.height = innerHeight
+    }
+
+    onResize()
+    addEventListener("resize", onResize, false)
 })()
