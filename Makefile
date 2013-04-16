@@ -1,2 +1,2 @@
 test:
-	jshint app.js
+	jshint app.js public/media/rarjpeg.js
