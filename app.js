@@ -1,6 +1,8 @@
 var express = require("express"),
     app = express()
 
+app.disable("x-powered-by")
+
 app.use(express.bodyParser())
 app.use(express.static("public"))
 
