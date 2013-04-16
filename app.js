@@ -1,6 +1,8 @@
 var express = require("express"),
     app = express()
 
+app.use(express.static("public"))
+
 app.get("/hello.txt", function (req, res) {
     var body = "hello, world"
     res.setHeader("Content-Type", "text/plain")
