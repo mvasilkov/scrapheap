@@ -4,11 +4,18 @@ var express = require("express"),
     app = express()
 
 function reject(file) {
+    switch (file.type) {
+        case "image/jpeg":
+        case "image/png":
+        case "image/gif":
+            return false
+    }
     return true
 }
 
 app.disable("x-powered-by")
 
+app.use(express.limit("20mb"))
 app.use(express.bodyParser())
 app.use(express.static("public"))
 
@@ -22,7 +29,8 @@ app.post("/~", function (req, res) {
     }
 
     var id = new mongodb.ObjectID,
-        path = "public/upload/" + id
+        type = file.type.replace("image/", "."),
+        path = "public/upload/" + id + type
 
     res.json({ redir: path })
     fs.rename(file.path, path)
