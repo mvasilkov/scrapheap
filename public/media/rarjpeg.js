@@ -9,9 +9,18 @@ if (typeof requestAnimationFrame === "undefined") {
 
 (function () {
     var one = Array.prototype.shift.call.bind(Array.prototype.shift),
-        canvas = one(document.getElementsByTagName("canvas"))
+        canvas = one(document.getElementsByTagName("canvas")),
+        paint = canvas.getContext && canvas.getContext("2d")
+
+    function onDragEnter(event) {
+        event.preventDefault()
+    }
 
     function onDragOver(event) {
+        event.preventDefault()
+    }
+
+    function onDragLeave(event) {
         event.preventDefault()
     }
 
@@ -30,7 +39,9 @@ if (typeof requestAnimationFrame === "undefined") {
         event.preventDefault()
     }
 
+    canvas.addEventListener("dragenter", onDragEnter, false)
     canvas.addEventListener("dragover", onDragOver, false)
+    canvas.addEventListener("dragleave", onDragLeave, false)
     canvas.addEventListener("drop", onDrop, false)
 
     function onResize(event) {
@@ -40,4 +51,12 @@ if (typeof requestAnimationFrame === "undefined") {
 
     onResize()
     addEventListener("resize", onResize, false)
+
+    function render() {
+        requestAnimationFrame(render)
+
+        paint.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    requestAnimationFrame(render)
 })()
