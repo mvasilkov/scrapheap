@@ -19,7 +19,7 @@ app.use(express.limit("20mb"))
 app.use(express.bodyParser())
 app.use(express.static("public"))
 
-app.post("/~", function (req, res) {
+app.put("/upload", function (req, res) {
     var file = req.files.image
 
     if (reject(file)) {

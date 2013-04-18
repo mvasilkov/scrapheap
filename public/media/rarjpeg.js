@@ -1,3 +1,12 @@
+if (typeof requestAnimationFrame === "undefined") {
+    ["moz", "webkit", "ms"].some(function (p) {
+        var fun = this[p + "RequestAnimationFrame"]
+        if (typeof fun === "function") {
+            return (requestAnimationFrame = fun) && true
+        }
+    })
+}
+
 (function () {
     var one = Array.prototype.shift.call.bind(Array.prototype.shift),
         canvas = one(document.getElementsByTagName("canvas"))
@@ -14,7 +23,7 @@
             formData.append("image", file)
 
             var req = new XMLHttpRequest
-            req.open("post", "/~")
+            req.open("put", "/upload")
             req.send(formData)
         }
 
