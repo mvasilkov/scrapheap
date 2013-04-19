@@ -10,9 +10,19 @@ if (typeof requestAnimationFrame === "undefined") {
 (function () {
     var one = Array.prototype.shift.call.bind(Array.prototype.shift),
         canvas = one(document.getElementsByTagName("canvas")),
-        paint = canvas.getContext && canvas.getContext("2d")
+        paint = canvas.getContext && canvas.getContext("2d"),
+        nib = backgroundColor("#fbfbfb"), ib = backgroundColor("#00b2ff"),
+        interactive = false
+
+    function backgroundColor(value) {
+        var test = new Image
+        test.style.backgroundColor = value
+        return test.style.backgroundColor
+    }
 
     function onDragEnter(event) {
+        interactive = true
+
         event.preventDefault()
     }
 
@@ -21,6 +31,8 @@ if (typeof requestAnimationFrame === "undefined") {
     }
 
     function onDragLeave(event) {
+        interactive = false
+
         event.preventDefault()
     }
 
@@ -35,6 +47,8 @@ if (typeof requestAnimationFrame === "undefined") {
             req.open("put", "/upload")
             req.send(formData)
         }
+
+        interactive = false
 
         event.preventDefault()
     }
@@ -54,6 +68,12 @@ if (typeof requestAnimationFrame === "undefined") {
 
     function render() {
         requestAnimationFrame(render)
+
+        var background = interactive? ib: nib
+
+        if (canvas.style.backgroundColor != background) {
+            canvas.style.backgroundColor = background
+        }
 
         paint.clearRect(0, 0, canvas.width, canvas.height)
     }
