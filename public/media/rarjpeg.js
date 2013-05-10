@@ -11,8 +11,11 @@ if (typeof requestAnimationFrame === "undefined") {
     var one = Array.prototype.shift.call.bind(Array.prototype.shift),
         canvas = one(document.getElementsByTagName("canvas")),
         paint = canvas.getContext && canvas.getContext("2d"),
-        nib = backgroundColor("#fbfbfb"), ib = backgroundColor("#00b2ff"),
-        interactive = false
+        nib = backgroundColor("#fbfbfb"), ib = backgroundColor("#101010"),
+        interactive = false, x = 0, y = 0, uploadCursor = new Image,
+        UC_OFFSET_X = 509, UC_OFFSET_Y = 29
+
+    uploadCursor.src = "/media/upload.png"
 
     function backgroundColor(value) {
         var test = new Image
@@ -22,11 +25,16 @@ if (typeof requestAnimationFrame === "undefined") {
 
     function onDragEnter(event) {
         interactive = true
+        x = event.clientX
+        y = event.clientY
 
         event.preventDefault()
     }
 
     function onDragOver(event) {
+        x = event.clientX
+        y = event.clientY
+
         event.preventDefault()
     }
 
@@ -76,6 +84,10 @@ if (typeof requestAnimationFrame === "undefined") {
         }
 
         paint.clearRect(0, 0, canvas.width, canvas.height)
+
+        if (interactive) {
+            paint.drawImage(uploadCursor, x - UC_OFFSET_X, y - UC_OFFSET_Y)
+        }
     }
 
     requestAnimationFrame(render)
