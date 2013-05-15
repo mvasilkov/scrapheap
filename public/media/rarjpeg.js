@@ -12,8 +12,8 @@ if (typeof requestAnimationFrame === "undefined") {
         canvas = one(document.getElementsByTagName("canvas")),
         paint = canvas.getContext && canvas.getContext("2d"),
         nib = backgroundColor("#fbfbfb"), ib = backgroundColor("#101010"),
-        interactive = false, x = 0, y = 0, uploadCursor = new Image,
-        UC_OFFSET_X = 509, UC_OFFSET_Y = 29
+        interactive = false, uploading = false, x = 0, y = 0,
+        uploadCursor = new Image, UC_OFFSET_X = 509, UC_OFFSET_Y = 29
 
     uploadCursor.src = "/media/upload.png"
 
@@ -54,6 +54,10 @@ if (typeof requestAnimationFrame === "undefined") {
             var req = new XMLHttpRequest
             req.open("put", "/upload")
             req.send(formData)
+
+            uploading = true
+            x = event.clientX
+            y = event.clientY
         }
 
         interactive = false
@@ -87,6 +91,8 @@ if (typeof requestAnimationFrame === "undefined") {
 
         if (interactive) {
             paint.drawImage(uploadCursor, x - UC_OFFSET_X, y - UC_OFFSET_Y)
+        }
+        else if (uploading) {
         }
     }
 
