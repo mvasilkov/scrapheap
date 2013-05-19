@@ -1,3 +1,8 @@
-from django.conf.urls import patterns
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
 
-urlpatterns = patterns(None)
+admin.autodiscover()
+
+urlpatterns = patterns(None,
+    url(r"^watamote/", include(admin.site.urls)),
+)
