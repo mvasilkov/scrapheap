@@ -1,6 +1,6 @@
 from PIL import Image
 from django.test import TestCase
-from tomoko.markov import break_bits, Mipmap
+from tomoko.markov import break_bits, Mipmap, pixel_to_int
 from tomoko.markov.models import Point
 
 def _t(val, n):
@@ -19,6 +19,10 @@ class MarkovTest(TestCase):
         mm = Mipmap(im, n_levels=4)
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
         self.assertEqual(mm.levels[2].getpixel((0, 0)), (124, 0, 8))
+
+    def test_pixel_to_int(self):
+        self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
+        self.assertEqual(pixel_to_int((204, 255, 102)), 0xccff66)
 
     def test_from_mipmap(self):
         im = Image.new("RGB", (5, 5), (255, 255, 255))
