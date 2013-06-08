@@ -4,7 +4,7 @@ from tomoko.markov import break_bits, Mipmap
 from tomoko.markov.models import Point
 
 def _t(val, n):
-    return repr((val, ).__mul__(n))
+    return (val, ).__mul__(n)
 
 class MarkovTest(TestCase):
     def test_break_bits(self):
@@ -27,4 +27,27 @@ class MarkovTest(TestCase):
         point = Point.from_mipmap(mm, 0, 0)
         expected = _t(None, 24)
         self.assertEqual(point.value, 0xffffff)
-        self.assertEqual(point.cons, expected)
+        self.assertEqual(point.cons, repr(expected))
+
+        point = Point.from_mipmap(mm, 4, 4)
+        b1 = _t(254, 3)
+        b2 = _t(252, 3)
+        b3 = _t(248, 3)
+        b4 = _t(240, 3)
+        expected = (b4, b4, b4, b4, b4,
+                    b4, b3, b3, b3, b3,
+                    b4, b3, b2, b2, b2,
+                    b4, b3, b2, b1, b1,
+                    b4, b3, b2, b1)
+        self.assertEqual(point.value, 0xffffff)
+        self.assertEqual(point.cons, repr(expected))
+
+        point = Point.from_mipmap(mm, 2, 3)
+        bx = None
+        expected = (bx, bx, bx, bx, bx,
+                    bx, bx, b3, b3, b3,
+                    bx, bx, b2, b2, b2,
+                    bx, bx, b2, b1, b1,
+                    bx, bx, b2, b1)
+        self.assertEqual(point.value, 0xffffff)
+        self.assertEqual(point.cons, repr(expected))
