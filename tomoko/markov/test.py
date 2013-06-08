@@ -2,6 +2,7 @@ from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
 from tomoko.markov import break_bits, Mipmap, pixel_to_int
+from tomoko.markov.management.commands.load_pic import MM_LEVEL
 from tomoko.markov.models import Point
 
 def _t(val, n):
@@ -62,3 +63,6 @@ class MarkovTest(TestCase):
 
         call_command("load_pic", "test/a.png")
         self.assertEqual(Point.objects.count(), 1)
+
+        call_command("load_pic", "test/b.png")
+        self.assertEqual(Point.objects.count(), MM_LEVEL ** 2)

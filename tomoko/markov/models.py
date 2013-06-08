@@ -25,6 +25,6 @@ class Point(models.Model):
                     result.append(raw)
 
         raw = result.pop()
-        point = Point(value=pixel_to_int(raw))
-        point.cons = repr(tuple(result))
+        args = {"cons": repr(tuple(result)), "value": pixel_to_int(raw)}
+        point, new = Point.objects.get_or_create(**args)
         return point
