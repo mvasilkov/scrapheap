@@ -1,6 +1,10 @@
 from PIL import Image
 from django.test import TestCase
 from tomoko.markov import break_bits, Mipmap
+from tomoko.markov.models import Point
+
+def _t(val, n):
+    return repr((val, ).__mul__(n))
 
 class MarkovTest(TestCase):
     def test_break_bits(self):
@@ -15,3 +19,12 @@ class MarkovTest(TestCase):
         mm = Mipmap(im, n_levels=4)
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
         self.assertEqual(mm.levels[2].getpixel((0, 0)), (124, 0, 8))
+
+    def test_from_mipmap(self):
+        im = Image.new("RGB", (5, 5), (255, 255, 255))
+        mm = Mipmap(im, n_levels=5)
+
+        point = Point.from_mipmap(mm, 0, 0)
+        expected = _t(None, 24)
+        self.assertEqual(point.value, 0xffffff)
+        self.assertEqual(point.cons, expected)
