@@ -13,6 +13,14 @@ class Command(LabelCommand):
         mm = Mipmap(im, n_levels=MM_LEVEL)
 
         width, height = im.size
+        size = width * height
+        done = 0
+        sep = "---------------------"
+        print sep, "Loading", sep
         for v in xrange(height):
             for u in xrange(width):
-                Point.from_mipmap(mm, u, v).save()
+                Point.from_mipmap(mm, u, v)
+                done += 1
+                if done % 4000 == 0:
+                    progress = "#" * (24 * done // size)
+                    print "%24d [%-24s]" % (done, progress)
