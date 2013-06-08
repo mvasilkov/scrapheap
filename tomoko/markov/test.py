@@ -1,4 +1,5 @@
 from PIL import Image
+from django.core.management import call_command
 from django.test import TestCase
 from tomoko.markov import break_bits, Mipmap, pixel_to_int
 from tomoko.markov.models import Point
@@ -55,3 +56,9 @@ class MarkovTest(TestCase):
                     bx, bx, b2, b1)
         self.assertEqual(point.value, 0xffffff)
         self.assertEqual(point.cons, repr(expected))
+
+    def test_load_pic(self):
+        self.assertEqual(Point.objects.count(), 0)
+
+        call_command("load_pic", "test/a.png")
+        self.assertEqual(Point.objects.count(), 1)
