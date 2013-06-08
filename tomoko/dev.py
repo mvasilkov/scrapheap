@@ -1,3 +1,5 @@
+import os.path
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -22,3 +24,4 @@ INSTALLED_APPS = (
 ROOT_URLCONF = "tomoko.routes"
 SECRET_KEY = "Do you think I'm cute?"
 STATIC_URL = "/static/"
+TEMPLATE_DIRS = (os.path.expanduser("~/c/mokocchi/html"), )
