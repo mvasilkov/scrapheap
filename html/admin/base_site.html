@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'WataMote' %}{% endblock %}
+
+{% block extrastyle %}<style>
+img { image-rendering: -webkit-optimize-contrast; }
+</style>{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'WataMote' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
