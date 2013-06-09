@@ -1,5 +1,8 @@
 from django.db import models
+from django.db.backends.mysql.creation import DatabaseCreation
 from tomoko.markov import pixel_to_int
+
+DatabaseCreation.data_types["CharField"] += " character set ascii collate ascii_bin"
 
 class Point(models.Model):
     cons = models.CharField(max_length=900)
