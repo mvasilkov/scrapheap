@@ -28,3 +28,6 @@ class Point(models.Model):
         args = {"cons": repr(tuple(result)), "value": pixel_to_int(raw)}
         point, new = Point.objects.get_or_create(**args)
         return point
+
+    class Meta:
+        unique_together = ("cons", "value")

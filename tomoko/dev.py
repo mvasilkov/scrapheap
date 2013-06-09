@@ -1,4 +1,4 @@
-import os.path
+from os.path import expanduser as _xp
 
 DATABASES = {
     "default": {
@@ -24,4 +24,4 @@ INSTALLED_APPS = (
 ROOT_URLCONF = "tomoko.routes"
 SECRET_KEY = "Do you think I'm cute?"
 STATIC_URL = "/static/"
-TEMPLATE_DIRS = (os.path.expanduser("~/c/mokocchi/html"), )
+TEMPLATE_DIRS = (_xp("~/c/mokocchi/html"), )
