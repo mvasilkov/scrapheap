@@ -14,3 +14,7 @@ def inline_image(image, size):
     out.close()
 
     return result
+
+def progress_bar(val, end):
+    progress = "#" * (24 * val // end)
+    return "[%-24s] %9d" % (progress, val)

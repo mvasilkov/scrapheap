@@ -1,9 +1,10 @@
 from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
-from tomoko.markov import break_bits, Mipmap, pixel_to_int
+from tomoko.markov import break_bits, Mipmap, pixel_to_int, int_to_pixel
 from tomoko.markov.management.commands.load_pic import MM_LEVEL
 from tomoko.markov.models import Point
+from tomoko.markov.utils import progress_bar
 
 def _t(val, n):
     return (val, ).__mul__(n)
@@ -21,6 +22,10 @@ class MarkovTest(TestCase):
         mm = Mipmap(im, n_levels=4)
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
         self.assertEqual(mm.levels[2].getpixel((0, 0)), (124, 0, 8))
+
+    def test_int_to_pixel(self):
+        self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
+        self.assertEqual(int_to_pixel(0xccff66), (204, 255, 102))
 
     def test_pixel_to_int(self):
         self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
@@ -66,3 +71,11 @@ class MarkovTest(TestCase):
 
         call_command("load_pic", "test/b.png")
         self.assertEqual(Point.objects.count(), MM_LEVEL ** 2)
+
+    def test_progress_bar(self):
+        self.assertEqual(progress_bar(0, 1),
+            "[                        ]         0")
+        self.assertEqual(progress_bar(250, 500),
+            "[############            ]       250")
+        self.assertEqual(progress_bar(48, 48),
+            "[########################]        48")

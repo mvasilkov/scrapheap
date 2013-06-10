@@ -2,6 +2,7 @@ from PIL import Image
 from django.core.management.base import LabelCommand
 from tomoko.markov import Mipmap
 from tomoko.markov.models import Point
+from tomoko.markov.utils import progress_bar
 
 MM_LEVEL = 5
 
@@ -15,12 +16,9 @@ class Command(LabelCommand):
         width, height = im.size
         size = width * height
         done = 0
-        sep = "---------------------"
-        print sep, "Loading", sep
         for v in xrange(height):
             for u in xrange(width):
                 Point.from_mipmap(mm, u, v)
                 done += 1
                 if done % 4000 == 0:
-                    progress = "#" * (24 * done // size)
-                    print "%24d [%-24s]" % (done, progress)
+                    print progress_bar(done, size)
