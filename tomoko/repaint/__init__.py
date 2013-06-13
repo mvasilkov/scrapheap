@@ -35,3 +35,16 @@ class Mipmap:
                 else:
                     level = max(end - u, end - v)
                     yield self.levels[level].getpixel((uu, vv))
+
+def _break_pixel(val, n):
+    return tuple(c & 256 - 2 ** n for c in val)
+
+class Canvas(Mipmap):
+    def __init__(self, size, n_levels):
+        self.levels = [Image.new("RGB", (size, size), (0, 0, 0))
+            for n in xrange(n_levels)]
+        self.n_levels = n_levels
+
+    def paint(self, u, v, val):
+        for n in xrange(self.n_levels):
+            self.levels[n].putpixel((u, v), _break_pixel(val, n))

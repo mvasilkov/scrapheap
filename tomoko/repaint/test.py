@@ -1,7 +1,7 @@
 from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
-from tomoko.repaint import break_bits, Mipmap, pixel_to_int, int_to_pixel
+from tomoko.repaint import break_bits, Mipmap, Canvas, pixel_to_int, int_to_pixel
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
 from tomoko.repaint.utils import progress_bar
@@ -19,9 +19,21 @@ class BasicTest(TestCase):
 
     def test_mipmap(self):
         im = Image.new("RGB", (1, 1), (127, 0, 9))
-        mm = Mipmap(im, n_levels=4)
+        mm = Mipmap(im, n_levels=9)
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
         self.assertEqual(mm.levels[2].getpixel((0, 0)), (124, 0, 8))
+        self.assertEqual(mm.levels[4].getpixel((0, 0)), (112, 0, 0))
+        self.assertEqual(mm.levels[8].getpixel((0, 0)), (0, 0, 0))
+        self.assertEqual(tuple(mm.cons(0, 0)), _t(None, 80))
+
+    def test_canvas(self):
+        canvas = Canvas(size=1, n_levels=9)
+        canvas.paint(0, 0, (127, 0, 9))
+        self.assertEqual(canvas.levels[0].getpixel((0, 0)), (127, 0, 9))
+        self.assertEqual(canvas.levels[2].getpixel((0, 0)), (124, 0, 8))
+        self.assertEqual(canvas.levels[4].getpixel((0, 0)), (112, 0, 0))
+        self.assertEqual(canvas.levels[8].getpixel((0, 0)), (0, 0, 0))
+        self.assertEqual(tuple(canvas.cons(0, 0)), _t(None, 80))
 
     def test_int_to_pixel(self):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
