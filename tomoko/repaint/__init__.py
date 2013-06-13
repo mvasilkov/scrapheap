@@ -16,6 +16,9 @@ class Mipmap:
         self.levels = [break_bits(im, n) for n in xrange(n_levels)]
         self.n_levels = n_levels
 
+    def __getitem__(self, pos):
+        return self.levels[0].getpixel(pos)
+
     def cons(self, start_u, start_v):
         end = self.n_levels - 1
         start_u -= end

@@ -29,6 +29,7 @@ class Point(models.Model):
                     result.append(raw)
 
         raw = result.pop()
+        assert raw == mm[start_i + end, start_j + end]
         args = {"cons": repr(tuple(result)), "value": pixel_to_int(raw)}
         point, new = Point.objects.get_or_create(**args)
         return point
