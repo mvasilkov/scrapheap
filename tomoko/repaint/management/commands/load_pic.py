@@ -1,8 +1,8 @@
 from PIL import Image
 from django.core.management.base import LabelCommand
-from tomoko.markov import Mipmap
-from tomoko.markov.models import Point
-from tomoko.markov.utils import progress_bar
+from tomoko.repaint import Mipmap
+from tomoko.repaint.models import Point
+from tomoko.repaint.utils import progress_bar
 
 MM_LEVEL = 5
 

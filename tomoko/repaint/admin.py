@@ -1,7 +1,7 @@
 from django.contrib import admin
-from tomoko.markov.management.commands.load_pic import MM_LEVEL
-from tomoko.markov.models import Point
-from tomoko.markov.utils import inline_image
+from tomoko.repaint.management.commands.load_pic import MM_LEVEL
+from tomoko.repaint.models import Point
+from tomoko.repaint.utils import inline_image
 
 class PointAdmin(admin.ModelAdmin):
     list_display = ("__unicode__", "visual")

@@ -19,7 +19,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
-    "tomoko.markov",
+    "tomoko.repaint",
 )
 ROOT_URLCONF = "tomoko.routes"
 SECRET_KEY = "Do you think I'm cute?"

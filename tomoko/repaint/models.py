@@ -1,7 +1,7 @@
 import ast
 from django.db import models
 from django.db.backends.mysql.creation import DatabaseCreation
-from tomoko.markov import pixel_to_int, int_to_pixel
+from tomoko.repaint import pixel_to_int, int_to_pixel
 
 DatabaseCreation.data_types["CharField"] += " character set ascii collate ascii_bin"
 

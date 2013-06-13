@@ -1,10 +1,10 @@
 from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
-from tomoko.markov import break_bits, Mipmap, pixel_to_int, int_to_pixel
-from tomoko.markov.management.commands.load_pic import MM_LEVEL
-from tomoko.markov.models import Point
-from tomoko.markov.utils import progress_bar
+from tomoko.repaint import break_bits, Mipmap, pixel_to_int, int_to_pixel
+from tomoko.repaint.management.commands.load_pic import MM_LEVEL
+from tomoko.repaint.models import Point
+from tomoko.repaint.utils import progress_bar
 
 def _t(val, n):
     return (val, ).__mul__(n)
