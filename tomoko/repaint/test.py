@@ -36,14 +36,11 @@ class BasicTest(TestCase):
         mm = Mipmap(im, n_levels=5)
 
         point = Point.from_mipmap(mm, 0, 0)
-        cons = tuple(mm.cons(0, 0))
         expected = _t(None, 24)
         self.assertEqual(point.value, 0xffffff)
-        self.assertEqual(point.cons, repr(cons))
         self.assertEqual(point.cons, repr(expected))
 
         point = Point.from_mipmap(mm, 4, 4)
-        cons = tuple(mm.cons(4, 4))
         b1 = _t(254, 3)
         b2 = _t(252, 3)
         b3 = _t(248, 3)
@@ -54,11 +51,9 @@ class BasicTest(TestCase):
                     b4, b3, b2, b1, b1,
                     b4, b3, b2, b1)
         self.assertEqual(point.value, 0xffffff)
-        self.assertEqual(point.cons, repr(cons))
         self.assertEqual(point.cons, repr(expected))
 
         point = Point.from_mipmap(mm, 2, 3)
-        cons = tuple(mm.cons(2, 3))
         bx = None
         expected = (bx, bx, bx, bx, bx,
                     bx, bx, b3, b3, b3,
@@ -66,7 +61,6 @@ class BasicTest(TestCase):
                     bx, bx, b2, b1, b1,
                     bx, bx, b2, b1)
         self.assertEqual(point.value, 0xffffff)
-        self.assertEqual(point.cons, repr(cons))
         self.assertEqual(point.cons, repr(expected))
 
     def test_repaint_load(self):

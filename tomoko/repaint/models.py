@@ -13,25 +13,11 @@ class Point(models.Model):
         return "#%x" % self.value
 
     @staticmethod
-    def from_mipmap(mm, start_i, start_j):
-        end = mm.n_levels - 1
-        start_i -= end
-        start_j -= end
-        result = []
-
-        for j in xrange(mm.n_levels):
-            for i in xrange(mm.n_levels):
-                if i < -start_i or j < -start_j:
-                    result.append(None)
-                else:
-                    level = max(end - i, end - j)
-                    raw = mm.levels[level].getpixel((i + start_i, j + start_j))
-                    result.append(raw)
-
-        raw = result.pop()
-        assert raw == mm[start_i + end, start_j + end]
-        args = {"cons": repr(tuple(result)), "value": pixel_to_int(raw)}
-        point, new = Point.objects.get_or_create(**args)
+    def from_mipmap(mm, u, v):
+        point, not_used = Point.objects.get_or_create(
+            cons=repr(tuple(mm.cons(u, v))),
+            value=pixel_to_int(mm[u, v])
+        )
         return point
 
     def image(self):
