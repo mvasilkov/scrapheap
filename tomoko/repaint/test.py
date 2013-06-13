@@ -33,6 +33,7 @@ class BasicTest(TestCase):
 
     def test_from_mipmap(self):
         im = Image.new("RGB", (5, 5), (255, 255, 255))
+        im.putpixel((4, 4), (204, 255, 102))
         mm = Mipmap(im, n_levels=5)
 
         point = Point.from_mipmap(mm, 0, 0)
@@ -50,7 +51,7 @@ class BasicTest(TestCase):
                     b4, b3, b2, b2, b2,
                     b4, b3, b2, b1, b1,
                     b4, b3, b2, b1)
-        self.assertEqual(point.value, 0xffffff)
+        self.assertEqual(point.value, 0xccff66)
         self.assertEqual(point.cons, repr(expected))
 
         point = Point.from_mipmap(mm, 2, 3)
