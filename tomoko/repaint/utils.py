@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageChops
 from cStringIO import StringIO
 
 def inline_image(image, size):
@@ -18,3 +18,6 @@ def inline_image(image, size):
 def progress_bar(val, end):
     progress = "#" * (24 * val // end)
     return "[%-24s] %9d" % (progress, val)
+
+def images_equal(a, b):
+    return ImageChops.difference(a, b).getbbox() is None
