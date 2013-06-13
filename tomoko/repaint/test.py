@@ -17,23 +17,22 @@ class BasicTest(TestCase):
         self.assertEqual(im1.getpixel((0, 0)), (254, 254, 254))
         self.assertEqual(im2.getpixel((0, 0)), (252, 252, 252))
 
-    def test_mipmap(self):
-        im = Image.new("RGB", (1, 1), (127, 0, 9))
-        mm = Mipmap(im, n_levels=9)
+    def _validate_mipmap(self, mm):
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
         self.assertEqual(mm.levels[2].getpixel((0, 0)), (124, 0, 8))
         self.assertEqual(mm.levels[4].getpixel((0, 0)), (112, 0, 0))
         self.assertEqual(mm.levels[8].getpixel((0, 0)), (0, 0, 0))
         self.assertEqual(tuple(mm.cons(0, 0)), _t(None, 80))
 
+    def test_mipmap(self):
+        im = Image.new("RGB", (1, 1), (127, 0, 9))
+        mm = Mipmap(im, n_levels=9)
+        self._validate_mipmap(mm)
+
     def test_canvas(self):
         canvas = Canvas(size=1, n_levels=9)
         canvas.paint(0, 0, (127, 0, 9))
-        self.assertEqual(canvas.levels[0].getpixel((0, 0)), (127, 0, 9))
-        self.assertEqual(canvas.levels[2].getpixel((0, 0)), (124, 0, 8))
-        self.assertEqual(canvas.levels[4].getpixel((0, 0)), (112, 0, 0))
-        self.assertEqual(canvas.levels[8].getpixel((0, 0)), (0, 0, 0))
-        self.assertEqual(tuple(canvas.cons(0, 0)), _t(None, 80))
+        self._validate_mipmap(canvas)
 
     def test_int_to_pixel(self):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
