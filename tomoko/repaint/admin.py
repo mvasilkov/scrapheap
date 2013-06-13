@@ -1,5 +1,5 @@
 from django.contrib import admin
-from tomoko.repaint.management.commands.load_pic import MM_LEVEL
+from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
 from tomoko.repaint.utils import inline_image
 
