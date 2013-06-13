@@ -14,11 +14,11 @@ class Command(LabelCommand):
         mm = Mipmap(im, n_levels=MM_LEVEL)
 
         width, height = im.size
-        size = width * height
-        done = 0
+        p_end = width * height
+        p_val = 0
         for v in xrange(height):
             for u in xrange(width):
                 Point.from_mipmap(mm, u, v)
-                done += 1
-                if done % 4000 == 0:
-                    print progress_bar(done, size)
+                p_val += 1
+                if p_val % 4000 == 0:
+                    print progress_bar(p_val, p_end)
