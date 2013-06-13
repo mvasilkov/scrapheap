@@ -48,3 +48,6 @@ class Canvas(Mipmap):
     def paint(self, u, v, val):
         for n in xrange(self.n_levels):
             self.levels[n].putpixel((u, v), _break_pixel(val, n))
+
+    def save(self, filename):
+        self.levels[0].save(filename, "PNG")
