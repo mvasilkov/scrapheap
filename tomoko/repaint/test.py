@@ -9,7 +9,7 @@ from tomoko.repaint.utils import progress_bar
 def _t(val, n):
     return (val, ).__mul__(n)
 
-class MarkovTest(TestCase):
+class BasicTest(TestCase):
     def test_break_bits(self):
         im = Image.new("RGB", (1, 1), (255, 255, 255))
         im1 = break_bits(im, 1)
