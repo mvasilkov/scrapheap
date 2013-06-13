@@ -13,7 +13,7 @@ class Point(models.Model):
     value = models.PositiveIntegerField()
 
     def __unicode__(self):
-        return "#%x" % self.value
+        return "#%06x" % self.value
 
     @staticmethod
     def from_mipmap(mm, u, v):
