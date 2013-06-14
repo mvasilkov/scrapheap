@@ -5,6 +5,7 @@ from tempfile import NamedTemporaryFile
 from tomoko.repaint import break_bits, Mipmap, Canvas, pixel_to_int, int_to_pixel
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
+from tomoko.repaint.reiterate import reiterate, goto
 from tomoko.repaint.utils import progress_bar, images_equal
 
 def _t(val, n):
@@ -116,3 +117,18 @@ class BasicTest(TestCase):
             "[############            ]       250")
         self.assertEqual(progress_bar(48, 48),
             "[########################]        48")
+
+    def test_reiterate(self):
+        result = tuple(reiterate(2))
+        self.assertEqual(result, ((0, 0), (1, 0), (0, 1), (1, 1)))
+
+    def test_reiterate_goto(self):
+        result = tuple()
+        _jmp = False
+        for u, v in reiterate(2):
+            result += ((u, v), )
+            if u == 0 and v == 1 and not _jmp:
+                _jmp = True
+                goto(1, 0)
+        self.assertEqual(result,
+            ((0, 0), (1, 0), (0, 1), (1, 0), (0, 1), (1, 1)))

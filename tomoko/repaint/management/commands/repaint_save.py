@@ -27,5 +27,6 @@ class Command(LabelCommand):
                 canvas.paint(u, v, int_to_pixel(point.value))
                 p_val += 1
                 if p_val % 4000 == 0:
+                    canvas.save(label)
                     print progress_bar(p_val, p_end)
         canvas.save(label)
