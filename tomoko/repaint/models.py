@@ -29,8 +29,11 @@ class Point(models.Model):
             cons = repr(cons)
         points = Point.objects.filter(cons=cons).values_list("id", flat=True)
         if not points:
-            return None
-        return Point.objects.get(id=_random.choice(points))
+            return None, None
+        point = Point.objects.get(id=_random.choice(points))
+        others = list(points)
+        others.remove(point.id)
+        return point, others
 
     def image(self):
         for p in ast.literal_eval(self.cons):

@@ -16,15 +16,18 @@ class Command(LabelCommand):
     def handle_label(self, label, **options):
         size = options["size"] or MM_SIZE
         canvas = Canvas(size, n_levels=MM_LEVEL)
+        stack = []
         p_end = size ** 2
         p_val = 0
         for u, v in reiterate(size):
             cons = tuple(canvas.cons(u, v))
-            point = Point.random_by_cons(cons)
+            point, others = Point.random_by_cons(cons)
             if point is None:
                 canvas.save(label)
                 print "Eat flaming death"
-                return
+                continue
+            if others:
+                stack.append((u, v, others))
             canvas.paint(u, v, int_to_pixel(point.value))
             p_val += 1
             if p_val % 4000 == 0:
