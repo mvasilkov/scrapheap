@@ -1,7 +1,7 @@
 from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
-import os
+from tempfile import NamedTemporaryFile
 from tomoko.repaint import break_bits, Mipmap, Canvas, pixel_to_int, int_to_pixel
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
@@ -88,15 +88,13 @@ class BasicTest(TestCase):
     def test_repaint_save(self):
         self.assertEqual(Point.objects.count(), 0)
 
-        outfile = "/tmp/test.png"
+        outfile = NamedTemporaryFile()
         call_command("repaint_load", "test/c.png")
-        call_command("repaint_save", outfile, size=20)
+        call_command("repaint_save", outfile.name, size=20)
 
         a = Image.open(outfile)
         b = Image.open("test/c'.png").convert("RGB")
         self.assertTrue(images_equal(a, b))
-
-        os.remove(outfile)
 
     def test_progress_bar(self):
         self.assertEqual(progress_bar(0, 1),
