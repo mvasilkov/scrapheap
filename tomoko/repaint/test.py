@@ -100,9 +100,14 @@ class BasicTest(TestCase):
         a = Image.open("test/a.png").convert("RGB")
         b = Image.new("RGB", (1, 1), int_to_pixel(0x8efa00))
         c = Image.open("test/c.png").convert("RGB")
+
         self.assertTrue(images_equal(a, b))
         self.assertFalse(images_equal(a, c))
         self.assertFalse(images_equal(b, c))
+
+        a = Image.new("RGB", (1, 1), (255, 255, 255))
+        b = Image.new("RGB", (5, 5), (255, 255, 255))
+        self.assertFalse(images_equal(a, b))
 
     def test_progress_bar(self):
         self.assertEqual(progress_bar(0, 1),

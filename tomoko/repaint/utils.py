@@ -20,4 +20,6 @@ def progress_bar(val, end):
     return "[%-24s] %9d" % (progress, val)
 
 def images_equal(a, b):
+    if a.size != b.size:
+        return False
     return ImageChops.difference(a, b).getbbox() is None
