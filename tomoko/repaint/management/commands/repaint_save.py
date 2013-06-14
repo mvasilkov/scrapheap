@@ -10,14 +10,15 @@ MM_SIZE = 250
 
 class Command(LabelCommand):
     option_list = LabelCommand.option_list + (
-        make_option("--size", type="int", default=MM_SIZE, dest="size"),
+        make_option("--size", type="int", default=0, dest="size"),
     )
 
     def handle_label(self, label, **options):
-        canvas = Canvas(size=options["size"], n_levels=MM_LEVEL)
-        p_end = options["size"] ** 2
+        size = options["size"] or MM_SIZE
+        canvas = Canvas(size, n_levels=MM_LEVEL)
+        p_end = size ** 2
         p_val = 0
-        for u, v in reiterate(options["size"]):
+        for u, v in reiterate(size):
             cons = tuple(canvas.cons(u, v))
             point = Point.random_by_cons(cons)
             if point is None:
