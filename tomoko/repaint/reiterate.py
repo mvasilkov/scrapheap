@@ -8,7 +8,6 @@ def reiterate(end):
         XXX_u = 0
         XXX_v += 1
 
-def goto(*args):
+def goto_after(*args):
     global XXX_u, XXX_v
     XXX_u, XXX_v = args
-    XXX_u -= 1
