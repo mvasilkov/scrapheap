@@ -1,12 +1,15 @@
 from django.core.management.base import LabelCommand
 from optparse import make_option
+from random import SystemRandom
 from tomoko.repaint import Canvas, int_to_pixel
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
-from tomoko.repaint.reiterate import reiterate
+from tomoko.repaint.reiterate import reiterate, goto_after
 from tomoko.repaint.utils import progress_bar
 
 MM_SIZE = 250
+
+_random = SystemRandom()
 
 class Command(LabelCommand):
     option_list = LabelCommand.option_list + (
@@ -23,9 +26,10 @@ class Command(LabelCommand):
             cons = tuple(canvas.cons(u, v))
             point, others = Point.random_by_cons(cons)
             if point is None:
-                canvas.save(label)
-                print "Eat flaming death"
-                continue
+                u, v, others = stack.pop()
+                point = Point.objects.get(id=_random.choice(others))
+                others.remove(point.id)
+                goto_after(u, v)
             if others:
                 stack.append((u, v, others))
             canvas.paint(u, v, int_to_pixel(point.value))
