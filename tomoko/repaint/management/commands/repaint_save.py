@@ -24,7 +24,8 @@ class Command(LabelCommand):
         p_nop = 4000
         for u, v in reiterate(size):
             cons = tuple(canvas.cons(u, v))
-            point, others = Point.random_by_cons(cons)
+            future_cons = canvas.future_cons(u, v)
+            point, others = Point.random_by_cons(cons, future_cons)
             if point is None:
                 u, v, others = stack.pop()
                 point = Point.objects.get(id=_random.choice(others))
