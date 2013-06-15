@@ -12,6 +12,9 @@ def pixel_to_int(raw):
 def break_bits(im, n):
     return Image.eval(im, lambda c: c & 256 - 2 ** n)
 
+def break_pixel(val, n):
+    return tuple(c & 256 - 2 ** n for c in val)
+
 class Mipmap:
     def __init__(self, im, n_levels):
         self.levels = [break_bits(im, n) for n in xrange(n_levels)]
@@ -37,9 +40,6 @@ class Mipmap:
                     level = max(end - u, end - v)
                     yield self.levels[level].getpixel((uu, vv))
 
-def _break_pixel(val, n):
-    return tuple(c & 256 - 2 ** n for c in val)
-
 class Canvas(Mipmap):
     def __init__(self, size, n_levels):
         self.levels = [Image.new("RGB", (size, size), (0, 0, 0))
@@ -53,7 +53,7 @@ class Canvas(Mipmap):
 
     def paint(self, u, v, val):
         for n in xrange(self.n_levels):
-            self.levels[n].putpixel((u, v), _break_pixel(val, n))
+            self.levels[n].putpixel((u, v), break_pixel(val, n))
 
     def save(self, filename):
         self.levels[0].save(filename, "PNG")

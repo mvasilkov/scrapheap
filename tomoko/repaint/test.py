@@ -2,7 +2,8 @@ from PIL import Image
 from django.core.management import call_command
 from django.test import TestCase
 from tempfile import NamedTemporaryFile
-from tomoko.repaint import break_bits, Mipmap, Canvas, pixel_to_int, int_to_pixel
+from tomoko.repaint import (break_bits, break_pixel, Mipmap, Canvas,
+    pixel_to_int, int_to_pixel)
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
 from tomoko.repaint.reiterate import reiterate, goto_after
@@ -18,6 +19,11 @@ class BasicTest(TestCase):
         im2 = break_bits(im, 2)
         self.assertEqual(im1.getpixel((0, 0)), (254, 254, 254))
         self.assertEqual(im2.getpixel((0, 0)), (252, 252, 252))
+
+    def test_break_pixel(self):
+        self.assertEqual(break_pixel((255, 255, 255), 0), (255, 255, 255))
+        self.assertEqual(break_pixel((255, 255, 255), 1), (254, 254, 254))
+        self.assertEqual(break_pixel((255, 255, 255), 2), (252, 252, 252))
 
     def _validate_mipmap(self, mm):
         self.assertEqual(mm.levels[0].getpixel((0, 0)), (127, 0, 9))
