@@ -56,6 +56,8 @@ class BasicTest(TestCase):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
         self.assertEqual(int_to_pixel(0xccff66), (204, 255, 102))
 
+        self.assertEqual(repr(int_to_pixel(0xffffffl)).find("L"), -1)
+
     def test_pixel_to_int(self):
         self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
         self.assertEqual(pixel_to_int((204, 255, 102)), 0xccff66)

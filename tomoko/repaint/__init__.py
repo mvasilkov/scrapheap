@@ -2,9 +2,9 @@ from PIL import Image
 from itertools import islice
 
 def int_to_pixel(n):
-    return ((n & 0xff0000) >> 16,
-            (n & 0x00ff00) >> 8,
-            (n & 0x0000ff))
+    return (int(n & 0xff0000) >> 16,
+            int(n & 0x00ff00) >> 8,
+            int(n & 0x0000ff))
 
 def pixel_to_int(raw):
     return raw[0] << 16 | raw[1] << 8 | raw[2]
