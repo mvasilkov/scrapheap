@@ -1,4 +1,5 @@
 from PIL import Image
+from itertools import islice
 
 def int_to_pixel(n):
     return ((n & 0xff0000) >> 16,
@@ -44,6 +45,11 @@ class Canvas(Mipmap):
         self.levels = [Image.new("RGB", (size, size), (0, 0, 0))
             for n in xrange(n_levels)]
         self.n_levels = n_levels
+
+    def future_cons(self, u, v):
+        cons_len = self.n_levels ** 2 - 1
+        return (islice(self.cons(u, v + n), cons_len - self.n_levels * n)
+            for n in xrange(1, self.n_levels))
 
     def paint(self, u, v, val):
         for n in xrange(self.n_levels):

@@ -36,6 +36,22 @@ class BasicTest(TestCase):
         canvas.paint(0, 0, (127, 0, 9))
         self._validate_mipmap(canvas)
 
+    def test_canvas_future_cons(self):
+        im = Image.new("RGB", (3, 3), (255, 255, 255))
+        mm = Mipmap(im, n_levels=3)
+        canvas = Canvas(size=3, n_levels=3)
+        canvas.levels = mm.levels
+
+        future_cons = tuple(canvas.future_cons(2, 2))
+        self.assertEqual(len(future_cons), 2)
+        self.assertEqual(tuple(future_cons[0]), (
+            (252, 252, 252), (252, 252, 252), (252, 252, 252),
+            (252, 252, 252), (254, 254, 254),
+        ))
+        self.assertEqual(tuple(future_cons[1]), (
+            (252, 252, 252), (252, 252, 252),
+        ))
+
     def test_int_to_pixel(self):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
         self.assertEqual(int_to_pixel(0xccff66), (204, 255, 102))
