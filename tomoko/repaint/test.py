@@ -112,11 +112,11 @@ class BasicTest(TestCase):
 
     def test_progress_bar(self):
         self.assertEqual(progress_bar(0, 1),
-            "[                        ]         0")
+            "[                        ]")
         self.assertEqual(progress_bar(250, 500),
-            "[############            ]       250")
+            "[############            ]")
         self.assertEqual(progress_bar(48, 48),
-            "[########################]        48")
+            "[########################]")
 
     def test_reiterate(self):
         result = tuple(reiterate(2))

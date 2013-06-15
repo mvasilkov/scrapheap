@@ -17,7 +17,7 @@ def inline_image(image, size):
 
 def progress_bar(val, end):
     progress = "#" * (24 * val // end)
-    return "[%-24s] %9d" % (progress, val)
+    return "[%-24s]" % progress
 
 def images_equal(a, b):
     if a.size != b.size:

@@ -21,7 +21,7 @@ class Command(LabelCommand):
         canvas = Canvas(size, n_levels=MM_LEVEL)
         stack = []
         p_end = size ** 2
-        p_val = 0
+        p_nop = 4000
         for u, v in reiterate(size):
             cons = tuple(canvas.cons(u, v))
             point, others = Point.random_by_cons(cons)
@@ -33,8 +33,9 @@ class Command(LabelCommand):
             if others:
                 stack.append((u, v, others))
             canvas.paint(u, v, int_to_pixel(point.value))
-            p_val += 1
-            if p_val % 4000 == 0:
+            p_nop -= 1
+            if not p_nop:
                 canvas.save(label)
-                print progress_bar(p_val, p_end)
+                print progress_bar(v * size + u, p_end)
+                p_nop = 4000
         canvas.save(label)
