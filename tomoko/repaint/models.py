@@ -50,7 +50,7 @@ class Point(models.Model):
         for c in future_cons:
             val = break_pixel(int_to_pixel(self.value), bits)
             cons = repr(c + (val, ))[:-1]
-            if not Point.objects.filter(cons__startswith=cons).exists():
+            if not Point.objects.filter(cons__istartswith=cons).exists():
                 return False
             bits += 1
         return True
