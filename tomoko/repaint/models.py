@@ -12,6 +12,9 @@ def _filter_points(points, future_cons):
     return tuple(p for p in points
         if Point.objects.get(id=p).has_future(future_cons))
 
+def _bitwise_and(a, b):
+    return (a[0] & b[0], a[1] & b[1], a[2] & b[2])
+
 class Point(models.Model):
     cons = models.CharField(max_length=900)
     value = models.PositiveIntegerField()
@@ -32,7 +35,7 @@ class Point(models.Model):
         if not isinstance(cons, str):
             cons = repr(cons)
         points = Point.objects.filter(cons=cons).values_list("id", flat=True)
-        points = _filter_points(points, tuple(tuple(c) for c in future_cons))
+        points = _filter_points(points, future_cons)
         if not points:
             return None, None
         point = Point.objects.get(id=_random.choice(points))
@@ -46,13 +49,12 @@ class Point(models.Model):
         yield int_to_pixel(self.value)
 
     def has_future(self, future_cons):
-        bits = 1
+        p = int_to_pixel(self.value)
         for c in future_cons:
-            val = break_pixel(int_to_pixel(self.value), bits)
-            cons = repr(c + (val, ))[:-1]
+            val = _bitwise_and(p, c[-1])
+            cons = repr(c[:-1] + (val, ))[:-1]
             if not Point.objects.filter(cons__istartswith=cons).exists():
                 return False
-            bits += 1
         return True
 
     class Meta:

@@ -1,7 +1,7 @@
 from django.core.management.base import LabelCommand
 from optparse import make_option
 from random import SystemRandom
-from tomoko.repaint import Canvas, int_to_pixel
+from tomoko.repaint import Canvas, Futures, int_to_pixel
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
 from tomoko.repaint.reiterate import reiterate, goto_after
@@ -24,8 +24,9 @@ class Command(LabelCommand):
         p_nop = 4000
         for u, v in reiterate(size):
             cons = tuple(canvas.cons(u, v))
-            future_cons = tuple(canvas.future_cons(u, v))
-            point, others = Point.random_by_cons(cons, future_cons)
+            canvas.paint(u, v, (255, 255, 255))
+            futures = Futures(canvas, u, v)
+            point, others = Point.random_by_cons(cons, futures.conses)
             if point is None:
                 u, v, others = stack.pop()
                 point = Point.objects.get(id=_random.choice(others))
