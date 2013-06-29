@@ -57,3 +57,19 @@ class Canvas(Mipmap):
 
     def save(self, filename):
         self.levels[0].save(filename, "PNG")
+
+class Futures:
+    def __init__(self, mm, start_u, start_v):
+        cons_len = mm.n_levels ** 2
+        size = mm.levels[0].size[0]
+        result = []
+        for v in xrange(mm.n_levels):
+            for u in xrange(mm.n_levels):
+                if u == 0 and v == 0:
+                    continue
+                cons_len -= 1
+                if u + start_u >= size:
+                    continue
+                cons = mm.cons(u + start_u, v + start_v)
+                result.append(tuple(islice(cons, cons_len)))
+        self.conses = tuple(result)

@@ -3,7 +3,7 @@ from django.core.management import call_command
 from django.test import TestCase
 from tempfile import NamedTemporaryFile
 from tomoko.repaint import (break_bits, break_pixel, Mipmap, Canvas,
-    pixel_to_int, int_to_pixel)
+    Futures, pixel_to_int, int_to_pixel)
 from tomoko.repaint.management.commands.repaint_load import MM_LEVEL
 from tomoko.repaint.models import Point
 from tomoko.repaint.reiterate import reiterate, goto_after
@@ -57,6 +57,31 @@ class BasicTest(TestCase):
         self.assertEqual(tuple(future_cons[1]), (
             (252, 252, 252), (252, 252, 252),
         ))
+
+    def test_futures(self):
+        im = Image.new("RGB", (5, 5), (255, 255, 255))
+        mm = Mipmap(im, n_levels=3)
+
+        b1 = _t(254, 3)
+        b2 = _t(252, 3)
+        cons = (b2, b2, b2,
+                b2, b1, b1,
+                b2, b1)
+
+        futures = Futures(mm, 0, 0)
+        self.assertEqual(futures.conses, tuple(_t(None, n) + (cons[n], )
+            for n in xrange(len(cons) - 1, -1, -1)))
+
+        futures = Futures(mm, 2, 2)
+        self.assertEqual(futures.conses,
+            tuple(cons[:n] for n in xrange(len(cons), 0, -1)))
+
+        futures = Futures(mm, 3, 3)
+        self.assertEqual(futures.conses,
+            (cons, cons[:6], cons[:5], cons[:3], cons[:2]))
+
+        futures = Futures(mm, 4, 4)
+        self.assertEqual(futures.conses, (cons[:6], cons[:3]))
 
     def test_int_to_pixel(self):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
