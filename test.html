@@ -39,6 +39,12 @@
                     "box2d.b2Settings": "lib/Common/b2Settings",
                     "box2d.b2StackAllocator": "lib/Common/b2StackAllocator",
                     "box2d.b2Timer": "lib/Common/b2Timer",
+                    "box2d.b2BuoyancyController": "lib/Contributions/Enhancements/Controllers/b2BuoyancyController",
+                    "box2d.b2ConstantAccelController": "lib/Contributions/Enhancements/Controllers/b2ConstantAccelController",
+                    "box2d.b2ConstantForceController": "lib/Contributions/Enhancements/Controllers/b2ConstantForceController",
+                    "box2d.b2Controller": "lib/Contributions/Enhancements/Controllers/b2Controller",
+                    "box2d.b2GravityController": "lib/Contributions/Enhancements/Controllers/b2GravityController",
+                    "box2d.b2TensorDampingController": "lib/Contributions/Enhancements/Controllers/b2TensorDampingController",
                     "box2d.b2Body": "lib/Dynamics/b2Body",
                     "box2d.b2ContactManager": "lib/Dynamics/b2ContactManager",
                     "box2d.b2Fixture": "lib/Dynamics/b2Fixture",
@@ -71,6 +77,10 @@
                     "box2d.b2Rope": "lib/Rope/b2Rope"
                 }
             })
+
+            define("goog", {})
+
+            define("box2d", {})
 
             require(["box2d-html5"], function (box2d) {
                 alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
