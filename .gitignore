@@ -1,3 +1,4 @@
+.DS_Store
 Box2D/Build/Box2D/box2d-html5.js
 Box2D/Build/Box2D/deps.js
 Box2D/Build/HelloWorld/box2d-html5-hello-world.js
