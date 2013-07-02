@@ -6,14 +6,22 @@
     <body>
         <script src="requirements/require.js"></script>
         <script>
+            "use strict"
+
             if (window.console) {
-                function alert(str) {
+                window.alert = function (str) {
                     console.log(str)
                     document.title = str
                 }
             }
 
-            require(["box2d-html5"], function(box2d) {
+            require.config({
+                paths: {
+                    "box2d-html5": "lib/Box2D"
+                }
+            })
+
+            require(["box2d-html5"], function (box2d) {
                 alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
             })
         </script>
