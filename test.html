@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
     <head>
-        <meta charset="utf-8">
-        <title>RequireJS</title>
+        <title>box2d-html5 :: A 2D Physics Engine for HTML5 Games</title>
     </head>
     <body>
-        <script src="lib/require.js"></script>
+        <script src="requirements/require.js"></script>
         <script>
-            if (typeof window.console != "undefined") {
+            if (window.console) {
                 function alert(str) {
                     console.log(str)
                     document.title = str
