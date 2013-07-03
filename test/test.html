@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>box2d-html5 :: Testbed</title>
+    </head>
+    <body>
+        <script src="../requirements/promise.js"></script>
+        <script src="../requirements/require.js"></script>
+        <script>
+            "use strict"
+
+            promise.get("../paths.json").then(function (err, result) {
+                if (err) {
+                    alert("Error loading paths.json")
+                    return
+                }
+            })
+        </script>
+    </body>
+</html>
