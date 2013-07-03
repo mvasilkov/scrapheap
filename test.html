@@ -9,6 +9,13 @@
         <script>
             "use strict"
 
+            if (window.console) {
+                window.alert = function (msg) {
+                    console.log(msg)
+                    document.title = msg
+                }
+            }
+
             promise.get("paths.json").then(function (err, result) {
                 if (err) {
                     alert("Error loading paths.json")
