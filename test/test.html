@@ -9,6 +9,18 @@
         <script>
             "use strict"
 
+            function concatObj() {
+                var args = Array.prototype.slice.call(arguments), result = {}
+
+                args.forEach(function (obj) {
+                    for (var p in obj)
+                        if (obj.hasOwnProperty(p))
+                            result[p] = obj[p]
+                })
+
+                return result
+            }
+
             if (window.console) {
                 window.alert = function (msg) {
                     console.log(msg)
@@ -23,6 +35,9 @@
                     alert("Error loading paths.json")
                     return
                 }
+
+                var paths = concatObj.apply(null,
+                    results.map(function (args) { return JSON.parse(args.shift()) }))
             })
         </script>
     </body>
