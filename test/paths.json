@@ -1,4 +1,5 @@
 {
+    "box2d-test": "test/test",
     "box2d.Testbed": "test/Testbed/Testbed",
     "box2d.Testbed.Main": "test/Testbed/Framework/Main",
     "box2d.Testbed.Render": "test/Testbed/Framework/Render",

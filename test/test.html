@@ -38,6 +38,12 @@
 
                 var paths = concatObj.apply(null,
                     results.map(function (args) { return JSON.parse(args.shift()) }))
+
+                require.config({ baseUrl: "../", paths: paths })
+
+                require(["box2d-test"], function (app) {
+                    app.start()
+                })
             })
         </script>
     </body>

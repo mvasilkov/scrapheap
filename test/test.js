@@ -33,6 +33,6 @@ main.loop = function ()
 	main.m_app.SimulationLoop();
 }
 
-return box2d
+return main
 })
 // End auto-generated code.
