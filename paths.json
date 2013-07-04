@@ -1,5 +1,6 @@
 {
     "box2d-html5": "lib/Box2D",
+    "goog": "util/goog/base",
     "box2d.b2BroadPhase": "lib/Collision/b2BroadPhase",
     "box2d.b2CollideCircle": "lib/Collision/b2CollideCircle",
     "box2d.b2CollideEdge": "lib/Collision/b2CollideEdge",

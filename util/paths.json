@@ -1,5 +1,6 @@
 {
     "requestAnimationFrame": "util/requestAnimationFrame",
+    "goog": "util/goog/base",
     "goog.events.BrowserEvent": "util/goog/browserevent",
     "goog.events.BrowserEvent.MouseButton": "util/goog/browserevent",
     "goog.events.BrowserFeature": "util/goog/browserfeature",
