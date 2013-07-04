@@ -28,8 +28,9 @@
                 }
             }
 
-            promise.join([ promise.get("paths.json"), promise.get("../paths.json") ])
-            .then(function (results) {
+            var allPaths = [ promise.get("paths.json"), promise.get("../paths.json"), promise.get("../util/paths.json") ]
+
+            promise.join(allPaths).then(function (results) {
                 var err = results.some(function (args) { return args.shift() })
                 if (err) {
                     alert("Error loading paths.json")
