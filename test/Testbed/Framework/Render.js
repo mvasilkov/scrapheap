@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d", "goog.string.format"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 *
@@ -324,3 +327,6 @@ box2d.Testbed.DebugDraw.prototype.DrawAABB = function (aabb, color)
 	ctx.strokeRect(x, y, w, h);
 }
 
+return box2d
+})
+// End auto-generated code.

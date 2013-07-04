@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d.Testbed.Test"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
@@ -615,3 +618,6 @@ box2d.Testbed.RayCast.Create = function (canvas, settings)
 	return new box2d.Testbed.RayCast(canvas, settings);
 }
 
+return box2d
+})
+// End auto-generated code.

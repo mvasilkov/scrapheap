@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d", "box2d.Testbed.Render"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
@@ -910,3 +913,6 @@ box2d.Testbed.Test.prototype.ShiftOrigin = function (newOrigin)
 	this.m_world.ShiftOrigin(newOrigin);
 }
 
+return box2d
+})
+// End auto-generated code.

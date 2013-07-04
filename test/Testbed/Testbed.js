@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d.Testbed.Main"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 *
@@ -20,3 +23,6 @@ goog.provide('box2d.Testbed');
 
 goog.require('box2d.Testbed.Main');
 
+return box2d
+})
+// End auto-generated code.

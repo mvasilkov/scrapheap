@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d.Testbed.Test", "box2d.Testbed.TestEntries", "goog.events.BrowserEvent", "goog.events.KeyCodes"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 *
@@ -939,3 +942,6 @@ box2d.Testbed.Main.prototype.SimulationLoop = function ()
 	}
 }
 
+return box2d
+})
+// End auto-generated code.

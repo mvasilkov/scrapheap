@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d.Testbed.Test", "box2d.Testbed.AddPair", "box2d.Testbed.ApplyForce", "box2d.Testbed.BodyTypes", "box2d.Testbed.Breakable", "box2d.Testbed.Bridge", "box2d.Testbed.BulletTest", "box2d.Testbed.Cantilever", "box2d.Testbed.Car", "box2d.Testbed.ContinuousTest", "box2d.Testbed.Chain", "box2d.Testbed.CharacterCollision", "box2d.Testbed.CollisionFiltering", "box2d.Testbed.CollisionProcessing", "box2d.Testbed.CompoundShapes", "box2d.Testbed.Confined", "box2d.Testbed.ConvexHull", "box2d.Testbed.ConveyorBelt", "box2d.Testbed.DistanceTest", "box2d.Testbed.Dominos", "box2d.Testbed.DumpShell", "box2d.Testbed.DynamicTreeTest", "box2d.Testbed.EdgeShapes", "box2d.Testbed.EdgeTest", "box2d.Testbed.Gears", "box2d.Testbed.Mobile", "box2d.Testbed.MobileBalanced", "box2d.Testbed.MotorJoint", "box2d.Testbed.OneSidedPlatform", "box2d.Testbed.Pinball", "box2d.Testbed.PolyCollision", "box2d.Testbed.PolyShapes", "box2d.Testbed.Prismatic", "box2d.Testbed.Pulleys", "box2d.Testbed.Pyramid", "box2d.Testbed.RayCast", "box2d.Testbed.Revolute", "box2d.Testbed.Rope", "box2d.Testbed.RopeJoint", "box2d.Testbed.SensorTest", "box2d.Testbed.ShapeEditing", "box2d.Testbed.SliderCrank", "box2d.Testbed.SphereStack", "box2d.Testbed.TheoJansen", "box2d.Testbed.Tiles", "box2d.Testbed.TimeOfImpact", "box2d.Testbed.Tumbler", "box2d.Testbed.VaryingFriction", "box2d.Testbed.VaryingRestitution", "box2d.Testbed.VerticalStack", "box2d.Testbed.Web", "box2d.Testbed.BlobTest", "box2d.Testbed.BuoyancyTest", "box2d.Testbed.TestCCD", "box2d.Testbed.TestRagdoll", "box2d.Testbed.TestStack"], function (goog, box2d) {
+
 /*
 * Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
@@ -146,3 +149,6 @@ box2d.Testbed.GetTestEntries = function (entries)
 	return entries;
 }
 
+return box2d
+})
+// End auto-generated code.
