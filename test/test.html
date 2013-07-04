@@ -9,7 +9,16 @@
         <script>
             "use strict"
 
-            promise.get("../paths.json").then(function (err, result) {
+            if (window.console) {
+                window.alert = function (msg) {
+                    console.log(msg)
+                    document.title = msg
+                }
+            }
+
+            promise.join([ promise.get("paths.json"), promise.get("../paths.json") ])
+            .then(function (results) {
+                var err = results.some(function (args) { return args.shift() })
                 if (err) {
                     alert("Error loading paths.json")
                     return
