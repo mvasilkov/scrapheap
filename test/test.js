@@ -1,20 +1,9 @@
+// This wrapper was auto-generated.
+define(["goog", "box2d.Testbed"], function (goog, box2d) {
+
 goog.provide('main.start');
 
 goog.require('box2d.Testbed');
-
-// shim layer with setTimeout fallback
-goog.global.requestAnimFrame = (function()
-{
-	return	goog.global['requestAnimationFrame']       ||
-			goog.global['webkitRequestAnimationFrame'] ||
-			goog.global['mozRequestAnimationFrame']    ||
-			goog.global['oRequestAnimationFrame']      ||
-			goog.global['msRequestAnimationFrame']     ||
-			function (/* function */ callback, /* DOMElement */ element)
-			{
-				goog.global.setTimeout(callback, 1000 / 60);
-			};
-})();
 
 /**
  * @export
@@ -44,3 +33,6 @@ main.loop = function ()
 	main.m_app.SimulationLoop();
 }
 
+return box2d
+})
+// End auto-generated code.
