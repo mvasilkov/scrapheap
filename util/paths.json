@@ -1,0 +1,15 @@
+{
+    "requestAnimationFrame": "util/requestAnimationFrame",
+    "goog.events.BrowserEvent": "util/goog/browserevent",
+    "goog.events.BrowserEvent.MouseButton": "util/goog/browserevent",
+    "goog.events.BrowserFeature": "util/goog/browserfeature",
+    "goog.events.Event": "util/goog/event",
+    "goog.events.EventLike": "util/goog/event",
+    "goog.events.EventType": "util/goog/eventtype",
+    "goog.events.KeyCodes": "util/goog/keycodes",
+    "goog.reflect": "util/goog/reflect",
+    "goog.string": "util/goog/string",
+    "goog.string.Unicode": "util/goog/string",
+    "goog.string.format": "util/goog/stringformat",
+    "goog.userAgent": "util/goog/useragent"
+}
