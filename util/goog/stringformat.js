@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog.string"], function (goog) {
+
 // Copyright 2008 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -249,3 +252,7 @@ goog.string.format.demuxes_['d'] = function(value,
 goog.string.format.demuxes_['i'] = goog.string.format.demuxes_['d'];
 goog.string.format.demuxes_['u'] = goog.string.format.demuxes_['d'];
 
+
+return goog
+})
+// End auto-generated code.

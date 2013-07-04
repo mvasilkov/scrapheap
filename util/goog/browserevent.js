@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog.events.BrowserFeature", "goog.events.Event", "goog.events.EventType", "goog.reflect", "goog.userAgent"], function (goog) {
+
 // Copyright 2005 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -409,3 +412,7 @@ goog.events.BrowserEvent.prototype.getBrowserEvent = function() {
 /** @override */
 goog.events.BrowserEvent.prototype.disposeInternal = function() {
 };
+
+return goog
+})
+// End auto-generated code.

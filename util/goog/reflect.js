@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog"], function (goog) {
+
 // Copyright 2009 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,3 +78,7 @@ goog.reflect.canAccessProperty = function(obj, prop) {
   } catch (e) {}
   return false;
 };
+
+return goog
+})
+// End auto-generated code.

@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog"], function (goog) {
+
 // Copyright 2005 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,10 +23,6 @@
 
 goog.provide('goog.events.Event');
 goog.provide('goog.events.EventLike');
-
-// goog.events.Event no longer depends on goog.Disposable. Keep requiring
-// goog.Disposable here to not break projects which assume this dependency.
-goog.require('goog.Disposable');
 
 
 /**
@@ -152,3 +151,7 @@ goog.events.Event.stopPropagation = function(e) {
 goog.events.Event.preventDefault = function(e) {
   e.preventDefault();
 };
+
+return goog
+})
+// End auto-generated code.

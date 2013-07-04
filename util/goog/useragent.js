@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog.string"], function (goog) {
+
 // Copyright 2006 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -593,3 +596,7 @@ goog.userAgent.DOCUMENT_MODE = (function() {
   return mode || (doc['compatMode'] == 'CSS1Compat' ?
       parseInt(goog.userAgent.VERSION, 10) : 5);
 })();
+
+return goog
+})
+// End auto-generated code.

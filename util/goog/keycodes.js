@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog.userAgent"], function (goog) {
+
 // Copyright 2006 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -375,3 +378,7 @@ goog.events.KeyCodes.normalizeGeckoKeyCode = function(keyCode) {
       return keyCode;
   }
 };
+
+return goog
+})
+// End auto-generated code.

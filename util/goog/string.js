@@ -1,3 +1,6 @@
+// This wrapper was auto-generated.
+define(["goog"], function (goog) {
+
 // Copyright 2006 The Closure Library Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -1376,3 +1379,7 @@ goog.string.splitLimit = function(str, separator, limit) {
   return returnVal;
 };
 
+
+return goog
+})
+// End auto-generated code.
