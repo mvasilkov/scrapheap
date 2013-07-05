@@ -19,10 +19,23 @@ define(["goog", "box2d.Testbed.Test", "goog.events.KeyCodes"], function (goog, b
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.TestStack');
+// -removed- goog.provide('box2d.Testbed.TestStack');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.TestStack === "undefined")
+    box2d.Testbed.TestStack = {}
 
-goog.require('box2d.Testbed.Test');
-goog.require('goog.events.KeyCodes');
+
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
+// -removed- goog.require('goog.events.KeyCodes');
+if (typeof goog.events.KeyCodes === "undefined")
+    throw new Error("I can haz goog.events.KeyCodes?")
+
 
 /**
  * @export

@@ -22,9 +22,19 @@ define(["goog.userAgent"], function (goog) {
  * @see ../demos/keyhandler.html
  */
 
-goog.provide('goog.events.KeyCodes');
+// -removed- goog.provide('goog.events.KeyCodes');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.KeyCodes === "undefined")
+    goog.events.KeyCodes = {}
 
-goog.require('goog.userAgent');
+
+// -removed- goog.require('goog.userAgent');
+if (typeof goog.userAgent === "undefined")
+    throw new Error("I can haz goog.userAgent?")
+
 
 
 /**

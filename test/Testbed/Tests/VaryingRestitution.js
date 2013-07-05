@@ -19,9 +19,19 @@ define(["goog", "box2d.Testbed.Test"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.VaryingRestitution');
+// -removed- goog.provide('box2d.Testbed.VaryingRestitution');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.VaryingRestitution === "undefined")
+    box2d.Testbed.VaryingRestitution = {}
 
-goog.require('box2d.Testbed.Test');
+
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
 
 // Note: even with a restitution of 1.0, there is some energy change
 // due to position correction.

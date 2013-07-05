@@ -20,7 +20,12 @@ define(["goog"], function (goog) {
  *
  */
 
-goog.provide('goog.reflect');
+// -removed- goog.provide('goog.reflect');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.reflect === "undefined")
+    goog.reflect = {}
+
 
 
 /**

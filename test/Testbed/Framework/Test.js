@@ -19,10 +19,23 @@ define(["goog", "box2d", "box2d.Testbed.Render"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.Test');
+// -removed- goog.provide('box2d.Testbed.Test');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.Test === "undefined")
+    box2d.Testbed.Test = {}
 
-goog.require('box2d');
-goog.require('box2d.Testbed.Render');
+
+// -removed- goog.require('box2d');
+if (typeof box2d === "undefined")
+    throw new Error("I can haz box2d?")
+
+// -removed- goog.require('box2d.Testbed.Render');
+if (typeof box2d.Testbed.Render === "undefined")
+    throw new Error("I can haz box2d.Testbed.Render?")
+
 
 /**
  * Test settings. Some can be controlled in the GUI.

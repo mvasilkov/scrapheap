@@ -19,9 +19,19 @@ define(["goog", "box2d.Testbed.Test"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.Cantilever');
+// -removed- goog.provide('box2d.Testbed.Cantilever');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.Cantilever === "undefined")
+    box2d.Testbed.Cantilever = {}
 
-goog.require('box2d.Testbed.Test');
+
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
 
 // It is difficult to make a cantilever made of links completely rigid with weld joints.
 // You will have to use a high number of iterations to make them stiff.

@@ -19,13 +19,32 @@ define(["goog", "box2d.Testbed.Test", "box2d.Testbed.TestEntries", "goog.events.
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.Main');
+// -removed- goog.provide('box2d.Testbed.Main');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.Main === "undefined")
+    box2d.Testbed.Main = {}
 
-goog.require('box2d.Testbed.Test');
-goog.require('box2d.Testbed.TestEntries');
 
-goog.require('goog.events.BrowserEvent'); // fix compile warning
-goog.require('goog.events.KeyCodes');
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
+// -removed- goog.require('box2d.Testbed.TestEntries');
+if (typeof box2d.Testbed.TestEntries === "undefined")
+    throw new Error("I can haz box2d.Testbed.TestEntries?")
+
+
+// -removed- goog.require('goog.events.BrowserEvent');
+if (typeof goog.events.BrowserEvent === "undefined")
+    throw new Error("I can haz goog.events.BrowserEvent?")
+ // fix compile warning
+// -removed- goog.require('goog.events.KeyCodes');
+if (typeof goog.events.KeyCodes === "undefined")
+    throw new Error("I can haz goog.events.KeyCodes?")
+
 
 /**
  * @export

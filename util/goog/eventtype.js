@@ -23,9 +23,19 @@ define(["goog.userAgent"], function (goog) {
  */
 
 
-goog.provide('goog.events.EventType');
+// -removed- goog.provide('goog.events.EventType');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.EventType === "undefined")
+    goog.events.EventType = {}
 
-goog.require('goog.userAgent');
+
+// -removed- goog.require('goog.userAgent');
+if (typeof goog.userAgent === "undefined")
+    throw new Error("I can haz goog.userAgent?")
+
 
 
 /**

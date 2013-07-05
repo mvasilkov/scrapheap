@@ -25,9 +25,19 @@ define(["goog.string"], function (goog) {
  * at the tests.
  */
 
-goog.provide('goog.string.format');
+// -removed- goog.provide('goog.string.format');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.string === "undefined")
+    goog.string = {}
+if (typeof goog.string.format === "undefined")
+    goog.string.format = {}
 
-goog.require('goog.string');
+
+// -removed- goog.require('goog.string');
+if (typeof goog.string === "undefined")
+    throw new Error("I can haz goog.string?")
+
 
 
 /**

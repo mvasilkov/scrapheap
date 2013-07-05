@@ -21,9 +21,19 @@ define(["goog.userAgent"], function (goog) {
  */
 
 
-goog.provide('goog.events.BrowserFeature');
+// -removed- goog.provide('goog.events.BrowserFeature');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.BrowserFeature === "undefined")
+    goog.events.BrowserFeature = {}
 
-goog.require('goog.userAgent');
+
+// -removed- goog.require('goog.userAgent');
+if (typeof goog.userAgent === "undefined")
+    throw new Error("I can haz goog.userAgent?")
+
 
 
 /**

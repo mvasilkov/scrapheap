@@ -23,9 +23,17 @@ define(["goog.string"], function (goog) {
  * @see ../demos/useragent.html
  */
 
-goog.provide('goog.userAgent');
+// -removed- goog.provide('goog.userAgent');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.userAgent === "undefined")
+    goog.userAgent = {}
 
-goog.require('goog.string');
+
+// -removed- goog.require('goog.string');
+if (typeof goog.string === "undefined")
+    throw new Error("I can haz goog.string?")
+
 
 
 /**

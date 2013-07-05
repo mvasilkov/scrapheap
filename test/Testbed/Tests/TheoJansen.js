@@ -22,9 +22,19 @@ define(["goog", "box2d.Testbed.Test"], function (goog, box2d) {
 // Inspired by a contribution by roman_m
 // Dimensions scooped from APE (http://www.cove.org/ape/index.htm)
 
-goog.provide('box2d.Testbed.TheoJansen');
+// -removed- goog.provide('box2d.Testbed.TheoJansen');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.TheoJansen === "undefined")
+    box2d.Testbed.TheoJansen = {}
 
-goog.require('box2d.Testbed.Test');
+
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
 
 /**
  * @export

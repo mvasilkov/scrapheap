@@ -19,11 +19,24 @@ define(["goog", "box2d", "goog.string.format"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.Render');
+// -removed- goog.provide('box2d.Testbed.Render');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.Render === "undefined")
+    box2d.Testbed.Render = {}
 
-goog.require('box2d');
 
-goog.require('goog.string.format');
+// -removed- goog.require('box2d');
+if (typeof box2d === "undefined")
+    throw new Error("I can haz box2d?")
+
+
+// -removed- goog.require('goog.string.format');
+if (typeof goog.string.format === "undefined")
+    throw new Error("I can haz goog.string.format?")
+
 
 /**
  * This class implements debug drawing callbacks that are

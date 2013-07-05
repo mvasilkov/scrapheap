@@ -19,9 +19,19 @@ define(["goog", "box2d.Testbed.Test"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed.SliderCrank');
+// -removed- goog.provide('box2d.Testbed.SliderCrank');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
+if (typeof box2d.Testbed.SliderCrank === "undefined")
+    box2d.Testbed.SliderCrank = {}
 
-goog.require('box2d.Testbed.Test');
+
+// -removed- goog.require('box2d.Testbed.Test');
+if (typeof box2d.Testbed.Test === "undefined")
+    throw new Error("I can haz box2d.Testbed.Test?")
+
 
 // A motor driven slider crank with joint friction.
 

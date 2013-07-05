@@ -46,14 +46,45 @@ define(["goog.events.BrowserFeature", "goog.events.Event", "goog.events.EventTyp
  *
  */
 
-goog.provide('goog.events.BrowserEvent');
-goog.provide('goog.events.BrowserEvent.MouseButton');
+// -removed- goog.provide('goog.events.BrowserEvent');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.BrowserEvent === "undefined")
+    goog.events.BrowserEvent = {}
 
-goog.require('goog.events.BrowserFeature');
-goog.require('goog.events.Event');
-goog.require('goog.events.EventType');
-goog.require('goog.reflect');
-goog.require('goog.userAgent');
+// -removed- goog.provide('goog.events.BrowserEvent.MouseButton');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.BrowserEvent === "undefined")
+    goog.events.BrowserEvent = {}
+if (typeof goog.events.BrowserEvent.MouseButton === "undefined")
+    goog.events.BrowserEvent.MouseButton = {}
+
+
+// -removed- goog.require('goog.events.BrowserFeature');
+if (typeof goog.events.BrowserFeature === "undefined")
+    throw new Error("I can haz goog.events.BrowserFeature?")
+
+// -removed- goog.require('goog.events.Event');
+if (typeof goog.events.Event === "undefined")
+    throw new Error("I can haz goog.events.Event?")
+
+// -removed- goog.require('goog.events.EventType');
+if (typeof goog.events.EventType === "undefined")
+    throw new Error("I can haz goog.events.EventType?")
+
+// -removed- goog.require('goog.reflect');
+if (typeof goog.reflect === "undefined")
+    throw new Error("I can haz goog.reflect?")
+
+// -removed- goog.require('goog.userAgent');
+if (typeof goog.userAgent === "undefined")
+    throw new Error("I can haz goog.userAgent?")
+
 
 
 

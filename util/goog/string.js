@@ -23,8 +23,20 @@ define(["goog"], function (goog) {
 /**
  * Namespace for string utilities
  */
-goog.provide('goog.string');
-goog.provide('goog.string.Unicode');
+// -removed- goog.provide('goog.string');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.string === "undefined")
+    goog.string = {}
+
+// -removed- goog.provide('goog.string.Unicode');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.string === "undefined")
+    goog.string = {}
+if (typeof goog.string.Unicode === "undefined")
+    goog.string.Unicode = {}
+
 
 
 /**

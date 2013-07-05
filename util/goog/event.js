@@ -21,8 +21,22 @@ define(["goog"], function (goog) {
  */
 
 
-goog.provide('goog.events.Event');
-goog.provide('goog.events.EventLike');
+// -removed- goog.provide('goog.events.Event');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.Event === "undefined")
+    goog.events.Event = {}
+
+// -removed- goog.provide('goog.events.EventLike');
+if (typeof goog === "undefined")
+    goog = {}
+if (typeof goog.events === "undefined")
+    goog.events = {}
+if (typeof goog.events.EventLike === "undefined")
+    goog.events.EventLike = {}
+
 
 
 /**

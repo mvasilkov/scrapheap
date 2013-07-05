@@ -1,9 +1,17 @@
 // This wrapper was auto-generated.
 define(["goog", "box2d.Testbed"], function (goog, box2d) {
 
-goog.provide('main.start');
+// -removed- goog.provide('main.start');
+if (typeof main === "undefined")
+    main = {}
+if (typeof main.start === "undefined")
+    main.start = {}
 
-goog.require('box2d.Testbed');
+
+// -removed- goog.require('box2d.Testbed');
+if (typeof box2d.Testbed === "undefined")
+    throw new Error("I can haz box2d.Testbed?")
+
 
 /**
  * @export

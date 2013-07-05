@@ -19,9 +19,17 @@ define(["goog", "box2d.Testbed.Main"], function (goog, box2d) {
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-goog.provide('box2d.Testbed');
+// -removed- goog.provide('box2d.Testbed');
+if (typeof box2d === "undefined")
+    box2d = {}
+if (typeof box2d.Testbed === "undefined")
+    box2d.Testbed = {}
 
-goog.require('box2d.Testbed.Main');
+
+// -removed- goog.require('box2d.Testbed.Main');
+if (typeof box2d.Testbed.Main === "undefined")
+    throw new Error("I can haz box2d.Testbed.Main?")
+
 
 return box2d
 })
