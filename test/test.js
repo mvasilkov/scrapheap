@@ -1,5 +1,5 @@
 // This wrapper was auto-generated.
-define(["goog", "box2d.Testbed"], function (goog, box2d) {
+define(["goog", "box2d.Testbed", "requestAnimationFrame"], function (goog, box2d) {
 
 // -removed- goog.provide('main.start');
 if (typeof main === "undefined")
@@ -36,7 +36,7 @@ main.start = function ()
  */
 main.loop = function ()
 {
-	goog.global.requestAnimFrame(main.loop);
+	requestAnimationFrame(main.loop);
 
 	main.m_app.SimulationLoop();
 }

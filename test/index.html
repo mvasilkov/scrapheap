@@ -42,10 +42,6 @@
 
                 require.config({ baseUrl: "../", paths: paths })
 
-                define("box2d", {
-                    Testbed: {}
-                })
-
                 require(["box2d-html5", "box2d-test"], function (box2d, app) {
                     app.start()
                 })
