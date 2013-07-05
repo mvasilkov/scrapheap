@@ -1,3 +1,4 @@
+from tomoko.repaint import pixel_to_int
 from tomoko.repaint.models import Point
 
 class Picture:
@@ -13,4 +14,7 @@ class Picture:
                 yield None if ru < 0 or rv < 0 else self.im.getpixel((ru, rv))
 
     def point_at(self, u, v):
-        pass
+        cons = repr(tuple(self.cons_at(u, v)))
+        val = pixel_to_int(self.im.getpixel((u, v)))
+        p, _ = Point.objects.get_or_create(cons=cons, val=val, is_basic=True)
+        return p

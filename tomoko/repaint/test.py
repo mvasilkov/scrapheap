@@ -37,3 +37,28 @@ class PictureTest(TestCase):
                 a, a, a, a, b, b, b, b, b,
                 a, a, a, a, b, b, b, b)
         self.assertEqual(tuple(pic.cons_at(4, 4)), test)
+
+    def _validate_point(self, p, test, val, basic):
+        self.assertEqual(p.cons, repr(test))
+        self.assertEqual(p.val, val)
+        self.assertEqual(p.is_basic, basic)
+
+    def test_point_at(self):
+        a = None
+        b = (0, 0, 0)
+        im = Image.new("RGB", (9, 9), b)
+        pic = Picture(im, 9)
+
+        self._validate_point(pic.point_at(0, 0), _t(a, 80), 0, True)
+        self._validate_point(pic.point_at(8, 8), _t(b, 80), 0, True)
+
+        test = (a, a, a, a, a, a, a, a, a,
+                a, a, a, a, a, a, a, a, a,
+                a, a, a, a, a, a, a, a, a,
+                a, a, a, a, a, a, a, a, a,
+                a, a, a, a, b, b, b, b, b,
+                a, a, a, a, b, b, b, b, b,
+                a, a, a, a, b, b, b, b, b,
+                a, a, a, a, b, b, b, b, b,
+                a, a, a, a, b, b, b, b)
+        self._validate_point(pic.point_at(4, 4), test, 0, True)

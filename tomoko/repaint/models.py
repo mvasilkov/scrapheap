@@ -5,11 +5,11 @@ DatabaseCreation.data_types["CharField"] += " character set ascii collate ascii_
 
 class Point(models.Model):
     cons = models.CharField(max_length=900)
-    value = models.PositiveIntegerField()
+    val = models.PositiveIntegerField()
     is_basic = models.BooleanField()
 
     def __unicode__(self):
-        return "#%06x" % self.value
+        return "#%06x" % self.val
 
     class Meta:
-        unique_together = ("cons", "value")
+        unique_together = ("cons", "val")
