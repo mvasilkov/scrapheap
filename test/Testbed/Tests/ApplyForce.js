@@ -1,5 +1,5 @@
 // This wrapper was auto-generated.
-define(["goog", "box2d", "goog.events.KeyCodes"], function (goog, box2d) {
+define(["goog", "box2d.Testbed.Test", "goog.events.KeyCodes"], function (goog, box2d) {
 
 /*
 * Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
@@ -21,6 +21,7 @@ define(["goog", "box2d", "goog.events.KeyCodes"], function (goog, box2d) {
 
 goog.provide('box2d.Testbed.ApplyForce');
 
+goog.require('box2d.Testbed.Test');
 goog.require('goog.events.KeyCodes');
 
 /**
