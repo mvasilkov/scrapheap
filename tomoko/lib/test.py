@@ -1,6 +1,18 @@
 from PIL import Image
 from django.test import TestCase
+from tomoko.lib.cdist import cdist
 from tomoko.lib.equal import equal
+
+class ColourDistanceTest(TestCase):
+    def test_cdist(self):
+        a = b = (0, 0, 0)
+        self.assertEqual(cdist(a, b), 0)
+
+        a = (255, 0, 0)
+        b = (255, 0, 128)
+        c = (255, 0, 255)
+        self.assertTrue(cdist(a, b) > cdist(b, c))
+        self.assertEqual(cdist(a, b), cdist(b, a))
 
 class EqualTest(TestCase):
     def test_equal(self):
