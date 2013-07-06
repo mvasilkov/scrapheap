@@ -1,3 +1,4 @@
+from PIL import Image
 from tomoko.repaint import pixel_to_int
 from tomoko.repaint.models import Point
 
@@ -18,3 +19,11 @@ class Picture:
         val = pixel_to_int(self.im.getpixel((u, v)))
         p, _ = Point.objects.get_or_create(cons=cons, val=val, is_basic=True)
         return p
+
+class Canvas(Picture):
+    def __init__(self, size, level):
+        self.im = Image.new('RGB', (size, size), (0, 0, 0))
+        self.level = level
+
+    def save(self, filename):
+        self.im.save(filename, 'PNG')
