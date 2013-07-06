@@ -1,4 +1,6 @@
 from PIL import Image
+from django.conf import settings
+from django.core.management import call_command
 from django.test import TestCase
 from tomoko.repaint import int_to_pixel, pixel_to_int
 from tomoko.repaint.models import Point
@@ -17,6 +19,16 @@ class BasicTest(TestCase):
     def test_pixel_to_int(self):
         self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
         self.assertEqual(pixel_to_int((204, 255, 102)), 0xccff66)
+
+class CmdTest(TestCase):
+    def test_repaint_load(self):
+        self.assertEqual(Point.objects.count(), 0)
+
+        call_command('repaint_load', 'test/a.png')
+        self.assertEqual(Point.objects.count(), 1)
+
+        call_command('repaint_load', 'test/b.png')
+        self.assertEqual(Point.objects.count(), settings.RE_LEVEL ** 2)
 
 class PictureTest(TestCase):
     def test_cons_at(self):
