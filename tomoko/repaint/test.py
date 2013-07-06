@@ -1,6 +1,7 @@
 from PIL import Image
 from django.test import TestCase
 from tomoko.repaint import int_to_pixel, pixel_to_int
+from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Picture
 
 def _t(a, n):
@@ -62,3 +63,11 @@ class PictureTest(TestCase):
                 a, a, a, a, b, b, b, b, b,
                 a, a, a, a, b, b, b, b)
         self._validate_point(pic.point_at(4, 4), test, 0, True)
+
+class PointTest(TestCase):
+    def test_loop(self):
+        p = Point(cons=repr(_t(None, 3)), val=0)
+        self.assertEqual(tuple(p.loop()), _t((0, 0, 0), 4))
+
+        p = Point(cons=repr(_t((255, 255, 255), 3)), val=0xffffff)
+        self.assertEqual(tuple(p.loop()), _t((255, 255, 255), 4))
