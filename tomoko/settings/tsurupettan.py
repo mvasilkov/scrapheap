@@ -21,6 +21,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "tomoko.repaint",
 )
+RE_LEVEL = 5
 ROOT_URLCONF = "tomoko.routes"
 SECRET_KEY = "Do you think I'm cute?"
 STATIC_URL = "/static/"
