@@ -17,5 +17,10 @@ class Command(LabelCommand):
             for u in xrange(size):
                 cons = tuple(canvas.cons_at(u, v))
                 point = Point.objects.random_by_cons(cons)
+                if point is None:
+                    print 'I can haz moar data?'
+                    canvas.save(label)
+                    return
+                canvas.paint(u, v, point.val)
 
         canvas.save(label)
