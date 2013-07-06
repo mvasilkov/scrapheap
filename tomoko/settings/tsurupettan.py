@@ -19,6 +19,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
+    "tomoko.lib",
     "tomoko.repaint",
 )
 RE_LEVEL = 5
