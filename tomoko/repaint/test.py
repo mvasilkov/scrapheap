@@ -2,6 +2,8 @@ from PIL import Image
 from django.conf import settings
 from django.core.management import call_command
 from django.test import TestCase
+from tempfile import NamedTemporaryFile
+from tomoko.lib.equal import equal
 from tomoko.repaint import int_to_pixel, pixel_to_int
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Picture
@@ -29,6 +31,17 @@ class CmdTest(TestCase):
 
         call_command('repaint_load', 'test/b.png')
         self.assertEqual(Point.objects.count(), settings.RE_LEVEL ** 2)
+
+    def test_repaint_save(self):
+        self.assertEqual(Point.objects.count(), 0)
+
+        outfile = NamedTemporaryFile()
+        call_command('repaint_load', 'test/c.png')
+        call_command('repaint_save', outfile.name, size=16)
+
+        a = Image.open(outfile)
+        b = Image.open('test/c\'.png').convert('RGB')
+        self.assertTrue(equal(a, b))
 
 class PictureTest(TestCase):
     def test_cons_at(self):
