@@ -21,8 +21,14 @@ class Command(LabelCommand):
                 if point is None:
                     print 'I can haz moar data?'
                     points = find_points(cons)
-                    canvas.save(label)
-                    return
+                    if len(points) == 1:
+                        (p, ) = points
+                        print 'I can haz (%s)' % p
+                        point = Point(cons=cons, val=p.val)
+                        point.save()
+                    else:
+                        canvas.save(label)
+                        return
                 canvas.paint(u, v, point.val)
 
         canvas.save(label)
