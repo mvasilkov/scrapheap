@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.management.base import LabelCommand
 from optparse import make_option
-from tomoko.repaint.functions import find_points
+from tomoko.repaint.functions import find_points, find_values
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Canvas
 
@@ -27,6 +27,7 @@ class Command(LabelCommand):
                         point = Point(cons=cons, val=p.val)
                         point.save()
                     else:
+                        values = find_values(points)
                         canvas.save(label)
                         return
                 canvas.paint(u, v, point.val)

@@ -1,6 +1,7 @@
 import ast
 from cdist import cdist
 from django.conf import settings
+from tomoko.repaint import int_to_pixel
 from tomoko.repaint.models import Point
 
 def cons_dist(a, b):
@@ -20,5 +21,21 @@ def find_points(ref):
             found = (p, )
         elif d == md:
             found += (p, )
+    assert len(found)
+    return found
+
+def find_values(points):
+    md = cdist((0, 0, 0), (255, 255, 255)) * len(points)
+    found = ()
+    pcs = tuple(int_to_pixel(p.val) for p in points)
+    for val in (Point.objects.filter(is_basic=True)
+            .values_list('val', flat=True).distinct()):
+        ref = int_to_pixel(val)
+        d = sum(cdist(ref, pc) for pc in pcs)
+        if d < md:
+            md = d
+            found = (val, )
+        elif d == md:
+            found += (val, )
     assert len(found)
     return found
