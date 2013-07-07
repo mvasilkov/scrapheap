@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.management.base import LabelCommand
 from optparse import make_option
+from tomoko.repaint.functions import find_points
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Canvas
 
@@ -19,6 +20,7 @@ class Command(LabelCommand):
                 point = Point.objects.random_by_cons(cons)
                 if point is None:
                     print 'I can haz moar data?'
+                    points = find_points(cons)
                     canvas.save(label)
                     return
                 canvas.paint(u, v, point.val)
