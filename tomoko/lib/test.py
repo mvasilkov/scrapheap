@@ -1,6 +1,6 @@
 from PIL import Image
+from cdist import cdist
 from django.test import TestCase
-from tomoko.lib.cdist import cdist
 from tomoko.lib.equal import equal
 
 class ColourDistanceTest(TestCase):

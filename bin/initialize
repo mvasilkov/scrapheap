@@ -1,3 +1,4 @@
 #!/bin/bash
 virtualenv python
 python/bin/pip install -r requirements
+python/bin/python cdist/setup.py install
