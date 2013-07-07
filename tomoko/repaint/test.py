@@ -1,10 +1,12 @@
 from PIL import Image
+from cdist import cdist
 from django.conf import settings
 from django.core.management import call_command
 from django.test import TestCase
 from tempfile import NamedTemporaryFile
 from tomoko.lib.equal import equal
 from tomoko.repaint import int_to_pixel, pixel_to_int
+from tomoko.repaint.functions import cons_dist
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Picture
 
@@ -42,6 +44,14 @@ class CmdTest(TestCase):
         a = Image.open(outfile)
         b = Image.open('test/c\'.png').convert('RGB')
         self.assertTrue(equal(a, b))
+
+class FnTest(TestCase):
+    def test_cons_dist(self):
+        self.assertEqual(cons_dist(_t((0, 0, 0), 24), _t((0, 0, 0), 24)), 0)
+
+        a = int_to_pixel(0x0080ff)
+        b = int_to_pixel(0xff0080)
+        self.assertEqual(cons_dist((a, b), (b, a)), cdist(a, b) * 2)
 
 class PictureTest(TestCase):
     def test_cons_at(self):
