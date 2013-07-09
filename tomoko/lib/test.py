@@ -2,7 +2,7 @@ from PIL import Image
 from cdist import cdist
 from django.test import TestCase
 from tomoko.lib.equal import equal
-from tomoko.lib.mat import mat_rows, mat_cols
+from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 
 def range_t(*args):
     return tuple(range(*args))
@@ -50,3 +50,27 @@ class MatTest(TestCase):
                 range_t(3, n ** 2, n),
                 range_t(4, n ** 2, n)]
         self.assertEqual(result, test)
+
+    def test_mat_null(self):
+        n = 5
+        s = range(n ** 2)
+        self.assertEqual(mat_null(mat_rows, s, n), 0)
+        self.assertEqual(mat_null(mat_cols, s, n), 0)
+
+        s[:n] = (None, ) * n
+        self.assertEqual(mat_null(mat_rows, s, n), 1)
+        self.assertEqual(mat_null(mat_cols, s, n), 0)
+
+        s[n:n * 2] = (None, ) * n
+        self.assertEqual(mat_null(mat_rows, s, n), 2)
+        self.assertEqual(mat_null(mat_cols, s, n), 0)
+
+        for k in (2, 3, 4):
+            s[n * k] = None
+        self.assertEqual(mat_null(mat_rows, s, n), 2)
+        self.assertEqual(mat_null(mat_cols, s, n), 1)
+
+        s = [None] * n ** 2
+        s[-1] = 'x'
+        self.assertEqual(mat_null(mat_rows, s, n), 4)
+        self.assertEqual(mat_null(mat_cols, s, n), 4)
