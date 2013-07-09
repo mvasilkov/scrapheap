@@ -1,6 +1,8 @@
 import ast
 from django.db import models
 from django.db.backends.mysql.creation import DatabaseCreation
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from random import SystemRandom
 from tomoko.repaint import int_to_pixel
 
@@ -21,6 +23,8 @@ class Point(models.Model):
     cons = models.CharField(max_length=900)
     val = models.PositiveIntegerField()
     is_basic = models.BooleanField()
+    pad_u = models.PositiveSmallIntegerField()
+    pad_v = models.PositiveSmallIntegerField()
 
     objects = PointManager()
 
@@ -34,3 +38,7 @@ class Point(models.Model):
 
     class Meta:
         unique_together = ("cons", "val")
+
+@receiver(pre_save, sender=Point)
+def update(sender, instance, **kwargs):
+    pass
