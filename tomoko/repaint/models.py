@@ -1,9 +1,11 @@
 import ast
+from django.conf import settings
 from django.db import models
 from django.db.backends.mysql.creation import DatabaseCreation
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from random import SystemRandom
+from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.repaint import int_to_pixel
 
 DatabaseCreation.data_types["CharField"] += " character set ascii collate ascii_bin"
@@ -31,9 +33,9 @@ class Point(models.Model):
     def __unicode__(self):
         return "#%06x" % self.val
 
-    def loop(self):
+    def loop(self, replace_none=(0, 0, 0)):
         for p in ast.literal_eval(self.cons):
-            yield (0, 0, 0) if p is None else p
+            yield replace_none if p is None else p
         yield int_to_pixel(self.val)
 
     class Meta:
@@ -41,4 +43,6 @@ class Point(models.Model):
 
 @receiver(pre_save, sender=Point)
 def update(sender, instance, **kwargs):
-    pass
+    cons = tuple(instance.loop(None))
+    instance.pad_u = mat_null(mat_cols, cons, settings.RE_LEVEL)
+    instance.pad_v = mat_null(mat_rows, cons, settings.RE_LEVEL)
