@@ -24,16 +24,17 @@ class Command(LabelCommand):
                     if len(points) == 1:
                         (p, ) = points
                         print 'I can haz (%s)' % p
-                        point = Point(cons=cons, val=p.val)
+                        point = Point(cons=repr(cons), val=p.val)
                         point.save()
                     else:
                         print 'I can haz:'
                         values = find_values(points)
                         for val in values:
-                            p = Point(cons=cons, val=val)
+                            p = Point(cons=repr(cons), val=val)
                             p.save()
                             print '@ (%s)' % p
                         point = Point.objects.random_by_cons(cons)
                 canvas.paint(u, v, point.val)
+            canvas.save(label)
 
         canvas.save(label)

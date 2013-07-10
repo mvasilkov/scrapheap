@@ -5,6 +5,7 @@ from tomoko.lib.inline import inline
 
 class PointAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'visual', 'is_basic')
+    list_filter = ('is_basic', )
     readonly_fields = ('pad_u', 'pad_v')
 
     def visual(self, obj):
