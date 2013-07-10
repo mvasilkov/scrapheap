@@ -24,7 +24,7 @@ class PointManager(models.Manager):
 class Point(models.Model):
     cons = models.CharField(max_length=900)
     val = models.PositiveIntegerField()
-    is_basic = models.BooleanField()
+    is_basic = models.BooleanField(db_index=True)
     pad_u = models.PositiveSmallIntegerField()
     pad_v = models.PositiveSmallIntegerField()
 
@@ -39,7 +39,8 @@ class Point(models.Model):
         yield int_to_pixel(self.val)
 
     class Meta:
-        unique_together = ("cons", "val")
+        unique_together = (('cons', 'val'), )
+        index_together = (('pad_u', 'pad_v'), )
 
 @receiver(pre_save, sender=Point)
 def update(sender, instance, **kwargs):
