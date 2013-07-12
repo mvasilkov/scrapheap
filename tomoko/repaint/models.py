@@ -8,7 +8,7 @@ from random import SystemRandom
 from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.repaint import int_to_pixel
 
-DatabaseCreation.data_types["CharField"] += " character set ascii collate ascii_bin"
+DatabaseCreation.data_types['CharField'] += ' character set ascii collate ascii_bin'
 
 _random = SystemRandom()
 
@@ -31,7 +31,7 @@ class Point(models.Model):
     objects = PointManager()
 
     def __unicode__(self):
-        return "#%06x" % self.val
+        return '#%06x' % self.val
 
     def loop(self, replace_none=(0, 0, 0)):
         for p in ast.literal_eval(self.cons):

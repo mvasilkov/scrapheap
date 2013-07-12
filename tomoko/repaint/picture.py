@@ -4,7 +4,7 @@ from tomoko.repaint.models import Point
 
 class Picture:
     def __init__(self, im, level):
-        self.im = im if im.mode == "RGB" else im.convert("RGB")
+        self.im = im if im.mode == 'RGB' else im.convert('RGB')
         self.level = level
 
     def cons_at(self, u, v):

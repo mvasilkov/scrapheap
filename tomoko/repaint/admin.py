@@ -10,7 +10,7 @@ class PointAdmin(admin.ModelAdmin):
 
     def visual(self, obj):
         size = 4 * settings.RE_LEVEL
-        return ("<img src='data:image/png;base64,%s' width=%d height=%d>" %
+        return ('<img src=\'data:image/png;base64,%s\' width=%d height=%d>' %
             (inline(obj.loop(), settings.RE_LEVEL), size, size))
 
     visual.allow_tags = True

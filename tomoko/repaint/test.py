@@ -18,7 +18,7 @@ class BasicTest(TestCase):
         self.assertEqual(int_to_pixel(0xffffff), (255, 255, 255))
         self.assertEqual(int_to_pixel(0xccff66), (204, 255, 102))
 
-        self.assertEqual(repr(int_to_pixel(0xffffffl)).find("L"), -1)
+        self.assertEqual(repr(int_to_pixel(0xffffffl)).find('L'), -1)
 
     def test_pixel_to_int(self):
         self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
@@ -57,7 +57,7 @@ class PictureTest(TestCase):
     def test_cons_at(self):
         a = None
         b = (0, 0, 0)
-        im = Image.new("RGB", (9, 9), b)
+        im = Image.new('RGB', (9, 9), b)
         pic = Picture(im, 9)
 
         self.assertEqual(tuple(pic.cons_at(0, 0)), _t(a, 80))
@@ -82,7 +82,7 @@ class PictureTest(TestCase):
     def test_point_at(self):
         a = None
         b = (0, 0, 0)
-        im = Image.new("RGB", (9, 9), b)
+        im = Image.new('RGB', (9, 9), b)
         pic = Picture(im, 9)
 
         self._validate_point(pic.point_at(0, 0), _t(a, 80), 0, True)

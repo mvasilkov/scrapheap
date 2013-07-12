@@ -4,5 +4,5 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns(None,
-    url(r"^watamote/", include(admin.site.urls)),
+    url(r'^watamote/', include(admin.site.urls)),
 )
