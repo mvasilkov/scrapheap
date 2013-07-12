@@ -1,6 +1,7 @@
 from PIL import Image
 from cStringIO import StringIO
 
+
 def inline(image, size):
     tmp = Image.new('RGB', (size, size), None)
     buf = tmp.load()

@@ -5,8 +5,10 @@ from tomoko.lib.equal import equal
 from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.lib.progress import progress_bar
 
+
 def range_t(*args):
     return tuple(range(*args))
+
 
 class ColourDistanceTest(TestCase):
     def test_cdist(self):
@@ -19,6 +21,7 @@ class ColourDistanceTest(TestCase):
         self.assertTrue(cdist(a, b) > cdist(b, c))
         self.assertEqual(cdist(a, b), cdist(b, a))
 
+
 class EqualTest(TestCase):
     def test_equal(self):
         a = Image.open('test/a.png').convert('RGB')
@@ -28,6 +31,7 @@ class EqualTest(TestCase):
         a = Image.new('RGB', (1, 1), (0, 0, 0))
         b = Image.new('RGB', (9, 9), (0, 0, 0))
         self.assertFalse(equal(a, b))
+
 
 class MatTest(TestCase):
     def test_mat_rows(self):
@@ -76,11 +80,12 @@ class MatTest(TestCase):
         self.assertEqual(mat_null(mat_rows, s, n), 4)
         self.assertEqual(mat_null(mat_cols, s, n), 4)
 
+
 class ProgressTest(TestCase):
     def test_progress_bar(self):
         self.assertEqual(progress_bar(0, 1),
-            '[                        ]')
+                         '[                        ]')
         self.assertEqual(progress_bar(250, 500),
-            '[############            ]')
+                         '[############            ]')
         self.assertEqual(progress_bar(48, 48),
-            '[########################]')
+                         '[########################]')

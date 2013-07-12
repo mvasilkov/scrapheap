@@ -5,6 +5,7 @@ from tomoko.repaint.functions import find_points, find_values
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Canvas
 
+
 class Command(LabelCommand):
     option_list = LabelCommand.option_list + (
         make_option('--size', type='int', default=0, dest='size'),
