@@ -3,6 +3,7 @@ from cdist import cdist
 from django.test import TestCase
 from tomoko.lib.equal import equal
 from tomoko.lib.mat import mat_rows, mat_cols, mat_null
+from tomoko.lib.progress import progress_bar
 
 def range_t(*args):
     return tuple(range(*args))
@@ -74,3 +75,12 @@ class MatTest(TestCase):
         s[-1] = 'x'
         self.assertEqual(mat_null(mat_rows, s, n), 4)
         self.assertEqual(mat_null(mat_cols, s, n), 4)
+
+class ProgressTest(TestCase):
+    def test_progress_bar(self):
+        self.assertEqual(progress_bar(0, 1),
+            '[                        ]')
+        self.assertEqual(progress_bar(250, 500),
+            '[############            ]')
+        self.assertEqual(progress_bar(48, 48),
+            '[########################]')
