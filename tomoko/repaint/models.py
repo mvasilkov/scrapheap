@@ -12,6 +12,7 @@ DatabaseCreation.data_types['CharField'] += ' character set ascii collate ascii_
 
 _random = SystemRandom()
 
+
 class PointManager(models.Manager):
     def random_by_cons(self, cons):
         if not isinstance(cons, str):
@@ -20,6 +21,7 @@ class PointManager(models.Manager):
         if not options:
             return None
         return self.get(id=_random.choice(options))
+
 
 class Point(models.Model):
     cons = models.CharField(max_length=900)
@@ -41,6 +43,7 @@ class Point(models.Model):
     class Meta:
         unique_together = (('cons', 'val'), )
         index_together = (('is_basic', 'pad_u', 'pad_v'), )
+
 
 @receiver(pre_save, sender=Point)
 def update(sender, instance, **kwargs):

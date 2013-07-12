@@ -2,6 +2,7 @@ from PIL import Image
 from tomoko.repaint import int_to_pixel, pixel_to_int
 from tomoko.repaint.models import Point
 
+
 class Picture:
     def __init__(self, im, level):
         self.im = im if im.mode == 'RGB' else im.convert('RGB')
@@ -19,6 +20,7 @@ class Picture:
         val = pixel_to_int(self.im.getpixel((u, v)))
         p, _ = Point.objects.get_or_create(cons=cons, val=val, is_basic=True)
         return p
+
 
 class Canvas(Picture):
     def __init__(self, size, level):

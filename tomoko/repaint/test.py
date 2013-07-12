@@ -10,8 +10,10 @@ from tomoko.repaint.functions import cons_dist
 from tomoko.repaint.models import Point
 from tomoko.repaint.picture import Picture
 
+
 def _t(a, n):
     return (a, ).__mul__(n)
+
 
 class BasicTest(TestCase):
     def test_int_to_pixel(self):
@@ -23,6 +25,7 @@ class BasicTest(TestCase):
     def test_pixel_to_int(self):
         self.assertEqual(pixel_to_int((255, 255, 255)), 0xffffff)
         self.assertEqual(pixel_to_int((204, 255, 102)), 0xccff66)
+
 
 class CmdTest(TestCase):
     def test_repaint_load(self):
@@ -45,6 +48,7 @@ class CmdTest(TestCase):
         b = Image.open('test/c\'.png').convert('RGB')
         self.assertTrue(equal(a, b))
 
+
 class FnTest(TestCase):
     def test_cons_dist(self):
         self.assertEqual(cons_dist(_t((0, 0, 0), 24), _t((0, 0, 0), 24)), 0)
@@ -52,6 +56,7 @@ class FnTest(TestCase):
         a = int_to_pixel(0x0080ff)
         b = int_to_pixel(0xff0080)
         self.assertEqual(cons_dist((a, b), (b, a)), cdist(a, b) * 2)
+
 
 class PictureTest(TestCase):
     def test_cons_at(self):
@@ -98,6 +103,7 @@ class PictureTest(TestCase):
                 a, a, a, a, b, b, b, b, b,
                 a, a, a, a, b, b, b, b)
         self._validate_point(pic.point_at(4, 4), test, 0, True)
+
 
 class PointTest(TestCase):
     def test_loop(self):
