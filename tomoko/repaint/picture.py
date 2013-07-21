@@ -1,4 +1,5 @@
 from PIL import Image
+from json import dumps as repr
 from tomoko.repaint import int_to_pixel, pixel_to_int
 from tomoko.repaint.models import Point
 
