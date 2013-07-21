@@ -3,8 +3,8 @@ from django.db import models
 from django.db.backends.mysql.creation import DatabaseCreation
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-import json
-from json import dumps as repr
+import ujson
+from ujson import dumps as repr
 from random import SystemRandom
 from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.repaint import int_to_pixel
@@ -37,7 +37,7 @@ class Point(models.Model):
         return '#%06x' % self.val
 
     def loop(self, replace_none=(0, 0, 0)):
-        for p in json.loads(self.cons):
+        for p in ujson.loads(self.cons):
             yield replace_none if p is None else p
         yield int_to_pixel(self.val)
 

@@ -1,6 +1,6 @@
 from cdist import cdist
 from django.conf import settings
-import json
+import ujson
 from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.repaint import int_to_pixel
 from tomoko.repaint.models import Point
@@ -21,7 +21,7 @@ def find_points(ref):
     else:
         pad_u = pad_v = 0
     for p in Point.objects.filter(is_basic=True, pad_u=pad_u, pad_v=pad_v):
-        pc = json.loads(p.cons)
+        pc = ujson.loads(p.cons)
         d = cons_dist(ref, pc)
         if d < md:
             md = d

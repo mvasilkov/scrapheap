@@ -3,7 +3,7 @@ from cdist import cdist
 from django.conf import settings
 from django.core.management import call_command
 from django.test import TestCase
-from json import dumps as repr
+from ujson import dumps as repr
 from tempfile import NamedTemporaryFile
 from tomoko.lib.equal import equal
 from tomoko.repaint import int_to_pixel, pixel_to_int

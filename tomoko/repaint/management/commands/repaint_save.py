@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.management.base import LabelCommand
-from json import dumps as repr
+from ujson import dumps as repr
 from optparse import make_option
 from tomoko.repaint.functions import find_points, find_values
 from tomoko.repaint.models import Point
