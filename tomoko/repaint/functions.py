@@ -6,6 +6,8 @@ from tomoko.repaint import int_to_pixel
 from tomoko.repaint.models import Point
 
 LP = list(Point.objects.filter(is_basic=True, pad_u=0, pad_v=0))
+LC = list(Point.objects.filter(is_basic=True)
+        .values_list('val', flat=True).distinct())
 
 
 def cons_dist(a, b):
@@ -38,8 +40,7 @@ def find_values(points):
     md = cdist((0, 0, 0), (255, 255, 255)) * len(points)
     found = ()
     pcs = tuple(int_to_pixel(p.val) for p in points)
-    for val in (Point.objects.filter(is_basic=True)
-                .values_list('val', flat=True).distinct()):
+    for val in LC:
         ref = int_to_pixel(val)
         d = sum(cdist(ref, pc) for pc in pcs)
         if d < md:
