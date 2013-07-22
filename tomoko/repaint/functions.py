@@ -7,7 +7,7 @@ from tomoko.repaint.models import Point
 
 LP = list(Point.objects.filter(is_basic=True, pad_u=0, pad_v=0))
 LC = list(Point.objects.filter(is_basic=True)
-        .values_list('val', flat=True).distinct())
+          .values_list('val', flat=True).distinct())
 
 
 def cons_dist(a, b):
