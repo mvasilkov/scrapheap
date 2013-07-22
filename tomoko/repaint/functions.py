@@ -5,6 +5,8 @@ from tomoko.lib.mat import mat_rows, mat_cols, mat_null
 from tomoko.repaint import int_to_pixel
 from tomoko.repaint.models import Point
 
+LP = list(Point.objects.filter(is_basic=True, pad_u=0, pad_v=0))
+
 
 def cons_dist(a, b):
     assert len(a) == len(b)
@@ -14,13 +16,13 @@ def cons_dist(a, b):
 def find_points(ref):
     md = cdist((0, 0, 0), (255, 255, 255)) * settings.RE_LEVEL ** 2
     found = ()
+    it = None
     if ref[0] is None:
         _cons = ref + ('x', )
         pad_u = mat_null(mat_cols, _cons, settings.RE_LEVEL)
         pad_v = mat_null(mat_rows, _cons, settings.RE_LEVEL)
-    else:
-        pad_u = pad_v = 0
-    for p in Point.objects.filter(is_basic=True, pad_u=pad_u, pad_v=pad_v):
+        it = Point.objects.filter(is_basic=True, pad_u=pad_u, pad_v=pad_v)
+    for p in it or LP:
         pc = ujson.loads(p.cons)
         d = cons_dist(ref, pc)
         if d < md:
