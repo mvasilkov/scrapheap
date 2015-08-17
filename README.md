@@ -1,6 +1,6 @@
 # A demo of Verlet Integration written in Java #
 
-This Java code is a conversion of the C++ code hosted on [GameDev](http://www.gamedev.net/reference/programming/features/verletPhys/default.asp).
+This Java code is a conversion of the C++ code hosted on [GameDev](http://www.gamedev.net/page/resources/_/technical/math-and-physics/a-verlet-based-approach-for-2d-game-physics-r2714).
 
 ### Run demo as an Applet ###
 
