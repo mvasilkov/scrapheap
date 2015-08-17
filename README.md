@@ -7,3 +7,5 @@ This Java code is a conversion of the C++ code hosted on [GameDev](http://www.ga
 * Run MainApplet.java
 * Mouse left click and drag to move objects.
 * Mouse right click to add more objects.
+
+![screenshot.png](https://bitbucket.org/repo/XdMR44/images/1641092129-screenshot.png)
