@@ -1,0 +1,17 @@
+// Better font rendering mixin by Maximilian Hoffmann
+// https://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+
+// Usage:
+// .dark-on-light { @include font-smoothing(off) }
+// .light-on-dark { @include font-smoothing(on) }
+
+@mixin font-smoothing($value: on) {
+    @if $value == on {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
