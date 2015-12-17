@@ -1,1 +1,0 @@
-../../vendor/tether.js

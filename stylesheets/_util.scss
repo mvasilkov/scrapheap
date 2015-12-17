@@ -2,10 +2,10 @@
 // https://maximilianhoffmann.com/posts/better-font-rendering-on-osx
 
 // Usage:
-// .dark-on-light { @include font-smoothing(off) }
-// .light-on-dark { @include font-smoothing(on) }
+// .dark-on-light { @include ib-font-smoothing(off) }
+// .light-on-dark { @include ib-font-smoothing(on) }
 
-@mixin font-smoothing($value: on) {
+@mixin ib-font-smoothing($value: on) {
     @if $value == on {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -14,4 +14,21 @@
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto;
     }
+}
+
+
+@mixin ib-not-selectable {
+    -moz-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+@mixin ib-reset-box-sizing {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
