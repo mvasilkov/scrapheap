@@ -48,9 +48,17 @@
     &.focus { @content }
 }
 
+$ib-use-stressed: true !default;
+
 @mixin ib-button-colors($bg, $text: #fff) {
     $active-bg: darken($bg, 10%);
-    $stressed-bg: darken($bg, 16%);
+
+    @if $ib-use-stressed {
+        $stressed-bg: darken($bg, 16%);
+    }
+    @else {
+        $stressed-bg: $active-bg;
+    }
 
     @include ib-apply-colors($bg, $text);
 
@@ -78,7 +86,13 @@
 
 @mixin ib-button-outline($text) {
     $active-bg: rgba(#000, 0.1);
-    $stressed-bg: rgba(#000, 0.16);
+
+    @if $ib-use-stressed {
+        $stressed-bg: rgba(#000, 0.16);
+    }
+    @else {
+        $stressed-bg: $active-bg;
+    }
 
     @include ib-apply-colors(transparent, $text);
 
