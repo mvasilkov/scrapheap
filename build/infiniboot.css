@@ -171,6 +171,34 @@
     border-color: #ff2f00;
     color: #fff; }
 
+.label {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 2px;
+  display: inline;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.1818em 0.6364em;
+  text-transform: uppercase; }
+
+.label-default {
+  background-color: #786078; }
+
+.label-primary {
+  background-color: #454752; }
+
+.label-success {
+  background-color: #39b54a; }
+
+.label-info {
+  background-color: #1e8cd6; }
+
+.label-warning {
+  background-color: #ff7a03; }
+
+.label-danger {
+  background-color: #ff2f00; }
+
 body {
   font-family: Open Sans, sans-serif; }
 

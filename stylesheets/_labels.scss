@@ -1,0 +1,37 @@
+@import 'colors';
+@import 'util';
+
+.label {
+    @include ib-font-smoothing;
+
+    border-radius: 2px;
+    display: inline;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.1818em 0.6364em;
+    text-transform: uppercase;
+}
+
+.label-default {
+    background-color: $ib-color-blackberry;
+}
+
+.label-primary {
+    background-color: $ib-color-slate-gray;
+}
+
+.label-success {
+    background-color: $ib-color-green;
+}
+
+.label-info {
+    background-color: $ib-color-blue;
+}
+
+.label-warning {
+    background-color: $ib-color-orange;
+}
+
+.label-danger {
+    background-color: $ib-color-red;
+}
