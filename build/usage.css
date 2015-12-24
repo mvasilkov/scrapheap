@@ -1,0 +1,12 @@
+body {
+  padding-top: 5rem; }
+
+.buttons-demo-block {
+  background: #f0f0f0;
+  line-height: 3rem;
+  padding: 0 1rem 1rem; }
+  .buttons-demo-block button {
+    margin-right: 0.5rem;
+    vertical-align: bottom; }
+
+/*# sourceMappingURL=usage.css.map */

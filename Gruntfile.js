@@ -21,6 +21,7 @@ module.exports = grunt => {
             stylesheets: {
                 files: {
                     './build/infiniboot.css': './stylesheets/infiniboot.scss',
+                    './build/usage.css': './stylesheets/usage.scss',
                 }
             },
         },

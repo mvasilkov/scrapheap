@@ -4,13 +4,16 @@
 .btn {
     @include ib-font-smoothing;
 
+    $animation-length: 185ms;
+
     border-radius: 2px;
     font-size: 0.8125rem;
     font-weight: 600;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     text-transform: uppercase;
-    transition: background-color 200ms ease-out;
+    transition: background-color $animation-length ease-out,
+    border-color $animation-length ease-out;
 
     &:active,
     &.active {
@@ -24,4 +27,113 @@
     &.focus {
         outline: 0;
     }
+}
+
+
+@mixin ib-apply-colors($bg, $text) {
+    background-color: $bg;
+    border-color: $bg;
+    color: $text;
+}
+
+@mixin ib-apply-colors3($bg, $border, $text) {
+    background-color: $bg;
+    border-color: $border;
+    color: $text;
+}
+
+@mixin ib-hover-focus {
+    &:hover,
+    &:focus,
+    &.focus { @content }
+}
+
+@mixin ib-button-colors($bg, $text: #fff) {
+    $active-bg: darken($bg, 10%);
+    $stressed-bg: darken($bg, 16%);
+
+    @include ib-apply-colors($bg, $text);
+
+    @include ib-hover-focus {
+        @include ib-apply-colors($active-bg, $text);
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        @include ib-apply-colors($active-bg, $text);
+
+        @include ib-hover-focus {
+            @include ib-apply-colors($stressed-bg, $text);
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        @include ib-hover-focus {
+            @include ib-apply-colors($bg, $text);
+        }
+    }
+}
+
+@mixin ib-button-outline($text) {
+    $active-bg: rgba(#000, 0.1);
+    $stressed-bg: rgba(#000, 0.16);
+
+    @include ib-apply-colors(transparent, $text);
+
+    &:hover {
+        @include ib-apply-colors3(transparent, $text, $text);
+    }
+
+    &:focus,
+    &.focus {
+        @include ib-apply-colors3($active-bg, transparent, $text);
+
+        &:hover {
+            @include ib-apply-colors3($active-bg, $text, $text);
+        }
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        @include ib-apply-colors3(transparent, $text, $text);
+
+        @include ib-hover-focus {
+            @include ib-apply-colors3($stressed-bg, $text, $text);
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        @include ib-hover-focus {
+            @include ib-apply-colors(transparent, $text);
+        }
+    }
+}
+
+
+.btn-primary {
+    @include ib-button-colors($ib-color-slate-gray);
+}
+
+.btn-secondary {
+    @include ib-button-outline($ib-color-gray-60);
+}
+
+.btn-success {
+    @include ib-button-colors($ib-color-green);
+}
+
+.btn-info {
+    @include ib-button-colors($ib-color-blue);
+}
+
+.btn-warning {
+    @include ib-button-colors($ib-color-orange);
+}
+
+.btn-danger {
+    @include ib-button-colors($ib-color-red);
 }

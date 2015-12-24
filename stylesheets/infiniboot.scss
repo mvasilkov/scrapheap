@@ -1,5 +1,10 @@
 @import 'buttons';
+@import 'util';
 
 body {
     font-family: Open Sans, sans-serif;
+}
+
+.navbar-dark {
+    @include ib-font-smoothing;
 }

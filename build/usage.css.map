@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "usage.css",
+	"sources": [
+		"../stylesheets/usage.scss",
+		"../stylesheets/_colors.scss"
+	],
+	"mappings": "AAEA,IAAI,CAAC;EACD,WAAW,EAAE,IAAK,GACrB;;AAED,mBAAmB,CAAC;EAChB,UAAU,ECEK,OAAO;EDDtB,WAAW,EAAE,IAAK;EAClB,OAAO,EAAE,WAAY,GAMxB;EATD,mBAAmB,CAKf,MAAM,CAAC;IACH,YAAY,EAAE,MAAO;IACrB,cAAc,EAAE,MAAO,GAC1B",
+	"names": []
+}

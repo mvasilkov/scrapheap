@@ -5,19 +5,57 @@
         <meta name=viewport content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <meta http-equiv=x-ua-compatible content='ie=edge'>
         <title>Usage &middot; Infiniboot</title>
-        <link rel=stylesheet href=/vendor/opensans/opensans.css>
-        <link rel=stylesheet href=/vendor/bootstrap.css>
-        <link rel=stylesheet href=/build/infiniboot.css>
+        <link rel=stylesheet href=./vendor/opensans/opensans.css>
+        <link rel=stylesheet href=./vendor/bootstrap.css>
+        <link rel=stylesheet href=./vendor/highlight/hybrid.min.css>
+        <link rel=stylesheet href=./build/infiniboot.css>
+        <link rel=stylesheet href=./build/usage.css>
     </head>
     <body>
+        <nav class='navbar navbar-fixed-top navbar-dark bg-inverse'>
+            <a class=navbar-brand href=/>Infiniboot</a>
+        </nav>
+
         <div class=container>
             <h1 id=buttons>Buttons</h1>
 
-            <button type=button class='btn btn-primary'>Primary</button>
+            <p>Normal buttons:</p>
+            <p class=buttons-demo-block>
+                <button type=button class='btn btn-primary'>Primary</button>
+                <button type=button class='btn btn-secondary'>Secondary</button>
+                <button type=button class='btn btn-success'>Success</button>
+                <button type=button class='btn btn-info'>Info</button>
+                <button type=button class='btn btn-warning'>Warning</button>
+                <button type=button class='btn btn-danger'>Danger</button>
+            </p>
+            <pre><code class=html>&lt;button type=button class='btn btn-primary'&gt;Primary&lt;/button&gt;
+&lt;button type=button class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
+&lt;button type=button class='btn btn-success'&gt;Success&lt;/button&gt;
+&lt;button type=button class='btn btn-info'&gt;Info&lt;/button&gt;
+&lt;button type=button class='btn btn-warning'&gt;Warning&lt;/button&gt;
+&lt;button type=button class='btn btn-danger'&gt;Danger&lt;/button&gt;</code></pre>
+
+            <p>Disabled buttons:</p>
+            <p class=buttons-demo-block>
+                <button type=button disabled class='btn btn-primary'>Primary</button>
+                <button type=button disabled class='btn btn-secondary'>Secondary</button>
+                <button type=button disabled class='btn btn-success'>Success</button>
+                <button type=button disabled class='btn btn-info'>Info</button>
+                <button type=button disabled class='btn btn-warning'>Warning</button>
+                <button type=button disabled class='btn btn-danger'>Danger</button>
+            </p>
+            <pre><code class=html>&lt;button type=button disabled class='btn btn-primary'&gt;Primary&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-success'&gt;Success&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-info'&gt;Info&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-warning'&gt;Warning&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-danger'&gt;Danger&lt;/button&gt;</code></pre>
         </div>
 
-        <script src=/vendor/jquery.js></script>
-        <script src=/vendor/tether.js></script>
-        <script src=/vendor/bootstrap.js></script>
+        <script src=./vendor/jquery.js></script>
+        <script src=./vendor/tether.js></script>
+        <script src=./vendor/bootstrap.js></script>
+        <script src=./vendor/highlight/highlight.min.js></script>
+        <script>hljs.initHighlightingOnLoad()</script>
     </body>
 </html>

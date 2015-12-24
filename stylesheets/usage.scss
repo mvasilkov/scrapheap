@@ -1,0 +1,16 @@
+@import 'colors';
+
+body {
+    padding-top: 5rem;
+}
+
+.buttons-demo-block {
+    background: $ib-color-gray-f0;
+    line-height: 3rem;
+    padding: 0 1rem 1rem;
+
+    button {
+        margin-right: 0.5rem;
+        vertical-align: bottom;
+    }
+}
