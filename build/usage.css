@@ -1,6 +1,10 @@
 body {
   padding-top: 5rem; }
 
+pre code {
+  font-family: Roboto Mono, monospace;
+  font-size: 0.6875rem; }
+
 .buttons-demo-block {
   background: #f0f0f0;
   line-height: 3rem;
