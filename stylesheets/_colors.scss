@@ -5,9 +5,10 @@ $ib-color-orange: #ff7a03;
 $ib-color-red: #ff2f00;
 $ib-color-blackberry: #786078;
 
-$ib-color-gray-60: #606060;
-$ib-color-gray-80: #808080;
-$ib-color-gray-a0: #a0a0a0;
-$ib-color-gray-e0: #e0e0e0;
-$ib-color-gray-f0: #f0f0f0;
-$ib-color-gray-f9: #f9f9f9;
+// Make a shade of gray
+// Usage:
+// ib-gray('fb') => #fbfbfb
+// ib-gray('0') => #000
+@function ib-gray($a) {
+    @return unquote('##{unquote($a)}#{unquote($a)}#{unquote($a)}');
+}

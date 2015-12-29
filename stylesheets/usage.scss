@@ -10,7 +10,7 @@ pre code {
 }
 
 .buttons-demo-block {
-    background: $ib-color-gray-f0;
+    background: ib-gray('f0');
     line-height: 3rem;
     padding: 0 1rem 1rem;
 
@@ -29,7 +29,7 @@ pre code {
 }
 
 .forms-demo-block {
-    background: $ib-color-gray-f9;
+    background: ib-gray('f9');
     margin-bottom: 1rem;
     padding: 1rem 1.44rem 0.44rem;
 

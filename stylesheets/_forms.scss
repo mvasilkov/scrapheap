@@ -19,13 +19,13 @@ label {
     transition: border-color 150ms;
 
     &:focus {
-        border-color: $ib-color-gray-a0;
+        border-color: ib-gray('a0');
     }
 
     &:disabled,
     &[readonly] {
-        background: $ib-color-gray-f0;
-        color: $ib-color-gray-a0;
+        background: ib-gray('f0');
+        color: ib-gray('a0');
     }
 }
 

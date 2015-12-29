@@ -133,7 +133,7 @@ $ib-use-stressed: true !default;
 }
 
 .btn-secondary {
-    @include ib-button-outline($ib-color-gray-60);
+    @include ib-button-outline(ib-gray('60'));
 }
 
 .btn-success {
