@@ -1,21 +1,21 @@
 @import 'colors';
 
 .form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 20px;
 }
 
 label {
     color: black;
-    font-size: 0.8125rem;
+    font-size: 13px;
     font-weight: 600;
-    padding-left: 0.3125rem;
+    padding-left: 5px;
 }
 
 .form-control {
     border-radius: 2px;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    padding: 0.3125rem 0.75rem;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 5px 12px;
     transition: border-color 150ms;
 
     &:focus {
@@ -30,7 +30,7 @@ label {
 }
 
 .form-control-static {
-    font-size: 0.875rem;
-    min-height: 2rem;
-    padding: 0.3125rem;
+    font-size: 14px;
+    min-height: 32px;
+    padding: 5px;
 }

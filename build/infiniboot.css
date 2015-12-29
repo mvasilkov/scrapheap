@@ -2,10 +2,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 2px;
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 600;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 20px;
+  padding-right: 20px;
   text-transform: uppercase;
   transition: background-color 185ms ease-out, border-color 185ms ease-out; }
   .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
@@ -176,7 +176,7 @@
   -moz-osx-font-smoothing: grayscale;
   border-radius: 2px;
   display: inline;
-  font-size: 0.6875rem;
+  font-size: 11px;
   font-weight: 600;
   padding: 0.1818em 0.6364em;
   text-transform: uppercase; }
@@ -200,19 +200,19 @@
   background-color: #ff2f00; }
 
 .form-group {
-  margin-bottom: 1.25rem; }
+  margin-bottom: 20px; }
 
 label {
   color: black;
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 600;
-  padding-left: 0.3125rem; }
+  padding-left: 5px; }
 
 .form-control {
   border-radius: 2px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.3125rem 0.75rem;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 12px;
   transition: border-color 150ms; }
   .form-control:focus {
     border-color: #a0a0a0; }
@@ -221,9 +221,9 @@ label {
     color: #a0a0a0; }
 
 .form-control-static {
-  font-size: 0.875rem;
-  min-height: 2rem;
-  padding: 0.3125rem; }
+  font-size: 14px;
+  min-height: 32px;
+  padding: 5px; }
 
 body {
   font-family: Open Sans, sans-serif; }
