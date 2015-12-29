@@ -27,3 +27,14 @@ pre code {
         margin-right: 1rem;
     }
 }
+
+.forms-demo-block {
+    background: $ib-color-gray-f9;
+    margin-bottom: 1rem;
+    padding: 1rem 1.44rem 0.44rem;
+
+    .form-control,
+    .form-control-static {
+        max-width: 20rem;
+    }
+}

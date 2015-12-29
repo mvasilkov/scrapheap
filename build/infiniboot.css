@@ -199,6 +199,32 @@
 .label-danger {
   background-color: #ff2f00; }
 
+.form-group {
+  margin-bottom: 1.25rem; }
+
+label {
+  color: black;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding-left: 0.3125rem; }
+
+.form-control {
+  border-radius: 2px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.3125rem 0.75rem;
+  transition: border-color 150ms; }
+  .form-control:focus {
+    border-color: #a0a0a0; }
+  .form-control:disabled, .form-control[readonly] {
+    background: #f0f0f0;
+    color: #a0a0a0; }
+
+.form-control-static {
+  font-size: 0.875rem;
+  min-height: 2rem;
+  padding: 0.3125rem; }
+
 body {
   font-family: Open Sans, sans-serif; }
 

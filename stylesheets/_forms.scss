@@ -1,0 +1,36 @@
+@import 'colors';
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    color: black;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding-left: 0.3125rem;
+}
+
+.form-control {
+    border-radius: 2px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.3125rem 0.75rem;
+    transition: border-color 150ms;
+
+    &:focus {
+        border-color: $ib-color-gray-a0;
+    }
+
+    &:disabled,
+    &[readonly] {
+        background: $ib-color-gray-f0;
+        color: $ib-color-gray-a0;
+    }
+}
+
+.form-control-static {
+    font-size: 0.875rem;
+    min-height: 2rem;
+    padding: 0.3125rem;
+}

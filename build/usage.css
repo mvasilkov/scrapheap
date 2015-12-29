@@ -18,4 +18,12 @@ pre code {
   .labels-demo-block .label {
     margin-right: 1rem; }
 
+.forms-demo-block {
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+  padding: 1rem 1.44rem 0.44rem; }
+  .forms-demo-block .form-control,
+  .forms-demo-block .form-control-static {
+    max-width: 20rem; }
+
 /*# sourceMappingURL=usage.css.map */
