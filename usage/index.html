@@ -28,13 +28,15 @@
                 <button type=button class='btn btn-info'>Info</button>
                 <button type=button class='btn btn-warning'>Warning</button>
                 <button type=button class='btn btn-danger'>Danger</button>
+                <button type=button class='btn btn-link'>Link</button>
             </p>
             <pre><code class=html>&lt;button type=button class='btn btn-primary'&gt;Primary&lt;/button&gt;
 &lt;button type=button class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
 &lt;button type=button class='btn btn-success'&gt;Success&lt;/button&gt;
 &lt;button type=button class='btn btn-info'&gt;Info&lt;/button&gt;
 &lt;button type=button class='btn btn-warning'&gt;Warning&lt;/button&gt;
-&lt;button type=button class='btn btn-danger'&gt;Danger&lt;/button&gt;</code></pre>
+&lt;button type=button class='btn btn-danger'&gt;Danger&lt;/button&gt;
+&lt;button type=button class='btn btn-link'&gt;Link&lt;/button&gt;</code></pre>
 
             <p>Disabled buttons:</p>
             <p class=buttons-demo-block>
@@ -44,15 +46,17 @@
                 <button type=button disabled class='btn btn-info'>Info</button>
                 <button type=button disabled class='btn btn-warning'>Warning</button>
                 <button type=button disabled class='btn btn-danger'>Danger</button>
+                <button type=button disabled class='btn btn-link'>Link</button>
             </p>
             <pre><code class=html>&lt;button type=button disabled class='btn btn-primary'&gt;Primary&lt;/button&gt;
 &lt;button type=button disabled class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
 &lt;button type=button disabled class='btn btn-success'&gt;Success&lt;/button&gt;
 &lt;button type=button disabled class='btn btn-info'&gt;Info&lt;/button&gt;
 &lt;button type=button disabled class='btn btn-warning'&gt;Warning&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-danger'&gt;Danger&lt;/button&gt;</code></pre>
+&lt;button type=button disabled class='btn btn-danger'&gt;Danger&lt;/button&gt;
+&lt;button type=button disabled class='btn btn-link'&gt;Link&lt;/button&gt;</code></pre>
 
-            <h1>Labels</h1>
+            <h1 id=labels>Labels</h1>
             <p class=labels-demo-block>
                 <span class='label label-default'>Default</span>
                 <span class='label label-primary'>Primary</span>
@@ -68,7 +72,7 @@
 &lt;span class='label label-warning'&gt;Warning&lt;/span&gt;
 &lt;span class='label label-danger'&gt;Danger&lt;/span&gt;</code></pre>
 
-            <h1>Forms</h1>
+            <h1 id=forms>Forms</h1>
             <form class=forms-demo-block>
                 <fieldset class=form-group>
                     <label for=demo-input-1>Normal input</label>
@@ -97,6 +101,59 @@
         &lt;p class=form-control-static&gt;email@infinidat.com&lt;/p&gt;
     &lt;/fieldset&gt;
 &lt;/form&gt;</code></pre>
+
+            <h1 id=checkboxes>Checkboxes</h1>
+            <form class=forms-demo-block>
+                <fieldset class=form-group>
+                    <label>Themed checkboxes</label>
+                    <label class=themed-checkbox>
+                        <input type=checkbox>
+                        <span></span>
+                        Themed checkbox
+                    </label>
+                    <label class=themed-checkbox>
+                        <input type=checkbox checked>
+                        <span></span>
+                        Another one
+                    </label>
+                    <label class=themed-checkbox>
+                        <input type=checkbox disabled>
+                        <span></span>
+                        Disabled checkbox
+                    </label>
+                    <label class=themed-checkbox>
+                        <input type=checkbox checked disabled>
+                        <span></span>
+                        Another one
+                    </label>
+                </fieldset>
+            </form>
+            <pre><code class=html>&lt;form&gt;
+    &lt;fieldset class=form-group&gt;
+        &lt;label&gt;Themed checkboxes&lt;/label&gt;
+        &lt;label class=themed-checkbox&gt;
+            &lt;input type=checkbox&gt;
+            &lt;span&gt;&lt;/span&gt;
+            Themed checkbox
+        &lt;/label&gt;
+        &lt;label class=themed-checkbox&gt;
+            &lt;input type=checkbox checked&gt;
+            &lt;span&gt;&lt;/span&gt;
+            Another one
+        &lt;/label&gt;
+        &lt;label class=themed-checkbox&gt;
+            &lt;input type=checkbox disabled&gt;
+            &lt;span&gt;&lt;/span&gt;
+            Disabled checkbox
+        &lt;/label&gt;
+        &lt;label class=themed-checkbox&gt;
+            &lt;input type=checkbox checked disabled&gt;
+            &lt;span&gt;&lt;/span&gt;
+            Another one
+        &lt;/label&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+
         </div>
 
         <script src=./vendor/jquery.js></script>

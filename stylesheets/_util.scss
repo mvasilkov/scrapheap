@@ -1,6 +1,6 @@
 // Better font rendering mixin by Maximilian Hoffmann
 // https://maximilianhoffmann.com/posts/better-font-rendering-on-osx
-
+//
 // Usage:
 // .dark-on-light { @include ib-font-smoothing(off) }
 // .light-on-dark { @include ib-font-smoothing(on) }
@@ -14,6 +14,21 @@
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto;
     }
+}
+
+// Only display content to screen readers
+//
+// See: http://a11yproject.com/posts/how-to-hide-content/
+
+@mixin ib-sr-only {
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 
@@ -31,4 +46,11 @@
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+}
+
+
+@mixin ib-hover-focus {
+    &:hover,
+    &:focus,
+    &.focus { @content }
 }

@@ -1,0 +1,79 @@
+@import 'colors';
+@import 'util';
+
+.themed-checkbox {
+    color: inherit;
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+
+    @include ib-not-selectable;
+
+    $size: 16px;
+
+    input[type=checkbox] {
+        @include ib-sr-only;
+
+        &+span {
+            background: white;
+            border: 1px solid ib-gray('c0');
+            border-radius: 2px;
+            display: inline-block;
+            height: $size;
+            line-height: $size;
+            margin-right: 5px;
+            margin-top: -2px;
+            position: relative;
+            transition: background-color 150ms, border-color 150ms;
+            vertical-align: middle;
+            width: $size;
+        }
+
+        &:checked+span {
+            background-color: $ib-color-slate-gray;
+            border-color: $ib-color-slate-gray;
+
+            &::before {
+                @include ib-font-smoothing(on);
+
+                color: white;
+                content: '×';
+                display: block;
+                font-size: 20px;
+                font-weight: 700;
+                height: $size;
+                left: -0.5px;
+                line-height: $size;
+                position: absolute;
+                text-align: center;
+                top: -1px;
+                width: $size;
+            }
+        }
+
+        &:disabled,
+        &.disabled {
+            &+span {
+                background-color: ib-gray('f0');
+            }
+
+            &:checked+span {
+                background-color: lighten($ib-color-slate-gray, 30);
+                border-color: lighten($ib-color-slate-gray, 30);
+            }
+        }
+
+        &:not(:disabled):not(.disabled) {
+            @include ib-hover-focus {
+                &+span {
+                    border-color: ib-gray('60');
+                }
+
+                &:checked+span {
+                    background-color: lighten($ib-color-slate-gray, 10);
+                    border-color: lighten($ib-color-slate-gray, 10);
+                }
+            }
+        }
+    }
+}

@@ -42,12 +42,6 @@
     color: $text;
 }
 
-@mixin ib-hover-focus {
-    &:hover,
-    &:focus,
-    &.focus { @content }
-}
-
 $ib-use-stressed: true !default;
 
 @mixin ib-button-colors($bg, $text: #fff) {
@@ -109,6 +103,10 @@ $ib-use-stressed: true !default;
         }
     }
 
+    @include ib-hover-focus {
+        text-decoration: none;
+    }
+
     &:active,
     &.active,
     .open > &.dropdown-toggle {
@@ -132,6 +130,7 @@ $ib-use-stressed: true !default;
     @include ib-button-colors($ib-color-slate-gray);
 }
 
+.btn-link,
 .btn-secondary {
     @include ib-button-outline(ib-gray('60'));
 }

@@ -1,6 +1,9 @@
 body {
   padding-top: 5rem; }
 
+h1:not(:first-child) {
+  margin-top: 4rem; }
+
 pre code {
   font-family: Roboto Mono, monospace;
   font-size: 11px; }
