@@ -29,6 +29,12 @@
     }
 }
 
+.btn-sm {
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 @mixin ib-apply-colors($bg, $text) {
     background-color: $bg;
@@ -36,28 +42,13 @@
     color: $text;
 }
 
-@mixin ib-apply-colors3($bg, $border, $text) {
-    background-color: $bg;
-    border-color: $border;
-    color: $text;
-}
-
-$ib-use-stressed: true !default;
-
-@mixin ib-button-colors($bg, $text: #fff) {
-    $active-bg: darken($bg, 10%);
-
-    @if $ib-use-stressed {
-        $stressed-bg: darken($bg, 16%);
-    }
-    @else {
-        $stressed-bg: $active-bg;
-    }
-
+@mixin ib-button-colors4($bg, $active-bg, $stressed-bg, $text) {
     @include ib-apply-colors($bg, $text);
 
     @include ib-hover-focus {
         @include ib-apply-colors($active-bg, $text);
+
+        text-decoration: none;
     }
 
     &:active,
@@ -78,65 +69,39 @@ $ib-use-stressed: true !default;
     }
 }
 
-@mixin ib-button-outline($text) {
-    $active-bg: rgba(#000, 0.1);
+@mixin ib-button-colors($bg, $text: #fff) {
+    $active-bg: darken($bg, 5%);
+    $stressed-bg: darken($bg, 10%);
 
-    @if $ib-use-stressed {
-        $stressed-bg: rgba(#000, 0.16);
-    }
-    @else {
-        $stressed-bg: $active-bg;
-    }
-
-    @include ib-apply-colors(transparent, $text);
-
-    &:hover {
-        @include ib-apply-colors3(transparent, $text, $text);
-    }
-
-    &:focus,
-    &.focus {
-        @include ib-apply-colors3($active-bg, transparent, $text);
-
-        &:hover {
-            @include ib-apply-colors3($active-bg, $text, $text);
-        }
-    }
-
-    @include ib-hover-focus {
-        text-decoration: none;
-    }
-
-    &:active,
-    &.active,
-    .open > &.dropdown-toggle {
-        @include ib-apply-colors3(transparent, $text, $text);
-
-        @include ib-hover-focus {
-            @include ib-apply-colors3($stressed-bg, $text, $text);
-        }
-    }
-
-    &:disabled,
-    &.disabled {
-        @include ib-hover-focus {
-            @include ib-apply-colors(transparent, $text);
-        }
-    }
+    @include ib-button-colors4($bg, $active-bg, $stressed-bg, $text);
 }
 
 
 .btn-primary {
-    @include ib-button-colors($ib-color-slate-gray);
+    @include ib-button-colors4(
+    $ib-color-btn-primary,
+    $ib-color-btn-primary-active,
+    $ib-color-btn-primary-stressed,
+    #fff);
 }
 
 .btn-link,
 .btn-secondary {
-    @include ib-button-outline(ib-gray('60'));
+    @include ib-button-colors4(
+    $ib-color-btn-secondary,
+    $ib-color-btn-secondary-active,
+    $ib-color-btn-secondary-stressed,
+    $ib-color-dark-gray);
+
+    border-color: transparent !important;
 }
 
 .btn-success {
-    @include ib-button-colors($ib-color-green);
+    @include ib-button-colors4(
+    $ib-color-btn-success,
+    $ib-color-btn-success-active,
+    $ib-color-btn-success-stressed,
+    #fff);
 }
 
 .btn-info {
@@ -148,5 +113,9 @@ $ib-use-stressed: true !default;
 }
 
 .btn-danger {
-    @include ib-button-colors($ib-color-red);
+    @include ib-button-colors4(
+    $ib-color-btn-danger,
+    $ib-color-btn-danger-active,
+    $ib-color-btn-danger-stressed,
+    #fff);
 }
