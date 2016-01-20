@@ -12,13 +12,17 @@
     text-transform: uppercase;
 }
 
-.label-default,
+.label-default {
+    background: $ib-color-btn-secondary-stressed;
+    color: $ib-color-dark-gray;
+}
+
 .label-primary {
-    background-color: $ib-color-slate-gray;
+    background-color: $ib-color-btn-primary;
 }
 
 .label-success {
-    background-color: $ib-color-green;
+    background-color: $ib-color-btn-success;
 }
 
 .label-info {
@@ -30,5 +34,5 @@
 }
 
 .label-danger {
-    background-color: $ib-color-red;
+    background-color: $ib-color-btn-danger;
 }

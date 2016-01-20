@@ -212,12 +212,15 @@
   padding: 0.1818em 0.6364em;
   text-transform: uppercase; }
 
-.label-default,
+.label-default {
+  background: rgba(48, 49, 56, 0.11);
+  color: #515360; }
+
 .label-primary {
-  background-color: #454752; }
+  background-color: #4f515f; }
 
 .label-success {
-  background-color: #39b54a; }
+  background-color: #3bb64c; }
 
 .label-info {
   background-color: #1e8cd6; }
@@ -226,7 +229,7 @@
   background-color: #ff7a03; }
 
 .label-danger {
-  background-color: #ff2f00; }
+  background-color: #ff3333; }
 
 .form-group {
   margin-bottom: 20px; }
