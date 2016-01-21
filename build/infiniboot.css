@@ -302,14 +302,15 @@ label {
         font-size: 20px;
         font-weight: 700;
         height: 16px;
-        left: -0.5px;
+        left: -1px;
         line-height: 16px;
         position: absolute;
         text-align: center;
         top: -1px;
         width: 16px; }
     .themed-checkbox input[type=checkbox]:disabled + span, .themed-checkbox input[type=checkbox].disabled + span {
-      background-color: #f0f0f0; }
+      background-color: #f0f0f0;
+      cursor: not-allowed; }
     .themed-checkbox input[type=checkbox]:disabled:checked + span, .themed-checkbox input[type=checkbox].disabled:checked + span {
       background-color: #8f92a1;
       border-color: #8f92a1; }

@@ -4,7 +4,7 @@
 .themed-checkbox {
     color: inherit;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: normal;
 
     @include ib-not-selectable;
@@ -27,6 +27,10 @@
             transition: background-color 150ms, border-color 150ms;
             vertical-align: middle;
             width: $size;
+
+            &:last-child {
+                margin-right: 0;
+            }
         }
 
         &:checked+span {
@@ -42,7 +46,7 @@
                 font-size: 20px;
                 font-weight: 700;
                 height: $size;
-                left: -0.5px;
+                left: -1px;
                 line-height: $size;
                 position: absolute;
                 text-align: center;
@@ -55,6 +59,7 @@
         &.disabled {
             &+span {
                 background-color: ib-gray('f0');
+                cursor: not-allowed;
             }
 
             &:checked+span {
