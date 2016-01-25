@@ -1,3 +1,5 @@
+@import '../node_modules/sass-svg/index';
+
 @import 'colors';
 @import 'util';
 
@@ -24,7 +26,7 @@
             margin-right: 5px;
             margin-top: -2px;
             position: relative;
-            transition: background-color 150ms, border-color 150ms;
+            transition: border-color 150ms;
             vertical-align: middle;
             width: $size;
 
@@ -34,22 +36,24 @@
         }
 
         &:checked+span {
-            background-color: $ib-color-slate-gray;
-            border-color: $ib-color-slate-gray;
+            background-color: $ib-color-green;
+            border-color: $ib-color-green;
 
             &::before {
-                @include ib-font-smoothing(on);
+                @include svg((viewBox: 0 0 20 20)) {
+                    @include svg('path', (
+                    fill: #fff,
+                    d: 'M13,5.9l-4.2,4.3L6.6,8L5.1,9.5l3,3l0.7,0.8l5.7-5.8L13,5.9z'
+                    ));
+                }
 
-                color: white;
-                content: '×';
+                background-position: -1px -1px;
+                background-size: 19px;
+                content: '';
                 display: block;
-                font-size: 20px;
-                font-weight: 700;
                 height: $size;
                 left: -1px;
-                line-height: $size;
                 position: absolute;
-                text-align: center;
                 top: -1px;
                 width: $size;
             }
@@ -63,8 +67,8 @@
             }
 
             &:checked+span {
-                background-color: lighten($ib-color-slate-gray, 30);
-                border-color: lighten($ib-color-slate-gray, 30);
+                background-color: lighten($ib-color-green, 20);
+                border-color: lighten($ib-color-green, 20);
             }
         }
 
@@ -72,11 +76,6 @@
             @include ib-hover-focus {
                 &+span {
                     border-color: ib-gray('60');
-                }
-
-                &:checked+span {
-                    background-color: lighten($ib-color-slate-gray, 10);
-                    border-color: lighten($ib-color-slate-gray, 10);
                 }
             }
         }
