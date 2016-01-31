@@ -24,11 +24,13 @@ pre code {
     padding: 1rem 0; }
     .demo-block.demo-block-labels .label {
       margin-right: 1rem; }
-  .demo-block.demo-block-forms {
+  .demo-block.demo-block-forms, .demo-block.demo-block-forms2 {
     background: #f9f9f9;
-    padding: 1rem 1.44rem 0.44rem; }
-    .demo-block.demo-block-forms .form-control,
-    .demo-block.demo-block-forms .form-control-static {
+    padding: 1rem 1.44rem 1px; }
+    .demo-block.demo-block-forms .form-control, .demo-block.demo-block-forms2 .form-control,
+    .demo-block.demo-block-forms .form-control-static, .demo-block.demo-block-forms2 .form-control-static {
       max-width: 20rem; }
+  .demo-block.demo-block-forms2 {
+    padding: 1rem 0.44rem 1px; }
 
 /*# sourceMappingURL=usage.css.map */

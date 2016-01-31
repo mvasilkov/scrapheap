@@ -42,11 +42,17 @@ pre code {
 
     &.demo-block-forms {
         background: ib-gray('f9');
-        padding: 1rem 1.44rem 0.44rem;
+        padding: 1rem 1.44rem 1px;
 
         .form-control,
         .form-control-static {
             max-width: 20rem;
         }
+    }
+
+    &.demo-block-forms2 {
+        @extend .demo-block-forms;
+
+        padding: 1rem 0.44rem 1px;
     }
 }

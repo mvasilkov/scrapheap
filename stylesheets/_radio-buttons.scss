@@ -1,0 +1,38 @@
+@import 'checkboxes';
+
+.themed-radio {
+    @extend .themed-checkbox;
+
+    $size: 16px;
+    $dot-size: 8px;
+
+    input[type=radio] {
+        @extend input[type=checkbox];
+
+        &+span {
+            border-radius: $size;
+        }
+
+        &:checked+span {
+            background-color: white;
+            border-color: ib-gray('c0');
+
+            &::before {
+                background-color: $ib-color-green;
+                background-image: none;
+                border-radius: $dot-size;
+                height: $dot-size;
+                margin: 4px 0 0 4px;
+                width: $dot-size;
+            }
+        }
+
+        &:disabled,
+        &.disabled {
+            &:checked+span {
+                background-color: ib-gray('f0');
+                border-color: ib-gray('c0');
+            }
+        }
+    }
+}
