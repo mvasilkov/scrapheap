@@ -21,7 +21,7 @@
             <h1 id=buttons>Buttons</h1>
 
             <p>Normal buttons:</p>
-            <p class=buttons-demo-block>
+            <div class='demo-block demo-block-buttons' id=x-buttons-normal>
                 <button type=button class='btn btn-primary'>Primary</button>
                 <button type=button class='btn btn-secondary'>Secondary</button>
                 <button type=button class='btn btn-success'>Success</button>
@@ -29,17 +29,11 @@
                 <button type=button class='btn btn-warning'>Warning</button>
                 <button type=button class='btn btn-danger'>Danger</button>
                 <button type=button class='btn btn-link'>Link</button>
-            </p>
-            <pre><code class=html>&lt;button type=button class='btn btn-primary'&gt;Primary&lt;/button&gt;
-&lt;button type=button class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
-&lt;button type=button class='btn btn-success'&gt;Success&lt;/button&gt;
-&lt;button type=button class='btn btn-info'&gt;Info&lt;/button&gt;
-&lt;button type=button class='btn btn-warning'&gt;Warning&lt;/button&gt;
-&lt;button type=button class='btn btn-danger'&gt;Danger&lt;/button&gt;
-&lt;button type=button class='btn btn-link'&gt;Link&lt;/button&gt;</code></pre>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-normal></code></pre>
 
             <p>Disabled buttons:</p>
-            <p class=buttons-demo-block>
+            <div class='demo-block demo-block-buttons' id=x-buttons-disabled>
                 <button type=button disabled class='btn btn-primary'>Primary</button>
                 <button type=button disabled class='btn btn-secondary'>Secondary</button>
                 <button type=button disabled class='btn btn-success'>Success</button>
@@ -47,17 +41,11 @@
                 <button type=button disabled class='btn btn-warning'>Warning</button>
                 <button type=button disabled class='btn btn-danger'>Danger</button>
                 <button type=button disabled class='btn btn-link'>Link</button>
-            </p>
-            <pre><code class=html>&lt;button type=button disabled class='btn btn-primary'&gt;Primary&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-secondary'&gt;Secondary&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-success'&gt;Success&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-info'&gt;Info&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-warning'&gt;Warning&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-danger'&gt;Danger&lt;/button&gt;
-&lt;button type=button disabled class='btn btn-link'&gt;Link&lt;/button&gt;</code></pre>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-disabled></code></pre>
 
             <p>Small buttons:</p>
-            <p class=buttons-demo-block>
+            <div class='demo-block demo-block-buttons demo-block-buttons-small' id=x-buttons-small>
                 <button type=button class='btn btn-sm btn-primary'>Primary</button>
                 <button type=button class='btn btn-sm btn-secondary'>Secondary</button>
                 <button type=button class='btn btn-sm btn-success'>Success</button>
@@ -65,116 +53,73 @@
                 <button type=button class='btn btn-sm btn-warning'>Warning</button>
                 <button type=button class='btn btn-sm btn-danger'>Danger</button>
                 <button type=button class='btn btn-sm btn-link'>Link</button>
-            </p>
-            <pre><code class=html>&lt;button type=button class='btn btn-sm btn-primary'&gt;Primary&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-secondary'&gt;Secondary&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-success'&gt;Success&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-info'&gt;Info&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-warning'&gt;Warning&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-danger'&gt;Danger&lt;/button&gt;
-&lt;button type=button class='btn btn-sm btn-link'&gt;Link&lt;/button&gt;</code></pre>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-small></code></pre>
 
             <h1 id=labels>Labels</h1>
-            <p class=labels-demo-block>
+            <div class='demo-block demo-block-labels' id=x-labels>
                 <span class='label label-default'>Default</span>
                 <span class='label label-primary'>Primary</span>
                 <span class='label label-success'>Success</span>
                 <span class='label label-info'>Info</span>
                 <span class='label label-warning'>Warning</span>
                 <span class='label label-danger'>Danger</span>
-            </p>
-            <pre><code class=html>&lt;span class='label label-default'&gt;Default&lt;/span&gt;
-&lt;span class='label label-primary'&gt;Primary&lt;/span&gt;
-&lt;span class='label label-success'&gt;Success&lt;/span&gt;
-&lt;span class='label label-info'&gt;Info&lt;/span&gt;
-&lt;span class='label label-warning'&gt;Warning&lt;/span&gt;
-&lt;span class='label label-danger'&gt;Danger&lt;/span&gt;</code></pre>
+            </div>
+            <pre><code class=html data-copy-contents=x-labels></code></pre>
 
             <h1 id=forms>Forms</h1>
-            <form class=forms-demo-block>
-                <fieldset class=form-group>
-                    <label for=demo-input-1>Normal input</label>
-                    <input type=text class=form-control id=demo-input-1 placeholder=Normal value=Normal>
-                </fieldset>
-                <fieldset class=form-group>
-                    <label for=demo-input-2>Disabled input</label>
-                    <input type=text disabled class=form-control id=demo-input-2 placeholder=Disabled value=Disabled>
-                </fieldset>
-                <fieldset class=form-group>
-                    <label>Static text</label>
-                    <p class=form-control-static>email@infinidat.com</p>
-                </fieldset>
-            </form>
-            <pre><code class=html>&lt;form&gt;
-    &lt;fieldset class=form-group&gt;
-        &lt;label for=demo-input-1&gt;Normal input&lt;/label&gt;
-        &lt;input type=text class=form-control id=demo-input-1 placeholder=Normal value=Normal&gt;
-    &lt;/fieldset&gt;
-    &lt;fieldset class=form-group&gt;
-        &lt;label for=demo-input-2&gt;Disabled input&lt;/label&gt;
-        &lt;input type=text disabled class=form-control id=demo-input-2 placeholder=Disabled value=Disabled&gt;
-    &lt;/fieldset&gt;
-    &lt;fieldset class=form-group&gt;
-        &lt;label&gt;Static text&lt;/label&gt;
-        &lt;p class=form-control-static&gt;email@infinidat.com&lt;/p&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;</code></pre>
+            <div class='demo-block demo-block-forms' id=x-forms>
+                <form>
+                    <fieldset class=form-group>
+                        <label for=demo-input-1>Normal input</label>
+                        <input type=text class=form-control id=demo-input-1 placeholder=Normal value=Normal>
+                    </fieldset>
+                    <fieldset class=form-group>
+                        <label for=demo-input-2>Disabled input</label>
+                        <input type=text disabled class=form-control id=demo-input-2 placeholder=Disabled value=Disabled>
+                    </fieldset>
+                    <fieldset class=form-group>
+                        <label>Static text</label>
+                        <p class=form-control-static>email@infinidat.com</p>
+                    </fieldset>
+                </form>
+            </div>
+            <pre><code class=html data-copy-contents=x-forms></code></pre>
 
             <h1 id=checkboxes>Checkboxes</h1>
-            <form class=forms-demo-block>
-                <fieldset class=form-group>
-                    <label>Themed checkboxes</label>
-                    <label class=themed-checkbox>
-                        <input type=checkbox>
-                        <span></span>
-                        Themed checkbox
-                    </label>
-                    <label class=themed-checkbox>
-                        <input type=checkbox checked>
-                        <span></span>
-                        Another one
-                    </label>
-                    <label class=themed-checkbox>
-                        <input type=checkbox disabled>
-                        <span></span>
-                        Disabled checkbox
-                    </label>
-                    <label class=themed-checkbox>
-                        <input type=checkbox checked disabled>
-                        <span></span>
-                        Another one
-                    </label>
-                </fieldset>
-            </form>
-            <pre><code class=html>&lt;form&gt;
-    &lt;fieldset class=form-group&gt;
-        &lt;label&gt;Themed checkboxes&lt;/label&gt;
-        &lt;label class=themed-checkbox&gt;
-            &lt;input type=checkbox&gt;
-            &lt;span&gt;&lt;/span&gt;
-            Themed checkbox
-        &lt;/label&gt;
-        &lt;label class=themed-checkbox&gt;
-            &lt;input type=checkbox checked&gt;
-            &lt;span&gt;&lt;/span&gt;
-            Another one
-        &lt;/label&gt;
-        &lt;label class=themed-checkbox&gt;
-            &lt;input type=checkbox disabled&gt;
-            &lt;span&gt;&lt;/span&gt;
-            Disabled checkbox
-        &lt;/label&gt;
-        &lt;label class=themed-checkbox&gt;
-            &lt;input type=checkbox checked disabled&gt;
-            &lt;span&gt;&lt;/span&gt;
-            Another one
-        &lt;/label&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;</code></pre>
+            <div class='demo-block demo-block-forms' id=x-checkboxes>
+                <form>
+                    <fieldset class=form-group>
+                        <label>Themed checkboxes</label>
+                        <label class=themed-checkbox>
+                            <input type=checkbox>
+                            <span></span>
+                            Themed checkbox
+                        </label>
+                        <label class=themed-checkbox>
+                            <input type=checkbox checked>
+                            <span></span>
+                            Another one
+                        </label>
+                        <label class=themed-checkbox>
+                            <input type=checkbox disabled>
+                            <span></span>
+                            Disabled checkbox
+                        </label>
+                        <label class=themed-checkbox>
+                            <input type=checkbox checked disabled>
+                            <span></span>
+                            Another one
+                        </label>
+                    </fieldset>
+                </form>
+            </div>
+            <pre><code class=html data-copy-contents=x-checkboxes></code></pre>
 
         </div>
 
         <script src=./vendor/jquery.js></script>
+        <script src=./copy_contents.js></script>
         <script src=./vendor/tether.js></script>
         <script src=./vendor/bootstrap.js></script>
         <script src=./vendor/highlight/highlight.min.js></script>

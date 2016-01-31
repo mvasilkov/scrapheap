@@ -13,32 +13,40 @@ pre code {
     font-size: 11px;
 }
 
-.buttons-demo-block {
-    background: ib-gray('f0');
-    line-height: 3rem;
-    padding: 0 1rem 1rem;
+.demo-block {
+    margin: 0 0 1rem;
+    padding: 1rem;
 
-    button {
-        margin-right: 0.5rem;
-        vertical-align: bottom;
+    &.demo-block-buttons {
+        background: ib-gray('f0');
+        line-height: 3rem;
+        padding: 0 1rem 1rem;
+
+        button {
+            margin-right: 0.5rem;
+            vertical-align: bottom;
+        }
+
+        &.demo-block-buttons-small {
+            line-height: 2.6rem;
+        }
     }
-}
 
-.labels-demo-block {
-    padding: 1rem 0;
+    &.demo-block-labels {
+        padding: 1rem 0;
 
-    .label {
-        margin-right: 1rem;
+        .label {
+            margin-right: 1rem;
+        }
     }
-}
 
-.forms-demo-block {
-    background: ib-gray('f9');
-    margin-bottom: 1rem;
-    padding: 1rem 1.44rem 0.44rem;
+    &.demo-block-forms {
+        background: ib-gray('f9');
+        padding: 1rem 1.44rem 0.44rem;
 
-    .form-control,
-    .form-control-static {
-        max-width: 20rem;
+        .form-control,
+        .form-control-static {
+            max-width: 20rem;
+        }
     }
 }

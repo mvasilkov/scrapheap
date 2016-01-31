@@ -8,25 +8,27 @@ pre code {
   font-family: Roboto Mono, monospace;
   font-size: 11px; }
 
-.buttons-demo-block {
-  background: #f0f0f0;
-  line-height: 3rem;
-  padding: 0 1rem 1rem; }
-  .buttons-demo-block button {
-    margin-right: 0.5rem;
-    vertical-align: bottom; }
-
-.labels-demo-block {
-  padding: 1rem 0; }
-  .labels-demo-block .label {
-    margin-right: 1rem; }
-
-.forms-demo-block {
-  background: #f9f9f9;
-  margin-bottom: 1rem;
-  padding: 1rem 1.44rem 0.44rem; }
-  .forms-demo-block .form-control,
-  .forms-demo-block .form-control-static {
-    max-width: 20rem; }
+.demo-block {
+  margin: 0 0 1rem;
+  padding: 1rem; }
+  .demo-block.demo-block-buttons {
+    background: #f0f0f0;
+    line-height: 3rem;
+    padding: 0 1rem 1rem; }
+    .demo-block.demo-block-buttons button {
+      margin-right: 0.5rem;
+      vertical-align: bottom; }
+    .demo-block.demo-block-buttons.demo-block-buttons-small {
+      line-height: 2.6rem; }
+  .demo-block.demo-block-labels {
+    padding: 1rem 0; }
+    .demo-block.demo-block-labels .label {
+      margin-right: 1rem; }
+  .demo-block.demo-block-forms {
+    background: #f9f9f9;
+    padding: 1rem 1.44rem 0.44rem; }
+    .demo-block.demo-block-forms .form-control,
+    .demo-block.demo-block-forms .form-control-static {
+      max-width: 20rem; }
 
 /*# sourceMappingURL=usage.css.map */
