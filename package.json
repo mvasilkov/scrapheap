@@ -25,6 +25,7 @@
     "grunt-sass": "^1.1.0"
   },
   "dependencies": {
-    "sass-svg": "^0.4.0"
+    "sass-svg": "^0.4.0",
+    "sassdash": "^0.8.0"
   }
 }
