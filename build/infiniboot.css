@@ -303,14 +303,21 @@ label {
         position: absolute;
         top: -1px;
         width: 16px; }
+    .themed-checkbox input[type=checkbox]:hover + span, .themed-radio input[type=checkbox]:hover + span, .themed-radio .themed-checkbox input[type=radio]:hover + span, .themed-radio input[type=radio]:hover + span,
+    .themed-checkbox input[type=checkbox]:hover:checked + span, .themed-radio input[type=checkbox]:hover:checked + span, .themed-radio
+    .themed-checkbox input[type=radio]:hover:checked + span, .themed-radio input[type=radio]:hover:checked + span, .themed-checkbox input[type=checkbox]:focus + span, .themed-radio input[type=checkbox]:focus + span, .themed-radio .themed-checkbox input[type=radio]:focus + span, .themed-radio input[type=radio]:focus + span,
+    .themed-checkbox input[type=checkbox]:focus:checked + span, .themed-radio input[type=checkbox]:focus:checked + span, .themed-radio
+    .themed-checkbox input[type=radio]:focus:checked + span, .themed-radio input[type=radio]:focus:checked + span, .themed-checkbox input[type=checkbox].focus + span, .themed-radio input[type=checkbox].focus + span, .themed-radio .themed-checkbox input.focus[type=radio] + span, .themed-radio input.focus[type=radio] + span,
+    .themed-checkbox input[type=checkbox].focus:checked + span, .themed-radio input[type=checkbox].focus:checked + span, .themed-radio
+    .themed-checkbox input.focus[type=radio]:checked + span, .themed-radio input.focus[type=radio]:checked + span {
+      border-color: #606060; }
     .themed-checkbox input[type=checkbox]:disabled + span, .themed-radio input[type=checkbox]:disabled + span, .themed-radio .themed-checkbox input[type=radio]:disabled + span, .themed-radio input[type=radio]:disabled + span, .themed-checkbox input[type=checkbox].disabled + span, .themed-radio input[type=checkbox].disabled + span, .themed-radio .themed-checkbox input.disabled[type=radio] + span, .themed-radio input.disabled[type=radio] + span {
       background-color: #f0f0f0;
+      border-color: #c0c0c0;
       cursor: not-allowed; }
     .themed-checkbox input[type=checkbox]:disabled:checked + span, .themed-radio input[type=checkbox]:disabled:checked + span, .themed-radio .themed-checkbox input[type=radio]:disabled:checked + span, .themed-radio input[type=radio]:disabled:checked + span, .themed-checkbox input[type=checkbox].disabled:checked + span, .themed-radio input[type=checkbox].disabled:checked + span, .themed-radio .themed-checkbox input.disabled[type=radio]:checked + span, .themed-radio input.disabled[type=radio]:checked + span {
       background-color: #7ed68a;
       border-color: #7ed68a; }
-    .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled):hover + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled):hover + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled):hover + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled):hover + span, .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled):focus + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled):focus + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled):focus + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled):focus + span, .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled).focus + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled).focus + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled).focus + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled).focus + span {
-      border-color: #606060; }
 
 .themed-checkbox, .themed-radio {
   color: inherit;
@@ -359,14 +366,21 @@ label {
         position: absolute;
         top: -1px;
         width: 16px; }
+    .themed-checkbox input[type=checkbox]:hover + span, .themed-radio input[type=checkbox]:hover + span, .themed-radio .themed-checkbox input[type=radio]:hover + span, .themed-radio input[type=radio]:hover + span,
+    .themed-checkbox input[type=checkbox]:hover:checked + span, .themed-radio input[type=checkbox]:hover:checked + span, .themed-radio
+    .themed-checkbox input[type=radio]:hover:checked + span, .themed-radio input[type=radio]:hover:checked + span, .themed-checkbox input[type=checkbox]:focus + span, .themed-radio input[type=checkbox]:focus + span, .themed-radio .themed-checkbox input[type=radio]:focus + span, .themed-radio input[type=radio]:focus + span,
+    .themed-checkbox input[type=checkbox]:focus:checked + span, .themed-radio input[type=checkbox]:focus:checked + span, .themed-radio
+    .themed-checkbox input[type=radio]:focus:checked + span, .themed-radio input[type=radio]:focus:checked + span, .themed-checkbox input[type=checkbox].focus + span, .themed-radio input[type=checkbox].focus + span, .themed-radio .themed-checkbox input.focus[type=radio] + span, .themed-radio input.focus[type=radio] + span,
+    .themed-checkbox input[type=checkbox].focus:checked + span, .themed-radio input[type=checkbox].focus:checked + span, .themed-radio
+    .themed-checkbox input.focus[type=radio]:checked + span, .themed-radio input.focus[type=radio]:checked + span {
+      border-color: #606060; }
     .themed-checkbox input[type=checkbox]:disabled + span, .themed-radio input[type=checkbox]:disabled + span, .themed-radio .themed-checkbox input[type=radio]:disabled + span, .themed-radio input[type=radio]:disabled + span, .themed-checkbox input[type=checkbox].disabled + span, .themed-radio input[type=checkbox].disabled + span, .themed-radio .themed-checkbox input.disabled[type=radio] + span, .themed-radio input.disabled[type=radio] + span {
       background-color: #f0f0f0;
+      border-color: #c0c0c0;
       cursor: not-allowed; }
     .themed-checkbox input[type=checkbox]:disabled:checked + span, .themed-radio input[type=checkbox]:disabled:checked + span, .themed-radio .themed-checkbox input[type=radio]:disabled:checked + span, .themed-radio input[type=radio]:disabled:checked + span, .themed-checkbox input[type=checkbox].disabled:checked + span, .themed-radio input[type=checkbox].disabled:checked + span, .themed-radio .themed-checkbox input.disabled[type=radio]:checked + span, .themed-radio input.disabled[type=radio]:checked + span {
       background-color: #7ed68a;
       border-color: #7ed68a; }
-    .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled):hover + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled):hover + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled):hover + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled):hover + span, .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled):focus + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled):focus + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled):focus + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled):focus + span, .themed-checkbox input[type=checkbox]:not(:disabled):not(.disabled).focus + span, .themed-radio input[type=checkbox]:not(:disabled):not(.disabled).focus + span, .themed-radio .themed-checkbox input[type=radio]:not(:disabled):not(.disabled).focus + span, .themed-radio input[type=radio]:not(:disabled):not(.disabled).focus + span {
-      border-color: #606060; }
 
 .themed-radio input[type=radio] + span {
   border-radius: 16px; }

@@ -55,25 +55,24 @@
             }
         }
 
+        @include ib-hover-focus {
+            &+span,
+            &:checked+span {
+                border-color: ib-gray('60');
+            }
+        }
+
         &:disabled,
         &.disabled {
             &+span {
                 background-color: ib-gray('f0');
+                border-color: ib-gray('c0');
                 cursor: not-allowed;
             }
 
             &:checked+span {
                 background-color: lighten($ib-color-green, 20);
                 border-color: lighten($ib-color-green, 20);
-            }
-        }
-
-        // TODO rewrite this without using :not
-        &:not(:disabled):not(.disabled) {
-            @include ib-hover-focus {
-                &+span {
-                    border-color: ib-gray('60');
-                }
             }
         }
     }
