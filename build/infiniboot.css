@@ -285,7 +285,6 @@ label {
       line-height: 16px;
       margin-right: 5px;
       margin-top: -2px;
-      position: relative;
       transition: border-color 150ms;
       vertical-align: middle;
       width: 16px; }
@@ -299,9 +298,8 @@ label {
         content: '';
         display: block;
         height: 16px;
-        left: -1px;
-        position: absolute;
-        top: -1px;
+        margin-left: -1px;
+        margin-top: -1px;
         width: 16px; }
     .themed-checkbox input[type=checkbox]:hover + span, .themed-radio input[type=checkbox]:hover + span, .themed-radio .themed-checkbox input[type=radio]:hover + span, .themed-radio input[type=radio]:hover + span,
     .themed-checkbox input[type=checkbox]:hover:checked + span, .themed-radio input[type=checkbox]:hover:checked + span, .themed-radio
@@ -348,7 +346,6 @@ label {
       line-height: 16px;
       margin-right: 5px;
       margin-top: -2px;
-      position: relative;
       transition: border-color 150ms;
       vertical-align: middle;
       width: 16px; }
@@ -362,9 +359,8 @@ label {
         content: '';
         display: block;
         height: 16px;
-        left: -1px;
-        position: absolute;
-        top: -1px;
+        margin-left: -1px;
+        margin-top: -1px;
         width: 16px; }
     .themed-checkbox input[type=checkbox]:hover + span, .themed-radio input[type=checkbox]:hover + span, .themed-radio .themed-checkbox input[type=radio]:hover + span, .themed-radio input[type=radio]:hover + span,
     .themed-checkbox input[type=checkbox]:hover:checked + span, .themed-radio input[type=checkbox]:hover:checked + span, .themed-radio
@@ -393,7 +389,7 @@ label {
     background-image: none;
     border-radius: 8px;
     height: 8px;
-    margin: 4px 0 0 4px;
+    margin: 3px 0 0 3px;
     width: 8px; }
 
 .themed-radio input[type=radio]:disabled:checked + span, .themed-radio input[type=radio].disabled:checked + span {
