@@ -1,0 +1,43 @@
+
+@function __add($augend, $addend, $args...) {
+    $augend: __parse-float($augend);
+    $addend: __parse-float($addend);
+
+    $units: __map($augend $addend, __unit);
+    $unit-groups: __map($units, __unit-group);
+
+    $unit-groups-equal: if(
+      __every($unit-groups, __is-equal null),
+      __is-equal($units...),
+      __is-equal($unit-groups...));
+
+    @if ($unit-groups-equal == false and __every($units)) {
+      @return calc(#{unquote('#{$augend} + #{$addend}')});
+    }
+
+    @return $augend + $addend;
+}
+
+
+///
+/// Adds two numbers.
+///
+/// @access public
+/// @group Math
+/// @param {number} $augend The first number to add.
+/// @param {number} $addend The second number to add.
+/// @returns {number} Returns the sum.
+/// @example scss
+/// $foo: _add(6, 4);
+/// // => 10
+
+@function _add($args...) {
+    @return call('__add', $args...);
+}
+
+
+/// @alias _add
+
+@function \+($args...) {
+    @return call('__add', $args...);
+}

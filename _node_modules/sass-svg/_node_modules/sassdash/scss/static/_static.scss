@@ -1,0 +1,84 @@
+$__static__: () !global;
+
+///
+/// Gets the specified static variable. Uses `_get()` syntax.
+/// 
+/// @access public
+/// @group Utility
+/// @param {string|list} $keys Single key or list of keys for static value retrieval.
+/// @returns {*} Returns the retrieved static value.
+/// @see {function} _get
+/// @example scss
+///     @include _static-set('global-padding', 1rem);
+///     
+///     .foo {
+///         padding: _static-get('global-padding');
+///         // => 1rem
+///     }
+
+@function _static-get($keys) {
+    @return __get($__static__, $keys);
+}
+
+
+///
+/// Sets the specified static variable. Uses `_set()` syntax.
+/// 
+/// @access public
+/// @group Utility
+/// @param {string|list} $keys Single key or list of keys for static value setting.
+/// @returns {*} Returns the updated static value.
+/// @see {function} _set
+/// @example scss
+///     $global-padding: _static-set('global-padding', 1rem);
+///     
+///     .foo {
+///         padding: _static-get('global-padding');
+///         // => 1rem
+///     }
+
+@function _static-set($keys, $value) {
+    $__static__: __set($__static__, $keys, $value) !global;
+
+    @return __get($__static__, $keys);
+}
+
+
+///
+/// Sets the specified static variable. Uses `_set()` syntax.
+/// 
+/// @access public
+/// @group Utility
+/// @param {string|list} $keys Single key or list of keys for static value setting.
+/// @see {function} _static-set
+/// @example scss
+///     @include _static-set('global-padding', 1rem);
+///     
+///     .foo {
+///         padding: _static-get('global-padding');
+///         // => 1rem
+///     }
+
+@mixin _static-set($args...) {
+    $__static__: _static-set($args...) !global;
+}
+
+
+@function _static-push($keys, $value) {
+    $__static__: __push($__static__, $keys, $value) !global;
+
+    @return $__static__;
+}
+
+
+@function _static($keys: $__undefined__, $value: $__undefined__) {
+    @if __is-undefined($keys) and __is-undefined($value) {
+        @return $__static__;
+    }
+
+    @if __is-undefined($value) {
+        @return _static-get($keys);
+    }
+
+    @return _static-set($keys, $value);
+}

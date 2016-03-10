@@ -1,0 +1,52 @@
+@function __omit($map, $predicate, $this-arg: null, $args...) {
+    @if $map == null {
+        @return ();
+    }
+
+    $map: __to-map($map);
+    
+    @if not __function-exists($predicate) {
+        $omitted-keys: __base-flatten(($predicate, $this-arg, $args));
+
+        @each $key in $omitted-keys {
+            $map: map-remove($map, $key);
+        }
+
+        @return $map;
+    }
+
+    $predicate: __bind-callback($predicate, $this-arg, 3);
+    $result: __pick-by-callback($map, __negate($predicate));
+
+    @return $result;
+}
+
+
+/// The opposite of `_pick`; this method creates a map composed of the
+/// own and inherited enumerable properties of `$map` that are not omitted.
+/// 
+/// Property names may be specified as individual arguments or as lists of
+/// property names. If `$predicate` is provided it is invoked for each property
+/// of `$map` omitting the properties `$predicate` returns truthy for. The
+/// predicate is bound to `$this-arg` and invoked with three arguments;
+/// (value, key, map).
+///
+///
+/// @access public
+/// @group Map
+/// @param {Map} $map The source map.
+/// @param {Function|String...|List} $predicate The function invoked per
+///  iteration or property names to omit, specified as individual property
+///  names or lists of property names.
+/// @param {*} $this-arg [null] - The `_this` binding of `$predicate`.
+/// @returns {Map} Returns the new map.
+/// @example scss
+/// $map: ( 'user': 'fred', 'age': 40 );
+/// $foo: _omit($map, 'age');
+/// // => ( 'user': 'fred' )
+/// $foo: _omit($map, _is-number);
+/// // => ( 'user': 'fred' )
+
+@function _omit($args...) {
+    @return call('__omit', $args...);
+}

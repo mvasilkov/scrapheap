@@ -1,0 +1,90 @@
+@function __to-comparable($value, $customizer: null, $guard: null) {
+    @if not (__function-exists($customizer)) {
+        $customizer: if(__is-string($value), '__get-char-code', '__identity');
+    }
+
+    $value: __exec($customizer, $value);
+
+    @return $value;
+}
+
+
+@function __to-iterable($value) {
+    @if ($value == null) {
+        @return ();
+    }
+
+    @if (__is-string($value)) {
+        @return __to-map(__string-split($value, ''));
+    }
+
+    @if not (__is-length(length($value))) {
+        @return __values($value);
+    }
+
+    @return if(__is-map($value), $value, __to-map($value));
+}
+
+
+@function __to-map($value) {
+    @if (__is-string($value)) {
+        $index: 1;
+        $length: str-length($value);
+        $result: ();
+
+        @while ($index <= $length) {
+            $result: __set($result, $index, __char-at($value, $index));
+            $index: $index + 1;
+        }
+
+        @return $result;
+    } @else if (__is-list-like($value)) {
+        $index: 1;
+        $length: length($value);
+        $result: ();
+
+        @while ($index <= $length) {
+            $result: __set($result, $index, nth($value, $index));
+            $index: $index + 1;
+        }
+
+        @return $result;
+    } @else if (__is-map($value)) {
+        @return $value;
+    }
+
+    @return ();
+}
+
+
+/// Converts `$value` to a map.
+/// 
+/// If the value is a list, the map keys represent the list indexes and the 
+/// values represent the corresponding list values.
+/// 
+/// If the value is a string, the string is first coerced to a list, with 
+/// with each index representing the index of each character in the string.
+/// 
+/// If the value is not list-like, an empty map is returned.
+/// 
+/// @access public
+/// @group Lang
+/// @param {*} $value The value to convert.
+/// @returns {Map} Returns the converted map.
+/// @example scss
+/// $list: 100, 200, 300;
+/// $string: 'abc';
+/// $number: 3;
+/// 
+/// $foo: _to-map($list);
+/// // => (1: 100, 2: 200, 3: 300);
+/// 
+/// $foo: _to-map($string)
+/// // => (1: 'a', 2: 'b', 3: 'c')
+/// 
+/// $foo: _to-map($number)
+/// // => ()
+
+@function _to-map($args...) {
+    @return call('__to-map', $args...);
+}
