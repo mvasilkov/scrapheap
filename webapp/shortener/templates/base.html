@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html>
+﻿{% load bootstrap3 %}
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf8">
         <title>Django URL shortener</title>
+        {% bootstrap_css %}
     </head>
     <body>
-        {% block page_content %}{% endblock %}
+        <div class="container">
+            {% block page_content %}{% endblock %}
+        </div>
     </body>
 </html>

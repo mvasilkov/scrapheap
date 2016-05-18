@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django import forms
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import TargetUrl
 
@@ -22,11 +22,14 @@ def decode(string):
     return x
 
 
-class TargetUrlForm(ModelForm):
+class TargetUrlForm(forms.ModelForm):
     class Meta:
         model = TargetUrl
         fields = ['url']
         labels = {'url': 'Enter a link to shorten it:'}
+        widgets = {'url': forms.TextInput(attrs={
+            'placeholder': 'http://example.com/'
+        })}
 
 
 def submit(request):
