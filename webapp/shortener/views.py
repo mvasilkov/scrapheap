@@ -6,6 +6,12 @@ DIGITS = 'BCDFGHJKLMNPQRSTVWXYZbcdfghjkmnpqrstvwxyz23456789-_'
 BASE = len(DIGITS)  # 51
 
 def encode(x):
+    # edge cases
+    if x < 0:
+        return None
+    if x == 0:
+        return DIGITS[0]
+
     string = ''
     while x > 0:
         string = DIGITS[x % BASE] + string
