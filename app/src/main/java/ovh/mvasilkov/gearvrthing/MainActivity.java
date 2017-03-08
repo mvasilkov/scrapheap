@@ -1,11 +1,13 @@
 package ovh.mvasilkov.gearvrthing;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+import org.gearvrf.GVRActivity;
+
+public class MainActivity extends GVRActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setMain(new Program());
     }
 }
