@@ -1,9 +1,9 @@
-/// <reference path="proto.d.ts" />
-
 const M = 1e6
 const G = 10
 const R = 100
 const F = 0.0169
+const K = 200
+const T = 0.02
 
 function hypot(x: number, y: number) {
     return Math.sqrt(x * x + y * y)
@@ -31,4 +31,17 @@ function paintGround(c: CanvasRenderingContext2D) {
     c.lineWidth = 2
     c.strokeStyle = '#18FFFF'
     c.stroke()
+}
+
+function paintDangerZone(c: CanvasRenderingContext2D) {
+    c.save()
+
+    c.beginPath()
+    c.arc(0, 0, K * 2, 0, Math.PI * 2)
+    c.lineWidth = 2
+    c.strokeStyle = '#F50057'
+    c.setLineDash([10, 20])
+    c.stroke()
+
+    c.restore()
 }

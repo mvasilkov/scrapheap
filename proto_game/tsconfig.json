@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "strictNullChecks": true
+    },
+    "files": [
+        "proto.d.ts"
+    ]
+}

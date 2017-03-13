@@ -1,5 +1,3 @@
-/// <reference path="proto.d.ts" />
-
 class Starship {
     x: number
     y: number
@@ -23,6 +21,48 @@ class Starship {
     thrust() {
         this.u += this.f * F * Math.cos(this.a)
         this.v += this.f * F * Math.sin(this.a)
+    }
+
+    update(t: number) {
+        this.xPrev = this.x
+        this.yPrev = this.y
+        this.aPrev = this.a
+
+        let d = hypot(this.x, this.y)
+
+        this.f = G * M / (d * d)
+
+        this.u -= this.x / d * this.f * t
+        this.v -= this.y / d * this.f * t
+
+        let a = Math.atan2(this.y, this.x)
+
+        if (d < K) {
+            this.a = a + Math.PI * lerp(-0.5, 0.5, d / K)
+        }
+        else {
+            this.a = a + Math.PI * 0.5
+        }
+
+        const x = this.x + this.u * t
+        const y = this.y + this.v * t
+
+        d = hypot(x, y)
+
+        if (d > R) {
+            if (d > K * 2) {
+                respawn()
+                return
+            }
+
+            this.x = x
+            this.y = y
+        }
+        else {
+            this.x = R * x / d
+            this.y = R * y / d
+            this.u = this.v = 0
+        }
     }
 
     paint(c: CanvasRenderingContext2D, t: number) {
