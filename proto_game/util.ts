@@ -9,6 +9,10 @@ function hypot(x: number, y: number) {
     return Math.sqrt(x * x + y * y)
 }
 
+function lerp(a: number, b: number, t: number) {
+    return (1 - t) * a + t * b
+}
+
 function lerpAngle(a: number, b: number, t: number) {
     b -= a
     b %= Math.PI * 2
@@ -19,4 +23,12 @@ function lerpAngle(a: number, b: number, t: number) {
         b += Math.PI * 2
     }
     return a + b * t
+}
+
+function paintGround(c: CanvasRenderingContext2D) {
+    c.beginPath()
+    c.arc(0, 0, R - 20, 0, Math.PI * 2)
+    c.lineWidth = 2
+    c.strokeStyle = '#18FFFF'
+    c.stroke()
 }
