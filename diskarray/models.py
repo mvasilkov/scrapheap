@@ -3,6 +3,8 @@ from datetime import datetime
 from django.db import models
 from humanfriendly import format_size
 
+from .shell_commands import mount_lines
+
 
 class Disk(models.Model):
     dev_name = models.CharField(max_length=20)
@@ -12,6 +14,21 @@ class Disk(models.Model):
 
     def __str__(self):
         return '%s on %s' % (self.dev_name, self.mount_point)
+
+    def is_mounted(self):
+        for line in mount_lines():
+            if line.startswith('%s ' % self):
+                return True
+
+        return False
+
+    @staticmethod
+    def containing_path(path):
+        for disk in Disk.objects.all():
+            if path.startswith(disk.mount_point):
+                return disk
+
+        return None
 
 
 class File(models.Model):
@@ -23,7 +40,7 @@ class File(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.vpath
+        return self.vpath or '(vpath is empty)'
 
     def readable_size(self):
         return '%s (%s)' % (format_size(self.size, binary=True),
