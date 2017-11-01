@@ -57,6 +57,16 @@ DATABASES = {
 }
 
 
+# Cache
+# https://docs.djangoproject.com/en/dev/topics/cache/
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 

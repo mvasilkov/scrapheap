@@ -1,5 +1,5 @@
 from datetime import datetime
-from os.path import getsize
+from os.path import getsize, realpath
 from subprocess import CalledProcessError
 
 from django.core.management.base import BaseCommand, CommandError
@@ -20,6 +20,7 @@ class Command(BaseCommand):
         if not path:
             raise CommandError('Path is required')
 
+        path = realpath(path)
         self.stdout.write('Path = %s' % path)
         try:
             size = getsize(path)

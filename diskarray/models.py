@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.core.cache import cache
 from django.db import models
 from humanfriendly import format_size
 
@@ -16,7 +17,8 @@ class Disk(models.Model):
         return '%s on %s' % (self.dev_name, self.mount_point)
 
     def is_mounted(self):
-        for line in mount_lines():
+        lines = cache.get_or_set('mount_lines', mount_lines)
+        for line in lines:
             if line.startswith('%s ' % self):
                 return True
 
