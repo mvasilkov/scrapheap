@@ -1,0 +1,12 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-image: -webkit-radial-gradient(center top, circle farthest-corner, #fff 0%, #f5f9fa 100%);
+    background-image: radial-gradient(circle farthest-corner at center top, #fff 0%, #f5f9fa 100%);
+}
+
+form label {
+    display: block;
+}
