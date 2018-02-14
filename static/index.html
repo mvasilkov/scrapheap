@@ -13,14 +13,17 @@
             <article>
                 <form action="" method="post">
                     <p>
-                        <label for="email">Электродинамическая почта</label>
-                        <input autocorrect="off" autocapitalize="off" autofocus name="email" id="email" type="email" required>
+                        <label for="email">Почта</label>
+                        <input autocorrect="off" autocapitalize="off" autofocus placeholder="sashagrey@sashagrey.com" name="email" id="email" type="email"
+                            required size="40">
                     </p>
+                    <p class="g-recaptcha" data-sitekey="6LdZvUUUAAAAAI06V5NlJiY5HLiBmdqj0Hg_5N1W"></p>
                     <p>
-                        <input type="submit" value="Поехали!">
+                        <input type="submit" value="Ввод">
                     </p>
                 </form>
             </article>
         </div>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
     </body>
 </html>
