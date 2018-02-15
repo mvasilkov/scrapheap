@@ -1,0 +1,11 @@
+[recaptcha]
+site_key = 'FOO'
+secret_key = 'FOO'
+
+[ghost]
+api = 'http://example.com/ghost/api/v0.1'
+username = 'FOO'
+password = 'FOO'
+client_id = 'ghost-admin'
+client_secret = 'FOO'
+role_id = 'FOO'
