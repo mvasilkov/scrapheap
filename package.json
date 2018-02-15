@@ -9,6 +9,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "express-recaptcha": "^3.0.1",
+    "request": "^2.83.0",
     "systematize": "^2.0.0",
     "toml": "^2.3.3"
   }
