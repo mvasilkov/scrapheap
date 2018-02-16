@@ -38,7 +38,7 @@ app.post('/registration', recaptcha.middleware.verify, function (req, res) {
 
 app.get('/', function (req, res) {
     res.type('txt')
-    res.send('Ghost registration app listening on 127.0.0.1:3000')
+    res.send(`Ghost registration app listening on ${options.app.host}:${options.app.port}`)
 })
 
 function auth() {
@@ -64,8 +64,8 @@ function register(email) {
 }
 
 if (require.main === module) {
-    app.listen(3000, '127.0.0.1', function () {
-        console.log('Ghost registration app listening on 127.0.0.1:3000')
+    app.listen(options.app.port, options.app.host, function () {
+        console.log(`Ghost registration app listening on ${options.app.host}:${options.app.port}`)
     })
 }
 else {
