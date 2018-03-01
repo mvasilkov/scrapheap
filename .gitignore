@@ -2,3 +2,4 @@
 /.vscode/
 __pycache__/
 /local_storage/db.sqlite3
+/node_modules/

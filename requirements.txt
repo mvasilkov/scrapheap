@@ -1,1 +1,4 @@
 django[argon2]>=2.0.2
+pytest>=3.4.1
+pytest-django>=3.1.2
+requests>=2.18.4
