@@ -1,0 +1,3 @@
+[django]
+settings-module = 'ptxt.settings'
+routes-module = 'ptxt.routes'
