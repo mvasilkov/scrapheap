@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load journal_tags %}
+
+{% block content %}
+<div class="post">
+    {{ p.contents|commonmark }}
+</div>
+{% endblock %}
