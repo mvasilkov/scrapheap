@@ -5,6 +5,7 @@ emplace()
 # Application definition
 
 INSTALLED_APPS += [
+    'rest_framework',
     'journal',
 ]
 
@@ -77,3 +78,12 @@ STATICFILES_FINDERS = [
 YARN_ROOT_PATH = DJANGO_ROOT.as_posix()
 
 YARN_STATIC_FILES_PREFIX = 'node_modules'
+
+# Django REST framework
+# http://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+}
