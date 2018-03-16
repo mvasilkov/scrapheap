@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="index">
-    {% for p in posts %}
-        {% include './post.html' with p=p %}
-    {% endfor %}
-</div>
+    <div class="index">
+        {% for p in posts %}
+            {% include './post.html' with p=p %}
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -26,6 +26,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.order_by('-pk')
     serializer_class = PostSerializer
     lookup_field = 'objectid'
