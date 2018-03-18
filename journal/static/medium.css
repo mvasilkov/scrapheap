@@ -7,7 +7,7 @@
 }
 
 article {
-    /*font-size: 21px;*/
+    /* font-size: 21px; */
     font-size: 18px;
     line-height: 1.58;
     letter-spacing: -0.003em;
@@ -59,7 +59,8 @@ li {
 
 li::before {
     content: '•';
-    font-size: 16.8px;
+    /* font-size: 16.8px; */
+    font-size: 14.4px;
     margin-left: -40px;
     padding-top: 4px;
     position: absolute;

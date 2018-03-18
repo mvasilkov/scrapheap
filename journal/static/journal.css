@@ -5,3 +5,11 @@ a {
 .container {
     max-width: 900px;
 }
+
+form input[type='text'],
+form input[type='password'],
+form input[type='email'] {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+}
