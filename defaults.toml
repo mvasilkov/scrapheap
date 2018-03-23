@@ -1,0 +1,3 @@
+[django]
+settings-module = 'GLaDOS.settings'
+routes-module = 'GLaDOS.routes'

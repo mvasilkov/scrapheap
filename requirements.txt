@@ -1,0 +1,4 @@
+Django==2.0.3
+django-defaults==0.0.1
+pytz==2018.3
+toml==0.9.4
