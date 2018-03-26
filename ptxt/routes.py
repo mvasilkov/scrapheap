@@ -7,7 +7,7 @@ from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 
 from journal.converters import PathConverter
-from journal.views import index, post, register, UserViewSet, PostViewSet
+from journal.views import index, post, register, UserViewSet, PostViewSet, get_current_user
 
 api_router = routers.DefaultRouter()
 api_router.register('users', UserViewSet)
@@ -16,6 +16,7 @@ api_router.register('posts', PostViewSet)
 register_converter(PathConverter, 'path')
 
 urlpatterns = [
+    path('api/auth/self/', get_current_user),
     path('api/auth/token/', obtain_jwt_token),
     path('api/', include(api_router.urls)),
     path('auth/register/', register, name='register'),

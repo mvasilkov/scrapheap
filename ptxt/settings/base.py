@@ -1,3 +1,4 @@
+from datetime import timedelta
 from defaults import emplace
 
 emplace()
@@ -90,4 +91,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ],
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),
 }
