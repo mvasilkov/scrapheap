@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 from .forms import RegistrationForm
 from .models import Post
@@ -41,6 +41,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'username'
+    permission_classes = (permissions.IsAdminUser, )
 
 
 class PostViewSet(viewsets.ModelViewSet):
