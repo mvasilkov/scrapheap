@@ -17,7 +17,6 @@ def get_auth_token(live_server: str):
     r = requests.post(f'{live_server}/api/auth/token/', data=CREDENTIALS)
     assert r.status_code == 200
     res = r.json()
-    assert 'token' in res
     return res['token']
 
 
@@ -33,5 +32,4 @@ def test_api_auth_self(live_server):
     r = requests.get(f'{live_server}/api/auth/self/', headers={'Authorization': f'JWT {token}'})
     assert r.status_code == 200
     res = r.json()
-    assert 'username' in res
     assert res['username'] == CREDENTIALS['username']

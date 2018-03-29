@@ -8,6 +8,25 @@ from test.test_api_auth import initialize_user, get_auth_token
 
 
 @pytest.mark.django_db
+def test_api_create_post(live_server):
+    initialize_user()
+
+    token = get_auth_token(live_server)
+    headers = {'Authorization': f'JWT {token}'}
+
+    new_post = {
+        'path': 'foobar',
+        'contents': '# foo bar',
+    }
+
+    r = requests.post(f'{live_server}/api/posts/', data=new_post, headers=headers)
+    assert r.status_code == 201  # Created
+    res = r.json()
+    assert res['path'] == 'foobar'
+    assert res['user']['username'] == 'rei'
+
+
+@pytest.mark.django_db
 def test_api_read_post(live_server):
     initialize_user()
 
@@ -22,11 +41,9 @@ def test_api_read_post(live_server):
     r = requests.get(f'{live_server}/api/posts/', headers=headers)
     assert r.status_code == 200
     res = r.json()
-    assert len(res) == 2
     assert [post['path'] for post in res] == ['another-one', 'hello-world']
 
     r = requests.get(f'{live_server}/api/posts/{p.objectid}/', headers=headers)
     assert r.status_code == 200
     res = r.json()
-    assert 'path' in res
     assert res['path'] == p.path
