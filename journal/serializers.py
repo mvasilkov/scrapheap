@@ -13,9 +13,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'username', 'first_name', 'last_name', 'email')
 
 
+class BasicUserSerializer(UserSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username')
+
+
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField('post-detail', lookup_field='objectid')
-    user = UserSerializer(read_only=True)
+    user = BasicUserSerializer(read_only=True)
 
     # user = serializers.HyperlinkedRelatedField(
     #     'user-detail', lookup_field='username', read_only=True)
