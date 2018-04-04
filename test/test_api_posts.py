@@ -22,7 +22,9 @@ def test_api_create_post(live_server):
     r = requests.post(f'{live_server}/api/posts/', data=new_post, headers=headers)
     assert r.status_code == 201  # Created
     res = r.json()
+    assert len(res['objectid']) == 24
     assert res['path'] == 'foobar'
+    assert 'foo bar' in res['contents_html']
     assert res['user']['username'] == 'rei'
 
 
@@ -42,6 +44,10 @@ def test_api_read_post(live_server):
     assert r.status_code == 200
     res = r.json()
     assert [post['path'] for post in res] == ['another-one', 'hello-world']
+
+    contents = ['hello, world', 'another one']
+    for post in res:
+        assert contents.pop() in post['contents_html']
 
     r = requests.get(f'{live_server}/api/posts/{p.objectid}/', headers=headers)
     assert r.status_code == 200
