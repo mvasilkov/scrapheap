@@ -43,13 +43,17 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'username'
-    permission_classes = (permissions.IsAdminUser, )
+    permission_classes = (permissions.IsAdminUser,)
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.order_by('-pk')
     serializer_class = PostSerializer
     lookup_field = 'objectid'
+
+    def get_queryset(self):
+        if 'user' in self.kwargs:
+            return Post.objects.filter(user__username=self.kwargs['user']).order_by('-pk')
+        return Post.objects.order_by('-pk')
 
 
 @api_view(['GET'])
