@@ -58,6 +58,13 @@ class PostViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
-def get_current_user(request):
+def current_user(request):
     serializer = UserSerializer(request.user, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def journal_post(request, user: str, path: str):
+    p = get_object_or_404(Post, user__username=user, path=path)
+    serializer = PostSerializer(p, context={'request': request})
     return Response(serializer.data)

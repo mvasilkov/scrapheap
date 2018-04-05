@@ -52,17 +52,21 @@ def test_api_read_post(live_server):
         assert 'contents' not in post
         assert contents.pop() in post['contents_html']
 
+    # Single post
     r = requests.get(f'{live_server}/api/posts/{p.objectid}/', headers=headers)
     assert r.status_code == 200
     res = r.json()
     assert res['path'] == p.path
+    assert p.contents in res['contents_html']
 
 
 @pytest.mark.django_db
 def test_api_read_journal(live_server):
     initialize_users()
 
-    Post(user=User.objects.first(), path='post-rei-a', contents='a').save()
+    p = Post(user=User.objects.first(), path='post-rei-a', contents='a')
+    p.save()
+
     Post(user=User.objects.first(), path='post-rei-b', contents='b').save()
     Post(user=User.objects.last(), path='post-reix', contents='x').save()
 
@@ -73,3 +77,10 @@ def test_api_read_journal(live_server):
     assert r.status_code == 200
     res = r.json()
     assert [post['path'] for post in res] == ['post-rei-b', 'post-rei-a']
+
+    # Single post
+    r = requests.get(f'{live_server}/api/journal/rei/{p.path}/', headers=headers)
+    assert r.status_code == 200
+    res = r.json()
+    assert res['path'] == p.path
+    assert p.contents in res['contents_html']
