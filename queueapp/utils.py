@@ -58,3 +58,9 @@ def issue_cmp(a, b):
     'Compare issues'
 
     return strcoll(a.key, b.key)
+
+
+def new_dict():
+    'Django cannot serialize lambdas'
+
+    return {}

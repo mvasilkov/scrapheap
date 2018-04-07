@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from annoying.fields import JSONField
 
-from .utils import compile_cmp, issue_cmp
+from .utils import compile_cmp, issue_cmp, new_dict
 
 
 class Queue(models.Model):
@@ -42,7 +42,7 @@ class Buffer(models.Model):
 class Issue(models.Model):
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
-    props = JSONField(default=lambda: {}, editable=False)
+    props = JSONField(default=new_dict, editable=False)
     is_running = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

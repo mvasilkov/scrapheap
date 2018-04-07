@@ -83,6 +83,6 @@ def test_buffer_ordering_select_one():
     Issue(buffer=b, key='FOO-2').save()
     Issue(buffer=b, key='FOO-3').save()
 
-    assert b.count == 3
+    assert b.count() == 3
     keys = [issue.key for issue in b.get_ordered(count=3)]
     assert keys == ['FOO-2', 'FOO-1', 'FOO-3']
