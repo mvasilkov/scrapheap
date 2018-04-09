@@ -6,17 +6,22 @@ from django.utils import timezone
 
 from annoying.fields import JSONField
 
-from .utils import compile_cmp, issue_cmp, new_dict
+from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes
 
 
+@repr_attributes('name')
 class Queue(models.Model):
     name = models.CharField(max_length=60)
     is_active = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ('name', )
 
+
+@repr_attributes('queue.name')
 class Buffer(models.Model):
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
-    cmp_function = models.TextField()
+    cmp_function = models.TextField(blank=True)
 
     def key_function(self):
         cmp = compile_cmp(self.cmp_function) if self.cmp_function else None

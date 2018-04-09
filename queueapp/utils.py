@@ -64,3 +64,31 @@ def new_dict():
     'Django cannot serialize lambdas'
 
     return {}
+
+
+def getattr2(object, name):
+    'Nested getattr'
+
+    attr_names = name.split('.')
+    for a in attr_names:
+        object = getattr(object, a)
+    return object
+
+
+def repr_attributes(*attr_names):
+    'Generate __repr__ and __str__ methods from attributes'
+
+    def update_class(cls):
+        def repr_method(this):
+            pairs = [f'{a}={getattr2(this, a)}' for a in attr_names]
+            return '%s(%s)' % (this.__class__.__name__, ' '.join(pairs))
+
+        if '__repr__' not in cls.__dict__:
+            cls.__repr__ = repr_method
+
+        if '__str__' not in cls.__dict__:
+            cls.__str__ = repr_method
+
+        return cls
+
+    return update_class
