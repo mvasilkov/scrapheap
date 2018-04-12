@@ -5,3 +5,4 @@ __pycache__/
 /.pytest_cache/
 /*.iml
 /node_modules/
+/.idea/
