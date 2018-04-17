@@ -1,4 +1,11 @@
+{% load queue_tags %}
 <div class="queue">
-    <h3>{{ queue.name }}</h3>
-    <p><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></p>
+    <h3>{{ queue.name }} <small><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></small></h3>
+    <div class="components">
+        {% for comp in queue.get_components %}
+            {% with template_name=comp|comp_template %}
+                {% include 'queueapp/inc/'|add:template_name %}
+            {% endwith %}
+        {% endfor %}
+    </div>
 </div>

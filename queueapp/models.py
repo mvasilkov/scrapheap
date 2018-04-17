@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 from annoying.fields import JSONField
+from annoying.functions import get_object_or_None
 
 from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes
 
@@ -14,12 +15,30 @@ class Queue(models.Model):
     name = models.CharField(max_length=60)
     is_active = models.BooleanField(default=False)
 
+    def get_components(self):
+        poller = get_object_or_None(JiraPoller, queue=self)
+        actuator = get_object_or_None(JenkinsActuator, queue=self)
+        if poller is None or actuator is None:
+            return ()
+
+        filters = {a.from_buffer.pk: a for a in AutoFilter.objects.filter(queue=self)}
+
+        components = [poller, poller.to_buffer]
+        while filters:
+            a = filters[components[-1].pk]
+            del filters[components[-1].pk]
+            components.extend([a, a.to_buffer])
+
+        components.append(actuator)
+        return components
+
     class Meta:
         ordering = ('name', )
 
 
-@repr_attributes('queue.name')
+@repr_attributes('name', 'queue.name')
 class Buffer(models.Model):
+    name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     cmp_function = models.TextField(blank=True)
 
@@ -44,6 +63,7 @@ class Buffer(models.Model):
         return qs.count()
 
 
+@repr_attributes('key')
 class Issue(models.Model):
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
@@ -53,7 +73,9 @@ class Issue(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 
+@repr_attributes('name', 'queue.name')
 class Poller(models.Model):
+    name = models.CharField(max_length=60)
     queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
     to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT)
     interval = models.DurationField(default=timedelta(minutes=1))
@@ -63,7 +85,9 @@ class Poller(models.Model):
         abstract = True
 
 
+@repr_attributes('name', 'queue.name')
 class Filter(models.Model):
+    name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='to_filter')
     to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='from_filter')
@@ -72,7 +96,9 @@ class Filter(models.Model):
         abstract = True
 
 
+@repr_attributes('name', 'queue.name')
 class Actuator(models.Model):
+    name = models.CharField(max_length=60)
     queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
     from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT)
 
