@@ -100,7 +100,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='log',
             name='queue',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='queueapp.Queue'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='queueapp.Queue'),
         ),
         migrations.AddField(
             model_name='jirapoller',

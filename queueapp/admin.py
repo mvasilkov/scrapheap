@@ -3,7 +3,7 @@ from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.text import Truncator
 
-from .models import Queue, Buffer, Issue, JiraPoller, AutoFilter, JenkinsActuator
+from .models import Queue, Buffer, Issue, Log, JiraPoller, AutoFilter, JenkinsActuator
 
 
 def escape_code(string):
@@ -47,6 +47,18 @@ class IssueAdmin(admin.ModelAdmin):
 
     buffer_name.short_description = 'buffer'
     buffer_name.admin_order_field = 'buffer__name'
+
+
+@admin.register(Log)
+class LogAdmin(admin.ModelAdmin):
+    list_display = ('queue_name', 'created', 'message')
+    list_filter = ('queue__name', )
+
+    def queue_name(self, model):
+        return model.queue.name
+
+    queue_name.short_description = 'queue'
+    queue_name.admin_order_field = 'queue__name'
 
 
 @admin.register(JiraPoller)

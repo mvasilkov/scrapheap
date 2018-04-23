@@ -113,8 +113,9 @@ class Actuator(models.Model):
         abstract = True
 
 
+@repr_attributes('message')
 class Log(models.Model):
-    queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
+    queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
 
