@@ -19,6 +19,10 @@ h1 small, h2 small, h3 small {
     font-weight: normal;
 }
 
+.queue, .comp {
+    position: relative;
+}
+
 .components {
     display: flex;
     margin: 0 -10px;
@@ -33,4 +37,14 @@ h1 small, h2 small, h3 small {
     margin-bottom: 3px;
     text-align: center;
     transform: scale(0.75);
+}
+
+.is-active-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.comp > .is-active-icon {
+    right: 3px;
 }

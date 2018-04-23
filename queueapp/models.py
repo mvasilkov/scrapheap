@@ -21,7 +21,11 @@ class Queue(models.Model):
         if poller is None or actuator is None:
             return ()
 
-        filters = {a.from_buffer.pk: a for a in AutoFilter.objects.filter(queue=self)}
+        filters = {
+            a.from_buffer.pk: a
+            for a in AutoFilter.objects.filter(
+                queue=self, from_buffer__isnull=False, to_buffer__isnull=False)
+        }
 
         components = [poller, poller.to_buffer]
         while filters:
@@ -78,6 +82,7 @@ class Poller(models.Model):
     name = models.CharField(max_length=60)
     queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
     to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT)
+    is_active = models.BooleanField(default=False)
     interval = models.DurationField(default=timedelta(minutes=1))
     updated = models.DateTimeField(default=timezone.now, blank=True)
 
@@ -91,6 +96,7 @@ class Filter(models.Model):
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='to_filter')
     to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='from_filter')
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
@@ -101,9 +107,19 @@ class Actuator(models.Model):
     name = models.CharField(max_length=60)
     queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
     from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT)
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
+
+
+class Log(models.Model):
+    queue = models.OneToOneField(Queue, on_delete=models.PROTECT)
+    created = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+
+    class Meta:
+        ordering = ('-id', )
 
 
 class JiraPoller(Poller):

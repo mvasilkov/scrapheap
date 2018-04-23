@@ -1,3 +1,5 @@
+{% load queue_tags %}
 <div class="comp filter auto-filter">
     <h3>{{ comp.name }} <small><a href="{% url 'admin:queueapp_autofilter_change' comp.id %}">Change</a></small></h3>
+    {{ comp|is_active_icon }}
 </div>

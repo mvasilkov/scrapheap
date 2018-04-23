@@ -8,6 +8,6 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "systematize": "^2.0.0"
+    "systematize": "^3.0.0"
   }
 }
