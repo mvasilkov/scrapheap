@@ -17,7 +17,7 @@ export default class extends React.Component {
     const { text } = this.props;
     return (
         <div className="container">
-        <nav><a>Home</a> <a>Export</a></nav>
+        <nav><a>Home</a> <a href='/post'>New</a></nav>
         <header></header>
         <article dangerouslySetInnerHTML={{__html: marked(text)}}></article>
         </div>
