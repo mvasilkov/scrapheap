@@ -7,6 +7,21 @@
 
 article {
     font-family: Palatino, Garamond, Bookman, serif;
+    &.palatino {
+        font-family: Palatino, serif;
+    }
+    &.garamond {
+        font-family: Garamond, serif;
+    }
+    &.bookman {
+        font-family: Bookman, serif;
+    }
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .add-text {
