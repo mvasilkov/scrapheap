@@ -1,0 +1,21 @@
+@import 'colors';
+
+@mixin link($color, $size, $line-width: 1) {
+    $size-padding: percentage(($size - $line-width) / $size);
+    $size-line: percentage($line-width / $size);
+    $color-line: mix($color, $color-background, 85);
+
+    background: linear-gradient(to bottom, $color-background $size-padding, $color-line $size-line) bottom repeat-x;
+    background-size: 64px $size * 1px;
+    color: $color;
+    padding-bottom: $size * 1px;
+}
+
+a {
+    @include link($color-link, 3);
+    text-decoration: none;
+}
+
+a:focus {
+    background-image: none;
+}

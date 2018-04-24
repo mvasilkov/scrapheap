@@ -1,0 +1,26 @@
+@import 'colors';
+@import 'utils';
+
+:focus {
+    outline: 3px solid $color-focus-solid;
+    outline: 3px solid $color-focus;
+    outline-offset: 1px;
+}
+
+body {
+    background-color: $color-background;
+    color: $color-copy;
+}
+
+p, pre, ul {
+    @include font-subpixel-off;
+}
+
+pre {
+    font-size: 17px;
+    letter-spacing: 0;
+}
+
+header p, footer p {
+    font-style: italic;
+}

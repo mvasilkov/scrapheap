@@ -1,0 +1,14 @@
+$color-background: #fff;
+$color-copy: #303030;
+$color-heading: #404040;
+$color-secondary: #808080;
+
+// Based on https://developer.apple.com/
+$color-link: #0070c9;
+$color-focus: rgba(131, 192, 253, 0.5);
+$color-focus-solid: #c1e0fe;
+
+// https://uigradients.com/#DayTripper
+$color-heading-1: #f857a6;
+$color-heading-2: #ff5858;
+$color-heading-fallback: mix($color-heading-1, $color-heading-2);
