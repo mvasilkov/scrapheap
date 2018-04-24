@@ -4,3 +4,12 @@
 @import 'headings';
 @import 'links';
 @import 'classes';
+
+article {
+    font-family: Palatino, Garamond, Bookman, serif;
+}
+
+.add-text {
+    display: flex;
+    width: 100%;
+}
