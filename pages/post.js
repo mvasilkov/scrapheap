@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import '../styles/style.scss'
 import marked from 'marked';
@@ -5,7 +6,7 @@ import marked from 'marked';
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: "" };
+    this.state = { text: "", url: "" };
   }
   
   handleChange = (e) => {
@@ -13,7 +14,12 @@ export default class extends React.Component {
   }
 
   handleClick = (e) => {
-    console.log('handleded');
+    console.log('>>>', this.state.text);
+    // axios.post('/new', { contents: this.state.text })
+    //   .then(r => {
+    //     console.log('handleded', r);
+    //     this.setState({url: r.url});
+    //   })
   }
 
   render() {
@@ -21,10 +27,11 @@ export default class extends React.Component {
       <div>
         <div className="controls">
           <button onClick={this.handleClick}>Save</button>
+          <div>Url of text: {this.state.url}</div>
         </div>
         <div className="add-text">
           <textarea className="raw" onChange={this.handleChange}></textarea>
-          <article className="preview" dangerouslySetInnerHTML={{__html: marked(this.state.text)}}></article>
+        <article className="preview" dangerouslySetInnerHTML={{__html: marked(this.state.text)}}></article>
         </div>
       </div>
     );
