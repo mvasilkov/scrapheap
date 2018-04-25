@@ -2,13 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import '../styles/style.scss'
 import marked from 'marked';
+import Link from 'next/link';
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       text: "",
-      url: "",
+      url: "http://project-text.com/df4fSv",
       schema: "palatino"
     };
   }
@@ -33,15 +34,17 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='wrapper'>
         <div className="controls">
-          <button onClick={this.handleClick}>Save</button>
+        <div className='url'><span>Url of text:</span>
+        <Link href={this.state.url}><a>{this.state.url}</a></Link>
+        </div>
           <div><select onChange={this.changeFont}>
               <option value='palatino'>Palatino</option>
               <option value='garamond'>Garamond</option>
               <option value='bookman'>Bookman</option>
           </select></div>
-          <div>Url of text: {this.state.url}</div>
+          <button onClick={this.handleClick}>Save</button>
         </div>
         <div className="add-text">
           <textarea className="raw" onChange={this.handleChange}></textarea>
