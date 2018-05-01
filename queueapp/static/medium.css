@@ -40,12 +40,17 @@ h1:first-child, h2:first-child, h3:first-child {
     margin-top: 0;
 }
 
-p, ul {
+p, pre, ul {
     margin: 0 0 29px;
 }
 
-p:last-child, ul:last-child {
+p:last-child, pre:last-child, ul:last-child {
     margin-bottom: 0;
+}
+
+pre, code {
+    font-size: 17px;
+    letter-spacing: 0;
 }
 
 ul {
@@ -99,8 +104,12 @@ li::before {
         letter-spacing: -0.018em;
     }
 
-    p, ul {
+    p, pre, ul {
         margin-bottom: 21px;
+    }
+
+    pre, code {
+        font-size: 15px;
     }
 
     li::before {

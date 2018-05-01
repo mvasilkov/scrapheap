@@ -1,6 +1,8 @@
 {% load queue_tags %}
-<div class="queue">
-    <h3>{{ queue.name }} <small><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></small></h3>
+<div class="queue {% if not queue.is_active %}queue-off{% endif %}">
+    <h3>{{ queue.name }}
+        <small><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></small>
+    </h3>
     <div class="components">
         {% for comp in queue.get_components %}
             {% with template_name=comp|comp_template %}
@@ -8,5 +10,9 @@
             {% endwith %}
         {% endfor %}
     </div>
-    {{ queue|is_active_icon }}
+    <div class="components">
+        <div class="comp logs">
+            <h3>Event Log</h3>
+        </div>
+    </div>
 </div>

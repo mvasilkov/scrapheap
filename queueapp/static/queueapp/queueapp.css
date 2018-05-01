@@ -23,6 +23,11 @@ h1 small, h2 small, h3 small {
     position: relative;
 }
 
+.queue.queue-off {
+    background-color: #fbfbfb;
+    opacity: 0.5;
+}
+
 .components {
     display: flex;
     margin: 0 -10px;
@@ -31,6 +36,7 @@ h1 small, h2 small, h3 small {
 .comp {
     border: 1px solid #d6d6d6;
     margin: 10px;
+    text-align: center;
 }
 
 .comp h3 {
@@ -39,12 +45,13 @@ h1 small, h2 small, h3 small {
     transform: scale(0.75);
 }
 
-.is-active-icon {
+.comp > .is-active-icon {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 3px;
+    top: 3px;
 }
 
-.comp > .is-active-icon {
-    right: 3px;
+.comp-logo {
+    width: 110px;
+    padding: 10px;
 }

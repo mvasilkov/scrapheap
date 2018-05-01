@@ -13,6 +13,6 @@ def comp_template(comp):
 
 @register.filter
 def is_active_icon(comp):
-    a = 'full' if comp.is_active else 'low'
+    a = 'green' if comp.is_active else 'red'
     return mark_safe(
-        f'<img src="/static/icons/{a}-battery-16.png" class="is-active-icon" width=16 height=16>')
+        f'<img src="/static/icons/{a}-icon.png" class="is-active-icon" width=9 height=9>')
