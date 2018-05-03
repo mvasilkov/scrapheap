@@ -5,7 +5,7 @@ import marked from 'marked';
 
 export default class extends React.Component {
   static async getInitialProps({res, query}) {
-    const { data } = await axios(`http://localhost:3001/${query.id}`);
+    const { data } = await axios(`http://localhost:3000/${query.id}`);
     if (data.code === 'ENOENT' ) {
       res.statusCode = 404;
       return {text: "404"};
