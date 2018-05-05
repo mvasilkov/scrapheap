@@ -4,6 +4,15 @@ import '../styles/style.scss'
 import marked from 'marked';
 import Link from 'next/link';
 
+import 'isomorphic-fetch'
+
+import { solve } from '../proof-of-work'
+
+
+const defaults = {
+    headers: { accept: 'application/json', 'content-type': 'application/json' }
+}
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -12,23 +21,41 @@ export default class extends React.Component {
       url: "http://project-text.com/df4fSv",
       schema: "palatino"
     };
+    this.submit = this.submit.bind(this);
   }
   
+  static async getInitialProps({ req }) {
+    // Development only
+    const host = req ? 'http://' + req.headers['host'] : ''
+
+    // Get the Longpaste challenge
+    let ch = await fetch(`${host}/longpaste`, defaults)
+    ch = await ch.json() // { token: '...' }
+    return { host, ...ch }
+  }
+
   handleChange = (e) => {
     this.setState({text: e.target.value});
   }
 
-  handleClick = (e) => {
-    console.log('>>>', this.state.text);
-    // axios.post('/new', { contents: this.state.text })
-    //   .then(r => {
-    //     console.log('handleded', r);
-    //     this.setState({url: r.url});
-    //   })
+  async submit(event) {
+    const { host, token } = this.props
+    const contents = this.state.text; //'# hello, world'
+    
+    solve(token, contents, async nonce => {
+      const body = JSON.stringify({
+        token,
+        contents,
+        nonce,
+      })
+      let res = await fetch(`${host}/longpaste/p`, { method: 'post', body, ...defaults })
+      console.log(res)
+      res = await res.json()
+      console.log(res)
+    })
   }
-
+  
   changeFont = (e) => {
-    console.log('changing');
     this.setState({schema: e.target.value});
   }
 
@@ -44,7 +71,7 @@ export default class extends React.Component {
               <option value='garamond'>Garamond</option>
               <option value='bookman'>Bookman</option>
           </select></div>
-          <button onClick={this.handleClick}>Save</button>
+          <button onClick={this.submit}>Save</button>
         </div>
         <div className="add-text">
           <textarea className="raw" onChange={this.handleChange}></textarea>
