@@ -55,3 +55,28 @@ h1 small, h2 small, h3 small {
     width: 110px;
     padding: 10px;
 }
+
+.comp.logs {
+    padding: 0 10px 10px;
+}
+
+.log {
+    font-size: 90%;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.log-count {
+    background-color: #0288d1;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 70%;
+    padding: 1px 5px;
+}
+
+.log-message {
+}
+
+.log-time {
+    color: #808080;
+}

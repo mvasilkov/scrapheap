@@ -51,6 +51,9 @@ class Queue(models.Model):
         log = Log.objects.create(queue=self, message=message)
         log.save()
 
+    def get_logs(self):
+        return list(self.logs.order_by('-pk')[:10])[::-1]
+
     class Meta:
         ordering = ('name', )
 
