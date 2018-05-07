@@ -5,11 +5,16 @@ import marked from 'marked';
 import Link from 'next/link';
 import 'isomorphic-fetch'
 
-import { solve } from '../proof-of-work'
+import jwtDecode from 'jwt-decode'
 
+import { solve } from 'longpaste/scripts/pow'
 
 const defaults = {
-    headers: { accept: 'application/json', 'content-type': 'application/json' }
+    credentials: 'same-origin',
+    headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+    },
 }
 
 export default class extends React.Component {
@@ -38,10 +43,12 @@ export default class extends React.Component {
   }
 
   async submit(event) {
-    const { host, token } = this.props
+    const { host, token } = this.props;
+    const { salt, n } = jwtDecode(token)
+
     const contents = this.state.text; //'# hello, world'
     
-    solve(token, contents, async nonce => {
+    solve(salt, n, contents, async nonce => {
       const body = JSON.stringify({
         token,
         contents,
@@ -56,7 +63,7 @@ export default class extends React.Component {
       console.log('1', res)
       const link = document.createElement('a');
       link.href = res.url;
-      link.pathname = link.pathname.substring(2);
+      link.pathname = link.pathname.replace("/longpaste/p", "");
       window.location.href = link;
     })
   }
