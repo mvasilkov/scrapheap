@@ -30,7 +30,9 @@ export default class extends React.Component {
   
   static async getInitialProps({ req }) {
     // Development only
-    const host = req ? 'http://' + req.headers['host'] : ''
+    const host = process.env.NODE_ENV === 'development'
+          ?  'http://' + req.headers['host']
+          :  '//' + req.headers['host']
 
     // Get the Longpaste challenge
     let ch = await fetch(`${host}/longpaste`, defaults)
