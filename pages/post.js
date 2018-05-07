@@ -56,7 +56,7 @@ export default class extends React.Component {
       console.log('1', res)
       const link = document.createElement('a');
       link.href = res.url;
-      link.pathname = `/posts${link.pathname.substring(2)}`;
+      link.pathname = link.pathname.substring(2);
       window.location.href = link;
     })
   }

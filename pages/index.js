@@ -5,17 +5,17 @@ import marked from 'marked';
 
 export default class extends React.Component {
   static async getInitialProps({res, query}) {
-    const { data } = await axios.get(
-      `http://localhost:3000/longpaste/p/5aedc01b8a52e09bfb872d88`,
-      { headers: { "Accept": "application/json"}
-      }
-    );
-    if (data.code === 'ENOENT' ) {
-      res.statusCode = 404;
-      return {text: "404"};
-    }
+    // const { data } = await axios.get(
+    //   `http://localhost:3000/longpaste/p/5aedc01b8a52e09bfb872d88`,
+    //   { headers: { "Accept": "application/json"}
+    //   }
+    // );
+    // if (data.code === 'ENOENT' ) {
+    //   res.statusCode = 404;
+    //   return {text: "404"};
+    // }
 
-    return { text: data.contents }
+    return { text: "Welcome" }
   }
 
   render() {

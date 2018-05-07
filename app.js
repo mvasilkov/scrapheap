@@ -10,7 +10,11 @@ nextApp.prepare().then(function () {
   
   app.use('/longpaste', longpaste)
 
-  app.get('/posts/:id', (req, res) => {
+  app.get('/post', (req, res) => {
+    return nextApp.render(req, res, '/post');
+  });
+  
+  app.get('/:id', (req, res) => {
     return nextApp.render(req, res, '/single', { id: req.params.id })
   });
 
