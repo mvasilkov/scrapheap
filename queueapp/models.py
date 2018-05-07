@@ -42,6 +42,15 @@ class Queue(models.Model):
         components.append(actuator)
         return components
 
+    def log(self, message):
+        last_log = self.logs.order_by('-pk').first()
+        if last_log is not None and last_log.message == message:
+            last_log.count += 1
+            last_log.save()
+            return
+        log = Log.objects.create(queue=self, message=message)
+        log.save()
+
     class Meta:
         ordering = ('name', )
 
@@ -131,13 +140,13 @@ class Actuator(models.Model):
 
 @repr_attributes('message')
 class Log(models.Model):
-    queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
-    created = models.DateTimeField(auto_now_add=True)
+    queue = models.ForeignKey(Queue, on_delete=models.PROTECT, related_name='logs')
+    updated = models.DateTimeField(auto_now=True)
     message = models.TextField()
-    count = models.PositiveIntegerField()
+    count = models.PositiveIntegerField(default=1)
 
     class Meta:
-        ordering = ('-id', )
+        ordering = ('-pk', )
 
 
 class JiraPoller(Poller):

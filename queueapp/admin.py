@@ -51,7 +51,7 @@ class IssueAdmin(admin.ModelAdmin):
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ('queue_name', 'created', 'message')
+    list_display = ('queue_name', 'updated', 'message', 'count')
     list_filter = ('queue__name', )
 
     def queue_name(self, model):
