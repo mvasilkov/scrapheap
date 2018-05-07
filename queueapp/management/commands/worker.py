@@ -1,25 +1,45 @@
+from datetime import datetime
 import os
+import time
 
 from django.core.management.base import BaseCommand, CommandError
 
 from queueapp.models import Queue
 
+FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
+
 
 class Command(BaseCommand):
     help = 'Run the queueapp worker process'
 
-    pid = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.pid = os.getpid()
+        self.first_run = True
 
     def handle(self, *args, **options):
-        self.pid = os.getpid()
+        while True:
+            self.stdout.write('---')
+            started = datetime.now()
+            self.stdout.write(f'Started a full run on {started}')
 
-        self.full_run()
+            self.full_run()
+            self.first_run = False
+
+            duration = datetime.now() - started
+            self.stdout.write(f'The run took {duration}')
+            duration_sec = duration.total_seconds()
+            if duration_sec < FULL_RUN_INTERVAL:
+                pause = FULL_RUN_INTERVAL - duration_sec
+                self.stdout.write(f'Chilling for {pause} seconds')
+                time.sleep(pause)
 
     def full_run(self):
-        self.stdout.write('---')
         queues = list(Queue.objects.exclude(is_active=False))
 
         self.stdout.write('The following queues are active:')
         for q in queues:
             self.stdout.write(f'- {q.name}')
-            q.log(f'Worker process started, pid={self.pid}')
+            if self.first_run:
+                q.log(f'Worker process started, pid={self.pid}')
