@@ -11,13 +11,14 @@
     "file-loader": "^1.1.11",
     "fs": "^0.0.1-security",
     "jwt-decode": "^2.2.0",
-    "longpaste": "^0.0.2",
+    "longpaste": "0.0.2",
     "marked": "^0.3.19",
     "next": "^5.1.0",
     "node-sass": "^4.9.0",
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-ga": "^2.5.0",
     "systematize": "^3.0.1"
   }
 }
