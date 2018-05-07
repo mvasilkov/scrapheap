@@ -3,7 +3,6 @@ import React from 'react';
 import '../styles/style.scss'
 import marked from 'marked';
 import Link from 'next/link';
-
 import 'isomorphic-fetch'
 
 import { solve } from '../proof-of-work'
@@ -18,7 +17,7 @@ export default class extends React.Component {
     super(props);
     this.state = {
       text: "",
-      url: "http://project-text.com/df4fSv",
+      url: "",
       schema: "palatino"
     };
     this.submit = this.submit.bind(this);
@@ -48,10 +47,17 @@ export default class extends React.Component {
         contents,
         nonce,
       })
-      let res = await fetch(`${host}/longpaste/p`, { method: 'post', body, ...defaults })
-      console.log(res)
-      res = await res.json()
-      console.log(res)
+      let res = await fetch(`${host}/longpaste/p`, {
+        method: 'post',
+        body,
+        maxRedirects: 0,
+        ...defaults
+      })
+      console.log('1', res)
+      const link = document.createElement('a');
+      link.href = res.url;
+      link.pathname = link.pathname.substring(2);
+      window.location.href = link;
     })
   }
   
@@ -63,9 +69,6 @@ export default class extends React.Component {
     return (
       <div className='wrapper'>
         <div className="controls">
-        <div className='url'><span>Url of text:</span>
-        <Link href={this.state.url}><a>{this.state.url}</a></Link>
-        </div>
           <div><select onChange={this.changeFont}>
               <option value='palatino'>Palatino</option>
               <option value='garamond'>Garamond</option>
