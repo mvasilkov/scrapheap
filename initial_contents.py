@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 from datetime import timedelta
 
-from defaults import setenv
-setenv()
-from defaults import wsgi
+from central_core import load_django
 
 from queueapp.models import Queue, Buffer, JiraPoller, AutoFilter, JenkinsActuator
 

@@ -16,9 +16,15 @@ class Queue(models.Model):
     is_active = models.BooleanField(default=False)
 
     def get_components(self):
+        'This function assumes a well-formed queue'
+
         poller = get_object_or_None(JiraPoller, queue=self)
         actuator = get_object_or_None(JenkinsActuator, queue=self)
-        if poller is None or actuator is None:
+        bad_queue = (poller is None or
+                     actuator is None or
+                     poller.to_buffer is None or
+                     actuator.from_buffer is None)
+        if bad_queue:
             return ()
 
         filters = {
@@ -77,6 +83,10 @@ class Issue(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 
+def abstract_run(self):
+    raise NotImplementedError(f'Class {self.__class__.__name__} does not implement run()')
+
+
 @repr_attributes('name', 'queue.name')
 class Poller(models.Model):
     name = models.CharField(max_length=60)
@@ -86,6 +96,8 @@ class Poller(models.Model):
     interval = models.DurationField(default=timedelta(minutes=1))
     updated = models.DateTimeField(default=timezone.now, blank=True)
 
+    run = abstract_run
+
     class Meta:
         abstract = True
 
@@ -94,9 +106,11 @@ class Poller(models.Model):
 class Filter(models.Model):
     name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
-    from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='to_filter')
-    to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='from_filter')
+    from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='to_%(class)s')
+    to_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT, related_name='from_%(class)s')
     is_active = models.BooleanField(default=False)
+
+    run = abstract_run
 
     class Meta:
         abstract = True
@@ -109,6 +123,8 @@ class Actuator(models.Model):
     from_buffer = models.OneToOneField(Buffer, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=False)
 
+    run = abstract_run
+
     class Meta:
         abstract = True
 
@@ -118,6 +134,7 @@ class Log(models.Model):
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
+    count = models.PositiveIntegerField()
 
     class Meta:
         ordering = ('-id', )
@@ -128,6 +145,10 @@ class JiraPoller(Poller):
 
 
 class AutoFilter(Filter):
+    pass
+
+
+class NopFilter(Filter):
     pass
 
 
