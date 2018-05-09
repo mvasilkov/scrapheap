@@ -9,7 +9,9 @@ nextApp.prepare().then(function () {
   const app = express()
   
   app.use('/longpaste', longpaste)
-
+  
+  app.get('/favicon.ico', (req, res) => res.status(204));
+  
   app.get('/post', (req, res) => {
     return nextApp.render(req, res, '/post');
   });
