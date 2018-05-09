@@ -18,6 +18,9 @@ article {
     }
     p {
         text-indent: 1.5em;
+        br {
+            display: none;
+        }
     }
 }
 
