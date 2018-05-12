@@ -2,28 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import '../styles/style.scss'
 import marked from 'marked';
+import Link from 'next/link';
 
-export default class extends React.Component {
-  static async getInitialProps({res, query}) {
-    // const { data } = await axios.get(
-    //   `http://localhost:3000/longpaste/p/5aedc01b8a52e09bfb872d88`,
-    //   { headers: { "Accept": "application/json"}
-    //   }
-    // );
-    // if (data.code === 'ENOENT' ) {
-    //   res.statusCode = 404;
-    //   return {text: "404"};
-    // }
+export default () => (
+  <div className="container">
+    <article>
+      <h1>Welcome to Project TEXT</h1>
+      <div><Link><a href='/post'>Add new longread</a></Link></div>
+    </article>
+  </div>
+)
 
-    return { text: "Welcome" }
-  }
-
-  render() {
-    const { text } = this.props;
-    return (
-        <div className="container">
-        <article dangerouslySetInnerHTML={{__html: marked(text)}}></article>
-        </div>
-    )
-  }
-}
