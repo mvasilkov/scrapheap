@@ -3,3 +3,4 @@ build/bundle.js
 .next/
 *~
 .DS_Store
+LevelDB/
