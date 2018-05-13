@@ -6,15 +6,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "@zeit/next-sass": "0.0.9",
+    "@zeit/next-sass": "0.2.0",
     "axios": "^0.18.0",
     "babel-plugin-static-fs": "^1.1.0",
     "file-loader": "^1.1.11",
     "fs": "^0.0.1-security",
     "jwt-decode": "^2.2.0",
-    "longpaste": "~0.0.3",
+    "longpaste": "^0.0.4",
     "marked": "^0.3.19",
-    "next": "^5.1.0",
+    "next": "^6.0.1",
     "node-sass": "^4.9.0",
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",

@@ -7,20 +7,18 @@ const nextApp = next({ dev })
 
 nextApp.prepare().then(function () {
   const app = express()
-  
+  const reserved = new Set(['write'])
+
   app.use('/longpaste', longpaste)
-  
-  app.get('/favicon.ico', (req, res) => res.status(204));
-  
-  app.get('/post', (req, res) => {
-    return nextApp.render(req, res, '/post');
-  });
-  
-  app.get('/:id', (req, res) => {
-    return nextApp.render(req, res, '/single', { id: req.params.id })
-  });
+
+  app.get('/favicon.ico', (req, res) => res.status(204))
+
+  app.get('/:id', (req, res, next) => {
+    if (reserved.has(req.params.id)) return next()
+    nextApp.render(req, res, '/single', { id: req.params.id })
+  })
 
   app.get('*', nextApp.getRequestHandler())
 
   run(app)
-});
+})
