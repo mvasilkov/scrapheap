@@ -4,3 +4,4 @@ build/bundle.js
 *~
 .DS_Store
 LevelDB/
+yarn-error.log
