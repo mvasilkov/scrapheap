@@ -1,15 +1,16 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+
 import '../styles/style.scss'
-import marked from 'marked';
-import Link from 'next/link';
 
 export default () => (
-  <div className="container">
+  <div className="container start-page">
     <article>
-      <h1>Welcome to Project TEXT</h1>
-      <div><Link><a href='/post'>Add new longread</a></Link></div>
+      <header>
+        <h1>Project TXT</h1>
+        <p>A distraction-free writing tool</p>
+      </header>
+      <p>Welcome to Project TXT, the simplest way to publish long-form articles on the Web.</p>
+      <p><a href="/write">Start writing</a>. No registration required.</p>
     </article>
   </div>
 )
-
