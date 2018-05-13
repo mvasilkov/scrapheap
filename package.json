@@ -11,7 +11,7 @@
     "file-loader": "^1.1.11",
     "fs": "^0.0.1-security",
     "jwt-decode": "^2.2.0",
-    "longpaste": "0.0.3",
+    "longpaste": "~0.0.3",
     "marked": "^0.3.19",
     "next": "^5.1.0",
     "node-sass": "^4.9.0",
