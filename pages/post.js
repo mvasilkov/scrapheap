@@ -56,15 +56,10 @@ export default class extends React.Component {
         contents,
         nonce,
       })
-      let res = await fetch(`${host}/longpaste/p`, {
-        method: 'post',
-        body,
-        maxRedirects: 0,
-        ...defaults
-      })
-      console.log('1', res)
+      let res = await axios.post(`${host}/longpaste/p`, body, defaults);
+      
       const link = document.createElement('a');
-      link.href = res.url;
+      link.href = res.request.responseURL;
       link.pathname = link.pathname.replace("/longpaste/p", "");
       window.location.href = link;
     })

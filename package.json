@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "node app.js",
+    "production": "NODE_ENV=production LEVELDB=./LevelDB APP_SECRET=verysecret forever app.js",
     "build": "next build",
     "start": "next start"
   },
