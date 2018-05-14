@@ -1,21 +1,16 @@
 @import 'colors';
 
-@mixin link($color, $size, $line-width: 1) {
-    $size-padding: percentage(($size - $line-width) / $size);
-    $size-line: percentage($line-width / $size);
-    $color-line: mix($color, $color-background, 85);
-
-    background: linear-gradient(to bottom, $color-background $size-padding, $color-line $size-line) bottom repeat-x;
-    background-size: 64px $size * 1px;
-    color: $color;
-    padding-bottom: $size * 1px;
+a {
+    border-bottom: 5px solid rgba(129, 216, 208, 0.4);
+    color: inherit;
+    text-decoration: none;
+    transition: 200ms border-color;
 }
 
-a {
-    @include link($color-link, 3);
-    text-decoration: none;
+a:hover {
+    border-bottom-color: rgba(129, 216, 208, 0.9);
 }
 
 a:focus {
-    background-image: none;
+    border-bottom: 0;
 }

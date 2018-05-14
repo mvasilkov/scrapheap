@@ -1,19 +1,5 @@
 @import 'colors';
 
-h1, h2 {
-    background: -webkit-linear-gradient(0, $color-heading-1, $color-heading-2);
-    -webkit-background-clip: text;
-    color: $color-heading-fallback;
-    -webkit-text-fill-color: transparent;
-}
-
-h3 {
+h1, h2, h3 {
     color: $color-heading;
-}
-
-// Microsoft Edge
-@supports (-ms-ime-align: auto) {
-    h1::selection, h2::selection {
-        color: $color-heading-fallback;
-    }
 }
