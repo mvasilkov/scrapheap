@@ -16,7 +16,7 @@
             {% for log in queue.get_logs %}
                 <p class="log">
                     <span class="log-time">{{ log.updated|date:'N j, G:s' }}</span>
-                    <span class="log-message">{{ log.message }}</span>
+                    <span class="log-message">{{ log.message|safe }}</span>
                     {% if log.count > 1 %}
                         <span class="log-count">{{ log.count }}</span>
                     {% endif %}

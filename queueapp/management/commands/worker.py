@@ -4,7 +4,7 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from queueapp.models import Queue
+from queueapp.models import Queue, JiraPoller
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
 
@@ -43,3 +43,8 @@ class Command(BaseCommand):
             self.stdout.write(f'- {q.name}')
             if self.first_run:
                 q.log(f'Worker process started, pid={self.pid}')
+
+        for q in queues:
+            jpoller = JiraPoller.objects.filter(queue=q).exclude(is_active=False).first()
+            if jpoller:
+                jpoller.run()

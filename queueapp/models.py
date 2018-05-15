@@ -7,6 +7,8 @@ from django.utils import timezone
 from annoying.fields import JSONField
 from annoying.functions import get_object_or_None
 
+from integlib.runtime import runtime
+
 from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes
 
 
@@ -87,12 +89,50 @@ class Buffer(models.Model):
 
 @repr_attributes('key')
 class Issue(models.Model):
+    VERDICT_NONE = 'pending'
+    VERDICT_SUCCEEDED = 'succeeded'
+    VERDICT_FAILED = 'failed'
+    VERDICT = ((VERDICT_NONE, VERDICT_NONE), (VERDICT_SUCCEEDED, VERDICT_SUCCEEDED),
+               (VERDICT_FAILED, VERDICT_FAILED))
+
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
     props = JSONField(default=new_dict, editable=False)
     is_running = models.BooleanField(default=False)
+    verdict = models.CharField(max_length=10, choices=VERDICT, default=VERDICT_NONE)
+    number_tries = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    @staticmethod
+    def is_usable(issue_key: str):
+        'Whether the issue can be put into queue.'
+
+        if not isinstance(issue_key, str):
+            issue_key = issue_key.key
+
+        try:
+            issue = Issue.objects.get(key=issue_key)
+        except Issue.DoesNotExist:
+            return True
+
+        return issue.buffer is None and issue.verdict == Issue.VERDICT_FAILED
+
+    @staticmethod
+    def create_or_update_props(integ_issue):
+        try:
+            issue = Issue.objects.get(key=integ_issue.key)
+        except Issue.DoesNotExist:
+            issue = Issue(key=integ_issue.key)
+
+        issue.props = {
+            'fix_versions': integ_issue.fix_versions,
+            'priority': integ_issue.priority,
+            'assignee_name': integ_issue.assignee.displayName,
+            'summary': integ_issue.summary,
+        }
+        issue.save()
+        return issue
 
 
 def abstract_run(self):
@@ -154,6 +194,27 @@ class Log(models.Model):
 
 class JiraPoller(Poller):
     query = models.CharField(max_length=1000)
+
+    def run(self):
+        if not self.is_active:
+            return
+
+        integ_issues = runtime.jira.search_issues(self.query)
+        issues = [
+            Issue.create_or_update_props(integ_issue) for integ_issue in integ_issues
+            if Issue.is_usable(integ_issue)
+        ]
+        if not issues:
+            return
+
+        for issue in issues:
+            issue.buffer = self.to_buffer
+            issue.is_running = False  # should not be needed
+            issue.verdict = Issue.VERDICT_NONE
+            issue.save()
+
+        issues = ', '.join([f'<a class=issue>{issue.key}</a>' for issue in issues])
+        self.queue.log(f'Inserted issue(s): {issues} to buffer <b>{self.to_buffer.name}</b>')
 
 
 class AutoFilter(Filter):
