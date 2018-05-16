@@ -4,9 +4,13 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from queueapp.models import Queue, JiraPoller
+from queueapp.models import Queue, JiraPoller, NopFilter
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
+
+
+def get_active_comp(comp_class, queue):
+    return comp_class.objects.filter(queue=queue).exclude(is_active=False)
 
 
 class Command(BaseCommand):
@@ -45,6 +49,10 @@ class Command(BaseCommand):
                 q.log(f'Worker process started, pid={self.pid}')
 
         for q in queues:
-            jpoller = JiraPoller.objects.filter(queue=q).exclude(is_active=False).first()
+            jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
                 jpoller.run()
+
+            nopfilters = get_active_comp(NopFilter, q)
+            for filter in nopfilters:
+                filter.run()

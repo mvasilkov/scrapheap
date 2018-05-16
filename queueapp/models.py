@@ -17,6 +17,18 @@ class Queue(models.Model):
     name = models.CharField(max_length=60)
     is_active = models.BooleanField(default=False)
 
+    def get_filters(self):
+        filters = {}
+
+        for filter_class in [AutoFilter, NopFilter]:
+            filters.update({
+                a.from_buffer.pk: a
+                for a in filter_class.objects.filter(
+                    queue=self, from_buffer__isnull=False, to_buffer__isnull=False)
+            })
+
+        return filters
+
     def get_components(self):
         'This function assumes a well-formed queue'
 
@@ -29,11 +41,7 @@ class Queue(models.Model):
         if bad_queue:
             return ()
 
-        filters = {
-            a.from_buffer.pk: a
-            for a in AutoFilter.objects.filter(
-                queue=self, from_buffer__isnull=False, to_buffer__isnull=False)
-        }
+        filters = self.get_filters()
 
         components = [poller, poller.to_buffer]
         while filters:
@@ -81,6 +89,10 @@ class Buffer(models.Model):
         if count is None:
             return buf[0]
         return buf[:count]
+
+    def get_issues(self, *, count=None, with_running=False):
+        qs = self.issues.all() if with_running else self.issues.filter(is_running=False)
+        return list(qs if count is None else qs[:count])
 
     def count(self, with_running=False):
         qs = self.issues.all() if with_running else self.issues.filter(is_running=False)
@@ -222,7 +234,20 @@ class AutoFilter(Filter):
 
 
 class NopFilter(Filter):
-    pass
+    def run(self):
+        if not self.is_active:
+            return
+
+        issues = self.from_buffer.get_issues()
+        if not issues:
+            return
+
+        for issue in issues:
+            issue.buffer = self.to_buffer
+            issue.save()
+
+        issues = ', '.join([f'<a class=issue>{issue.key}</a>' for issue in issues])
+        self.queue.log(f'Moved issue(s): {issues} to buffer <b>{self.to_buffer.name}</b>')
 
 
 class JenkinsActuator(Actuator):
