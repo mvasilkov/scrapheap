@@ -52,7 +52,7 @@ class Queue(models.Model):
         components.append(actuator)
         return components
 
-    def log(self, message):
+    def log(self, message: str):
         last_log = self.logs.order_by('-pk').first()
         if last_log is not None and last_log.message == message:
             last_log.count += 1
@@ -199,6 +199,11 @@ class Log(models.Model):
     updated = models.DateTimeField(auto_now=True)
     message = models.TextField()
     count = models.PositiveIntegerField(default=1)
+
+    @staticmethod
+    def truncate_logs(queue: Queue):
+        to_remove = queue.logs.order_by('-pk')[999:].values_list('pk', flat=True)
+        Log.objects.filter(pk__in=to_remove).delete()
 
     class Meta:
         ordering = ('-pk', )

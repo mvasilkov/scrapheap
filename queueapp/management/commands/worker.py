@@ -4,7 +4,7 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from queueapp.models import Queue, JiraPoller, NopFilter
+from queueapp.models import Queue, JiraPoller, NopFilter, Log
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
 
@@ -56,3 +56,5 @@ class Command(BaseCommand):
             nopfilters = get_active_comp(NopFilter, q)
             for filter in nopfilters:
                 filter.run()
+
+            Log.truncate_logs(q)
