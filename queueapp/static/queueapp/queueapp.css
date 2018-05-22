@@ -14,6 +14,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 h1 small, h2 small, h3 small {
     font-size: 18px;
     font-weight: normal;
@@ -74,9 +78,21 @@ h1 small, h2 small, h3 small {
     padding: 1px 5px;
 }
 
-.log-message {
-}
-
 .log-time {
     color: #808080;
+}
+
+.issues li {
+    font-size: 80%;
+    margin-bottom: 5px;
+    margin-left: 0;
+}
+
+.issues li::before {
+    content: none;
+    display: none;
+}
+
+.issues .running {
+    background: #fff3bc;
 }

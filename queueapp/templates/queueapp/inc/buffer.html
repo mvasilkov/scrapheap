@@ -2,4 +2,9 @@
     <h3>{{ comp.name }}
         <small><a href="{% url 'admin:queueapp_buffer_change' comp.id %}">Change</a></small>
     </h3>
+    <ul class="issues">
+        {% for issue in comp.issues.all %}
+            <li class="{% if issue.is_running %}running{% endif %}"><a class="issue">{{ issue.key }}</a></li>
+        {% endfor %}
+    </ul>
 </div>

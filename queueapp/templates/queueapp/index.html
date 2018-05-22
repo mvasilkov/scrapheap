@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     {% for queue in queues %}
         {% include 'queueapp/inc/queue.html' %}
     {% endfor %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/queueapp/queueapp.js' %}"></script>
 {% endblock %}
