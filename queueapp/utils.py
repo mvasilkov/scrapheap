@@ -92,3 +92,14 @@ def repr_attributes(*attr_names):
         return cls
 
     return update_class
+
+
+def run_if_active(method):
+    'Ignore method calls based on the is_active property'
+
+    def wrapper(self, *args, **kwargs):
+        if not self.is_active:
+            return
+        return method(self, *args, **kwargs)
+
+    return wrapper

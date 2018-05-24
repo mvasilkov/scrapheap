@@ -34,12 +34,16 @@ h1 small, h2 small, h3 small {
 
 .components {
     display: flex;
-    margin: 0 -10px;
+    margin: 0 0 0 -10px;
+}
+
+.vbox {
+    flex: 1;
 }
 
 .comp {
     border: 1px solid #d6d6d6;
-    margin: 10px;
+    margin: 10px 0 0 10px;
     text-align: center;
 }
 
@@ -58,6 +62,20 @@ h1 small, h2 small, h3 small {
 .comp-logo {
     width: 110px;
     padding: 10px;
+}
+
+.comp.poller::after, .comp.filter::after {
+    background: url(/static/icons/arrow-down.png) no-repeat;
+    background-size: contain;
+    bottom: -30px;
+    content: '';
+    display: block;
+    height: 48px;
+    left: 50%;
+    margin-left: -24px;
+    position: absolute;
+    width: 48px;
+    z-index: 1;
 }
 
 .comp.logs {

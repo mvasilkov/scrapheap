@@ -4,7 +4,9 @@ import time
 
 from django.core.management.base import BaseCommand, CommandError
 
-from queueapp.models import Queue, JiraPoller, NopFilter, Log
+from integlib.logbook_utils import configure_logging
+
+from queueapp.models import Queue, JiraPoller, AutoFilter, NopFilter, Log
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
 
@@ -23,6 +25,9 @@ class Command(BaseCommand):
         self.first_run = True
 
     def handle(self, *args, **options):
+        verbosity = int(options['verbosity'])
+        configure_logging(verbose=verbosity > 1)
+
         while True:
             self.stdout.write('---')
             started = datetime.now()
@@ -55,6 +60,10 @@ class Command(BaseCommand):
 
             nopfilters = get_active_comp(NopFilter, q)
             for filter in nopfilters:
+                filter.run()
+
+            autofilters = get_active_comp(AutoFilter, q)
+            for filter in autofilters:
                 filter.run()
 
             Log.truncate_logs(q)

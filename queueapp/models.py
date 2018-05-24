@@ -7,9 +7,10 @@ from django.utils import timezone
 from annoying.fields import JSONField
 from annoying.functions import get_object_or_None
 
+from auto_integ.pre_auto import pre_auto, PAError, ACCEPT, SKIP
 from integlib.runtime import runtime
 
-from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes
+from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes, run_if_active
 
 
 @repr_attributes('name')
@@ -212,10 +213,8 @@ class Log(models.Model):
 class JiraPoller(Poller):
     query = models.CharField(max_length=1000)
 
+    @run_if_active
     def run(self):
-        if not self.is_active:
-            return
-
         integ_issues = runtime.jira.search_issues(self.query)
         issues = [
             Issue.create_or_update_props(integ_issue) for integ_issue in integ_issues
@@ -235,14 +234,50 @@ class JiraPoller(Poller):
 
 
 class AutoFilter(Filter):
-    pass
+    @run_if_active
+    def run(self):
+        issues = self.from_buffer.get_issues()
+        if not issues:
+            return
+
+        moved_issues = []
+
+        for issue in issues:
+            print(f'Running pre_auto({issue.key})')
+            issue.is_running = True
+            issue.save()
+
+            try:
+                result = pre_auto(issue.key)
+            except PAError as err:
+                issue.buffer = None
+                issue.verdict = Issue.VERDICT_FAILED
+                issue.save()
+                self.queue.log(f'The issue <a class=issue>{issue.key}</a> failed {str(err)}')
+                continue
+            finally:
+                issue.is_running = False
+                issue.save()
+
+            if result is SKIP:
+                issue.buffer = None
+                issue.verdict = Issue.VERDICT_SUCCEEDED
+                issue.save()
+                self.queue.log(f'Dropping the issue <a class=issue>{issue.key}</a> from the queue because pre_auto')
+                continue
+
+            assert result is ACCEPT
+            issue.buffer = self.to_buffer
+            issue.save()
+            moved_issues.append(issue)
+
+        moved_issues = ', '.join([f'<a class=issue>{issue.key}</a>' for issue in moved_issues])
+        self.queue.log(f'Moved issue(s): {moved_issues} to buffer <b>{self.to_buffer.name}</b>')
 
 
 class NopFilter(Filter):
+    @run_if_active
     def run(self):
-        if not self.is_active:
-            return
-
         issues = self.from_buffer.get_issues()
         if not issues:
             return
