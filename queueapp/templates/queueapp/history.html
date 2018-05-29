@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h3>Failed issues</h3>
+    <ul class="issues">
+        {% for issue in issues_failed %}
+            {% include 'queueapp/inc/hist_issue.html' %}
+        {% empty %}
+            <li><em>Nobody here but us chickens!</em></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Succeeded issues</h3>
+    <ul class="issues">
+        {% for issue in issues_succeeded %}
+            {% include 'queueapp/inc/hist_issue.html' %}
+        {% empty %}
+            <li><em>Nobody here but us chickens!</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/queueapp/queueapp.js' %}"></script>
+{% endblock %}
