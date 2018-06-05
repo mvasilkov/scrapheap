@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from integlib.logbook_utils import configure_logging
 
-from queueapp.models import Queue, JiraPoller, AutoFilter, NopFilter, Log
+from queueapp.models import Queue, JiraPoller, AutoFilter, NopFilter, JenkinsActuator, Log
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
 
@@ -65,5 +65,9 @@ class Command(BaseCommand):
             autofilters = get_active_comp(AutoFilter, q)
             for filter in autofilters:
                 filter.run()
+
+            actuator = get_active_comp(JenkinsActuator, q).first()
+            if actuator:
+                actuator.run()
 
             Log.truncate_logs(q)

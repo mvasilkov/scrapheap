@@ -11,6 +11,7 @@ from auto_integ.pre_auto import pre_auto, PAError, ACCEPT, SKIP
 from integlib.runtime import runtime
 
 from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes, run_if_active
+from .integ_utils import IGNORED_ISSUES, issue_running_or_pending
 
 
 @repr_attributes('name')
@@ -124,6 +125,9 @@ class Issue(models.Model):
         if not isinstance(issue_key, str):
             issue_key = issue_key.key
 
+        if issue_key in IGNORED_ISSUES:
+            return False
+
         try:
             issue = Issue.objects.get(key=issue_key)
         except Issue.DoesNotExist:
@@ -138,14 +142,17 @@ class Issue(models.Model):
         except Issue.DoesNotExist:
             issue = Issue(key=integ_issue.key)
 
-        issue.props = {
+        issue.update_props(integ_issue)
+        issue.save()
+        return issue
+
+    def update_props(self, integ_issue):
+        self.props = {
             'fix_versions': integ_issue.fix_versions,
             'priority': integ_issue.priority,
             'assignee_name': integ_issue.assignee.displayName,
             'summary': integ_issue.summary,
         }
-        issue.save()
-        return issue
 
 
 def abstract_run(self):
@@ -234,9 +241,11 @@ class JiraPoller(Poller):
 
 
 class AutoFilter(Filter):
+    ISSUES_PER_CYCLE = 1
+
     @run_if_active
     def run(self):
-        issues = self.from_buffer.get_issues()
+        issues = self.from_buffer.get_ordered(count=AutoFilter.ISSUES_PER_CYCLE)
         if not issues:
             return
 
@@ -292,3 +301,24 @@ class NopFilter(Filter):
 
 class JenkinsActuator(Actuator):
     project_name = models.CharField(max_length=60)
+
+    @run_if_active
+    def run(self):
+        if not runtime.jenkins.get_job(self.project_name).is_enabled():
+            print(f'The Jenkins job `{self.project_name}` is disabled')
+            return
+
+        for running_issue in self.from_buffer.issues.filter(is_running=True):
+            if issue_running_or_pending(running_issue.key, self.project_name):
+                print(f'The Jenkins job `{self.project_name}` is doing the issue `{issue_key}`')
+                return  # TODO integrate issues in parallel
+            else:
+                integ_issue = runtime.jira.get_issue(running_issue.key)
+                running_issue.buffer = None
+                running_issue.is_running = False
+                running_issue.verdict = (Issue.VERDICT_SUCCEEDED
+                                         if integ_issue.status_category == 'Done' else
+                                         Issue.VERDICT_FAILED)
+                running_issue.number_tries += 1
+                running_issue.update_props(integ_issue)  # this serves no real purpose
+                running_issue.save()
