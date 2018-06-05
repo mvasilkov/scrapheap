@@ -253,6 +253,7 @@ class AutoFilter(Filter):
 
         for issue in issues:
             print(f'Running pre_auto({issue.key})')
+            print('-' * 40)
             issue.is_running = True
             issue.save()
 
@@ -265,6 +266,7 @@ class AutoFilter(Filter):
                 self.queue.log(f'The issue <a class=issue>{issue.key}</a> failed {str(err)}')
                 continue
             finally:
+                print('-' * 40)
                 issue.is_running = False
                 issue.save()
 
@@ -304,13 +306,14 @@ class JenkinsActuator(Actuator):
 
     @run_if_active
     def run(self):
-        if not runtime.jenkins.get_job(self.project_name).is_enabled():
+        jenkins_job = runtime.jenkins.get_job(self.project_name)
+        if not jenkins_job.is_enabled():
             print(f'The Jenkins job `{self.project_name}` is disabled')
             return
 
         for running_issue in self.from_buffer.issues.filter(is_running=True):
             if issue_running_or_pending(running_issue.key, self.project_name):
-                print(f'The Jenkins job `{self.project_name}` is doing the issue `{issue_key}`')
+                print(f'The Jenkins job `{self.project_name}` is doing the issue `{running_issue.key}`')
                 return  # TODO integrate issues in parallel
             else:
                 integ_issue = runtime.jira.get_issue(running_issue.key)
@@ -322,3 +325,12 @@ class JenkinsActuator(Actuator):
                 running_issue.number_tries += 1
                 running_issue.update_props(integ_issue)  # this serves no real purpose
                 running_issue.save()
+                self.queue.log(f'The issue <a class=issue>{running_issue.key}</a> '
+                               f'<b>{running_issue.verdict}</b> integration')
+
+        issue = self.from_buffer.get_ordered()
+        if issue:
+            jenkins_job.submit_build(ISSUE=issue.key)
+            issue.is_running = True
+            issue.save()
+            self.queue.log(f'Sending the issue <a class=issue>{issue.key}</a> to integration')

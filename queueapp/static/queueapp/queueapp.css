@@ -64,18 +64,29 @@ h1 small, h2 small, h3 small {
     padding: 10px;
 }
 
-.comp.poller::after, .comp.filter::after {
+.comp.poller::after, .comp.filter::after, .comp.buffer::after, .comp.buffer::before {
     background: url(/static/icons/arrow-down.png) no-repeat;
     background-size: contain;
-    bottom: -30px;
     content: '';
     display: block;
     height: 48px;
-    left: 50%;
     margin-left: -24px;
+    opacity: 0.9;
     position: absolute;
     width: 48px;
     z-index: 1;
+}
+
+.comp.poller::after, .comp.filter::after {
+    bottom: -30px;
+    left: 50%;
+}
+
+.comp.buffer::after, .comp.buffer::before {
+    right: -25px;
+    top: -10px;
+    transform: rotate3d(0, 0, 1, -150grad);
+    transform-origin: 22px;
 }
 
 .comp.logs {

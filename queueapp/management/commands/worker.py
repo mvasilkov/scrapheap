@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+import platform
 import time
 
 from django.core.management.base import BaseCommand, CommandError
@@ -25,11 +26,19 @@ class Command(BaseCommand):
         self.first_run = True
 
     def handle(self, *args, **options):
+        if platform.system() == 'Darwin' and ('TMPDIR' not in os.environ
+                                              or not os.environ['TMPDIR'].startswith('/Volumes/')):
+            self.stderr.write(
+                'Macintosh traditionally defaults to a case-insensitive FS, bless its little soul.\n'
+                'I am assuming that this is the case on this computer (CBA to test it properly).\n'
+                'Set the TMPDIR environment variable pointing to a case-sensitive FS to continue.')
+            return
+
         verbosity = int(options['verbosity'])
         configure_logging(verbose=verbosity > 1)
 
         while True:
-            self.stdout.write('---')
+            self.stdout.write('\n\n---')
             started = datetime.now()
             self.stdout.write(f'Started a full run on {started}')
 
