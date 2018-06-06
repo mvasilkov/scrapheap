@@ -1,15 +1,22 @@
 from datetime import datetime
 import os
 import platform
+from setproctitle import setproctitle
+import sys
 import time
+import traceback
 
 from django.core.management.base import BaseCommand, CommandError
 
 from integlib.logbook_utils import configure_logging
 
 from queueapp.models import Queue, JiraPoller, AutoFilter, NopFilter, JenkinsActuator, Log
+from queueapp.utils import Tee
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
+
+PROCNAME = 'this is the queueapp worker process'
+TEEFILE = '/tmp/queueapp_worker'
 
 
 def get_active_comp(comp_class, queue):
@@ -20,10 +27,16 @@ class Command(BaseCommand):
     help = 'Run the queueapp worker process'
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
         self.pid = os.getpid()
         self.first_run = True
+
+        setproctitle(f'{PROCNAME}:{self.pid}')
+
+        teefile = open(f'{TEEFILE}.{self.pid}', 'wb', buffering=0)
+        sys.stdout = Tee(sys.stdout, teefile)
+        sys.stderr = Tee(sys.stderr, teefile)
+
+        super().__init__(*args, **kwargs)
 
     def handle(self, *args, **options):
         if platform.system() == 'Darwin' and ('TMPDIR' not in os.environ
@@ -65,18 +78,28 @@ class Command(BaseCommand):
         for q in queues:
             jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
-                jpoller.run()
+                self.run_and_log_errors(jpoller)
 
             nopfilters = get_active_comp(NopFilter, q)
             for filter in nopfilters:
-                filter.run()
+                self.run_and_log_errors(filter)
 
             autofilters = get_active_comp(AutoFilter, q)
             for filter in autofilters:
-                filter.run()
+                self.run_and_log_errors(filter)
 
             actuator = get_active_comp(JenkinsActuator, q).first()
             if actuator:
-                actuator.run()
+                self.run_and_log_errors(actuator)
 
             Log.truncate_logs(q)
+
+    def run_and_log_errors(self, runnable):
+        try:
+            runnable.run()
+        except KeyboardInterrupt:
+            self.stderr.write('Received ^C, quitting')
+            raise
+        except:
+            self.stderr.write(f'An error occurred in {runnable}')
+            self.stderr.write(traceback.format_exc())

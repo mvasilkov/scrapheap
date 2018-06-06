@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ansi_tags %}
+
+{% block style %}
+    <style>{% ansi_styles %}</style>
+{% endblock %}
+
+{% block content %}
+    <h3>Worker</h3>
+    <pre class="worker-output body_background body_foreground"><code>{{ contents | ansi }}</code></pre>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/queueapp/queueapp.js' %}"></script>
+{% endblock %}

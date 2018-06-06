@@ -1,4 +1,6 @@
 from locale import strcoll
+import sys
+import traceback
 
 PRIORITIES = {
     'Blocker': 1,
@@ -17,7 +19,13 @@ def compile_cmp(source: str):
 
     def cmp(a, b):
         vars = {'a': a, 'b': b, 'result': 0}
-        exec(code, {'PRIORITIES': PRIORITIES}, vars)
+
+        try:
+            exec(code, {'PRIORITIES': PRIORITIES, 'issue_cmp': issue_cmp}, vars)
+        except:
+            sys.stderr.write('An error occurred in the comparator')
+            sys.stderr.write(traceback.format_exc())
+
         if not vars['result']:  # tie-breaker
             return issue_cmp(a, b)
         return vars['result']
@@ -74,3 +82,18 @@ def run_if_active(method):
         return method(self, *args, **kwargs)
 
     return wrapper
+
+
+class Tee:
+    def __init__(self, *files):
+        self.files = files
+
+    def write(self, a):
+        for outfile in self.files:
+            if hasattr(outfile, 'encoding'):
+                outfile.write(a)
+            else:
+                outfile.write(bytes(a, 'utf-8'))
+
+    def __getattr__(self, name):
+        return getattr(self.files[0], name)

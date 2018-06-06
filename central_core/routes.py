@@ -5,6 +5,7 @@ from django.urls import path, re_path
 
 from queueapp.views import (
     index as queueapp_index,
+    worker as queueapp_worker,
     history as queueapp_history,
     history_json as queueapp_history_json,
 )
@@ -17,6 +18,7 @@ def homepage(request):
 urlpatterns = [
     path('', homepage, name='homepage'),
     path('queueapp/', queueapp_index, name='queueapp_index'),
+    path('queueapp/worker/', queueapp_worker, name='queueapp_worker'),
     path('queueapp/history/', queueapp_history, name='queueapp_history'),
     path('queueapp/history/json/<str:verdict>/', queueapp_history_json),
     path('admin/', admin.site.urls),

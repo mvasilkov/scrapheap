@@ -1,7 +1,11 @@
+import psutil
+import traceback
+
 from django.core.serializers import serialize
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .management.commands.worker import PROCNAME, TEEFILE
 from .models import Queue, Issue
 
 
@@ -10,6 +14,37 @@ def index(request):
 
     return render(request, 'queueapp/index.html', {
         'queues': queues,
+    })
+
+
+def worker(request):
+    processes = [p.info for p in psutil.process_iter(attrs=['cmdline', 'name'])]
+    pid = None
+
+    for p in processes:
+        if p['name'].startswith(PROCNAME):
+            pid = p.split(':')[1]
+            break
+
+        if not p['cmdline']:
+            continue
+
+        cmdline = ':'.join(p['cmdline'])
+        if cmdline.startswith(PROCNAME):
+            pid = cmdline.split(':')[1]
+            break
+
+    if pid is None:
+        contents = 'Not started'
+    else:
+        try:
+            infile = open(f'{TEEFILE}.{pid}', 'r', encoding='utf-8')
+            contents = infile.read()
+        except:
+            contents = traceback.format_exc()
+
+    return render(request, 'queueapp/worker.html', {
+        'contents': contents,
     })
 
 
