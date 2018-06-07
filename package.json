@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "jquery": "^3.3.1",
     "systematize": "^3.0.0"
   }
 }

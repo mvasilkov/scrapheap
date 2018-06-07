@@ -84,7 +84,13 @@ def run_if_active(method):
     return wrapper
 
 
+TEE_TRUNCATE = 2_000_000
+TEE_TRUNCATE_KEEP = 1_000_000
+
+
 class Tee:
+    'Write to multiple files at once. Truncate big files'
+
     def __init__(self, *files):
         self.files = files
 
@@ -94,6 +100,13 @@ class Tee:
                 outfile.write(a)
             else:
                 outfile.write(bytes(a, 'utf-8'))
+
+            if not outfile.isatty() and outfile.seekable() and outfile.tell() > TEE_TRUNCATE:
+                outfile.seek(TEE_TRUNCATE_KEEP)
+                saved = outfile.read()
+                outfile.seek(0)
+                outfile.truncate()
+                outfile.write(saved)
 
     def __getattr__(self, name):
         return getattr(self.files[0], name)

@@ -32,7 +32,7 @@ class Command(BaseCommand):
 
         setproctitle(f'{PROCNAME}:{self.pid}')
 
-        teefile = open(f'{TEEFILE}.{self.pid}', 'wb', buffering=0)
+        teefile = open(f'{TEEFILE}.{self.pid}', 'w+b', buffering=0)
         sys.stdout = Tee(sys.stdout, teefile)
         sys.stderr = Tee(sys.stderr, teefile)
 
