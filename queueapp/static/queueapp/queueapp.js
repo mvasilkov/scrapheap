@@ -8,7 +8,7 @@ issueLinks.forEach(a => {
 
 function autoreload(seconds) {
     setInterval(function () {
-        $('.container').load(location.toString() + ' .container', pageDown)
+        $('.container').load(location.toString() + ' .container>article', pageDown)
     }, seconds)
 }
 

@@ -29,7 +29,7 @@ def worker(request):
         if not p['cmdline']:
             continue
 
-        cmdline = ':'.join(p['cmdline'])
+        cmdline = ' '.join(p['cmdline']).rstrip()
         if cmdline.startswith(PROCNAME):
             pid = cmdline.split(':')[1]
             break

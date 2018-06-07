@@ -10,7 +10,7 @@ conv = ansi2html.Ansi2HTMLConverter()
 
 @register.filter(name='ansi')
 def ansi(value):
-    return conv.convert(value, full=False)
+    return mark_safe(conv.convert(value, full=False))
 
 
 @register.simple_tag(name='ansi_styles')
