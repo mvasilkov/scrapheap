@@ -1,5 +1,6 @@
 from datetime import timedelta
 from functools import cmp_to_key
+import math
 
 from django.db import models
 from django.utils import timezone
@@ -90,7 +91,13 @@ class Buffer(models.Model):
         buf.sort(key=self.key_function())
         if count is None:
             return buf[0]
+        if count is math.inf:
+            return buf
         return buf[:count]
+
+    @property
+    def ordered_issues(self):
+        return self.get_ordered(count=math.inf, with_running=True)
 
     def get_issues(self, *, count=None, with_running=False):
         qs = self.issues.all() if with_running else self.issues.filter(is_running=False)

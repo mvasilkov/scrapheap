@@ -3,10 +3,10 @@ import traceback
 
 from django.core.serializers import serialize
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .management.commands.worker import PROCNAME, TEEFILE
-from .models import Queue, Issue
+from .models import Queue, Issue, Buffer
 
 
 def index(request):
@@ -68,3 +68,8 @@ def history_json(request, verdict: str):
             content_type='application/json')
     issues = Issue.objects.filter(buffer=None, verdict=verdict).order_by('-updated')[:20]
     return HttpResponse(serialize('json', issues), content_type='application/json')
+
+
+def buffer_json(request, buffer_id: int):
+    buf = get_object_or_404(Buffer, id=buffer_id)
+    return HttpResponse(serialize('json', buf.ordered_issues), content_type='application/json')

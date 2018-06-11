@@ -18,12 +18,13 @@ b1.save()
 b2func = '''
 # Order by priority
 # Blocker, then Critical, then Major, then Minor, then Trivial
-result = PRIORITIES[a.props['priority']] - PRIORITIES[b.props['priority']]
+result = PRIORITIES[a.props.get('priority', None)] - PRIORITIES[b.props.get('priority', None)]
 '''
 b2 = Buffer(name='Issues', queue=queue, cmp_function=b2func.lstrip())
 b2.save()
 
-query = 'project = Infinibox and status = Integrating'
+query = ('project = Infinibox and status = Integrating and fixVersion is not empty and '
+         '(labels not in (integ-failed-sanity) or labels is empty)')
 jira_poller = JiraPoller(
     name='Jira Poller', queue=queue, to_buffer=b1, interval=timedelta(minutes=2), query=query)
 jira_poller.is_active = True

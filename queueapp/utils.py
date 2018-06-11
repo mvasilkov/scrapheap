@@ -8,6 +8,7 @@ PRIORITIES = {
     'Major': 3,
     'Minor': 4,
     'Trivial': 5,
+    None: 6,
 }
 
 
