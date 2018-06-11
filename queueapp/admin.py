@@ -43,7 +43,9 @@ class IssueAdmin(admin.ModelAdmin):
     list_display = ('key', 'buffer_name', 'is_running', 'created', 'updated')
 
     def buffer_name(self, model):
-        return model.buffer.name
+        if model.buffer:
+            return model.buffer.name
+        return '—'
 
     buffer_name.short_description = 'buffer'
     buffer_name.admin_order_field = 'buffer__name'
