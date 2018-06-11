@@ -1,7 +1,7 @@
 [Unit]
 Description=GLaDOS uWSGI service
 After=syslog.target nginx.target
-Requires=nginx.target
+Requires=nginx.service
 
 [Service]
 Environment=DJANGO_SETTINGS_MODULE=central_core.settings.release
