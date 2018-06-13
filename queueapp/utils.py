@@ -2,14 +2,7 @@ from locale import strcoll
 import sys
 import traceback
 
-PRIORITIES = {
-    'Blocker': 1,
-    'Critical': 2,
-    'Major': 3,
-    'Minor': 4,
-    'Trivial': 5,
-    None: 6,
-}
+from .integ_utils import PRIORITIES, compare_issues_infinidat
 
 
 def compile_cmp(source: str):
@@ -19,10 +12,15 @@ def compile_cmp(source: str):
         return None
 
     def cmp(a, b):
+        things = {
+            'PRIORITIES': PRIORITIES,
+            'issue_cmp': issue_cmp,
+            'compare_issues_infinidat': compare_issues_infinidat,
+        }
         vars = {'a': a, 'b': b, 'result': 0}
 
         try:
-            exec(code, {'PRIORITIES': PRIORITIES, 'issue_cmp': issue_cmp}, vars)
+            exec(code, things, vars)
         except:
             sys.stderr.write('An error occurred in the comparator')
             sys.stderr.write(traceback.format_exc())

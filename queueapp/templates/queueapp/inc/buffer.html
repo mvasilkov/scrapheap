@@ -1,10 +1,13 @@
+{% load queue_tags %}
+
 <div class="comp buffer">
     <h3>{{ comp.name }}
         <small><a href="{% url 'admin:queueapp_buffer_change' comp.id %}">Change</a></small>
     </h3>
     <ul class="issues">
         {% for issue in comp.ordered_issues %}
-            <li class="{% if issue.is_running %}running{% endif %}"><a class="issue">{{ issue.key }}</a></li>
+            <li class="{% if issue.is_running %}running{% endif %}"><a class="issue">{{ issue.key }}</a>
+                <small>{{ issue|fix_versions }}</small></li>
         {% endfor %}
     </ul>
 </div>

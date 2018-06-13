@@ -16,9 +16,9 @@ b1 = Buffer(name='Before pre_auto', queue=queue, cmp_function=b1func.lstrip())
 b1.save()
 
 b2func = '''
-# Order by priority
+# Order by version ASC, then priority
 # Blocker, then Critical, then Major, then Minor, then Trivial
-result = PRIORITIES[a.props.get('priority', None)] - PRIORITIES[b.props.get('priority', None)]
+result = compare_issues_infinidat(a, b)
 '''
 b2 = Buffer(name='Issues', queue=queue, cmp_function=b2func.lstrip())
 b2.save()

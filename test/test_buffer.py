@@ -5,13 +5,18 @@ from queueapp.utils import issue_cmp
 
 # Order by priority
 COMPARE_PRIORITY = '''
-result = PRIORITIES[a.props['priority']] - PRIORITIES[b.props['priority']]
+result = PRIORITIES[a.props.get('priority', None)] - PRIORITIES[b.props.get('priority', None)]
 '''
 
 # Default ordering, but FOO-2 comes first
 COMPARE_SELECT_ONE = '''
 if a.key == 'FOO-2':
     result = -1
+'''
+
+# Infinidat ordering (version ASC, then priority)
+COMPARE_INFINIDAT = '''
+result = compare_issues_infinidat(a, b)
 '''
 
 
@@ -48,7 +53,7 @@ def test_buffer_ordering_key():
     assert b.get_ordered().key == 'FOO-2'
 
     assert b.count() == 2
-    keys = [issue.key for issue in b.get_ordered(count=2)]
+    keys = [issue.key for issue in b.ordered_issues]
     assert keys == ['FOO-2', 'FOO-3']
 
 
@@ -67,7 +72,7 @@ def test_buffer_ordering_function():
     Issue(buffer=b, key='FOO-4', props={'priority': 'Critical'}).save()
 
     assert b.count() == 4
-    keys = [issue.key for issue in b.get_ordered(count=4)]
+    keys = [issue.key for issue in b.ordered_issues]
     assert keys == ['FOO-2', 'FOO-4', 'FOO-1', 'FOO-3']
 
 
@@ -84,5 +89,27 @@ def test_buffer_ordering_select_one():
     Issue(buffer=b, key='FOO-3').save()
 
     assert b.count() == 3
-    keys = [issue.key for issue in b.get_ordered(count=3)]
+    keys = [issue.key for issue in b.ordered_issues]
     assert keys == ['FOO-2', 'FOO-1', 'FOO-3']
+
+
+@pytest.mark.django_db
+def test_buffer_ordering_infinidat():
+    q = Queue()
+    q.save()
+
+    b = Buffer(queue=q, cmp_function=COMPARE_INFINIDAT)
+    b.save()
+
+    Issue(buffer=b, key='FOO-1',
+          props={'fix_versions': ['4.0.0.90'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-2',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Blocker'}).save()
+    Issue(buffer=b, key='FOO-3',
+          props={'fix_versions': ['3.0.30.20', '4.0.10.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-4',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Critical'}).save()
+
+    assert b.count() == 4
+    keys = [issue.key for issue in b.ordered_issues]
+    assert keys == ['FOO-3', 'FOO-1', 'FOO-2', 'FOO-4']

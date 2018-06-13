@@ -161,6 +161,14 @@ class Issue(models.Model):
             'summary': integ_issue.summary,
         }
 
+    @property
+    def fix_versions(self):
+        return self.props.get('fix_versions', [])
+
+    @property
+    def priority(self):
+        return self.props.get('priority', None)
+
 
 def abstract_run(self):
     raise NotImplementedError(f'Class {self.__class__.__name__} does not implement run()')
