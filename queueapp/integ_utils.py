@@ -17,21 +17,27 @@ PRIORITIES = {
 }
 
 
-def issue_running_or_pending(issue_key: str, jenkins_job: str = common_defs.UPSTREAM_JOB) -> bool:
+def issue_running_or_pending(issue, jenkins_job: str = common_defs.UPSTREAM_JOB) -> bool:
     upstream_job = runtime.jenkins.get_job(jenkins_job)
 
     for build in upstream_job.get_queued_builds():
         try:
-            issue = build.get_params().get('ISSUE')
-            if issue_key == issue:
+            param_issue = build.get_params().get('ISSUE')
+            if issue.key == param_issue:
+                # queued builds have no build_id
                 return True
         except BuildNoLongerQueued:
             continue
 
     for build in upstream_job.get_builds():
         if build.is_running():
-            issue = build.get_params().get('ISSUE')
-            if issue_key == issue:
+            param_issue = build.get_params().get('ISSUE')
+            if issue.key == param_issue:
+                build_id = getattr(build, 'build_id', None)
+                if build_id is not None:
+                    issue.props['jenkins_job'] = jenkins_job
+                    issue.props['jenkins_build_id'] = build_id
+                    issue.save()
                 return True
 
     return False

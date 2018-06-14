@@ -327,7 +327,7 @@ class JenkinsActuator(Actuator):
             return
 
         for running_issue in self.from_buffer.issues.filter(is_running=True):
-            if issue_running_or_pending(running_issue.key, self.project_name):
+            if issue_running_or_pending(running_issue, self.project_name):
                 print(f'The Jenkins job `{self.project_name}` is doing the issue `{running_issue.key}`')
                 return  # TODO integrate issues in parallel
             else:
