@@ -6,8 +6,13 @@
     </h3>
     <ul class="issues">
         {% for issue in comp.ordered_issues %}
-            <li class="{% if issue.is_running %}running{% endif %}"><a class="issue">{{ issue.key }}</a>
-                <small>{{ issue|fix_versions }}</small></li>
+            <li class="{% if issue.is_running %}running{% endif %}">
+                <a class="issue">{{ issue.key }}</a>
+                <small>{{ issue|fix_versions }}</small>
+                {% if issue.props.jenkins_job and issue.props.jenkins_build_id %}
+                    <a class="jbuild" data-jenkins-job="{{ issue.props.jenkins_job }}" data-jenkins-build-id="{{ issue.props.jenkins_build_id }}">🔥</a>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
 </div>

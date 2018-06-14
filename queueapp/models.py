@@ -118,7 +118,7 @@ class Issue(models.Model):
 
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
-    props = JSONField(default=new_dict, editable=False)
+    props = JSONField(default=new_dict)
     is_running = models.BooleanField(default=False)
     verdict = models.CharField(max_length=10, choices=VERDICT, default=VERDICT_NONE)
     number_tries = models.PositiveIntegerField(default=0)

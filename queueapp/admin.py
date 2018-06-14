@@ -41,7 +41,7 @@ class BufferAdmin(admin.ModelAdmin):
 @admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
     list_display = ('key', 'buffer_name', 'is_running', 'created', 'updated')
-    readonly_fields = ('key', 'props')
+    readonly_fields = ('key', )
 
     def buffer_name(self, model):
         if model.buffer:
