@@ -105,4 +105,4 @@ class NopFilterAdmin(admin.ModelAdmin):
 
 @admin.register(JenkinsActuator)
 class JenkinsActuatorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'project_name')
+    list_display = ('name', 'project_name', 'project_name2')

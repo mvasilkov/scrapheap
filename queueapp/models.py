@@ -76,6 +76,7 @@ class Buffer(models.Model):
     name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     cmp_function = models.TextField(blank=True)
+    cmp_rules = models.CharField(max_length=1000, blank=True)
 
     def key_function(self):
         cmp = compile_cmp(self.cmp_function) if self.cmp_function else None
@@ -318,6 +319,10 @@ class NopFilter(Filter):
 
 class JenkinsActuator(Actuator):
     project_name = models.CharField(max_length=60)
+    issue_param = models.CharField(max_length=30, default='ISSUE')
+    # Many issues at once
+    project_name2 = models.CharField(max_length=60, blank=True)
+    issue_param2 = models.CharField(max_length=30, default='ISSUES')
 
     @run_if_active
     def run(self):
@@ -345,7 +350,7 @@ class JenkinsActuator(Actuator):
 
         issue = self.from_buffer.get_ordered()
         if issue:
-            jenkins_job.submit_build(ISSUE=issue.key)
+            jenkins_job.submit_build(**{self.issue_param: issue.key})
             issue.is_running = True
             issue.save()
             self.queue.log(f'Sending the issue <a class=issue>{issue.key}</a> to integration')
