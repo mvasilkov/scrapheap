@@ -343,7 +343,7 @@ class JenkinsActuator(Actuator):
                                          if integ_issue.status_category == 'Done' else
                                          Issue.VERDICT_FAILED)
                 running_issue.number_tries += 1
-                running_issue.update_props(integ_issue)  # this serves no real purpose
+                running_issue.update_props(integ_issue)
                 running_issue.save()
                 self.queue.log(f'The issue <a class=issue>{running_issue.key}</a> '
                                f'<b>{running_issue.verdict}</b> integration')

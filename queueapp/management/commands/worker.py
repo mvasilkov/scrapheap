@@ -9,8 +9,9 @@ import traceback
 from django.core.management.base import BaseCommand, CommandError
 
 from integlib.logbook_utils import configure_logging
+from integlib.runtime import runtime
 
-from queueapp.models import Queue, JiraPoller, AutoFilter, NopFilter, JenkinsActuator, Log
+from queueapp.models import Queue, Issue, JiraPoller, AutoFilter, NopFilter, JenkinsActuator, Log
 from queueapp.utils import Tee
 
 FULL_RUN_INTERVAL = 120  # do a full run each 2 minutes
@@ -51,7 +52,7 @@ class Command(BaseCommand):
         configure_logging(verbose=verbosity > 1)
 
         while True:
-            self.stdout.write('\n\n---')
+            self.stdout.write('\n---')
             started = datetime.now()
             self.stdout.write(f'Started a full run on {started}')
 
@@ -76,6 +77,22 @@ class Command(BaseCommand):
                 q.log(f'Worker process started, pid={self.pid}')
 
         for q in queues:
+            self.stdout.write('Updating issues in buffers...')
+
+            issues = list(Issue.objects.filter(buffer__queue=q, is_running=False))
+            issues_updated = 0
+            for issue in issues:
+                try:
+                    integ_issue = runtime.jira.get_issue(issue.key)
+                    issues_updated += 1
+                except:
+                    pass  # Ignore Jira errors
+                else:
+                    issue.update_props(integ_issue)
+                    issue.save()
+
+            self.stdout.write(f'Updated {issues_updated} out of {len(issues)} issue(s)')
+
             jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
                 self.run_and_log_errors(jpoller)
