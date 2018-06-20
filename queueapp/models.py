@@ -257,7 +257,7 @@ class JiraPoller(Poller):
 
 
 class AutoFilter(Filter):
-    ISSUES_PER_CYCLE = 1
+    ISSUES_PER_CYCLE = 4
 
     @run_if_active
     def run(self):
