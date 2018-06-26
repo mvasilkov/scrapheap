@@ -77,25 +77,7 @@ class Command(BaseCommand):
                 q.log(f'Worker process started, pid={self.pid}')
 
         for q in queues:
-            self.stdout.write('Updating issues in buffers...')
-
-            issues = list(Issue.objects.filter(buffer__queue=q, is_running=False))
-            issues_updated = 0
-            for issue in issues:
-                try:
-                    integ_issue = runtime.jira.get_issue(issue.key)
-                    issues_updated += 1
-                except:
-                    pass  # Ignore Jira errors
-                else:
-                    issue.update_props(integ_issue)
-                    if issue.status != 'Integrating':
-                        issue.buffer = None
-                        q.log(f'Dropping the issue <a class=issue>{issue.key}</a> from the queue '
-                              'because its status has changed and is no longer Integrating')
-                    issue.save()
-
-            self.stdout.write(f'Updated {issues_updated} out of {len(issues)} issue(s)')
+            self.update_issues(q)
 
             jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
@@ -124,3 +106,24 @@ class Command(BaseCommand):
         except:
             self.stderr.write(f'An error occurred in {runnable}')
             self.stderr.write(traceback.format_exc())
+
+    def update_issues(self, q):
+        self.stdout.write('Updating issues in buffers...')
+
+        issues = list(Issue.objects.filter(buffer__queue=q, is_running=False))
+        issues_updated = 0
+        for issue in issues:
+            try:
+                integ_issue = runtime.jira.get_issue(issue.key)
+                issues_updated += 1
+            except:
+                pass  # Ignore Jira errors
+            else:
+                issue.update_props(integ_issue)
+                if integ_issue.status != 'Integrating':
+                    issue.buffer = None
+                    q.log(f'Dropping the issue <a class=issue>{issue.key}</a> from the queue '
+                          'because its status has changed and is no longer <b>Integrating</b>')
+                issue.save()
+
+        self.stdout.write(f'Updated {issues_updated} out of {len(issues)} issue(s)')

@@ -9,6 +9,7 @@ from annoying.fields import JSONField
 from annoying.functions import get_object_or_None
 
 from auto_integ.pre_auto import pre_auto, PAError, ACCEPT, SKIP
+from integlib.jenkins import JenkinsException
 from integlib.runtime import runtime
 
 from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes, run_if_active
@@ -117,6 +118,8 @@ class Issue(models.Model):
     VERDICT = ((VERDICT_NONE, VERDICT_NONE), (VERDICT_SUCCEEDED, VERDICT_SUCCEEDED),
                (VERDICT_FAILED, VERDICT_FAILED))
 
+    ATTEMPTED_MULTIPLE = '<ATTEMPTED_MULTIPLE>'
+
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
     props = JSONField(default=new_dict)
@@ -155,12 +158,17 @@ class Issue(models.Model):
         return issue
 
     def update_props(self, integ_issue):
+        preserve_fields = {
+            k: v
+            for k, v in self.props.items() if k.startswith('<') and k.endswith('>')
+        }
         self.props = {
             'fix_versions': integ_issue.fix_versions,
             'priority': integ_issue.priority,
             'assignee_name': integ_issue.assignee.displayName,
             'summary': integ_issue.summary,
         }
+        self.props.update(preserve_fields)
 
     @property
     def fix_versions(self):
@@ -320,21 +328,35 @@ class NopFilter(Filter):
 class JenkinsActuator(Actuator):
     project_name = models.CharField(max_length=60)
     issue_param = models.CharField(max_length=30, default='ISSUE')
-    # Many issues at once
-    project_name2 = models.CharField(max_length=60, blank=True)
+    project_name2 = models.CharField(max_length=60, blank=True, help_text='Many issues at once (optional)')
     issue_param2 = models.CharField(max_length=30, default='ISSUES')
+
+    def get_jenkins_job(self, project_name: str):
+        try:
+            jenkins_job = runtime.jenkins.get_job(project_name)
+            if not jenkins_job.is_enabled():
+                print(f'The Jenkins job `{project_name}` is disabled. It will not be used')
+                jenkins_job = None
+            return jenkins_job
+        except JenkinsException:
+            print(f'The Jenkins job `{project_name}` is inaccessible. It will not be used')
+            jenkins_job = None
 
     @run_if_active
     def run(self):
-        jenkins_job = runtime.jenkins.get_job(self.project_name)
-        if not jenkins_job.is_enabled():
-            print(f'The Jenkins job `{self.project_name}` is disabled')
-            return
+        jenkins_job = self.get_jenkins_job(self.project_name)
+        jenkins_job2 = self.get_jenkins_job(self.project_name2) if self.project_name2 else None
+
+        running_issues = {
+            self.project_name: [],
+            self.project_name2: [],
+        }
 
         for running_issue in self.from_buffer.issues.filter(is_running=True):
-            if issue_running_or_pending(running_issue, self.project_name):
-                print(f'The Jenkins job `{self.project_name}` is doing the issue `{running_issue.key}`')
-                return  # TODO integrate issues in parallel
+            if issue_running_or_pending(running_issue, jenkins_job, self.issue_param):
+                running_issues[self.project_name].append(running_issue)
+            elif issue_running_or_pending(running_issue, jenkins_job2, self.issue_param2):
+                running_issues[self.project_name2].append(running_issue)
             else:
                 integ_issue = runtime.jira.get_issue(running_issue.key)
                 running_issue.buffer = None
@@ -347,6 +369,13 @@ class JenkinsActuator(Actuator):
                 running_issue.save()
                 self.queue.log(f'The issue <a class=issue>{running_issue.key}</a> '
                                f'<b>{running_issue.verdict}</b> integration')
+
+        if running_issues:
+            for project_name, project_issues in running_issues.items():
+                if project_issues:
+                    issue_keys = ' '.join(issue.key for issue in project_issues)
+                    print(f'The Jenkins job `{project_name}` is doing the issue(s) `{issue_keys}`')
+            return  # TODO integrate issues in parallel
 
         issue = self.from_buffer.get_ordered()
         if issue:
