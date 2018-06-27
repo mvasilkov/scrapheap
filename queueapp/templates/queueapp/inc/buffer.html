@@ -11,6 +11,7 @@
                 <small>{{ issue|fix_versions }}</small>
                 {% if issue.props.jenkins_job and issue.props.jenkins_build_id %}
                     <a class="jbuild" data-jenkins-job="{{ issue.props.jenkins_job }}" data-jenkins-build-id="{{ issue.props.jenkins_build_id }}">🔥</a>
+                    <small class="jbuild-label" title="{{ issue.props.jenkins_job }}">{{ issue.props.jenkins_job.0 }}</small>
                 {% endif %}
             </li>
         {% endfor %}

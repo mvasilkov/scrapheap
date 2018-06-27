@@ -142,3 +142,7 @@ h1 small, h2 small, h3 small {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+.jbuild-label {
+    margin-left: -2px
+}
