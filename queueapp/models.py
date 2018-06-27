@@ -299,6 +299,7 @@ class AutoFilter(Filter):
             except PAError as err:
                 issue.buffer = None
                 issue.verdict = Issue.VERDICT_FAILED
+                del issue.props[Issue.ATTEMPTED_MULTIPLE]
                 issue.save()
                 self.queue.log(f'The issue <a class=issue>{issue.key}</a> failed {str(err)}')
                 continue
@@ -400,14 +401,16 @@ class JenkinsActuator(Actuator):
 
         ready_issues = self.from_buffer.get_ordered_without_versions(
             count=JenkinsActuator.MULTIPLE_COUNT_UPPER, without_versions=taken_versions)
+        ready_issues2 = [issue for issue in ready_issues if Issue.ATTEMPTED_MULTIPLE not in issue.props]
 
-        if len(ready_issues) >= JenkinsActuator.MULTIPLE_COUNT_LOWER and jenkins_job2:
-            issue_keys = ' '.join(issue.key for issue in ready_issues)
+        if len(ready_issues2) >= JenkinsActuator.MULTIPLE_COUNT_LOWER and jenkins_job2:
+            issue_keys = ' '.join(issue.key for issue in ready_issues2)
             jenkins_job2.submit_build(**{self.issue_param2: issue_keys})
-            for issue in ready_issues:
+            for issue in ready_issues2:
                 issue.is_running = True
+                issue.props[Issue.ATTEMPTED_MULTIPLE] = 1  # Any value. We're only checking that the key is present
                 issue.save()
-            issue_links = ' '.join(f'<a class=issue>{issue.key}</a>' for issue in ready_issues)
+            issue_links = ' '.join(f'<a class=issue>{issue.key}</a>' for issue in ready_issues2)
             self.queue.log(f'Sending the following issues to integration: {issue_links}')
             return
 
