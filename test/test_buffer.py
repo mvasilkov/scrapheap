@@ -1,3 +1,4 @@
+import math
 import pytest
 
 from queueapp.models import Queue, Buffer, Issue
@@ -113,3 +114,34 @@ def test_buffer_ordering_infinidat():
     assert b.count() == 4
     keys = [issue.key for issue in b.ordered_issues]
     assert keys == ['FOO-3', 'FOO-1', 'FOO-2', 'FOO-4']
+
+
+@pytest.mark.django_db
+def test_buffer_ordering_without_versions():
+    q = Queue()
+    q.save()
+
+    b = Buffer(queue=q, cmp_function=COMPARE_PRIORITY)
+    b.save()
+
+    Issue(buffer=b, key='FOO-1',
+          props={'fix_versions': ['4.0.0.90', '5.0.0.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-2',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Blocker'}).save()
+    Issue(buffer=b, key='FOO-3',
+          props={'fix_versions': ['3.0.30.20', '4.0.10.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-4',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Critical'}).save()
+
+    def _get_issues(a: set):
+        return b.get_ordered_without_versions(count=math.inf, without_versions=a)
+
+    def _assert_equal(a: set, b: list):
+        keys = [issue.key for issue in _get_issues(a)]
+        assert keys == b
+
+    _assert_equal(set(), ['FOO-2', 'FOO-4', 'FOO-1', 'FOO-3'])
+    _assert_equal({'5.0.0.0'}, ['FOO-2', 'FOO-4', 'FOO-3'])
+    _assert_equal({'4.0.10.0'}, ['FOO-1'])
+    _assert_equal({'3.0.30.20', '4.0.0.90'}, ['FOO-2', 'FOO-4'])
+    _assert_equal({'4.0.10.0', '5.0.0.0'}, [])

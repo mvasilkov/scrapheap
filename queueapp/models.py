@@ -101,6 +101,19 @@ class Buffer(models.Model):
     def ordered_issues(self):
         return self.get_ordered(count=math.inf, with_running=True)
 
+    def get_ordered_without_versions(self, *, count=None, with_running=False, without_versions=None):
+        if not without_versions:
+            return self.get_ordered(count=count, with_running=with_running)
+        buf1 = self.get_ordered(count=math.inf, with_running=with_running)
+        buf = [a for a in buf1 if not set(a.fix_versions) & without_versions]
+        if not buf:
+            return None if count is None else []
+        if count is None:
+            return buf[0]
+        if count is math.inf:
+            return buf
+        return buf[:count]
+
     def get_issues(self, *, count=None, with_running=False):
         qs = self.issues.all() if with_running else self.issues.filter(is_running=False)
         return list(qs if count is None else qs[:count])
@@ -326,10 +339,13 @@ class NopFilter(Filter):
 
 
 class JenkinsActuator(Actuator):
+    MULTIPLE_COUNT_LOWER = 2  # Inclusive
+    MULTIPLE_COUNT_UPPER = 4  # Inclusive
+
     project_name = models.CharField(max_length=60)
     issue_param = models.CharField(max_length=30, default='ISSUE')
     project_name2 = models.CharField(max_length=60, blank=True, help_text='Many issues at once (optional)')
-    issue_param2 = models.CharField(max_length=30, default='ISSUES')
+    issue_param2 = models.CharField(max_length=30, default='ISSUES')  # TODO Move these to a new model: JenkinsProject
 
     def get_jenkins_job(self, project_name: str):
         try:
@@ -370,15 +386,33 @@ class JenkinsActuator(Actuator):
                 self.queue.log(f'The issue <a class=issue>{running_issue.key}</a> '
                                f'<b>{running_issue.verdict}</b> integration')
 
-        if running_issues:
+        taken_versions = set()
+        if running_issues[self.project_name] or running_issues[self.project_name2]:
             for project_name, project_issues in running_issues.items():
-                if project_issues:
-                    issue_keys = ' '.join(issue.key for issue in project_issues)
-                    print(f'The Jenkins job `{project_name}` is doing the issue(s) `{issue_keys}`')
-            return  # TODO integrate issues in parallel
+                if not project_issues:
+                    continue
+                for issue in project_issues:
+                    taken_versions.update(issue.fix_versions)
+                issue_keys = ' '.join(issue.key for issue in project_issues)
+                print(f'The Jenkins job `{project_name}` is doing the issue(s) `{issue_keys}`')
+            if taken_versions:
+                print(f'The following versions are taken: {taken_versions}')
 
-        issue = self.from_buffer.get_ordered()
-        if issue:
+        ready_issues = self.from_buffer.get_ordered_without_versions(
+            count=JenkinsActuator.MULTIPLE_COUNT_UPPER, without_versions=taken_versions)
+
+        if len(ready_issues) >= JenkinsActuator.MULTIPLE_COUNT_LOWER and jenkins_job2:
+            issue_keys = ' '.join(issue.key for issue in ready_issues)
+            jenkins_job2.submit_build(**{self.issue_param2: issue_keys})
+            for issue in ready_issues:
+                issue.is_running = True
+                issue.save()
+            issue_links = ' '.join(f'<a class=issue>{issue.key}</a>' for issue in ready_issues)
+            self.queue.log(f'Sending the following issues to integration: {issue_links}')
+            return
+
+        if ready_issues and jenkins_job:
+            issue = ready_issues[0]
             jenkins_job.submit_build(**{self.issue_param: issue.key})
             issue.is_running = True
             issue.save()
