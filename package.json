@@ -1,0 +1,18 @@
+{
+  "name": "client-storage-dropbox",
+  "version": "0.0.0",
+  "description": "Client-side storage for unhosted web apps.",
+  "keywords": [
+    "dropbox",
+    "localstorage",
+    "remotestorage",
+    "unhosted"
+  ],
+  "main": "clientStorage.js",
+  "repository": "git@github.com:mvasilkov/client-storage-dropbox.git",
+  "author": "Mark Vasilkov <mvasilkov@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dropbox": "4.0.4"
+  }
+}
