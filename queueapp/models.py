@@ -157,7 +157,7 @@ class Issue(models.Model):
         except Issue.DoesNotExist:
             return True
 
-        return issue.buffer is None and issue.verdict == Issue.VERDICT_FAILED
+        return issue.buffer is None  # and issue.verdict == Issue.VERDICT_FAILED
 
     @staticmethod
     def create_or_update_props(integ_issue):
