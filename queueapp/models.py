@@ -340,8 +340,8 @@ class NopFilter(Filter):
 
 
 class JenkinsActuator(Actuator):
-    MULTIPLE_COUNT_LOWER = 2  # Inclusive
-    MULTIPLE_COUNT_UPPER = 4  # Inclusive
+    MULTIPLE_COUNT_LOWER = 3  # Inclusive
+    MULTIPLE_COUNT_UPPER = 5  # Inclusive
 
     project_name = models.CharField(max_length=60)
     issue_param = models.CharField(max_length=30, default='ISSUE')
