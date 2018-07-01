@@ -51,7 +51,7 @@ class IssueAdmin(admin.ModelAdmin):
     buffer_name.short_description = 'buffer'
     buffer_name.admin_order_field = 'buffer__name'
 
-    def has_delete_permission(request, obj=None):
+    def has_delete_permission(*args, **kwargs):
         return False
 
 
