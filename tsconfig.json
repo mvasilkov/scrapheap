@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "AMD",
-    "moduleResolution": "Node",
-    "outFile": "clientStorage.js",
+    "module": "commonjs",
+    "outDir": "javascript",
     "strict": true
   }
 }

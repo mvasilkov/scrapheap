@@ -8,11 +8,13 @@
     "remotestorage",
     "unhosted"
   ],
-  "main": "clientStorage.js",
+  "main": "build/clientStorage.min.js",
   "repository": "git@github.com:mvasilkov/client-storage-dropbox.git",
   "author": "Mark Vasilkov <mvasilkov@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "dropbox": "4.0.4"
+  "dependencies": {},
+  "devDependencies": {
+    "dropbox": "4.0.4",
+    "google-closure-compiler": "20180506.0.0"
   }
 }
