@@ -191,6 +191,10 @@ class Issue(models.Model):
     def priority(self):
         return self.props.get('priority', None)
 
+    @property
+    def attempted_multiple(self):
+        return Issue.ATTEMPTED_MULTIPLE in self.props
+
 
 def abstract_run(self):
     raise NotImplementedError(f'Class {self.__class__.__name__} does not implement run()')

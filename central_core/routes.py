@@ -9,6 +9,7 @@ from queueapp.views import (
     history as queueapp_history,
     history_json as queueapp_history_json,
     buffer_json as queueapp_buffer_json,
+    clear_attempted_multiple as queueapp_clear_attempted_multiple,
 )
 
 
@@ -23,6 +24,10 @@ urlpatterns = [
     path('queueapp/worker/', queueapp_worker, name='queueapp_worker'),
     path('queueapp/history/', queueapp_history, name='queueapp_history'),
     path('queueapp/history/json/<str:verdict>/', queueapp_history_json),
+    path(
+        'queueapp/clear_attempted_multiple/<int:buffer_id>/',
+        queueapp_clear_attempted_multiple,
+        name='queueapp_clear_attempted_multiple'),
     path('admin/', admin.site.urls),
 ]
 

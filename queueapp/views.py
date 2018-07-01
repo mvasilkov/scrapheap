@@ -3,7 +3,8 @@ import traceback
 
 from django.core.serializers import serialize
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http.response import HttpResponseNotAllowed
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .management.commands.worker import PROCNAME, TEEFILE
 from .models import Queue, Issue, Buffer
@@ -73,3 +74,14 @@ def history_json(request, verdict: str):
 def buffer_json(request, buffer_id: int):
     buf = get_object_or_404(Buffer, id=buffer_id)
     return HttpResponse(serialize('json', buf.ordered_issues), content_type='application/json')
+
+
+def clear_attempted_multiple(request, buffer_id: int):
+    if request.method == 'POST':
+        buf = get_object_or_404(Buffer, id=buffer_id)
+        for issue in buf.get_issues():
+            issue.props.pop(Issue.ATTEMPTED_MULTIPLE, None)
+            issue.save()
+        return redirect('queueapp_index')
+
+    return HttpResponseNotAllowed(permitted_methods=['POST'])
