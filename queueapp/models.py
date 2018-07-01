@@ -299,7 +299,7 @@ class AutoFilter(Filter):
             except PAError as err:
                 issue.buffer = None
                 issue.verdict = Issue.VERDICT_FAILED
-                del issue.props[Issue.ATTEMPTED_MULTIPLE]
+                issue.props.pop(Issue.ATTEMPTED_MULTIPLE, None)
                 issue.save()
                 self.queue.log(f'The issue <a class=issue>{issue.key}</a> failed {str(err)}')
                 continue
@@ -360,16 +360,20 @@ class JenkinsActuator(Actuator):
             jenkins_job = None
 
     @staticmethod
-    def exclude_disconnected_issues(issues):
+    def exclude_disconnected_issues(issues):  # Issue[] -> Issue[]
         if not issues:
-            return issues
-        result = issues[:1]
+            return []
+        visited_issues = set(issues[:1])
         versions = set(issues[0].fix_versions)
-        for a in issues[1:]:
-            if set(a.fix_versions) & versions:
-                versions.update(a.fix_versions)
-                result.append(a)
-        return result
+        repeat = True
+        while repeat:  # while versions is getting updated
+            repeat = False
+            for a in issues[1:]:
+                if a not in visited_issues and set(a.fix_versions) & versions:
+                    visited_issues.add(a)
+                    versions.update(a.fix_versions)
+                    repeat = True
+        return [a for a in issues if set(a.fix_versions) & versions]
 
     @run_if_active
     def run(self):
