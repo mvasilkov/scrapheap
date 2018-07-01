@@ -359,6 +359,18 @@ class JenkinsActuator(Actuator):
             print(f'The Jenkins job `{project_name}` is inaccessible. It will not be used')
             jenkins_job = None
 
+    @staticmethod
+    def exclude_disconnected_issues(issues):
+        if not issues:
+            return issues
+        result = issues[:1]
+        versions = set(issues[0].fix_versions)
+        for a in issues[1:]:
+            if set(a.fix_versions) & versions:
+                versions.update(a.fix_versions)
+                result.append(a)
+        return result
+
     @run_if_active
     def run(self):
         jenkins_job = self.get_jenkins_job(self.project_name)
@@ -402,6 +414,7 @@ class JenkinsActuator(Actuator):
         ready_issues = self.from_buffer.get_ordered_without_versions(
             count=JenkinsActuator.MULTIPLE_COUNT_UPPER, without_versions=taken_versions)
         ready_issues2 = [issue for issue in ready_issues if Issue.ATTEMPTED_MULTIPLE not in issue.props]
+        ready_issues2 = self.exclude_disconnected_issues(ready_issues2)
 
         if len(ready_issues2) >= JenkinsActuator.MULTIPLE_COUNT_LOWER and jenkins_job2:
             issue_keys = ' '.join(issue.key for issue in ready_issues2)
