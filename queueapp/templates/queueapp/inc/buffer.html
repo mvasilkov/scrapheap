@@ -8,7 +8,7 @@
         {% for issue in comp.ordered_issues %}
             <li class="{% if issue.is_running %}running{% endif %}">
                 {% if issue.attempted_multiple %}<span title="ATTEMPTED_MULTIPLE">🚌</span>{% endif %}
-                <a class="issue">{{ issue.key }}</a>
+                <a class="issue" title="{{ issue.props.summary }}">{{ issue.key }}</a>
                 <small>{{ issue|fix_versions }}</small>
                 {% if issue.props.jenkins_job and issue.props.jenkins_build_id %}
                     <a class="jbuild" data-jenkins-job="{{ issue.props.jenkins_job }}" data-jenkins-build-id="{{ issue.props.jenkins_build_id }}">🔥</a>

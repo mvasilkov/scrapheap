@@ -282,11 +282,11 @@ class JiraPoller(Poller):
 
 
 class AutoFilter(Filter):
-    ISSUES_PER_CYCLE = 4
+    issues_per_cycle = models.PositiveSmallIntegerField(default=4)
 
     @run_if_active
     def run(self):
-        issues = self.from_buffer.get_ordered(count=AutoFilter.ISSUES_PER_CYCLE)
+        issues = self.from_buffer.get_ordered(count=self.issues_per_cycle)
         if not issues:
             return
 
@@ -344,13 +344,12 @@ class NopFilter(Filter):
 
 
 class JenkinsActuator(Actuator):
-    MULTIPLE_COUNT_LOWER = 3  # Inclusive
-    MULTIPLE_COUNT_UPPER = 5  # Inclusive
-
     project_name = models.CharField(max_length=60)
     issue_param = models.CharField(max_length=30, default='ISSUE')
     project_name2 = models.CharField(max_length=60, blank=True, help_text='Many issues at once (optional)')
-    issue_param2 = models.CharField(max_length=30, default='ISSUES')  # TODO Move these to a new model: JenkinsProject
+    issue_param2 = models.CharField(max_length=30, default='ISSUES')
+    multiple_count_lower = models.PositiveSmallIntegerField(default=3, help_text='Inclusive')
+    multiple_count_upper = models.PositiveSmallIntegerField(default=5, help_text='Inclusive')
 
     def get_jenkins_job(self, project_name: str):
         try:
@@ -420,11 +419,11 @@ class JenkinsActuator(Actuator):
                 print(f'The following versions are taken: {taken_versions}')
 
         ready_issues = self.from_buffer.get_ordered_without_versions(
-            count=JenkinsActuator.MULTIPLE_COUNT_UPPER, without_versions=taken_versions)
+            count=self.multiple_count_upper, without_versions=taken_versions)
         ready_issues2 = [issue for issue in ready_issues if Issue.ATTEMPTED_MULTIPLE not in issue.props]
         ready_issues2 = self.exclude_disconnected_issues(ready_issues2)
 
-        if len(ready_issues2) >= JenkinsActuator.MULTIPLE_COUNT_LOWER and jenkins_job2:
+        if len(ready_issues2) >= self.multiple_count_lower and jenkins_job2:
             issue_keys = ' '.join(issue.key for issue in ready_issues2)
             jenkins_job2.submit_build(**{self.issue_param2: issue_keys})
             for issue in ready_issues2:
