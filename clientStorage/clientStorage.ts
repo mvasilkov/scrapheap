@@ -22,6 +22,7 @@ interface IOptions {
 
 export class ClientStorage {
     readonly db: Dropbox
+    readonly path: string
 
     constructor(path: string, options: IOptions) {
         let { accessToken } = options
@@ -34,6 +35,7 @@ export class ClientStorage {
         }
 
         this.db = new Dropbox({ accessToken, clientId })
+        this.path = path
     }
 
     authenticated(): Promise<boolean> {
