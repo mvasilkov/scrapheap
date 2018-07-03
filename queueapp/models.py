@@ -1,4 +1,5 @@
 from datetime import timedelta
+from fnmatch import fnmatchcase
 from functools import cmp_to_key
 import math
 
@@ -77,7 +78,8 @@ class Buffer(models.Model):
     name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
     cmp_function = models.TextField(blank=True)
-    cmp_rules = models.CharField(max_length=1000, blank=True)
+    cmp_rules = models.TextField(blank=True, help_text='Move these issues to the top of the buffer. '
+        'Shell-style patterns, one per line')
 
     def key_function(self):
         cmp = compile_cmp(self.cmp_function) if self.cmp_function else None
@@ -85,12 +87,37 @@ class Buffer(models.Model):
             cmp = issue_cmp
         return cmp_to_key(cmp)
 
+    def custom_ordering(self, buf):
+        rules = [a.strip() for a in self.cmp_rules.splitlines()]
+        b1 = []
+        b2 = []
+
+        for issue in buf:
+            if self.issue_matches(issue, rules):
+                b1.append(issue)
+            else:
+                b2.append(issue)
+
+        return b1 + b2
+
+    @staticmethod
+    def issue_matches(issue, rules):
+        for rule in rules:
+            if fnmatchcase(issue.key, rule):
+                return True
+            for version in issue.fix_versions:
+                if fnmatchcase(version, rule):
+                    return True
+        return False
+
     def get_ordered(self, *, count=None, with_running=False):
         qs = self.issues.all() if with_running else self.issues.filter(is_running=False)
         buf = list(qs)
         if not buf:
             return None if count is None else []
         buf.sort(key=self.key_function())
+        if self.cmp_rules.strip() != '':
+            buf = self.custom_ordering(buf)
         if count is None:
             return buf[0]
         if count is math.inf:

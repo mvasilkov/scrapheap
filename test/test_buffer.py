@@ -145,3 +145,47 @@ def test_buffer_ordering_without_versions():
     _assert_equal({'4.0.10.0'}, ['FOO-1'])
     _assert_equal({'3.0.30.20', '4.0.0.90'}, ['FOO-2', 'FOO-4'])
     _assert_equal({'4.0.10.0', '5.0.0.0'}, [])
+
+
+@pytest.mark.django_db
+def test_buffer_custom_ordering():
+    ORDERING_KEY = '''
+    *3
+    FOO-2
+    '''
+    ORDERING_VERSION_3 = '''
+    3.0.*
+    '''
+    ORDERING_VERSION_4 = '''
+    4.0.*
+    '''
+
+    q = Queue()
+    q.save()
+
+    b = Buffer(queue=q, cmp_function=COMPARE_PRIORITY, cmp_rules='')
+    b.save()
+
+    Issue(buffer=b, key='FOO-1',
+          props={'fix_versions': ['4.0.0.90', '5.0.0.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-2',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Blocker'}).save()
+    Issue(buffer=b, key='FOO-3',
+          props={'fix_versions': ['3.0.30.20', '4.0.10.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-4',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Critical'}).save()
+
+    def _assert_order(a: list):
+        keys = [issue.key for issue in b.ordered_issues]
+        assert keys == a
+
+    _assert_order(['FOO-2', 'FOO-4', 'FOO-1', 'FOO-3'])
+
+    b.cmp_rules = ORDERING_KEY
+    _assert_order(['FOO-2', 'FOO-3', 'FOO-4', 'FOO-1'])
+
+    b.cmp_rules = ORDERING_VERSION_3
+    _assert_order(['FOO-3', 'FOO-2', 'FOO-4', 'FOO-1'])
+
+    b.cmp_rules = ORDERING_VERSION_4
+    _assert_order(['FOO-2', 'FOO-4', 'FOO-1', 'FOO-3'])
