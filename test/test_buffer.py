@@ -189,3 +189,24 @@ def test_buffer_custom_ordering():
 
     b.cmp_rules = ORDERING_VERSION_4
     _assert_order(['FOO-2', 'FOO-4', 'FOO-1', 'FOO-3'])
+
+
+@pytest.mark.django_db
+def test_buffer_ordering_similar_versions():
+    q = Queue()
+    q.save()
+
+    b = Buffer(queue=q, cmp_function=COMPARE_INFINIDAT)
+    b.save()
+
+    Issue(buffer=b, key='FOO-1',
+          props={'fix_versions': ['4.0.0.90', '4.0.0.100'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-2',
+          props={'fix_versions': ['4.0.10.0'], 'priority': 'Blocker'}).save()
+    Issue(buffer=b, key='FOO-3',
+          props={'fix_versions': ['3.0.30.20', '4.0.10.0'], 'priority': 'Minor'}).save()
+    Issue(buffer=b, key='FOO-4',
+          props={'fix_versions': ['4.0.10.0', '4.0.10.20'], 'priority': 'Critical'}).save()
+
+    keys = [issue.key for issue in b.ordered_issues]
+    assert keys == ['FOO-1', 'FOO-4', 'FOO-3', 'FOO-2']

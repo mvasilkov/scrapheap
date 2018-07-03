@@ -12,6 +12,7 @@ from annoying.functions import get_object_or_None
 from auto_integ.pre_auto import pre_auto, PAError, ACCEPT, SKIP
 from integlib.jenkins import JenkinsException
 from integlib.runtime import runtime
+from integlib.version import Version
 
 from .utils import compile_cmp, issue_cmp, new_dict, repr_attributes, run_if_active
 from .integ_utils import IGNORED_ISSUES, issue_running_or_pending
@@ -221,6 +222,29 @@ class Issue(models.Model):
     @property
     def attempted_multiple(self):
         return Issue.ATTEMPTED_MULTIPLE in self.props
+
+    @property
+    def multiple_similar_versions(self) -> bool:
+        'There are 2+ fix versions having the same prefix (first triplet).'
+
+        prefices = {}
+
+        for version in self.fix_versions:
+            try:
+                prefix = Version(version).triplet_version
+            except:
+                pass
+
+            if prefix in prefices:
+                prefices[prefix] += 1
+            else:
+                prefices[prefix] = 0
+
+        for count in prefices.values():
+            if count:
+                return True
+
+        return False
 
 
 def abstract_run(self):

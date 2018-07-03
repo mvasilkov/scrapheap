@@ -47,6 +47,12 @@ def issue_running_or_pending(issue, jenkins_job, param_name: str = 'ISSUE') -> b
 def compare_issues_infinidat(a, b) -> int:
     'Compare issues'
 
+    similar_versions_a = int(a.multiple_similar_versions)
+    similar_versions_b = int(b.multiple_similar_versions)
+    result = similar_versions_b - similar_versions_a
+    if result:
+        return result
+
     try:
         fix_version_a = Version(min(a.fix_versions))
         fix_version_b = Version(min(b.fix_versions))
