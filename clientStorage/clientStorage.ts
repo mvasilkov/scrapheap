@@ -46,4 +46,8 @@ export class ClientStorage {
         }
         return Promise.resolve(false)
     }
+
+    authenticationUrl(next: string): string {
+        return this.db.getAuthenticationUrl(next)
+    }
 }
