@@ -83,8 +83,8 @@ def run_if_active(method):
     return wrapper
 
 
-TEE_TRUNCATE = 2_000_000
-TEE_TRUNCATE_KEEP = 1_000_000
+TEE_TRUNCATE = 800_000
+TEE_TRUNCATE_KEEP = 400_000
 
 
 class Tee:
@@ -109,3 +109,7 @@ class Tee:
 
     def __getattr__(self, name):
         return getattr(self.files[0], name)
+
+
+def abstract_run(self):
+    raise NotImplementedError(f'Class {self.__class__.__name__} does not implement run()')

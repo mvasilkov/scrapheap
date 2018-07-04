@@ -42,6 +42,8 @@ STATICFILES_FINDERS = [
     'yarn.finders.YarnFinder',
 ]
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 YARN_ALLOW_FILES = [
     '*.css',
     '*.js',

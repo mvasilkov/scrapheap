@@ -1,8 +1,9 @@
 from locale import strcoll
 
+from django.core.cache import cache
+
 from integlib import common_defs
 from integlib.jenkins import BuildNoLongerQueued
-from integlib.runtime import runtime
 from integlib.version import Version
 
 IGNORED_ISSUES = frozenset(common_defs.EXCLUDED_INTEG_ISSUES)
@@ -17,11 +18,31 @@ PRIORITIES = {
 }
 
 
+def jenkins_get_queued_builds(jenkins_job):
+    key = f'queued_builds_{jenkins_job.name}'
+    result = cache.get(key)
+    if result is not None:
+        return result
+    result = jenkins_job.get_queued_builds()
+    cache.set(key, result, 60)
+    return result
+
+
+def jenkins_get_builds(jenkins_job):
+    key = f'builds_{jenkins_job.name}'
+    result = cache.get(key)
+    if result is not None:
+        return result
+    result = jenkins_job.get_builds()
+    cache.set(key, result, 60)
+    return result
+
+
 def issue_running_or_pending(issue, jenkins_job, param_name: str = 'ISSUE') -> bool:
     if not jenkins_job:
         return False
 
-    for build in jenkins_job.get_queued_builds():
+    for build in jenkins_get_queued_builds(jenkins_job):
         try:
             param_issues = str(build.get_params().get(param_name)).split()
             if issue.key in param_issues:
@@ -30,7 +51,7 @@ def issue_running_or_pending(issue, jenkins_job, param_name: str = 'ISSUE') -> b
         except BuildNoLongerQueued:
             continue
 
-    for build in jenkins_job.get_builds():
+    for build in jenkins_get_builds(jenkins_job):
         if build.is_running():
             param_issues = str(build.get_params().get(param_name)).split()
             if issue.key in param_issues:

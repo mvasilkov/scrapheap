@@ -79,6 +79,10 @@ class Command(BaseCommand):
         for q in queues:
             self.update_issues(q)
 
+            actuator = get_active_comp(JenkinsActuator, q).first()
+            if actuator:
+                self.run_and_log_errors(actuator, method='check_running_issues')
+
             jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
                 self.run_and_log_errors(jpoller)
@@ -97,9 +101,9 @@ class Command(BaseCommand):
 
             Log.truncate_logs(q)
 
-    def run_and_log_errors(self, runnable):
+    def run_and_log_errors(self, runnable, method='run'):
         try:
-            runnable.run()
+            getattr(runnable, method)()
         except KeyboardInterrupt:
             self.stderr.write('Received ^C, quitting')
             raise
