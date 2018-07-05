@@ -14,6 +14,8 @@ function queryArgs(): QueryArgs {
     return result
 }
 
+const MODE_OVERWRITE: DropboxTypes.files.WriteModeOverwrite = { '.tag': 'overwrite' }
+
 interface IOptions {
     accessToken?: string,
     clientId?: string,
@@ -35,7 +37,7 @@ export class ClientStorage {
         }
 
         this.db = new Dropbox({ accessToken, clientId })
-        this.path = path
+        this.path = path.startsWith('/') ? path : `/${path}`
     }
 
     authenticated(): Promise<boolean> {
@@ -49,5 +51,25 @@ export class ClientStorage {
 
     authenticationUrl(next: string): string {
         return this.db.getAuthenticationUrl(next)
+    }
+
+    load(): Promise<string> {
+        return new Promise(next => {
+            this.db.filesDownload({ path: this.path })
+                .then((response: any) => {
+                    const reader = new FileReader
+                    reader.addEventListener('loadend', () => next(reader.result))
+                    reader.readAsText(response.fileBlob, 'utf-8')
+                })
+                .catch(err => next(''))
+        })
+    }
+
+    save(contents: string): Promise<boolean> {
+        return new Promise(next => {
+            this.db.filesUpload({ contents, path: this.path, mode: MODE_OVERWRITE })
+                .then(response => next(true))
+                .catch(err => next(false))
+        })
     }
 }

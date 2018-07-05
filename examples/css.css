@@ -1,0 +1,12 @@
+.state {
+    display: none;
+}
+
+.state-initializing > .state-initializing,
+.state-not-authenticated > .state-not-authenticated,
+.state-downloading > .state-downloading,
+.state-uploading > .state-uploading,
+.state-success > .state-success,
+.state-error > .state-error {
+    display: block;
+}

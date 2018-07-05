@@ -2,20 +2,36 @@
     const APP_KEY = 'pcoqafxh1ze092a'
     const PAGE_URL = 'http://localhost:8000/examples/localStorage/'
 
-    const cs = new ClientStorage('file.json', {
+    const storage = new ClientStorage('things.json', {
         clientId: APP_KEY,
         accessToken: localStorage.getItem('access_token'),
         saveAccessToken: accessToken => {
             localStorage.setItem('access_token', accessToken)
         },
     })
-    cs.authenticated().then(authenticated => {
-        console.log(authenticated)
+    storage.authenticated().then(authenticated => {
         if (authenticated) {
+            setState('downloading')
+            storage.load().then(result => {
+                let obj = { count: 0 }
+                if (result) {
+                    obj = JSON.parse(result)
+                    ++obj.count
+                }
+                setState('uploading')
+                storage.save(JSON.stringify(obj)).then(saved => {
+                    if (saved) {
+                        setState('success')
+                    }
+                    else {
+                        setState('error')
+                    }
+                })
+            })
         }
         else {
             setState('not-authenticated')
-            setAuthLink(cs.authenticationUrl(PAGE_URL))
+            setAuthLink(storage.authenticationUrl(PAGE_URL))
         }
     })
 
