@@ -56,7 +56,7 @@ class Command(BaseCommand):
             started = datetime.now()
             self.stdout.write(f'Started a full run on {started}')
 
-            self.full_run()
+            self.full_run(verbosity)
             self.first_run = False
 
             duration = datetime.now() - started
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 self.stdout.write(f'Chilling for {pause} seconds')
                 time.sleep(pause)
 
-    def full_run(self):
+    def full_run(self, verbosity):
         queues = list(Queue.objects.exclude(is_active=False))
 
         self.stdout.write('The following queues are active:')
@@ -83,9 +83,15 @@ class Command(BaseCommand):
             if actuator:
                 self.run_and_log_errors(actuator, method='check_running_issues')
 
+            if verbosity > 1:
+                self.stdout.write(f'Done: JenkinsActuator.check_running_issues ({datetime.now()})')
+
             jpoller = get_active_comp(JiraPoller, q).first()
             if jpoller:
                 self.run_and_log_errors(jpoller)
+
+            if verbosity > 1:
+                self.stdout.write(f'Done: JiraPoller ({datetime.now()})')
 
             nopfilters = get_active_comp(NopFilter, q)
             for filter in nopfilters:
@@ -95,9 +101,15 @@ class Command(BaseCommand):
             for filter in autofilters:
                 self.run_and_log_errors(filter)
 
+            if verbosity > 1:
+                self.stdout.write(f'Done: AutoFilter ({datetime.now()})')
+
             actuator = get_active_comp(JenkinsActuator, q).first()
             if actuator:
                 self.run_and_log_errors(actuator)
+
+            if verbosity > 1:
+                self.stdout.write(f'Done: JenkinsActuator ({datetime.now()})')
 
             Log.truncate_logs(q)
 
