@@ -2,7 +2,6 @@ import math
 import pytest
 
 from queueapp.models import Queue, Buffer, Issue
-from queueapp.utils import issue_cmp
 
 # Order by priority
 COMPARE_PRIORITY = '''
