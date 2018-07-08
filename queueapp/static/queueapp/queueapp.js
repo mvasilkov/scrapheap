@@ -7,6 +7,7 @@ function autoLinkThings() {
     issueLinks = Array.prototype.slice.call(issueLinks)
     issueLinks.forEach(a => {
         a.href = JIRA_PREFIX + a.textContent
+        a.target = '_blank'
     })
 
     // Jenkins builds
@@ -15,6 +16,7 @@ function autoLinkThings() {
     jbuildLinks.forEach(a => {
         a.href = JENKINS_URL.replace('{jenkins_job}', a.dataset.jenkinsJob)
             .replace('{jenkins_build_id}', a.dataset.jenkinsBuildId)
+        a.target = '_blank'
     })
 }
 

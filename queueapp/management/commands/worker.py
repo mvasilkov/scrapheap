@@ -6,6 +6,7 @@ import sys
 import time
 import traceback
 
+from django.core.cache import cache
 from django.core.management.base import BaseCommand, CommandError
 
 from integlib.logbook_utils import configure_logging
@@ -68,6 +69,8 @@ class Command(BaseCommand):
                 time.sleep(pause)
 
     def full_run(self, verbosity):
+        cache.clear()
+
         queues = list(Queue.objects.exclude(is_active=False))
 
         self.stdout.write('The following queues are active:')
