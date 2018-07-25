@@ -43,7 +43,10 @@ class AutoFilter(Filter):
 
     @run_if_active
     def run(self):
-        issues = self.from_buffer.get_ordered(count=self.issues_per_cycle)
+        issues = [
+            issue for issue in self.from_buffer.get_ordered(count=self.issues_per_cycle)
+            if not issue.pending_blocking
+        ]
         if not issues:
             return
 
