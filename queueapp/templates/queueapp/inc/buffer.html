@@ -7,6 +7,7 @@
     <ul class="issues">
         {% for issue in comp.ordered_issues %}
             <li class="{% if issue.is_running %}running{% endif %}">
+                {% if issue.pending_blocking %}<span title="{{ issue.pending_blocking|join:' ' }}">🚫</span>{% endif %}
                 {% if issue.attempted_multiple %}<span title="ATTEMPTED_MULTIPLE">🚌</span>{% endif %}
                 <a class="issue" title="{{ issue.props.summary }}">{{ issue.key }}</a>
                 <small>{{ issue|fix_versions }}</small>

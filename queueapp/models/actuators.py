@@ -115,7 +115,8 @@ class JenkinsActuator(Actuator):
 
         ready_issues = self.from_buffer.get_ordered_without_versions(
             count=self.multiple_count_upper, without_versions=taken_versions)
-        ready_issues2 = [issue for issue in ready_issues if Issue.ATTEMPTED_MULTIPLE not in issue.props]
+        ready_issues = [issue for issue in ready_issues if not issue.pending_blocking]
+        ready_issues2 = [issue for issue in ready_issues if not issue.attempted_multiple]
         ready_issues2 = self.exclude_disconnected_issues(ready_issues2)
 
         if len(ready_issues2) >= self.multiple_count_lower and jenkins_job2:

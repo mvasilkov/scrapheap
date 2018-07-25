@@ -19,6 +19,7 @@ class Issue(models.Model):
                (VERDICT_FAILED, VERDICT_FAILED))
 
     ATTEMPTED_MULTIPLE = '<ATTEMPTED_MULTIPLE>'
+    PENDING_BLOCKING = 'PENDING_BLOCKING'
 
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)
@@ -70,6 +71,12 @@ class Issue(models.Model):
         }
         self.props.update(preserve_fields)
 
+        pending_blocking_issues = [
+            a.key for a in integ_issue.get_blocking_issues() if a.status_category != 'Done'
+        ]
+        if pending_blocking_issues:
+            self.props[Issue.PENDING_BLOCKING] = pending_blocking_issues
+
     @property
     def fix_versions(self):
         return self.props.get('fix_versions', [])
@@ -81,6 +88,10 @@ class Issue(models.Model):
     @property
     def attempted_multiple(self):
         return Issue.ATTEMPTED_MULTIPLE in self.props
+
+    @property
+    def pending_blocking(self):
+        return self.props.get(Issue.PENDING_BLOCKING, [])
 
     @property
     def multiple_similar_versions(self) -> bool:
