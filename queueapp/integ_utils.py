@@ -92,7 +92,7 @@ def compare_issues_infinidat(a, b) -> int:
 
 
 def get_latest_version_by_prefix(jira_project: str, pref: str) -> str:
-    'Get the greatest Jira version starting with `pref`.'
+    'Get the greatest Jira version starting with `pref` that has a branch.'
 
     if isinstance(jira_project, str):
         jira_project = runtime.jira.get_project(jira_project)
@@ -100,5 +100,8 @@ def get_latest_version_by_prefix(jira_project: str, pref: str) -> str:
     if not pref.endswith('.'):
         pref += '.'
 
-    versions = sorted([Version(v.name) for v in jira_project.versions if v.name.startswith(pref)])
+    versions = sorted([
+        Version(v.name) for v in jira_project.versions if v.name.startswith(pref)
+        and getattr(jira_project.get_version_details(v.name), 'branch', None)
+    ])
     return str(versions[-1]) if versions else None
