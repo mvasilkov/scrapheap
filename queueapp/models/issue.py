@@ -135,7 +135,9 @@ class Issue(models.Model):
         new_versions = set()
         for version in self.fix_versions:
             if Version(version).is_strict_n_digits(3):
-                version = get_latest_version_by_prefix(jira_project, version)
+                a = get_latest_version_by_prefix(jira_project, version)
+                if a:
+                    version = a
 
             new_versions.add(version)
 
