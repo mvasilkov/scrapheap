@@ -2,10 +2,11 @@ from django.db import models
 
 from annoying.fields import JSONField
 
+from integlib.runtime import runtime
 from integlib.version import Version
 
 from ..utils import new_dict, repr_attributes
-from ..integ_utils import IGNORED_ISSUES
+from ..integ_utils import IGNORED_ISSUES, get_latest_version_by_prefix
 
 from .buffer import Buffer
 
@@ -66,7 +67,7 @@ class Issue(models.Model):
         self.props = {
             'fix_versions': integ_issue.fix_versions,
             'priority': integ_issue.priority,
-            'assignee_name': integ_issue.assignee.displayName,
+            'assignee_name': integ_issue.assignee.displayName if integ_issue.assignee else '',
             'summary': integ_issue.summary,
         }
         self.props.update(preserve_fields)
@@ -115,3 +116,33 @@ class Issue(models.Model):
                 return True
 
         return False
+
+    @property
+    def project_key(self) -> str:
+        return self.key.rstrip('1234567890-')
+
+    @property
+    def has_3_digit_versions(self) -> bool:
+        for version in self.fix_versions:
+            if Version(version).is_strict_n_digits(3):
+                return True
+
+        return False
+
+    def expand_3_digit_versions(self):  # INTEG-2010
+        jira_project = runtime.jira.get_project(self.project_key)
+
+        new_versions = set()
+        for version in self.fix_versions:
+            if Version(version).is_strict_n_digits(3):
+                version = get_latest_version_by_prefix(jira_project, version)
+
+            new_versions.add(version)
+
+        new_versions = list(new_versions)
+
+        # Update the Jira issue
+        integ_issue = runtime.jira.get_issue(self.key)
+        integ_issue.set_field('fixVersions', new_versions)
+
+        self.props['fix_versions'] = new_versions

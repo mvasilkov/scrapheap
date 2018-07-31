@@ -4,6 +4,7 @@ from django.core.cache import cache
 
 from integlib import common_defs
 from integlib.jenkins import BuildNoLongerQueued
+from integlib.runtime import runtime
 from integlib.version import Version
 
 IGNORED_ISSUES = frozenset(common_defs.EXCLUDED_INTEG_ISSUES)
@@ -88,3 +89,16 @@ def compare_issues_infinidat(a, b) -> int:
         return result
 
     return strcoll(a.key, b.key)
+
+
+def get_latest_version_by_prefix(jira_project: str, pref: str) -> str:
+    'Get the greatest Jira version starting with `pref`.'
+
+    if isinstance(jira_project, str):
+        jira_project = runtime.jira.get_project(jira_project)
+
+    if not pref.endswith('.'):
+        pref += '.'
+
+    versions = sorted([Version(v.name) for v in jira_project.versions if v.name.startswith(pref)])
+    return str(versions[-1]) if versions else None

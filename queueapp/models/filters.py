@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 
 from auto_integ.pre_auto import pre_auto, PAError, ACCEPT, SKIP
@@ -44,15 +46,21 @@ class AutoFilter(Filter):
     @run_if_active
     def run(self):
         issues = [
-            issue for issue in self.from_buffer.get_ordered(count=self.issues_per_cycle)
+            issue for issue in self.from_buffer.get_ordered(count=math.inf)
             if not issue.pending_blocking
         ]
         if not issues:
             return
 
+        issues = issues[:self.issues_per_cycle]
         moved_issues = []
 
         for issue in issues:
+            if issue.has_3_digit_versions:
+                print(f'Updating fix versions for {issue.key}')
+                issue.expand_3_digit_versions()  # This also updates the Jira issue
+                issue.save()
+
             print(f'Running pre_auto({issue.key})')
             print('-' * 40)
             issue.is_running = True
