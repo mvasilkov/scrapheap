@@ -1,12 +1,14 @@
-:focus {
-    outline: 3px solid #c1e0fe;
-    outline: 3px solid rgba(131, 192, 253, 0.5);
-    outline-offset: 1px;
-}
-
 body {
     background-color: #fff;
     color: #303030;
+}
+
+.container {
+    max-width: 900px;
+}
+
+article {
+    font-size: 18px;
 }
 
 a {
@@ -95,6 +97,7 @@ h1 small, h2 small, h3 small {
 
 .comp.buffer form input[type=submit] {
     border-radius: 3px;
+    font-size: 13px;
     transform: translate(0, -4px);
 }
 
