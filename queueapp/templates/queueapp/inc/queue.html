@@ -17,7 +17,9 @@
     </div>
     <div class="components">
         <div class="comp logs">
-            <h3>Event Log</h3>
+            <h3>Event Log
+                <small><a href="{% url 'admin:queueapp_log_changelist' %}">Show more</a></small>
+            </h3>
             {% for log in queue.get_logs %}
                 <p class="log">
                     <span class="log-time">{{ log.updated|date:'N j, G:s' }}</span>
