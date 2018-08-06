@@ -59,7 +59,7 @@ class Queue(models.Model):
         log.save()
 
     def get_logs(self):
-        return list(self.logs.order_by('-pk')[:10])[::-1]
+        return list(self.logs.order_by('-pk')[:30])
 
     class Meta:
         ordering = ('name', )
