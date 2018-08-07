@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.html import escape
+from django.utils.html import escape, strip_tags
 from django.utils.safestring import mark_safe
 from django.utils.text import Truncator
 
@@ -57,14 +57,18 @@ class IssueAdmin(admin.ModelAdmin):
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ('queue_name', 'updated', 'message', 'count')
+    list_display = ('queue_name', 'updated', 'message_text')
     list_filter = ('queue__name', )
+    search_fields = ('message', )
 
     def queue_name(self, model):
         return model.queue.name
 
     queue_name.short_description = 'queue'
     queue_name.admin_order_field = 'queue__name'
+
+    def message_text(self, model):
+        return strip_tags(model.message)
 
 
 @admin.register(JiraPoller)
