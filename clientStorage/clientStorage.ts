@@ -14,6 +14,13 @@ function queryArgs(): QueryArgs {
     return result
 }
 
+function pathNotFound(err: string | DropboxTypes.files.DownloadErrorPath) {
+    if (typeof err == 'string') {
+        err = JSON.parse(err).error as DropboxTypes.files.DownloadErrorPath
+    }
+    return err['.tag'] == 'path' && err.path['.tag'] == 'not_found'
+}
+
 const MODE_OVERWRITE: DropboxTypes.files.WriteModeOverwrite = { '.tag': 'overwrite' }
 
 interface IOptions {
@@ -53,15 +60,18 @@ export class ClientStorage {
         return this.db.getAuthenticationUrl(next)
     }
 
-    load(): Promise<string> {
-        return new Promise(next => {
+    load(defaultContents?: string): Promise<string> {
+        return new Promise((next, loadingError) => {
             this.db.filesDownload({ path: this.path })
                 .then((response: any) => {
                     const reader = new FileReader
                     reader.addEventListener('loadend', () => next(reader.result))
                     reader.readAsText(response.fileBlob, 'utf-8')
                 })
-                .catch(err => next(''))
+                .catch(err => {
+                    if (pathNotFound(err.error)) next(defaultContents || '')
+                    else loadingError(err)
+                })
         })
     }
 

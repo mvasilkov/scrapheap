@@ -2,6 +2,7 @@
     const APP_KEY = 'pcoqafxh1ze092a'
     const PAGE_URL = 'http://localhost:8000/examples/localStorage/'
 
+    setState('initializing')
     const storage = new ClientStorage('things.json', {
         clientId: APP_KEY,
         accessToken: localStorage.getItem('access_token'),
@@ -27,7 +28,7 @@
                         setState('error')
                     }
                 })
-            })
+            }).catch(err => setState('error'))
         }
         else {
             setState('not-authenticated')
@@ -36,7 +37,9 @@
     })
 
     function setState(state) {
-        document.getElementById('client-storage').className = `state-${state}`
+        [].slice.call(document.getElementsByClassName('state')).forEach(a => {
+            a.style.display = a.classList.contains(`state-${state}`) ? 'block' : 'none'
+        })
     }
     function setAuthLink(url) {
         document.getElementById('client-storage-auth-link').href = url

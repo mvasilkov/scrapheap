@@ -4,22 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
-        <link rel="stylesheet" href="../css.css">
+
+        <link rel="stylesheet" href="../../node_modules/systematize/build/systematize.min.css">
+        <link rel="stylesheet" href="../../node_modules/systematize/build/addons.min.css">
     </head>
     <body>
         <div class="container">
-            <article id="client-storage" class="state-initializing">
-                <p class="state state-initializing">Initializing...</p>
+            <article>
+                <p class="state state-initializing">Initializing</p>
                 <p class="state state-not-authenticated">
                     <a href="?" id="client-storage-auth-link">Authorize</a>
                     Dropbox account
                 </p>
-                <p class="state state-downloading">Downloading...</p>
-                <p class="state state-uploading">Uploading...</p>
+                <p class="state state-downloading">Downloading</p>
+                <p class="state state-uploading">Uploading</p>
                 <p class="state state-success">Done</p>
                 <p class="state state-error">Error</p>
             </article>
         </div>
+
         <script src="../../node_modules/dropbox/dist/Dropbox-sdk.min.js"></script>
         <script src="../../build/clientStorage.min.js"></script>
         <script src="./localStorage.js"></script>

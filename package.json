@@ -15,6 +15,7 @@
   "dependencies": {},
   "devDependencies": {
     "dropbox": "4.0.4",
-    "google-closure-compiler": "20180506.0.0"
+    "google-closure-compiler": "20180506.0.0",
+    "systematize": "3.1.0-addons.4"
   }
 }
