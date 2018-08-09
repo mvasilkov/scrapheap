@@ -8,7 +8,7 @@
     "remotestorage",
     "unhosted"
   ],
-  "main": "build/clientStorage.min.js",
+  "main": "build/clientStorage.js",
   "repository": "git@github.com:mvasilkov/client-storage-dropbox.git",
   "author": "Mark Vasilkov <mvasilkov@gmail.com>",
   "license": "MIT",
