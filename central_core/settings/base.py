@@ -6,6 +6,7 @@ emplace()
 
 INSTALLED_APPS += [
     'queueapp',
+    'test_blocker',
 ]
 
 # Password validation

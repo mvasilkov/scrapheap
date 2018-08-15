@@ -11,6 +11,7 @@ from queueapp.views import (
     buffer_json as queueapp_buffer_json,
     clear_attempted_multiple as queueapp_clear_attempted_multiple,
 )
+from test_blocker.views import test_blocker_json
 
 
 def homepage(request):
@@ -28,6 +29,7 @@ urlpatterns = [
         'queueapp/clear_attempted_multiple/<int:buffer_id>/',
         queueapp_clear_attempted_multiple,
         name='queueapp_clear_attempted_multiple'),
+    path('test_blocker/json/', test_blocker_json),
     path('admin/', admin.site.urls),
 ]
 
