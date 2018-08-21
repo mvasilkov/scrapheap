@@ -6,7 +6,7 @@ Requires=nginx.service
 [Service]
 Environment=DJANGO_SETTINGS_MODULE=central_core.settings.release
 ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown rei:www-data /run/uwsgi'
-ExecStart=/usr/local/bin/uwsgi --ini /home/rei/uwsgi.ini
+ExecStart=/usr/local/bin/uwsgi --ini /home/rei/glados/server/uwsgi.ini
 Restart=always
 KillSignal=SIGQUIT
 Type=notify
