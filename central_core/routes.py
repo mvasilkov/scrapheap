@@ -11,7 +11,7 @@ from queueapp.views import (
     buffer_json as queueapp_buffer_json,
     clear_attempted_multiple as queueapp_clear_attempted_multiple,
 )
-from test_blocker.views import test_blocker_json
+from test_blocker.views import test_blocker_json, conntest_json
 
 
 def homepage(request):
@@ -30,6 +30,7 @@ urlpatterns = [
         queueapp_clear_attempted_multiple,
         name='queueapp_clear_attempted_multiple'),
     path('test_blocker/json/', test_blocker_json),
+    path('conntest.json', conntest_json),  # Task for interviews
     path('admin/', admin.site.urls),
 ]
 

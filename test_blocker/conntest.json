@@ -1,0 +1,38 @@
+{
+    "systems": [
+        {
+            "URL": "http://ibox605/",
+            "IP": "172.16.68.255",
+            "version": "5.0.20.30",
+            "model": "F1230",
+            "connected": true
+        },
+        {
+            "URL": "http://ibox606/",
+            "IP": "172.16.66.219",
+            "version": "3.0.50.50",
+            "model": "F1230",
+            "connected": true
+        },
+        {
+            "URL": "http://ibox626/",
+            "IP": "172.16.67.238",
+            "version": "4.0.30.150",
+            "model": "F6230",
+            "connected": true
+        },
+        {
+            "URL": "http://ibox627/",
+            "version": "5.0.0.22",
+            "model": "F6230",
+            "connected": true
+        },
+        {
+            "URL": "http://ibox628/",
+            "IP": "172.16.65.111",
+            "version": "4.0.30.140",
+            "model": "F6230",
+            "connected": true
+        }
+    ]
+}
