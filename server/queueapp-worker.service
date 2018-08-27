@@ -1,0 +1,15 @@
+[Unit]
+Description=GLaDOS queueapp worker service
+After=syslog.target
+
+[Service]
+User=rei
+Group=rei
+Environment=DJANGO_SETTINGS_MODULE=central_core.settings.release
+ExecStart=/home/rei/glados/virtual/bin/python /home/rei/glados/manage.py worker
+Restart=on-failure
+KillSignal=SIGQUIT
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

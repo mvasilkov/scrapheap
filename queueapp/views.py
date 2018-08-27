@@ -24,7 +24,7 @@ def worker(request):
 
     for p in processes:
         if p['name'].startswith(PROCNAME):
-            pid = p.split(':')[1]
+            pid = p['name'].split(':')[1]
             break
 
         if not p['cmdline']:
