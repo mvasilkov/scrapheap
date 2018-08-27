@@ -6,6 +6,7 @@ emplace()
 
 INSTALLED_APPS += [
     'queueapp',
+    'dashboard',
     'test_blocker',
 ]
 

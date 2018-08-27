@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h3>List of versions</h3>
+    <table class=table>
+        <tr>
+            <th>Version</th>
+            <th>Status</th>
+            <th>Branch</th>
+        </tr>
+        {% for ver in versions %}
+            <tr>
+                <td>{{ ver.version }}</td>
+                <td>{{ ver.status }}</td>
+                <td><a href="https://git.infinidat.com/core/core-system/tree/{{ ver.branch }}" target="_blank">{{ ver.branch }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

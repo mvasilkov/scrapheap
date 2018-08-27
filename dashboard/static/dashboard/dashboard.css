@@ -1,0 +1,11 @@
+table.table th {
+    text-align: left;
+}
+
+table.table tr > * {
+    padding-left: 20px;
+}
+
+table.table tr > *:first-child {
+    padding-left: 0;
+}
