@@ -12,7 +12,7 @@ from queueapp.views import (
     clear_attempted_multiple as queueapp_clear_attempted_multiple,
 )
 from dashboard.views import version_list as dashboard_versions
-from test_blocker.views import test_blocker_json, conntest_json
+from conntest.views import conntest_json
 
 
 def homepage(request):
@@ -31,7 +31,6 @@ urlpatterns = [
         queueapp_clear_attempted_multiple,
         name='queueapp_clear_attempted_multiple'),
     path('dashboard/versions/', dashboard_versions, name='dashboard_versions'),
-    path('test_blocker/json/', test_blocker_json),
     path('conntest.json', conntest_json),  # Task for interviews
     path('admin/', admin.site.urls),
 ]
