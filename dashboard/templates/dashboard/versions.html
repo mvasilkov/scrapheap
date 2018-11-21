@@ -14,11 +14,19 @@
             <th>Branch</th>
         </tr>
         {% for ver in versions %}
-            <tr>
+            <tr class="{{ ver.status }}">
                 <td>{{ ver.version }}</td>
                 <td>{{ ver.status }}</td>
                 <td><a href="https://git.infinidat.com/core/core-system/tree/{{ ver.branch }}" target="_blank">{{ ver.branch }}</a></td>
             </tr>
         {% endfor %}
     </table>
+    <p>
+        <strong>Jira versions:</strong>
+        <a href="https://jira.infinidat.com/plugins/servlet/project-config/INFINIBOX/versions">Infinibox</a>
+        ・
+        <a href="https://jira.infinidat.com/plugins/servlet/project-config/GUI10/versions">WebGUI</a>
+        ・
+        <a href="https://jira.infinidat.com/plugins/servlet/project-config/CLI/versions">CLI</a>
+    </p>
 {% endblock %}

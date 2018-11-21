@@ -6,6 +6,6 @@ jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
-systematize@3.1.0-addons.1:
-  version "3.1.0-addons.1"
-  resolved "https://registry.yarnpkg.com/systematize/-/systematize-3.1.0-addons.1.tgz#d642d6c4911c0bc272332d44d5be7842c5c461f7"
+systematize@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/systematize/-/systematize-3.2.3.tgz#30e2672dae31e56b59e83b7e6ff2ec9ce54fc590"

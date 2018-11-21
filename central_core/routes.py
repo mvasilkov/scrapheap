@@ -11,7 +11,10 @@ from queueapp.views import (
     buffer_json as queueapp_buffer_json,
     clear_attempted_multiple as queueapp_clear_attempted_multiple,
 )
-from dashboard.views import version_list as dashboard_versions
+from dashboard.views import (
+    version_list as dashboard_versions,
+    dist_status as dashboard_dist_status,
+)
 from conntest.views import conntest_json
 
 
@@ -31,6 +34,7 @@ urlpatterns = [
         queueapp_clear_attempted_multiple,
         name='queueapp_clear_attempted_multiple'),
     path('dashboard/versions/', dashboard_versions, name='dashboard_versions'),
+    path('dashboard/dist-status/', dashboard_dist_status, name='dashboard_dist_status'),
     path('conntest.json', conntest_json),  # Task for interviews
     path('admin/', admin.site.urls),
 ]

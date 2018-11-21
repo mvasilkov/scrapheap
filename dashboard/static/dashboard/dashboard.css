@@ -1,5 +1,13 @@
+table.table {
+    margin: 0 0 29px;
+}
+
 table.table th {
     text-align: left;
+}
+
+table.table tr {
+    border-bottom: 1px solid #808080;
 }
 
 table.table tr > * {
@@ -8,4 +16,8 @@ table.table tr > * {
 
 table.table tr > *:first-child {
     padding-left: 0;
+}
+
+table.table tr.Content.Freeze {
+    background-color: #fefcdd;
 }
