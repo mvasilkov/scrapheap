@@ -7,7 +7,7 @@ from django.http.response import HttpResponseNotAllowed
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .management.commands.worker import PROCNAME, TEEFILE
-from .models import Queue, Issue, Buffer
+from .models import Queue, Issue, Buffer, JenkinsActuator
 
 
 def index(request):
@@ -82,6 +82,16 @@ def clear_attempted_multiple(request, buffer_id: int):
         for issue in buf.get_issues():
             issue.props.pop(Issue.ATTEMPTED_MULTIPLE, None)
             issue.save()
+        return redirect('queueapp_index')
+
+    return HttpResponseNotAllowed(permitted_methods=['POST'])
+
+
+def actuator_stop_start(request, actuator_id: int):
+    if request.method == 'POST':
+        act = get_object_or_404(JenkinsActuator, id=actuator_id)
+        act.is_active = not act.is_active
+        act.save()
         return redirect('queueapp_index')
 
     return HttpResponseNotAllowed(permitted_methods=['POST'])

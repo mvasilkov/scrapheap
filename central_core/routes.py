@@ -10,6 +10,7 @@ from queueapp.views import (
     history_json as queueapp_history_json,
     buffer_json as queueapp_buffer_json,
     clear_attempted_multiple as queueapp_clear_attempted_multiple,
+    actuator_stop_start as queueapp_actuator_stop_start,
 )
 from dashboard.views import (
     version_list as dashboard_versions,
@@ -33,6 +34,10 @@ urlpatterns = [
         'queueapp/clear_attempted_multiple/<int:buffer_id>/',
         queueapp_clear_attempted_multiple,
         name='queueapp_clear_attempted_multiple'),
+    path(
+        'queueapp/actuator_stop_start/<int:actuator_id>/',
+        queueapp_actuator_stop_start,
+        name='queueapp_actuator_stop_start'),
     path('dashboard/versions/', dashboard_versions, name='dashboard_versions'),
     path('dashboard/dist-status/', dashboard_dist_status, name='dashboard_dist_status'),
     path('conntest.json', conntest_json),  # Task for interviews
