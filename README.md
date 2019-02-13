@@ -48,6 +48,7 @@ To update the database structure after changing model code:
 **Accessing the frontend**
 
 Application frontend: http://localhost:8000/queueapp/
+
 Admin panel: http://localhost:8000/admin/
 
 **Starting the backend worker in development**
