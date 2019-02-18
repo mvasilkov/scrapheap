@@ -9,6 +9,6 @@
   "private": true,
   "dependencies": {
     "jquery": "^3.3.1",
-    "systematize": "3.2.3"
+    "systematize": "3.2.4"
   }
 }
