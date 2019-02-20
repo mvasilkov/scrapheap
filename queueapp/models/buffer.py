@@ -13,6 +13,7 @@ from .queue import Queue
 class Buffer(models.Model):
     name = models.CharField(max_length=60)
     queue = models.ForeignKey(Queue, on_delete=models.PROTECT)
+    intended_status = models.CharField(max_length=20, default='Integrating')
     cmp_function = models.TextField(blank=True)
     cmp_rules = models.TextField(blank=True, help_text='Move these issues to the top of the buffer. '
         'Shell-style patterns, one per line')
