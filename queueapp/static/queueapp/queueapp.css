@@ -11,6 +11,10 @@ article {
     font-size: 18px;
 }
 
+ul > li::before {
+    font-size: 14.4px;
+}
+
 a {
     color: #0070c9;
     text-decoration: none;
@@ -36,6 +40,10 @@ h1 small, h2 small, h3 small {
 .queue.queue-off {
     background-color: #fbfbfb;
     opacity: 0.5;
+}
+
+.queue + .queue {
+    margin-top: 20px;
 }
 
 .components {
@@ -158,4 +166,15 @@ h1 small, h2 small, h3 small {
 
 .jbuild-label {
     margin-left: -2px
+}
+
+nav.select-queue {
+    background-color: rgba(255,255,255,0.5);
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    transform: scale(0.8);
+    transform-origin: 0 0;
+    z-index: 1;
 }

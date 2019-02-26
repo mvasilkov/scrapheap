@@ -10,13 +10,7 @@
         </ul>
     </nav>
 
-    {% include 'queueapp/inc/queue.html' %}
-{% endblock %}
-
-{% block script %}
-    <script src="{% static 'queueapp/queueapp.js' %}"></script>
-    <script>
-        autoreload(20000, autoLinkThings)
-        autoLinkThings()
-    </script>
+    {% for queue in queues %}
+        {% include 'queueapp/inc/queue.html' %}
+    {% endfor %}
 {% endblock %}

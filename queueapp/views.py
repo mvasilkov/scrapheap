@@ -13,8 +13,20 @@ from .models import Queue, Issue, Buffer, JenkinsActuator
 def index(request):
     queues = Queue.objects.order_by('name')
 
-    return render(request, 'queueapp/index.html', {
+    return render(request, 'queueapp/select_queue.html', {
         'queues': queues,
+        'event_log': False,
+    })
+
+
+def queue(request, queue_id):
+    queue = get_object_or_404(Queue, id=queue_id)
+    queues = Queue.objects.order_by('name')  # For nav
+
+    return render(request, 'queueapp/index.html', {
+        'queue': queue,
+        'queues': queues,
+        'event_log': True,
     })
 
 
