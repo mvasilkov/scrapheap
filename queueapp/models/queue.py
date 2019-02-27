@@ -9,6 +9,7 @@ from ..utils import repr_attributes
 class Queue(models.Model):
     name = models.CharField(max_length=60)
     is_active = models.BooleanField(default=False)
+    pause_and_clear = models.BooleanField(default=False)
 
     def get_filters(self):
         from .filters import AutoFilter, NopFilter

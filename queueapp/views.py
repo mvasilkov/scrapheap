@@ -107,3 +107,20 @@ def actuator_stop_start(request, actuator_id: int):
         return redirect('queueapp_index')
 
     return HttpResponseNotAllowed(permitted_methods=['POST'])
+
+
+def queue_stop_start(request, queue_id: int):
+    if request.method == 'POST':
+        queue = get_object_or_404(Queue, id=queue_id)
+        queue.is_active = not queue.is_active
+        queue.save()
+
+        for buffer in Buffer.objects.filter(queue=queue):
+            for issue in buffer.issues.all():
+                issue.buffer = None
+                issue.is_running = False
+                issue.save()
+
+        return redirect('queueapp_index')
+
+    return HttpResponseNotAllowed(permitted_methods=['POST'])

@@ -2,6 +2,14 @@
 <div class="queue {% if not queue.is_active %}queue-off{% endif %}">
     <h3>{{ queue.name }}
         <small><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></small>
+        {% if queue.pause_and_clear %}
+            <form action="{% url 'queueapp_queue_stop_start' queue.id %}" method="post">
+                <div>
+                    {% csrf_token %}
+                    <input type="submit" value="{% if queue.is_active %}Pause and clear ❌{% else %}Start ▶️{% endif %}">
+                </div>
+            </form>
+        {% endif %}
     </h3>
     <div class="components">
         <div class="vbox">

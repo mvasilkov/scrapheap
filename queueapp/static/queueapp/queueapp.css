@@ -103,8 +103,8 @@ h1 small, h2 small, h3 small {
     transform-origin: 22px;
 }
 
-.comp.buffer form input[type=submit],
-.comp.actuator form input[type=submit] {
+.comp form input[type=submit],
+.queue form input[type=submit] {
     border-radius: 3px;
     font-size: 13px;
     transform: translate(0, -4px);

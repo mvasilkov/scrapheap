@@ -8,7 +8,7 @@
     <form action="{% url 'queueapp_actuator_stop_start' comp.id %}" method="post">
         <div>
             {% csrf_token %}
-            <input type="submit" value="{% if comp.is_active %}Stop ⛔️{% else %}Start 🏁{% endif %}">
+            <input type="submit" value="{% if comp.is_active %}Pause ❌{% else %}Start ▶️{% endif %}">
         </div>
     </form>
     {{ comp|is_active_icon }}
