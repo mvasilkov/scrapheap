@@ -140,9 +140,10 @@ class Command(BaseCommand):
             else:
                 issue.update_props(integ_issue)
                 if integ_issue.status != issue.buffer.intended_status:
+                    intended_status = issue.buffer.intended_status
                     issue.buffer = None
                     q.log(f'Dropping the issue <a class=issue>{issue.key}</a> from the queue '
-                          f'because its status has changed and is no longer <b>{issue.buffer.intended_status}</b>')
+                          f'because its status has changed and is no longer <b>{intended_status}</b>')
                 issue.save()
 
         self.stdout.write(f'Updated {issues_updated} out of {len(issues)} issue(s)')
