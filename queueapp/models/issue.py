@@ -6,7 +6,7 @@ from integlib.runtime import runtime
 from integlib.version import Version
 
 from ..utils import new_dict, repr_attributes
-from ..integ_utils import IGNORED_ISSUES, get_latest_version_by_prefix
+from ..integ_utils import IGNORED_ISSUES, QUEUED_SINCE, QUEUED_FOR_TOO_LONG, get_latest_version_by_prefix
 
 from .buffer import Buffer
 
@@ -21,6 +21,8 @@ class Issue(models.Model):
 
     ATTEMPTED_MULTIPLE = '<ATTEMPTED_MULTIPLE>'
     PENDING_BLOCKING = 'PENDING_BLOCKING'
+    QUEUED_SINCE = QUEUED_SINCE
+    QUEUED_FOR_TOO_LONG = QUEUED_FOR_TOO_LONG
 
     buffer = models.ForeignKey(Buffer, on_delete=models.CASCADE, related_name='issues', null=True)
     key = models.CharField(max_length=30, unique=True, editable=False)

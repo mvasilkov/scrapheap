@@ -1,4 +1,5 @@
 from locale import strcoll
+from time import time
 
 from django.core.cache import cache
 
@@ -17,6 +18,10 @@ PRIORITIES = {
     'Trivial': 5,
     None: 6,
 }
+
+QUEUED_SINCE = 'QUEUED_SINCE'
+QUEUED_FOR_TOO_LONG = 'QUEUED_FOR_TOO_LONG'
+QUEUED_THRESHOLD = 600  # seconds
 
 
 def jenkins_get_queued_builds(jenkins_job):
@@ -48,6 +53,10 @@ def issue_running_or_pending(issue, jenkins_job, param_name: str = 'ISSUE') -> b
             param_issues = str(build.get_params().get(param_name)).split()
             if issue.key in param_issues:
                 # queued builds have no build_id
+                if QUEUED_SINCE in issue.props:
+                    issue.props[QUEUED_FOR_TOO_LONG] = (
+                        int(time()) - issue.props[QUEUED_SINCE] > QUEUED_THRESHOLD)
+                    issue.save()
                 return True
         except BuildNoLongerQueued:
             continue
@@ -60,6 +69,11 @@ def issue_running_or_pending(issue, jenkins_job, param_name: str = 'ISSUE') -> b
                 if build_id is not None:
                     issue.props['jenkins_job'] = jenkins_job.name
                     issue.props['jenkins_build_id'] = build_id
+                    # clean up queue props
+                    if QUEUED_SINCE in issue.props:
+                        del issue.props[QUEUED_SINCE]
+                    if QUEUED_FOR_TOO_LONG in issue.props:
+                        del issue.props[QUEUED_FOR_TOO_LONG]
                     issue.save()
                 return True
 

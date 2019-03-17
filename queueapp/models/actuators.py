@@ -1,3 +1,5 @@
+from time import time
+
 from django.core.cache import cache
 from django.db import models
 
@@ -125,6 +127,7 @@ class JenkinsActuator(Actuator):
             for issue in ready_issues2:
                 issue.is_running = True
                 issue.props[Issue.ATTEMPTED_MULTIPLE] = 1  # Any value. We're only checking that the key is present
+                issue.props[Issue.QUEUED_SINCE] = int(time())
                 issue.save()
             issue_links = ' '.join(f'<a class=issue>{issue.key}</a>' for issue in ready_issues2)
             self.queue.log(f'Sending the following issues to integration: {issue_links}')
@@ -134,5 +137,6 @@ class JenkinsActuator(Actuator):
             issue = ready_issues[0]
             jenkins_job.submit_build(**{self.issue_param: issue.key})
             issue.is_running = True
+            issue.props[Issue.QUEUED_SINCE] = int(time())
             issue.save()
             self.queue.log(f'Sending the issue <a class=issue>{issue.key}</a> to integration')
