@@ -1,0 +1,13 @@
+{
+  "name": "zjwt",
+  "version": "1.0.0",
+  "description": "Compressed JSON Web Tokens (zjwt)",
+  "main": "zjwt.js",
+  "repository": "git@github.com:mvasilkov/zjwt.git",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "MIT",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
