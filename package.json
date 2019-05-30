@@ -8,6 +8,11 @@
   "license": "MIT",
   "dependencies": {
     "base64url": "^3.0.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "pako": "^1.0.10"
+  },
+  "devDependencies": {
+    "@gfx/zopfli": "^1.0.13",
+    "balkans": "^0.1.0"
   }
 }
