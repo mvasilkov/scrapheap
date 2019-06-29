@@ -2,8 +2,12 @@
 
 import React from 'react'
 
+import Keyboard from '../components/keyboard'
+
 export default class StartPage extends React.Component {
     render() {
-        return null
+        return (
+            <Keyboard />
+        )
     }
 }
