@@ -47,12 +47,21 @@ function octave() {
 }
 
 const initialState = {
-    controls: [octave(), octave()],
+    controls: [octave(), octave(), octave(), octave()],
 }
+
+const copyControls = (octave, controls) => ([
+    octave ? controls[0] : Object.assign({}, controls[0]),
+    octave ? Object.assign({}, controls[1]) : controls[1],
+])
+
+const copyControls2 = (octave, controls) =>
+    controls.map((a, index) => octave == index ? Object.assign({}, a) : a)
 
 export default function keyboardReducer(state = initialState, action) {
     let a
     let keyDown = false
+    let newControls
 
     switch (action.type) {
         case 'keydown':
@@ -60,12 +69,21 @@ export default function keyboardReducer(state = initialState, action) {
 
         case 'keyup':
             if (a = KEYCODES[action.code]) {
-                const controls = [
-                    a.octave ? state.controls[0] : Object.assign({}, state.controls[0]),
-                    a.octave ? Object.assign({}, state.controls[1]) : state.controls[1],
-                ]
-                controls[a.octave][a.note] = keyDown
-                return { controls }
+                newControls = copyControls2(a.octave, state.controls)
+                newControls[a.octave][a.note] = keyDown
+                return Object.assign({}, state, { controls: newControls })
+            }
+            break
+
+        case 'mousedown':
+            keyDown = true
+
+        case 'mouseup':
+        case 'mouseout':
+            if (state.controls[action.octave][action.note] !== keyDown) {
+                newControls = copyControls2(action.octave, state.controls)
+                newControls[action.octave][action.note] = keyDown
+                return Object.assign({}, state, { controls: newControls })
             }
     }
 
@@ -82,4 +100,8 @@ export const updateControls = event => dispatch => {
         return
     }
     dispatch({ type, code })
+}
+
+export const updateControls2 = (type, octave, note) => dispatch => {
+    if (Number.isInteger(octave) && note) dispatch({ type, octave, note })
 }

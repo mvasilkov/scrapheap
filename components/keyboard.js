@@ -3,12 +3,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { updateControls } from '../reducers/keyboard'
+import { updateControls, updateControls2 } from '../reducers/keyboard'
 
 const blackHeight = 120
 const blackWidth = 30
 const whiteHeight = 200
 const whiteWidth = 50
+
+const nop = event => event.preventDefault()
 
 class Octave extends React.Component {
     static defaultProps = {
@@ -17,20 +19,20 @@ class Octave extends React.Component {
     }
 
     render() {
-        const { index, active } = this.props
+        const { index, active, onClick } = this.props
         const blackNotes = ['C#', 'D#', null, 'F#', 'G#', 'A#']
         const whiteNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
         return (
-            <div style={{
+            <div data-octave={index} style={{
                 height: whiteHeight,
                 left: index * whiteWidth * 7,
                 position: 'absolute',
                 top: 0,
                 width: whiteWidth * 7,
-            }}>
+            }} onMouseDown={onClick} onMouseUp={onClick} onMouseOut={onClick}>
                 {whiteNotes.map((note, index) =>
-                    <div key={note} style={{
+                    <div key={note} data-note={note} style={{
                         backgroundColor: active[note] ? '#b2d7ff' : '#fafafa',
                         boxShadow: 'inset 0 0 0 1px #e6e6e6',
                         height: whiteHeight,
@@ -38,9 +40,9 @@ class Octave extends React.Component {
                         position: 'absolute',
                         top: 0,
                         width: whiteWidth,
-                    }}></div>)}
+                    }} onDragStart={nop}></div>)}
                 {blackNotes.map((note, index) => note &&
-                    <div key={note} style={{
+                    <div key={note} data-note={note} style={{
                         backgroundColor: active[note] ? '#b2d7ff' : '#202020',
                         boxShadow: 'inset 0 0 0 1px #303030',
                         height: blackHeight,
@@ -48,7 +50,7 @@ class Octave extends React.Component {
                         position: 'absolute',
                         top: 0,
                         width: blackWidth,
-                    }}></div>)}
+                    }} onDragStart={nop}></div>)}
             </div>
         )
     }
@@ -61,6 +63,13 @@ class Keyboard extends React.Component {
 
     updateControls = event => {
         this.props.updateControls(event)
+    }
+
+    updateControls2 = event => {
+        if (event.button) return
+        const { note } = event.target.dataset
+        const { octave } = event.target.parentElement.dataset
+        this.props.updateControls2(event.type, +octave, note)
     }
 
     componentDidMount() {
@@ -85,7 +94,8 @@ class Keyboard extends React.Component {
                 width: octaves * whiteWidth * 7,
             }}>
                 {Array(octaves).fill(0).map((_, index) =>
-                    <Octave key={index} index={index} active={controls[index]} />)}
+                    <Octave key={index} index={index} active={controls[index]}
+                        onClick={this.updateControls2} />)}
             </div>
         )
     }
@@ -97,6 +107,8 @@ const stateToProps = state => ({
 
 const dispatchToProps = dispatch => ({
     updateControls: event => dispatch(updateControls(event)),
+    updateControls2: (type, octave, note) =>
+        dispatch(updateControls2(type, octave, note)),
 })
 
 export default connect(stateToProps, dispatchToProps)(Keyboard)
