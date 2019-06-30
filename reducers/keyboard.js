@@ -1,5 +1,7 @@
 'use strict'
 
+import { playNote, stopNote } from '../soundblaster/soundblaster'
+
 const KEYCODES = {
     /* Octave 0 */
     KeyQ: { octave: 0, note: 'C' },
@@ -58,6 +60,10 @@ const copyControls = (octave, controls) => ([
 const copyControls2 = (octave, controls) =>
     controls.map((a, index) => octave == index ? Object.assign({}, a) : a)
 
+function sound(octave, note, keyDown) {
+    (keyDown ? playNote : stopNote)(octave, note)
+}
+
 export default function keyboardReducer(state = initialState, action) {
     let a
     let keyDown = false
@@ -71,6 +77,7 @@ export default function keyboardReducer(state = initialState, action) {
             if (a = KEYCODES[action.code]) {
                 newControls = copyControls2(a.octave, state.controls)
                 newControls[a.octave][a.note] = keyDown
+                sound(a.octave, a.note, keyDown)
                 return Object.assign({}, state, { controls: newControls })
             }
             break
@@ -83,6 +90,7 @@ export default function keyboardReducer(state = initialState, action) {
             if (state.controls[action.octave][action.note] !== keyDown) {
                 newControls = copyControls2(action.octave, state.controls)
                 newControls[action.octave][action.note] = keyDown
+                sound(action.octave, action.note, keyDown)
                 return Object.assign({}, state, { controls: newControls })
             }
     }

@@ -716,6 +716,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@tonaljs/tonal@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@tonaljs/tonal/-/tonal-3.1.0.tgz#40af4b437adeb64d616110e4a04a249f1bf95589"
+  integrity sha512-2JzEB9vo2zm4j57o2R4B7tcEeLulBHlq7LoE1dxbN+rYry00A1tFXbC4dwwZaXE7RZpJf9QthYXir9COU7uCpQ==
+
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
