@@ -1,6 +1,6 @@
 'use strict'
 
-import { playNote, stopNote } from '../soundblaster/soundblaster'
+import { playNote, stopNote, synths, changeSynth } from '../soundblaster/soundblaster'
 
 const KEYCODES = {
     /* Octave 0 */
@@ -50,6 +50,7 @@ function octave() {
 
 const initialState = {
     controls: [octave(), octave(), octave(), octave()],
+    synth: synths[0].title,
 }
 
 const copyControls = (octave, controls) => ([
@@ -93,6 +94,11 @@ export default function keyboardReducer(state = initialState, action) {
                 sound(action.octave, action.note, keyDown)
                 return Object.assign({}, state, { controls: newControls })
             }
+            break
+
+        case 'set synth':
+            changeSynth(action.synth)
+            return Object.assign({}, state, { synth: action.synth })
     }
 
     return state
@@ -113,3 +119,5 @@ export const updateControls = event => dispatch => {
 export const updateControls2 = (type, octave, note) => dispatch => {
     if (Number.isInteger(octave) && note) dispatch({ type, octave, note })
 }
+
+export const setSynth = synth => ({ type: 'set synth', synth })

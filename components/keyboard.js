@@ -1,9 +1,10 @@
 'use strict'
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import { updateControls, updateControls2 } from '../reducers/keyboard'
+import { updateControls, updateControls2, setSynth } from '../reducers/keyboard'
+import { synths } from '../soundblaster/soundblaster'
 
 const blackHeight = 120
 const blackWidth = 30
@@ -82,33 +83,45 @@ class Keyboard extends React.Component {
         document.body.removeEventListener('keyup', this.updateControls)
     }
 
+    setSynth = event => {
+        this.props.setSynth(event.target.value)
+    }
+
     render() {
-        const { octaves, controls } = this.props
+        const { octaves, controls, synth } = this.props
 
         return (
-            <div style={{
-                height: whiteHeight,
-                position: 'relative',
-                transform: 'scale(0.5)',
-                transformOrigin: '0 0',
-                width: octaves * whiteWidth * 7,
-            }}>
-                {Array(octaves).fill(0).map((_, index) =>
-                    <Octave key={index} index={index} active={controls[index]}
-                        onClick={this.updateControls2} />)}
-            </div>
+            <Fragment>
+                <div style={{
+                    height: whiteHeight,
+                    position: 'relative',
+                    transform: 'scale(0.5)',
+                    transformOrigin: '0 0',
+                    width: octaves * whiteWidth * 7,
+                }}>
+                    {Array(octaves).fill(0).map((_, index) =>
+                        <Octave key={index} index={index} active={controls[index]}
+                            onClick={this.updateControls2} />)}
+                </div>
+                <select value={synth} onChange={this.setSynth}>
+                    {synths.map(a =>
+                        <option key={a.title} value={a.title}>{a.title}</option>)}
+                </select>
+            </Fragment>
         )
     }
 }
 
 const stateToProps = state => ({
     controls: state.keyboard.controls,
+    synth: state.keyboard.synth,
 })
 
 const dispatchToProps = dispatch => ({
     updateControls: event => dispatch(updateControls(event)),
     updateControls2: (type, octave, note) =>
         dispatch(updateControls2(type, octave, note)),
+    setSynth: synth => dispatch(setSynth(synth)),
 })
 
 export default connect(stateToProps, dispatchToProps)(Keyboard)

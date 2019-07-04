@@ -1,27 +1,14 @@
 'use strict'
 
-import { note as _note } from '@tonaljs/tonal'
+import square from './synths/square'
 
-function octave() {
-    return {
-        'C': null,
-        'C#': null,
-        'D': null,
-        'D#': null,
-        'E': null,
-        'F': null,
-        'F#': null,
-        'G': null,
-        'G#': null,
-        'A': null,
-        'A#': null,
-        'B': null,
-    }
-}
+export const synths = [
+    square,
+]
 
 let ac
 let gain
-const voices = [octave(), octave(), octave(), octave()]
+let synth
 
 function init() {
     ac = new AudioContext
@@ -29,26 +16,26 @@ function init() {
     gain = ac.createGain()
     gain.gain.value = 0.2
     gain.connect(ac.destination)
+
+    synth = synths[0]
+    synth.start(ac, gain)
 }
 
 export function playNote(octave, note) {
-    if (voices[octave][note]) return
-
-    const osc = voices[octave][note] = ac.createOscillator()
-    osc.type = 'square'
-    osc.frequency.value = _note(`${note}${octave + 4}`).freq
-    osc.connect(gain)
-    osc.start(0)
+    synth.playNote(octave, note)
 }
 
 export function stopNote(octave, note) {
-    if (!voices[octave][note]) return
+    synth.stopNote(octave, note)
+}
 
-    const osc = voices[octave][note]
-    osc.stop(0)
-    osc.disconnect()
-
-    voices[octave][note] = null
+export function changeSynth(title) {
+    const newSynth = synths.find(a => a.title == title)
+    if (newSynth && newSynth != synth) {
+        synth.end()
+        synth = newSynth
+        synth.start(ac, gain)
+    }
 }
 
 if (typeof window == 'object' && window.window === window) init()
