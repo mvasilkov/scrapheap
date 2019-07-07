@@ -6,9 +6,11 @@ import thunkMiddleware from 'redux-thunk'
 import { appWithRedux } from 'next-redux'
 
 import keyboard from '../reducers/keyboard'
+import metronome from '../reducers/metronome'
 
 const reducer = combineReducers({
     keyboard,
+    metronome,
 })
 
 const enhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))

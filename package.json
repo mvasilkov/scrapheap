@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@tonaljs/tonal": "^3.2.1",
+    "ms": "^2.1.2",
     "next": "^8.1.0",
     "next-redux": "^0.0.4",
     "react": "^16.8.6",
