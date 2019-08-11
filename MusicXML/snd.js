@@ -9,6 +9,14 @@ function noteFreq(n) {
 let ac
 let out
 
+function init() {
+    ac = new AudioContext
+
+    out = ac.createGain()
+    out.gain.value = 0.2
+    out.connect(ac.destination)
+}
+
 function playNote(n, start, end) {
     const freq = noteFreq(n)
     start *= TEMPO_MUL
@@ -22,10 +30,35 @@ function playNote(n, start, end) {
     osc.stop(ac.currentTime + end)
 }
 
-function init() {
-    ac = new AudioContext
+function playChord(n, start, end) {
+    const freq = noteFreq(n)
+    /* +7 is a fifth above the playing note,
+     * while -5 is also the fifth but one octave below. */
+    const freq1 = noteFreq(n + 7)
+    const freq2 = noteFreq(n - 5)
+    start *= TEMPO_MUL
+    end *= TEMPO_MUL
 
-    out = ac.createGain()
-    out.gain.value = 0.2
-    out.connect(ac.destination)
+    const osc = ac.createOscillator()
+    osc.type = 'square'
+    osc.frequency.value = freq
+    osc.connect(out)
+    osc.start(ac.currentTime + start)
+    osc.stop(ac.currentTime + end)
+
+    const step = (2 / 96) * TEMPO_MUL
+    for (let a = 1; a * step < (end - start); ++a) {
+        switch (a % 4) {
+            case 0:
+            case 2:
+                osc.frequency.setValueAtTime(freq, ac.currentTime + start + a * step)
+                continue
+            case 1:
+                osc.frequency.setValueAtTime(freq1, ac.currentTime + start + a * step)
+                continue
+            case 3:
+                osc.frequency.setValueAtTime(freq2, ac.currentTime + start + a * step)
+                continue
+        }
+    }
 }
