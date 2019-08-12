@@ -14,7 +14,9 @@ function init() {
 
     out = ac.createGain()
     out.gain.value = 0.2
-    out.connect(ac.destination)
+    // out.connect(ac.destination)
+    // return Promise.resolve()
+    return reverb()
 }
 
 function playNote(n, start, end) {
@@ -25,7 +27,7 @@ function playNote(n, start, end) {
     const osc = ac.createOscillator()
     osc.type = 'square'
     osc.frequency.value = freq
-    decay(osc, start)
+    decay(osc, start).connect(out)
     osc.start(ac.currentTime + start)
     osc.stop(ac.currentTime + end)
 }
@@ -34,11 +36,40 @@ function decay(osc, start) {
     const env = ac.createGain()
     env.gain.setValueAtTime(0.5, ac.currentTime + start)
     env.gain.exponentialRampToValueAtTime(0.00001, ac.currentTime + start + 1.5 * TEMPO_MUL)
-    env.connect(out)
     osc.connect(env)
+    return env
 }
 
 /* --- Experimental --- */
+
+function reverb() {
+    const conv = ac.createConvolver()
+    const dry = ac.createGain()
+    const wet = ac.createGain()
+
+    dry.gain.value = 0.5
+    wet.gain.value = 0.5
+    out.connect(conv)
+    out.connect(dry)
+    conv.connect(wet)
+    dry.connect(ac.destination)
+    wet.connect(ac.destination)
+
+    return new Promise(function (resolve) {
+        reverbGen.generateReverb({
+            audioContext: ac,
+            sampleRate: ac.sampleRate,
+            numChannels: 2,
+            fadeInTime: 0.00001,
+            decayTime: 1.5,
+            lpFreqStart: 15000,
+            lpFreqEnd: 1000,
+        }, function (buf) {
+            conv.buffer = buf
+            resolve()
+        })
+    })
+}
 
 function lowpass(osc) {
     const filter = ac.createBiquadFilter()
