@@ -25,9 +25,27 @@ function playNote(n, start, end) {
     const osc = ac.createOscillator()
     osc.type = 'square'
     osc.frequency.value = freq
-    osc.connect(out)
+    decay(osc, start)
     osc.start(ac.currentTime + start)
     osc.stop(ac.currentTime + end)
+}
+
+function decay(osc, start) {
+    const env = ac.createGain()
+    env.gain.setValueAtTime(0.5, ac.currentTime + start)
+    env.gain.exponentialRampToValueAtTime(0.00001, ac.currentTime + start + 1.5 * TEMPO_MUL)
+    env.connect(out)
+    osc.connect(env)
+}
+
+/* --- Experimental --- */
+
+function lowpass(osc) {
+    const filter = ac.createBiquadFilter()
+    filter.type = 'lowpass'
+    filter.frequency.value = noteFreq(60)
+    osc.connect(filter)
+    return filter
 }
 
 function playChord(n, start, end) {
