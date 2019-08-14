@@ -47,8 +47,8 @@ function reverb() {
     const dry = ac.createGain()
     const wet = ac.createGain()
 
-    dry.gain.value = 0.5
-    wet.gain.value = 0.5
+    dry.gain.value = 2 / 3
+    wet.gain.value = 1 / 3
     out.connect(conv)
     out.connect(dry)
     conv.connect(wet)
@@ -56,13 +56,11 @@ function reverb() {
     wet.connect(ac.destination)
 
     return new Promise(function (resolve) {
-        reverbGen.generateReverb({
+        generateReverb({
             audioContext: ac,
-            sampleRate: ac.sampleRate,
-            numChannels: 2,
-            fadeInTime: 0.00001,
-            decayTime: 1.5,
-            lpFreqStart: 15000,
+            fadeIn: 0.00001,
+            decay: 1.5 * TEMPO_MUL,
+            lpFreqStart: 16000,
             lpFreqEnd: 1000,
         }, function (buf) {
             conv.buffer = buf
