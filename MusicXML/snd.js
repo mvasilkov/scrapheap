@@ -9,8 +9,12 @@ function noteFreq(n) {
 let ac
 let out
 
+let kick
+
 function init() {
     ac = new AudioContext
+
+    kick = triangleSlow(0.2 * TEMPO_MUL, noteFreq(68), noteFreq(4))
 
     out = ac.createGain()
     out.gain.value = 0.2
@@ -40,8 +44,6 @@ function decay(osc, start) {
     return env
 }
 
-/* --- Experimental --- */
-
 function reverb() {
     const conv = ac.createConvolver()
     const dry = ac.createGain()
@@ -67,6 +69,35 @@ function reverb() {
             resolve()
         })
     })
+}
+
+/* --- Experimental --- */
+
+function playTri(n, start, end) {
+    const freq = noteFreq(n)
+    start *= TEMPO_MUL
+    end *= TEMPO_MUL
+
+    const osc = ac.createOscillator()
+    osc.type = 'triangle'
+    osc.frequency.value = freq
+    // decay(osc, start).connect(out)
+    osc.connect(out)
+    osc.start(ac.currentTime + start)
+    osc.stop(ac.currentTime + end)
+}
+
+function playBuf(buf, start, end) {
+    start *= TEMPO_MUL
+    end *= TEMPO_MUL
+
+    const osc = ac.createBufferSource()
+    osc.buffer = buf
+    // decay(osc, start).connect(out)
+    osc.connect(out)
+    osc.start(ac.currentTime + start)
+    // osc.stop(ac.currentTime + end)
+    osc.stop(ac.currentTime + start + buf.duration)
 }
 
 function lowpass(osc) {
