@@ -2,6 +2,7 @@ import ms from 'ms'
 import fetch from 'node-fetch'
 import { URLSearchParams } from 'url'
 import AbortController from 'abort-controller'
+import readline from 'readline'
 
 interface UserObject {
     type: string
@@ -31,6 +32,14 @@ interface Connection {
     box: string
     user: User
     session: string
+}
+
+interface ReadlineEvent {
+    sequence: string
+    name: string
+    ctrl: boolean
+    meta: boolean
+    shift: boolean
 }
 
 function getCookie(headers: string[]): string {
@@ -106,6 +115,24 @@ async function longPolling(con: Connection): Promise<ShellResponse> {
     return response.json()
 }
 
+function encodeInput(key: string) {
+    return Buffer.from(key, 'utf8').toString('hex')
+}
+
+function sendInput(con: Connection, key: string, event: ReadlineEvent) {
+    const par = new URLSearchParams
+    par.append('width', '80')
+    par.append('height', '24')
+    par.append('session', con.session)
+    par.append('keys', encodeInput(key))
+
+    fetch(`http://${con.box}/infinishell`, {
+        method: 'POST',
+        // headers: { 'Cookie': con.user._cookie },
+        body: par,
+    })
+}
+
 export async function run() {
     const box = 'ibox2831'
     const user = await login(box, 'infinidat', '123456')
@@ -118,11 +145,23 @@ export async function run() {
         session,
     }
 
+    if (process.stdin.isTTY)
+        process.stdin.setRawMode(true)
+
+    readline.emitKeypressEvents(process.stdin)
+
+    process.stdin.on('keypress', (key, event) => {
+        if (event.name == 'c' && event.ctrl) process.exit()
+        // console.log('key', key)
+        // console.log('event', event)
+        sendInput(con, key, event)
+    })
+
     while (true) {
         try {
             const response = await longPolling(con)
             // console.log('Response:', JSON.stringify(response, null, 4))
-            console.log(response.data)
+            process.stdout.write(response.data)
         }
         catch (err) {
             if (err.name == 'AbortError') {
