@@ -1,0 +1,19 @@
+{
+  "name": "cpaycg",
+  "version": "1.0.0",
+  "description": "Crows peck at your crops, Giuseppe",
+  "main": "start.js",
+  "repository": "git@github.com:mvasilkov/cpaycg.git",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "MIT",
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/ms": "^0.7.31",
+    "@types/node": "^12.12.14",
+    "@types/node-fetch": "^2.5.4"
+  }
+}
