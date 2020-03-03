@@ -1,18 +1,45 @@
 import React from 'react'
 
-import md from '../app/md.macro'
+import gfm from 'gfm.macro'
 
-const a = md`
+class Hello extends React.Component {
+    render() {
+        return (
+            <div style={{color: '#ff0080', backgroundColor: '#0080ff'}}>
+                Hello!
+            </div>
+        )
+    }
+}
+
+const a = gfm`
 aaa
 ===
-hello
+hello gfm
+
+| Table | Fable |
+| --- | --- |
+| a | b |
+
+<button>foo</button>
 `
 
-const b = md(`
+const b = gfm(`
 bbb
 ===
-hello
-`)
+hello gfm
+
+| Table | Fable |
+| --- | --- |
+| a | b |
+
+\`\`\`javascript
+console.log(1)
+\`\`\`
+
+<Hello />
+`, { unsafe: true })
+
 
 export default class extends React.Component {
     render() {
