@@ -42,6 +42,18 @@ async function run() {
         res.json('ok')
     })
 
+    app.delete('/api/questions/:objectid', (req, res) => {
+        if (!db.data.questions[req.params.objectid]) {
+            res.json('no')
+            return
+        }
+
+        delete db.data.questions[req.params.objectid]
+        db.write()
+
+        res.json('ok')
+    })
+
     app.listen(port, () => {
         console.log(`Sneed's Overflow app listening at http://localhost:${port}`)
     })

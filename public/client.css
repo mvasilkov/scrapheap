@@ -1,3 +1,7 @@
 .questions {
     list-style: none;
 }
+
+.delete-button {
+    margin-left: 10px;
+}

@@ -3,17 +3,42 @@
 function initApp() {
     loadQuestions()
     initQuestionForm()
+    initDeleteButtons()
 }
 
 async function loadQuestions() {
+    const questionList = document.querySelector('.questions')
+
     const response = await fetch('/api/questions')
     const questions = await response.json()
-    const contents = []
+
+    while (questionList.firstChild) {
+        questionList.removeChild(questionList.firstChild)
+    }
+
     for (let objectid in questions) {
         const { title, text } = questions[objectid]
-        contents.push(`<li><h2>${title}</h2>${text}</li>`)
+        if (!title || !text) continue
+
+        questionList.appendChild(createQuestionHTML(objectid, title, text))
     }
-    document.querySelector('.questions').innerHTML = contents.join('')
+}
+
+function createQuestionHTML(objectid, title, text) {
+    const deleteButton = document.createElement('button')
+    deleteButton.type = 'button'
+    deleteButton.className = 'delete-button'
+    deleteButton.dataset.objectid = objectid
+    deleteButton.appendChild(document.createTextNode('❌'))
+
+    const qTitle = document.createElement('h2')
+    qTitle.appendChild(document.createTextNode(title))
+    qTitle.appendChild(deleteButton)
+
+    const question = document.createElement('li')
+    question.appendChild(qTitle)
+    question.appendChild(document.createTextNode(text))
+    return question
 }
 
 function initQuestionForm() {
@@ -49,5 +74,19 @@ function initQuestionForm() {
         sending = false
 
         loadQuestions()
+    })
+}
+
+function initDeleteButtons() {
+    window.addEventListener('click', async event => {
+        if (event.target.className === 'delete-button' &&
+            event.target.dataset.objectid) {
+
+            await fetch('/api/questions/' + event.target.dataset.objectid, {
+                method: 'DELETE'
+            })
+
+            loadQuestions()
+        }
     })
 }
