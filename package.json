@@ -1,8 +1,11 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "bson": "^4.4.1",
+    "express": "^4.17.1",
+    "lowdb": "^2.1.0"
   },
   "scripts": {
     "start": "node app.js"
-  }
+  },
+  "license": "MIT"
 }

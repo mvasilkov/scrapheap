@@ -15,6 +15,11 @@ array-flatten@1.1.1:
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
 
+base64-js@^1.3.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
+  integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+
 body-parser@1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
@@ -30,6 +35,21 @@ body-parser@1.19.0:
     qs "6.7.0"
     raw-body "2.4.0"
     type-is "~1.6.17"
+
+bson@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-4.4.1.tgz#682c3cb8b90b222414ce14ef8398154ba2cc21bc"
+  integrity sha512-Uu4OCZa0jouQJCKOk1EmmyqtdWAP5HVLru4lQxTwzJzxT+sJ13lVpEZU/MATDxtHiekWMAL84oQY3Xn1LpJVSg==
+  dependencies:
+    buffer "^5.6.0"
+
+buffer@^5.6.0:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.7.1.tgz#ba62e7c13133053582197160851a8f648e99eed0"
+  integrity sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==
+  dependencies:
+    base64-js "^1.3.1"
+    ieee754 "^1.1.13"
 
 bytes@3.1.0:
   version "3.1.0"
@@ -183,6 +203,11 @@ iconv-lite@0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+ieee754@^1.1.13:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
+  integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
+
 inherits@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
@@ -197,6 +222,13 @@ ipaddr.js@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
+
+lowdb@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-2.1.0.tgz#c8063e228b5ab3e082ece90e0512537ecb6e1e2a"
+  integrity sha512-F4Go8/V37gAidTR3c5poyjprOpZSDNSLJVOmI0ny4D4q9rC37OkBhlzX0bqj7LZlT3UIj4FchmZrrSw7qY+eGQ==
+  dependencies:
+    steno "^1.0.0"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -338,6 +370,11 @@ setprototypeof@1.1.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
+
+steno@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/steno/-/steno-1.0.0.tgz#475e32c6066ec9760229eaaf1550601764fbecba"
+  integrity sha512-C/KgCvEa1yWnpHmaPjAXrz1yWxh6hs+HvhqqPa71euaQmNi1wr4+WFo57VQxjKKuFl2KqS7gtlrN0oxj2noQLw==
 
 toidentifier@1.0.0:
   version "1.0.0"
