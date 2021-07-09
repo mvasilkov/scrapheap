@@ -4,8 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sneed's Overflow (Formerly Chuck's)</title>
+        <link rel="stylesheet" href="/client.css">
     </head>
     <body>
         <h1>Sneed's Overflow (Formerly Chuck's)</h1>
+
+        <form action="" id="q-form">
+            <p><input type="text" id="q-title"></p>
+            <p><textarea id="q-text" cols="40" rows="8"></textarea></p>
+            <p><input type="submit" value="Save"></p>
+        </form>
+
+        <ol class="questions"></ol>
+
+        <script src="/client.js"></script>
+        <script>
+            initApp()
+        </script>
     </body>
 </html>
