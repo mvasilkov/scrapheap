@@ -5,7 +5,10 @@
     "lowdb": "^2.1.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }

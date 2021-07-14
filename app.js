@@ -54,6 +54,11 @@ async function run() {
         res.json('ok')
     })
 
+    app.get('/api/questions/:objectid', (req, res) => {
+      const item = db.data.questions[req.params.objectid]
+      res.json(item)
+    })
+
     app.listen(port, () => {
         console.log(`Sneed's Overflow app listening at http://localhost:${port}`)
     })
