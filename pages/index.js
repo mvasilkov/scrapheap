@@ -27,9 +27,9 @@ export default class StartPage extends React.Component {
         return (
             <React.Fragment>
                 <Head>
-                    <title>Sneed's Overflow (Formerly Chuck's)</title>
+                    <title>Хорошие решения</title>
                 </Head>
-                <h1>Sneed's Overflow (Formerly Chuck's)</h1>
+                <h1>Хорошие решения</h1>
                 <QuestionForm refresh={this.refresh} />
                 <QuestionList questions={questions} refresh={this.refresh} />
             </React.Fragment>
