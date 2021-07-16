@@ -1,7 +1,8 @@
 'use strict'
 const express = require('express')
 const next = require('next')
-const { ObjectId } = require('bson')
+
+const questionsApi = require('./api/questions')
 
 async function run() {
     // Set up the database
@@ -26,52 +27,8 @@ async function run() {
 
     app.use(express.json())
 
-    // Get all questions
-    app.get('/api/questions', (req, res) => {
-        const questions = []
-        for (let objectid of Object.keys(db.data.questions)) {
-            const q = Object.assign({}, db.data.questions[objectid], { objectid })
-            questions.push(q)
-        }
-        res.json(questions)
-    })
-
-    // Create a new question
-    app.post('/api/questions', (req, res) => {
-        const { title, text } = req.body
-        if (!title || !text) {
-            res.json('no')
-            return
-        }
-
-        const objectid = (new ObjectId).toHexString()
-        db.data.questions[objectid] = {
-            title,
-            text,
-        }
-        db.write()
-
-        res.json('ok')
-    })
-
-    // Get a question by ID
-    app.get('/api/questions/:objectid', (req, res) => {
-        const question = db.data.questions[req.params.objectid]
-        res.json(question)
-    })
-
-    // Delete a question by ID
-    app.delete('/api/questions/:objectid', (req, res) => {
-        if (!db.data.questions[req.params.objectid]) {
-            res.json('no')
-            return
-        }
-
-        delete db.data.questions[req.params.objectid]
-        db.write()
-
-        res.json('ok')
-    })
+    // Set up the API
+    questionsApi(app, db)
 
     // Any other route goes to Next.js
     app.all('*', (req, res) => {
