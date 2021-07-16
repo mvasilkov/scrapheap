@@ -1,13 +1,16 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default class Question extends React.Component {
     render() {
-        const { title, text } = this.props
+        const { objectid, title, text } = this.props
 
         return (
             <React.Fragment>
                 <h2>
-                    {title}
+                    <Link href={`/questions/${objectid}`}>
+                        <a>{title}</a>
+                    </Link>
                     <button type="button" className="delete-button" onClick={this.onDelete}>
                         ❌
                     </button>
@@ -22,6 +25,6 @@ export default class Question extends React.Component {
             method: 'DELETE'
         })
 
-        this.props.refresh()
+        this.props.onDelete()
     }
 }

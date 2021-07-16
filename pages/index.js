@@ -18,6 +18,7 @@ export default class StartPage extends React.Component {
     refresh = async () => {
         const response = await fetch('/api/questions')
         const questions = await response.json()
+
         this.setState({ questions })
     }
 

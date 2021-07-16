@@ -11,7 +11,7 @@ export default class QuestionList extends React.Component {
                 {questions.map(q => (
                     <li key={q.objectid}>
                         <Question objectid={q.objectid} title={q.title} text={q.text}
-                            refresh={refresh} />
+                            onDelete={refresh} />
                     </li>
                 ))}
             </ul>
