@@ -1,7 +1,10 @@
 import React from 'react'
+import Head from 'next/head'
 import { withRouter } from 'next/router'
 
 import Question from '../../components/Question'
+import AnswerForm from '../../components/AnswerForm'
+import AnswerList from '../../components/AnswerList'
 
 class Page extends React.Component {
     constructor(props) {
@@ -10,6 +13,7 @@ class Page extends React.Component {
         this.state = {
             objectid: null,
             question: {},
+            answers: [],
         }
     }
 
@@ -29,20 +33,45 @@ class Page extends React.Component {
     }
 
     load = async objectid => {
-        const response = await fetch('/api/questions/' + objectid)
-        const question = await response.json()
+        const responses = await Promise.all([
+            fetch(`/api/questions/${objectid}`),
+            fetch(`/api/questions/${objectid}/answers`),
+        ])
 
-        this.setState({ objectid, question })
+        const [question, answers] = await Promise.all([
+            responses[0].json(),
+            responses[1].json(),
+        ])
+
+        this.setState({ objectid, question, answers })
+    }
+
+    refresh = async () => {
+        const { objectid } = this.state
+        if (!objectid) return
+
+        const response = await fetch(`/api/questions/${objectid}/answers`)
+        const answers = await response.json()
+
+        this.setState({ answers })
     }
 
     render() {
-        const { objectid, question: q } = this.state
+        const { objectid, question: q, answers } = this.state
 
         if (objectid == null) return null
 
         return (
-            <Question objectid={objectid} title={q.title} text={q.text}
-                onDelete={this.gotoStartPage} />
+            <React.Fragment>
+                <Head>
+                    <title>{q.title} — Хорошие решения</title>
+                </Head>
+                <Question objectid={objectid} title={q.title} text={q.text}
+                    onDelete={this.gotoStartPage} />
+                <h2>Answers</h2>
+                <AnswerForm parentid={objectid} onRequestSent={this.refresh} />
+                <AnswerList answers={answers} refresh={this.refresh} />
+            </React.Fragment>
         )
     }
 

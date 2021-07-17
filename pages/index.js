@@ -31,7 +31,7 @@ export default class StartPage extends React.Component {
                     <title>Хорошие решения</title>
                 </Head>
                 <h1>Хорошие решения</h1>
-                <QuestionForm refresh={this.refresh} />
+                <QuestionForm onRequestSent={this.refresh} />
                 <QuestionList questions={questions} refresh={this.refresh} />
             </React.Fragment>
         )

@@ -1,29 +1,23 @@
 import React from 'react'
 
-export default class QuestionForm extends React.Component {
+export default class AnswerForm extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            title: '',
             text: '',
         }
     }
 
     render() {
-        const { title, text } = this.state
+        const { text } = this.state
 
         return (
             <form action="" onSubmit={this.onSubmit}>
-                <p><input type="text" value={title} onChange={this.titleChanged} /></p>
                 <p><textarea cols="40" rows="8" value={text} onChange={this.textChanged} /></p>
                 <p><input type="submit" value="Save" /></p>
             </form>
         )
-    }
-
-    titleChanged = event => {
-        this.setState({ title: event.target.value })
     }
 
     textChanged = event => {
@@ -33,16 +27,16 @@ export default class QuestionForm extends React.Component {
     onSubmit = async event => {
         event.preventDefault()
 
-        const { title, text } = this.state
-        if (!title || !text) return
+        const { parentid } = this.props
+        const { text } = this.state
+        if (!parentid || !text) return
 
-        await fetch('/api/questions', {
+        await fetch(`/api/questions/${parentid}/answers`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title,
                 text,
             })
         })
@@ -50,7 +44,6 @@ export default class QuestionForm extends React.Component {
         this.props.onRequestSent()
 
         this.setState({
-            title: '',
             text: '',
         })
     }
