@@ -3,6 +3,7 @@ const express = require('express')
 const next = require('next')
 
 const questionsApi = require('./api/questions')
+const answersApi = require('./api/answers')
 
 async function run() {
     // Set up the database
@@ -12,7 +13,8 @@ async function run() {
 
     if (!db.data) { // No database file on disk
         db.data = {
-            questions: {},
+            questions: {}, // Indexed by [objectid]
+            answers: {}, // Indexed by [parentid][objectid]
         }
     }
 
@@ -29,6 +31,7 @@ async function run() {
 
     // Set up the API
     questionsApi(app, db)
+    answersApi(app, db)
 
     // Any other route goes to Next.js
     app.all('*', (req, res) => {

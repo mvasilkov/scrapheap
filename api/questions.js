@@ -16,6 +16,7 @@ function questionsApi(app, db) {
     app.post('/api/questions', (req, res) => {
         const { title, text } = req.body
         if (!title || !text) {
+            res.status(422)
             res.json('no')
             return
         }
@@ -38,12 +39,16 @@ function questionsApi(app, db) {
 
     // Delete a question by ID
     app.delete('/api/questions/:objectid', (req, res) => {
-        if (!db.data.questions[req.params.objectid]) {
+        const { objectid } = req.params
+
+        if (!db.data.questions[objectid]) {
+            res.status(404)
             res.json('no')
             return
         }
 
-        delete db.data.questions[req.params.objectid]
+        // FIXME: Delete all answers to this question first
+        delete db.data.questions[objectid]
         db.write()
 
         res.json('ok')
