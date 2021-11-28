@@ -1,0 +1,13 @@
+body {
+    font-family: -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
+    margin: 1vw;
+}
+
+ul.nav {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li.current {
+    background-color: #8cdaff;
+}
