@@ -9,7 +9,7 @@
   "dependencies": {
     "abort-controller": "^3.0.0",
     "ms": "^2.1.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
