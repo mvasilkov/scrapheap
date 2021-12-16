@@ -1,0 +1,11 @@
+{
+  "name": "diskarray",
+  "version": "1.0.0",
+  "main": "manage.py",
+  "repository": "git@github.com:mvasilkov/diskarray.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "systematize": "^1.1.0"
+  }
+}
