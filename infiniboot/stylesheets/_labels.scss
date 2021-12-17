@@ -1,0 +1,38 @@
+@import 'colors';
+@import 'util';
+
+.label {
+    @include ib-font-smoothing;
+
+    border-radius: 2px;
+    display: inline;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0.1818em 0.6364em;
+    text-transform: uppercase;
+}
+
+.label-default {
+    background: $ib-color-btn-secondary-stressed;
+    color: $ib-color-dark-gray;
+}
+
+.label-primary {
+    background-color: $ib-color-btn-primary;
+}
+
+.label-success {
+    background-color: $ib-color-btn-success;
+}
+
+.label-info {
+    background-color: $ib-color-blue;
+}
+
+.label-warning {
+    background-color: $ib-color-orange;
+}
+
+.label-danger {
+    background-color: $ib-color-btn-danger;
+}

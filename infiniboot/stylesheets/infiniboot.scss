@@ -1,0 +1,14 @@
+@import 'buttons';
+@import 'labels';
+@import 'forms';
+@import 'checkboxes';
+@import 'radio-buttons';
+@import 'util';
+
+body {
+    font-family: Open Sans, Helvetica Neue, Segoe UI, sans-serif;
+}
+
+.navbar-dark {
+    @include ib-font-smoothing;
+}

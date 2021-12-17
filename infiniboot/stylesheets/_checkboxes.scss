@@ -1,0 +1,77 @@
+@import '../_node_modules/sass-svg/index';
+
+@import 'colors';
+@import 'util';
+
+.themed-checkbox {
+    color: inherit;
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+
+    @include ib-not-selectable;
+
+    $size: 16px;
+
+    input[type=checkbox] {
+        @include ib-sr-only;
+
+        &+span {
+            background: white;
+            border: 1px solid ib-gray('c0');
+            border-radius: 2px;
+            display: inline-block;
+            height: $size;
+            line-height: $size;
+            margin-right: 5px;
+            margin-top: -2px;
+            transition: border-color 150ms;
+            vertical-align: middle;
+            width: $size;
+        }
+
+        &:checked+span {
+            background-color: $ib-color-green;
+            border-color: $ib-color-green;
+
+            &::before {
+                @include svg((viewBox: 0 0 20 20)) {
+                    @include svg('path', (
+                    fill: #fff,
+                    d: 'M13,5.9l-4.2,4.3L6.6,8L5.1,9.5l3,3l0.7,0.8l5.7-5.8L13,5.9z'
+                    ));
+                }
+
+                background-position: -1px -1px;
+                background-size: 19px;
+                content: '';
+                display: block;
+                height: $size;
+                margin-left: -1px;
+                margin-top: -1px;
+                width: $size;
+            }
+        }
+
+        @include ib-hover-focus {
+            &+span,
+            &:checked+span {
+                border-color: ib-gray('60');
+            }
+        }
+
+        &:disabled,
+        &.disabled {
+            &+span {
+                background-color: ib-gray('f0');
+                border-color: ib-gray('c0');
+                cursor: not-allowed;
+            }
+
+            &:checked+span {
+                background-color: lighten($ib-color-green, 20);
+                border-color: lighten($ib-color-green, 20);
+            }
+        }
+    }
+}

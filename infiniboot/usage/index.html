@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf8>
+        <meta name=viewport content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+        <meta http-equiv=x-ua-compatible content='ie=edge'>
+        <title>Usage &middot; Infiniboot</title>
+        <link rel=stylesheet href=./vendor/opensans/opensans.css>
+        <link rel=stylesheet href=./vendor/robotomono/robotomono.css>
+        <link rel=stylesheet href=./vendor/bootstrap.css>
+        <link rel=stylesheet href=./vendor/highlight/hybrid.min.css>
+        <link rel=stylesheet href=./build/infiniboot.css>
+        <link rel=stylesheet href=./build/usage.css>
+    </head>
+    <body>
+        <nav class='navbar navbar-fixed-top navbar-dark bg-inverse'>
+            <a class=navbar-brand href=/>Infiniboot</a>
+        </nav>
+
+        <div class=container>
+            <h1 id=buttons>Buttons</h1>
+
+            <p>Normal buttons:</p>
+            <div class='demo-block demo-block-buttons' id=x-buttons-normal>
+                <button type=button class='btn btn-primary'>Primary</button>
+                <button type=button class='btn btn-secondary'>Secondary</button>
+                <button type=button class='btn btn-success'>Success</button>
+                <button type=button class='btn btn-info'>Info</button>
+                <button type=button class='btn btn-warning'>Warning</button>
+                <button type=button class='btn btn-danger'>Danger</button>
+                <button type=button class='btn btn-link'>Link</button>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-normal></code></pre>
+
+            <p>Disabled buttons:</p>
+            <div class='demo-block demo-block-buttons' id=x-buttons-disabled>
+                <button type=button disabled class='btn btn-primary'>Primary</button>
+                <button type=button disabled class='btn btn-secondary'>Secondary</button>
+                <button type=button disabled class='btn btn-success'>Success</button>
+                <button type=button disabled class='btn btn-info'>Info</button>
+                <button type=button disabled class='btn btn-warning'>Warning</button>
+                <button type=button disabled class='btn btn-danger'>Danger</button>
+                <button type=button disabled class='btn btn-link'>Link</button>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-disabled></code></pre>
+
+            <p>Small buttons:</p>
+            <div class='demo-block demo-block-buttons demo-block-buttons-small' id=x-buttons-small>
+                <button type=button class='btn btn-sm btn-primary'>Primary</button>
+                <button type=button class='btn btn-sm btn-secondary'>Secondary</button>
+                <button type=button class='btn btn-sm btn-success'>Success</button>
+                <button type=button class='btn btn-sm btn-info'>Info</button>
+                <button type=button class='btn btn-sm btn-warning'>Warning</button>
+                <button type=button class='btn btn-sm btn-danger'>Danger</button>
+                <button type=button class='btn btn-sm btn-link'>Link</button>
+            </div>
+            <pre><code class=html data-copy-contents=x-buttons-small></code></pre>
+
+            <h1 id=labels>Labels</h1>
+            <div class='demo-block demo-block-labels' id=x-labels>
+                <span class='label label-default'>Default</span>
+                <span class='label label-primary'>Primary</span>
+                <span class='label label-success'>Success</span>
+                <span class='label label-info'>Info</span>
+                <span class='label label-warning'>Warning</span>
+                <span class='label label-danger'>Danger</span>
+            </div>
+            <pre><code class=html data-copy-contents=x-labels></code></pre>
+
+            <h1 id=forms>Forms</h1>
+            <div class='demo-block demo-block-forms' id=x-forms>
+                <form>
+                    <fieldset class=form-group>
+                        <label for=demo-input-1>Normal input</label>
+                        <input type=text class=form-control id=demo-input-1 placeholder=Normal value=Normal>
+                    </fieldset>
+                    <fieldset class=form-group>
+                        <label for=demo-input-2>Disabled input</label>
+                        <input type=text disabled class=form-control id=demo-input-2 placeholder=Disabled value=Disabled>
+                    </fieldset>
+                    <fieldset class=form-group>
+                        <label>Static text</label>
+                        <p class=form-control-static>email@infinidat.com</p>
+                    </fieldset>
+                </form>
+            </div>
+            <pre><code class=html data-copy-contents=x-forms></code></pre>
+
+            <h1 id=checkboxes-radio-buttons>Checkboxes and radio buttons</h1>
+            <div class='demo-block demo-block-forms2'>
+                <div class=container-fluid>
+                    <div class=row>
+                        <div class='col-sm-6 col-md-4' id=x-checkboxes>
+                            <form>
+                                <fieldset class=form-group>
+                                    <label>Themed checkboxes</label>
+                                    <label class=themed-checkbox>
+                                        <input type=checkbox>
+                                        <span></span>
+                                        Themed checkbox
+                                    </label>
+                                    <label class=themed-checkbox>
+                                        <input type=checkbox checked>
+                                        <span></span>
+                                        Another one
+                                    </label>
+                                    <hr>
+                                    <label class=themed-checkbox>
+                                        <input type=checkbox disabled>
+                                        <span></span>
+                                        Disabled checkbox
+                                    </label>
+                                    <label class=themed-checkbox>
+                                        <input type=checkbox checked disabled>
+                                        <span></span>
+                                        Another one
+                                    </label>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class='col-sm-6 col-md-4' id=x-radio-buttons>
+                            <form>
+                                <fieldset class=form-group>
+                                    <label>Themed radio buttons</label>
+                                    <label class=themed-radio>
+                                        <input type=radio name=demo-group-1>
+                                        <span></span>
+                                        Themed radio button
+                                    </label>
+                                    <label class=themed-radio>
+                                        <input type=radio name=demo-group-1 checked>
+                                        <span></span>
+                                        Another one
+                                    </label>
+                                    <hr>
+                                    <label class=themed-radio>
+                                        <input type=radio name=demo-group-2 disabled>
+                                        <span></span>
+                                        Disabled radio button
+                                    </label>
+                                    <label class=themed-radio>
+                                        <input type=radio name=demo-group-2 checked disabled>
+                                        <span></span>
+                                        Another one
+                                    </label>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre><code class=html data-copy-contents=x-checkboxes></code></pre>
+            <pre><code class=html data-copy-contents=x-radio-buttons></code></pre>
+
+        </div>
+
+        <script src=./vendor/jquery.js></script>
+        <script src=./copy_contents.js></script>
+        <script src=./vendor/tether.js></script>
+        <script src=./vendor/bootstrap.js></script>
+        <script src=./vendor/highlight/highlight.min.js></script>
+        <script>hljs.initHighlightingOnLoad()</script>
+    </body>
+</html>

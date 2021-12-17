@@ -1,0 +1,33 @@
+$ib-color-blue: #1e8cd6;
+$ib-color-green: #39b54a;
+$ib-color-slate-gray: #454752;
+$ib-color-dark-gray: #515360;
+$ib-color-orange: #ff7a03;
+$ib-color-red: #ff2f00;
+$ib-color-blackberry: #786078;
+
+
+$ib-color-btn-primary: #4f515f;
+$ib-color-btn-primary-active: #303138;
+$ib-color-btn-primary-stressed: #060606;
+
+$ib-color-btn-secondary: transparent;
+$ib-color-btn-secondary-active: rgba($ib-color-btn-primary-active, 0.06);
+$ib-color-btn-secondary-stressed: rgba($ib-color-btn-primary-active, 0.11);
+
+$ib-color-btn-success: #3bb64c;
+$ib-color-btn-success-active: #269d36;
+$ib-color-btn-success-stressed: #238530;
+
+$ib-color-btn-danger: #ff3333;
+$ib-color-btn-danger-active: #ea0606;
+$ib-color-btn-danger-stressed: #ca0909;
+
+
+// Make a shade of gray
+// Usage:
+// ib-gray('fb') => #fbfbfb
+// ib-gray('0') => #000
+@function ib-gray($a) {
+    @return unquote('##{unquote($a)}#{unquote($a)}#{unquote($a)}');
+}

@@ -1,0 +1,58 @@
+@import 'colors';
+
+body {
+    padding-top: 5rem;
+}
+
+h1:not(:first-child) {
+    margin-top: 4rem;
+}
+
+pre code {
+    font-family: Roboto Mono, monospace;
+    font-size: 11px;
+}
+
+.demo-block {
+    margin: 0 0 1rem;
+    padding: 1rem;
+
+    &.demo-block-buttons {
+        background: ib-gray('f0');
+        line-height: 3rem;
+        padding: 0 1rem 1rem;
+
+        button {
+            margin-right: 0.5rem;
+            vertical-align: bottom;
+        }
+
+        &.demo-block-buttons-small {
+            line-height: 2.6rem;
+        }
+    }
+
+    &.demo-block-labels {
+        padding: 1rem 0;
+
+        .label {
+            margin-right: 1rem;
+        }
+    }
+
+    &.demo-block-forms {
+        background: ib-gray('f9');
+        padding: 1rem 1.44rem 1px;
+
+        .form-control,
+        .form-control-static {
+            max-width: 20rem;
+        }
+    }
+
+    &.demo-block-forms2 {
+        @extend .demo-block-forms;
+
+        padding: 1rem 0.44rem 1px;
+    }
+}

@@ -1,0 +1,121 @@
+@import 'colors';
+@import 'util';
+
+.btn {
+    @include ib-font-smoothing;
+
+    $animation-length: 185ms;
+
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+    transition: background-color $animation-length ease-out,
+    border-color $animation-length ease-out;
+
+    &:active,
+    &.active {
+        &:focus,
+        &.focus {
+            outline: 0;
+        }
+    }
+
+    &:focus,
+    &.focus {
+        outline: 0;
+    }
+}
+
+.btn-sm {
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+@mixin ib-apply-colors($bg, $text) {
+    background-color: $bg;
+    border-color: $bg;
+    color: $text;
+}
+
+@mixin ib-button-colors4($bg, $active-bg, $stressed-bg, $text) {
+    @include ib-apply-colors($bg, $text);
+
+    @include ib-hover-focus {
+        @include ib-apply-colors($active-bg, $text);
+
+        text-decoration: none;
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        @include ib-apply-colors($active-bg, $text);
+
+        @include ib-hover-focus {
+            @include ib-apply-colors($stressed-bg, $text);
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        @include ib-hover-focus {
+            @include ib-apply-colors($bg, $text);
+        }
+    }
+}
+
+@mixin ib-button-colors($bg, $text: #fff) {
+    $active-bg: darken($bg, 5%);
+    $stressed-bg: darken($bg, 10%);
+
+    @include ib-button-colors4($bg, $active-bg, $stressed-bg, $text);
+}
+
+
+.btn-primary {
+    @include ib-button-colors4(
+    $ib-color-btn-primary,
+    $ib-color-btn-primary-active,
+    $ib-color-btn-primary-stressed,
+    #fff);
+}
+
+.btn-link,
+.btn-secondary {
+    @include ib-button-colors4(
+    $ib-color-btn-secondary,
+    $ib-color-btn-secondary-active,
+    $ib-color-btn-secondary-stressed,
+    $ib-color-dark-gray);
+
+    border-color: transparent !important;
+}
+
+.btn-success {
+    @include ib-button-colors4(
+    $ib-color-btn-success,
+    $ib-color-btn-success-active,
+    $ib-color-btn-success-stressed,
+    #fff);
+}
+
+.btn-info {
+    @include ib-button-colors($ib-color-blue);
+}
+
+.btn-warning {
+    @include ib-button-colors($ib-color-orange);
+}
+
+.btn-danger {
+    @include ib-button-colors4(
+    $ib-color-btn-danger,
+    $ib-color-btn-danger-active,
+    $ib-color-btn-danger-stressed,
+    #fff);
+}
