@@ -1,0 +1,33 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-image: -webkit-radial-gradient(center top, circle farthest-corner, #FFF 0%, #F8F6F2 100%);
+    background-image: radial-gradient(circle farthest-corner at center top, #FFF 0%, #F8F6F2 100%);
+    color: #303030;
+}
+
+article {
+    padding-top: 20vh;
+}
+
+form label {
+    display: block;
+}
+
+input[type='email'] {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+}
+
+input[type='submit'] {
+    vertical-align: top;
+}
+
+:focus {
+    outline: 3px solid #c1e0fe;
+    outline: 3px solid rgba(131, 192, 253, 0.5);
+    outline-offset: 1px;
+}
