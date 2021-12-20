@@ -1,0 +1,9 @@
+﻿{% extends 'base.html' %}
+
+{% block page_content %}
+<h3>
+    This is your short URL:
+    <a href="{{ short_url }}">{{ short_url }}</a>
+</h3>
+<p><a href="{% url 'submit' %}">Return to the previous page</a></p>
+{% endblock %}

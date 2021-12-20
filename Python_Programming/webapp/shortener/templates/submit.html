@@ -1,0 +1,10 @@
+﻿{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block page_content %}
+<form method="POST" action="">
+    {% bootstrap_form form %}
+    {% csrf_token %}
+    {% buttons submit='Shorten' %}{% endbuttons %}
+</form>
+{% endblock %}
