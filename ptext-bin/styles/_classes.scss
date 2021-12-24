@@ -1,0 +1,19 @@
+@import 'colors';
+
+.listing {
+    box-shadow: -18.5px 0 0 1px $color-background, -20px 0 $color-heading-1;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.contents-subheading {
+    font-size: 13px;
+}
+
+.date {
+    @extend .nowrap;
+
+    color: $color-secondary;
+}

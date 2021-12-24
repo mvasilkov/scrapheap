@@ -1,0 +1,8 @@
+node_modules/
+build/bundle.js
+.next/
+*~
+.DS_Store
+LevelDB/
+yarn-error.log
+package-lock.json

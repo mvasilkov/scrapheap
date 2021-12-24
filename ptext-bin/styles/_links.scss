@@ -1,0 +1,16 @@
+@import 'colors';
+
+a {
+    border-bottom: 5px solid rgba(129, 216, 208, 0.4);
+    color: inherit;
+    text-decoration: none;
+    transition: 200ms border-color;
+}
+
+a:hover {
+    border-bottom-color: rgba(129, 216, 208, 0.9);
+}
+
+a:focus {
+    border-bottom: 0;
+}

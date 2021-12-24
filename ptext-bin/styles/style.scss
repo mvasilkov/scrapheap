@@ -1,0 +1,79 @@
+@import '../node_modules/systematize/systematize.scss';
+@import 'medium';
+@import 'base';
+@import 'headings';
+@import 'links';
+@import 'classes';
+@import 'startpage';
+
+article {
+    font-family: Palatino, Georgia, serif;
+
+    &.palatino {
+        font-family: Palatino, serif;
+    }
+    &.garamond {
+        font-family: Garamond, serif;
+    }
+    &.bookman {
+        font-family: Bookman, serif;
+    }
+    p {
+        text-indent: 1.5em;
+        br {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .add-text {
+        flex-direction: column;    
+    }
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1%;
+    box-sizing: border-box;
+    align-items: center;
+    button {
+        cursor: pointer;
+        background: #4f4fa3;
+        color: white;
+        font-family: sans-serif;
+        font-size: 18px;
+        width: 100px;
+        height: 30px;
+        border: 0;
+        border-radius: 5px;
+    }
+
+    .url {
+        display: flex;
+        justify-content: space-around;
+        width: 310px;
+    }
+}
+
+.add-text {
+    display: flex;
+    justify-content: space-around;
+    min-height: 500px;
+    textarea {
+        font-size: 18px;
+        box-sizing: border-box;
+        width: 50%;
+        border: 1px solid #ccc;
+    }
+    .preview {
+        background-color: #fff;
+        width: 50%;
+        padding: 2%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        overflow: hidden;
+    }
+}

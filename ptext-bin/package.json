@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "dev": "node app.js",
+    "production": "NODE_ENV=production LEVELDB=./LevelDB APP_SECRET=verysecret forever app.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "0.2.0",
+    "axios": "^0.18.0",
+    "babel-plugin-static-fs": "^1.1.0",
+    "file-loader": "^1.1.11",
+    "jwt-decode": "^2.2.0",
+    "longpaste": "^0.0.4",
+    "marked": "^0.3.19",
+    "next": "^6.0.1",
+    "node-sass": "^4.9.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-ga": "^2.5.0",
+    "systematize": "^3.0.1"
+  }
+}
