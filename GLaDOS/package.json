@@ -1,0 +1,14 @@
+{
+  "name": "GLaDOS",
+  "version": "0.0.0",
+  "description": "GLaDOS (Genetic Lifeform and Disk Operating System) is the central core designed to control, guide, and oversee the Aperture Science computer-aided Enrichment Center.",
+  "main": "manage.py",
+  "repository": "git@github.com:mvasilkov/GLaDOS.git",
+  "author": "Mark Vasilkov <mvasilkov@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "systematize": "3.2.4"
+  }
+}

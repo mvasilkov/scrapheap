@@ -1,0 +1,10 @@
+/virtual/
+__pycache__/
+/db.sqlite3
+/.vscode/
+/.pytest_cache/
+/*.iml
+/node_modules/
+/.idea/
+.DS_Store
+/static/

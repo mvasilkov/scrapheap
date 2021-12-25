@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <nav class="select-queue">
+        <ul>
+            {% for queue in queues %}
+                {% include 'queueapp/inc/queue_hyperlink.html' %}
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% for queue in queues %}
+        {% include 'queueapp/inc/queue.html' %}
+    {% endfor %}
+{% endblock %}

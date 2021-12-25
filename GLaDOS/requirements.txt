@@ -1,0 +1,11 @@
+ansi2html>=1.4.2
+Django>=2.0.3
+django-annoying>=0.10.4
+django-defaults>=0.0.0
+django-yarn==0.0.2
+fastclone>=0.0.4
+inflection>=0.3.1
+psutil>=5.4.5
+pytest>=3.5.0
+pytest-django>=3.1.2
+setproctitle>=1.1.10

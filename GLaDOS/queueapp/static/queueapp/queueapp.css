@@ -1,0 +1,180 @@
+body {
+    background-color: #fff;
+    color: #303030;
+}
+
+.container {
+    max-width: 900px;
+}
+
+article {
+    font-size: 18px;
+}
+
+ul > li::before {
+    font-size: 14.4px;
+}
+
+a {
+    color: #0070c9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.jbuild:hover {
+    text-decoration: none;
+}
+
+h1 small, h2 small, h3 small {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.queue, .comp {
+    position: relative;
+}
+
+.queue.queue-off {
+    background-color: #fbfbfb;
+    opacity: 0.5;
+}
+
+.queue + .queue {
+    margin-top: 20px;
+}
+
+.components {
+    display: flex;
+    margin: 0 0 0 -10px;
+}
+
+.vbox {
+    flex: 1;
+}
+
+.comp {
+    border: 1px solid #d6d6d6;
+    margin: 10px 0 0 10px;
+    text-align: center;
+}
+
+.comp h3 {
+    margin-bottom: 3px;
+    text-align: center;
+    transform: scale(0.75);
+}
+
+.comp > .is-active-icon {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+.comp-logo {
+    width: 110px;
+    padding: 10px;
+}
+
+.comp.poller::after, .comp.filter::after, .comp.buffer::after, .comp.buffer::before {
+    background: url(/static/icons/arrow-down.png) no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: 48px;
+    margin-left: -24px;
+    opacity: 0.9;
+    position: absolute;
+    width: 48px;
+    z-index: 1;
+}
+
+.comp.poller::after, .comp.filter::after {
+    bottom: -30px;
+    left: 50%;
+}
+
+.comp.buffer::after, .comp.buffer::before {
+    right: -25px;
+    top: -10px;
+    transform: rotate3d(0, 0, 1, -150grad);
+    transform-origin: 22px;
+}
+
+.comp form input[type=submit],
+.queue form input[type=submit] {
+    border-radius: 3px;
+    font-size: 13px;
+    transform: translate(0, -4px);
+}
+
+.comp.logs {
+    padding: 0 10px 10px;
+}
+
+.log {
+    font-size: 90%;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.log-count {
+    background-color: #0288d1;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 70%;
+    padding: 1px 5px;
+}
+
+.log-time {
+    color: #808080;
+}
+
+.issues {
+    margin-bottom: 0;
+}
+
+.issues li {
+    font-size: 80%;
+    margin-bottom: 5px;
+    margin-left: 0;
+}
+
+.issues li::before {
+    content: none;
+    display: none;
+}
+
+.issues .running {
+    background: #fff3bc;
+}
+
+.worker-output {
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+}
+
+.worker-output code {
+    font-size: 15px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.jbuild-label {
+    margin-left: -2px
+}
+
+nav.select-queue {
+    background-color: rgba(255,255,255,0.5);
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    transform: scale(0.8);
+    transform-origin: 0 0;
+    z-index: 1;
+}

@@ -1,0 +1,4 @@
+{% load queue_tags %}
+
+<li class="{% if issue.is_running %}running{% endif %}"><a class="issue">{{ issue.key }}</a>
+    <small>{{ issue|fix_versions }}</small></li>

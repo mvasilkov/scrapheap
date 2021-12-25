@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<h3>FTP server status</h3>
+<table class="table">
+    <tr>
+        <td>Disk size</td>
+        <td>{{ status.ftp_size }}</td>
+    </tr>
+    <tr>
+        <td>Disk used</td>
+        <td>{{ status.ftp_used }}</td>
+    </tr>
+    <tr>
+        <td>Disk free</td>
+        <td>{{ status.ftp_free }}</td>
+    </tr>
+    <tr>
+        <td>Used by modules</td>
+        <td>{{ status.modules_used }}</td>
+    </tr>
+</table>
+{% endblock %}

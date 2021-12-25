@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <nav class="select-queue">
+        <ul>
+            {% for queue in queues %}
+                {% include 'queueapp/inc/queue_hyperlink.html' %}
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% include 'queueapp/inc/queue.html' %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'queueapp/queueapp.js' %}"></script>
+    <script>
+        autoreload(20000, autoLinkThings)
+        autoLinkThings()
+    </script>
+{% endblock %}

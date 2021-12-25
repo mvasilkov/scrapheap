@@ -1,0 +1,3 @@
+[django]
+settings-module = 'central_core.settings'
+routes-module = 'central_core.routes'

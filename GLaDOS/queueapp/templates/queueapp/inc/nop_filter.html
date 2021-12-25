@@ -1,0 +1,9 @@
+{% load static %}
+{% load queue_tags %}
+<div class="comp filter nop-filter">
+    <h3>{{ comp.name }}
+        <small><a href="{% url 'admin:queueapp_nopfilter_change' comp.id %}">Change</a></small>
+    </h3>
+    <img src="{% static 'software/dnsfilter.png' %}" alt="" title="" class="comp-logo">
+    {{ comp|is_active_icon }}
+</div>

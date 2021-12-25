@@ -1,0 +1,19 @@
+{% load static %}<!doctype html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}GLaDOS{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'node_modules/systematize/build/systematize.min.css' %}">
+        <link rel="stylesheet" href="{% static 'node_modules/systematize/build/addons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'queueapp/queueapp.css' %}">
+        {% block style %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <article>{% block content %}{% endblock %}</article>
+        </div>
+        <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>

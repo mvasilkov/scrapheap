@@ -1,0 +1,44 @@
+{% load queue_tags %}
+<div class="queue {% if not queue.is_active %}queue-off{% endif %}">
+    <h3>{{ queue.name }}
+        <small><a href="{% url 'admin:queueapp_queue_change' queue.id %}">Change</a></small>
+        {% if queue.pause_and_clear %}
+            <form action="{% url 'queueapp_queue_stop_start' queue.id %}" method="post">
+                <div>
+                    {% csrf_token %}
+                    <input type="submit" value="{% if queue.is_active %}Pause and clear ❌{% else %}Start ▶️{% endif %}">
+                </div>
+            </form>
+        {% endif %}
+    </h3>
+    <div class="components">
+        <div class="vbox">
+            {% for comp in queue.get_components %}
+                {% with template_name=comp|comp_template %}
+                    {% include 'queueapp/inc/'|add:template_name %}
+                {% endwith %}
+                {% if forloop.counter|divisibleby:2 %}
+                    </div><div class="vbox">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% if event_log %}
+    <div class="components">
+        <div class="comp logs">
+            <h3>Event Log
+                <small><a href="{% url 'admin:queueapp_log_changelist' %}">Show more</a></small>
+            </h3>
+            {% for log in queue.get_logs %}
+                <p class="log">
+                    <span class="log-time">{{ log.updated|date:'N j, G:s' }}</span>
+                    <span class="log-message">{{ log.message|safe }}</span>
+                    {% if log.count > 1 %}
+                        <span class="log-count">{{ log.count }}</span>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>

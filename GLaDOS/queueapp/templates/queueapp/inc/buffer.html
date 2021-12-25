@@ -1,0 +1,27 @@
+{% load queue_tags %}
+
+<div class="comp buffer">
+    <h3>{{ comp.name }}
+        <small><a href="{% url 'admin:queueapp_buffer_change' comp.id %}">Change</a></small>
+    </h3>
+    <ul class="issues">
+        {% for issue in comp.ordered_issues %}
+            <li class="{% if issue.is_running %}running{% endif %}">
+                {% if issue.pending_blocking %}<span title="{{ issue.pending_blocking|join:' ' }}">🚫</span>{% endif %}
+                {% if issue.attempted_multiple %}<span title="ATTEMPTED_MULTIPLE">🚌</span>{% endif %}
+                <a class="issue" title="{{ issue.props.summary }}">{{ issue.key }}</a>
+                <small>{{ issue|fix_versions }}</small>
+                {% if issue.props.jenkins_job and issue.props.jenkins_build_id %}
+                    <a class="jbuild" data-jenkins-job="{{ issue.props.jenkins_job }}" data-jenkins-build-id="{{ issue.props.jenkins_build_id }}">🔥</a>
+                    <small class="jbuild-label" title="{{ issue.props.jenkins_job }}">{{ issue.props.jenkins_job.0 }}</small>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'queueapp_clear_attempted_multiple' comp.id %}" method="post">
+        <div>
+            {% csrf_token %}
+            <input type="submit" value="Clear the 🚌 flag">
+        </div>
+    </form>
+</div>
