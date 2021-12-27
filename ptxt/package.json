@@ -1,0 +1,13 @@
+{
+  "name": "ptxt",
+  "version": "0.0.0",
+  "description": "Project TXT",
+  "main": "manage.py",
+  "repository": "git@github.com:mvasilkov/ptxt.git",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "systematize": "^2.0.0"
+  }
+}
