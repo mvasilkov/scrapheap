@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sampling</title>
+    </head>
+    <body>
+        <script type="module">
+            import { Vec3 } from './natlib/Vec3.js'
+            import { Mulberry32 } from './natlib/prng/Mulberry32.js'
+            import { randomClosedUnitBall } from './natlib/prng/functions.js'
+            import { uniformSampleSphere } from './natlib/prng/sampling.js'
+
+            const r = new Mulberry32(Date.now())
+            const v3 = new Vec3
+            uniformSampleSphere(r, v3)
+
+            console.log('xyz =', v3.x, v3.y, v3.z)
+            console.log('r =', v3.x ** 2 + v3.y ** 2 + v3.z ** 2)
+        </script>
+    </body>
+</html>
