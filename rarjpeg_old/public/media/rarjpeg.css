@@ -1,0 +1,15 @@
+body, canvas {
+    background: #fbfbfb;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    -moz-transition: background-color 125ms;
+    -webkit-transition: background-color 125ms;
+    transition: background-color 125ms;
+}
