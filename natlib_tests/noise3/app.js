@@ -5,7 +5,7 @@
 'use strict'
 
 import { CanvasHandle } from '../natlib/canvas/CanvasHandle.js'
-import { visualizeNoise3 } from '../natlib/test/visualizeNoise3.js'
+import { visualizeNoise3 } from './visualizeNoise3.js'
 
 const scaleInput = document.getElementById('scale')
 const seedInput = document.getElementById('seed')
