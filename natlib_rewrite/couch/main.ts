@@ -46,8 +46,6 @@ function mainloop() {
 
             --count[b.n]
 
-            aa.play('die')
-
             addPieces = true
 
             --i
@@ -105,8 +103,6 @@ function mainloop() {
             bodies[i] = new Piece(x, y, b.n << 1, false)
 
             count[b.n] -= 2
-
-            aa.play('bip')
 
             addPieces = true
 
@@ -184,8 +180,6 @@ const addPiecesRateLimit = debounce(function () {
         new Piece(0.35 * cwidth)
         new Piece(0.65 * cwidth)
     }
-
-    aa.play('new')
 }, 300)
 
 let couch: Cushion | null = null

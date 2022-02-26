@@ -1,5 +1,7 @@
 /// <reference path="couch.d.ts" />
 
+const isMobile = navigator.userAgent.match(/Android|iPhone|iPad/i) != null
+
 const loadingScreen = <HTMLElement>document.getElementById('load')
 const startScreen = <HTMLElement>document.getElementById('home')
 const startButton = <HTMLElement>document.getElementById('start')
@@ -29,8 +31,6 @@ function cancel(event: Event) {
 function start() {
     container.removeChild(startScreen)
 
-    aa.play('new')
-
     if ((isMobile || cscale > 1) && document.body.requestFullscreen) {
         document.body.requestFullscreen()
     }
@@ -38,14 +38,10 @@ function start() {
 
 function gameover() {
     endScreen.style.display = 'block'
-
-    aa.play('win')
 }
 
 function reset() {
     endScreen.style.display = 'none'
-
-    aa.play('new')
 
     bodies = []
     vertices = []
