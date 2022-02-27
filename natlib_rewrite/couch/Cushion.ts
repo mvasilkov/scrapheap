@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 class Cushion extends Body {
     handle0: Point
     handle1: Point

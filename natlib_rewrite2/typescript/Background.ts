@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 const FAILURE_BACK = canvas.createLinearGradient(0, 0, Settings.screenWidth, 0)
 // Colors: https://uigradients.com/#DayTripper

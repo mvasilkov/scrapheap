@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 class UserAgent extends NBall {
     /** Interpolated vertices relative to center. */

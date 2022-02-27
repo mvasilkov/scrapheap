@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 interface IPointer extends IVec2 {
     dragging: boolean
     x: number

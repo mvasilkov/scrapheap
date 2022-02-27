@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 class StaticPoint extends Point {
     x: number
     y: number

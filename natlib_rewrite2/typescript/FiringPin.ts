@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 class FiringPin extends NBody {
     constructor(scene: NScene, x: number, y: number, r: number, angle = 0, stiffness = 1, mass = 9) {

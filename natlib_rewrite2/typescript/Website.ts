@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 const G_BLUE = '#4285f4'
 const G_RED = '#ea4335'

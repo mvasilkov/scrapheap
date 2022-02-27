@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 interface IVec2 {
     x: number
     y: number

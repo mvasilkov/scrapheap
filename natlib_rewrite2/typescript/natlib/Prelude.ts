@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 const enum Settings {
     kFriction = 0,

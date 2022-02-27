@@ -3,7 +3,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 /** Separating Axis Theorem collision testing and resolution. */
 const satResolve = (function () {

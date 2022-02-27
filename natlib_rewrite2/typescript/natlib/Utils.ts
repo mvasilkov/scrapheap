@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 const TWOPI = 2 * Math.PI
 const HALFPI = 0.5 * Math.PI

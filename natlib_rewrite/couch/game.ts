@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 const isMobile = navigator.userAgent.match(/Android|iPhone|iPad/i) != null
 
 const loadingScreen = <HTMLElement>document.getElementById('load')

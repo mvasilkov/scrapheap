@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 class Reticle extends NBody {
     startingVertex: NVertex

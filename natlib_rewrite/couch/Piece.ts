@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 let FILL_COLOR: { [n: number]: string } = {}
 ~[
     'eee4da', 'ede0c8', 'f2b179', 'f59563',

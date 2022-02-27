@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 const kGravity = 0.6
 const kAttractiveForce = 0.1
 const kNumIterations = 40

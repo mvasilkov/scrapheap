@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 class Constraint {
     parent: Body
     v0: Point

@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 const cwidth = 960
 const cheight = 540
 const aspect = 16 / 9

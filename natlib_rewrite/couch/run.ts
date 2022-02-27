@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 function initMainMenu() {
     if (isMobile) document.body.className = 'mobile'
 

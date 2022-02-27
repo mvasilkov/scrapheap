@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 interface IPointer extends IVec2 {
     dragging: boolean

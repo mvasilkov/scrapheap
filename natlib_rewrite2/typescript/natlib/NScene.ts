@@ -3,7 +3,6 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 /** A scene. */
 class NScene {

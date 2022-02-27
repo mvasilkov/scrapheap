@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="js13k2020.d.ts" />
 
 class Box extends NBody {
     constructor(scene: NScene, x: number, y: number, size: number, stiffness = 0.5, mass = 1) {

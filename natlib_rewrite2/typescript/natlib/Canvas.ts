@@ -1,5 +1,4 @@
 'use strict'
-/// <reference path="natlib.d.ts" />
 
 function setSize($can: HTMLCanvasElement, can: CanvasRenderingContext2D, width: number, height: number) {
     if (window.devicePixelRatio > 1.44) {

@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 let backCushion: Cushion | null = null
 
 function initBackground() {

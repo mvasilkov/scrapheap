@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 abstract class Body {
     vertices: Point[]
     positions: Vec2[]

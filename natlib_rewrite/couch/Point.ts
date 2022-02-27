@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 class Point {
     parent: Body
     position: Vec2

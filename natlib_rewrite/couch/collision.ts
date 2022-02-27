@@ -1,5 +1,3 @@
-/// <reference path="couch.d.ts" />
-
 const [sat, resolve] = (function () {
     let satDistance: number
     const satAxis = new Vec2
