@@ -3,20 +3,24 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { NBody } from './NBody.js'
+import { Settings } from './Prelude.js'
+import { lerp } from './Utils.js'
 
 /** A Verlet integration vertex. */
-class NVertex {
+export class NVertex {
     parent: NBody
-    position: NVec2
-    oldPosition: NVec2
-    interpolated: NVec2
+    position: Vec2
+    oldPosition: Vec2
+    interpolated: Vec2
 
     /** Create a new vertex. */
     constructor(parent: NBody, x: number, y: number) {
         this.parent = parent
-        this.position = new NVec2(x, y)
-        this.oldPosition = new NVec2(x, y)
-        this.interpolated = new NVec2
+        this.position = new Vec2(x, y)
+        this.oldPosition = new Vec2(x, y)
+        this.interpolated = new Vec2
 
         parent.vertices.push(this)
         parent.positions.push(this.position)

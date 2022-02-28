@@ -1,12 +1,19 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { BigBrother } from '../BigBrother.js'
+import { Box } from '../Box.js'
+import { Firefox } from '../Firefox.js'
+import { InternetExplorer } from '../InternetExplorer.js'
+import { Level, LevelState } from '../Level.js'
+import { Settings } from '../natlib/Prelude.js'
+import { NoWebsite } from '../NoWebsite.js'
 
-class End extends Level {
+export class End extends Level {
     static getUserAgent() {
         return Firefox
     }
 
-    constructor(startingPoint: NVec2, curtain = 0) {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         this.website = new NoWebsite

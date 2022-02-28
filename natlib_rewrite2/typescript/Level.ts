@@ -1,6 +1,17 @@
 'use strict'
+import { IVec2, Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { FAILURE_PICTURE } from './Background.js'
+import { BigBrother } from './BigBrother.js'
+import { Firefox } from './Firefox.js'
+import { FiringPin } from './FiringPin.js'
+import { NScene } from './natlib/NScene.js'
+import { register0, Settings } from './natlib/Prelude.js'
+import { FOURTHPI, inverseRescale } from './natlib/Utils.js'
+import { Reticle } from './Reticle.js'
+import { UserAgent } from './UserAgent.js'
+import { Website } from './Website.js'
 
-const enum LevelState {
+export const enum LevelState {
     INITIAL = 0,
     AIMING,
     FIRING,
@@ -10,8 +21,8 @@ const enum LevelState {
     WINNING,
 }
 
-class Level extends NScene {
-    startingPoint: NVec2
+export class Level extends NScene {
+    startingPoint: Vec2
     reticle: Reticle
     projectile: UserAgent
     firingPin: FiringPin | null
@@ -30,7 +41,7 @@ class Level extends NScene {
         return Firefox
     }
 
-    constructor(startingPoint: NVec2, curtain = 0) {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super()
         this.startingPoint = startingPoint
         this.reticle = new Reticle(this, startingPoint)
@@ -47,7 +58,7 @@ class Level extends NScene {
     }
 
     updateTargeting(pos: IVec2) {
-        this.reticle.lastPosition.setTo(pos)
+        this.reticle.lastPosition.copy(pos)
     }
 
     launch(): boolean {
@@ -59,7 +70,7 @@ class Level extends NScene {
 
         if ((length = register0.length()) < 16) return false
 
-        register0.scalarMult(inverseRescale(length, 16,
+        register0.scale(inverseRescale(length, 16,
             Settings.targetReleaseDist, 10, 30) / length)
 
         this.firingPin = new FiringPin(this, register0.x + start.x, register0.y + start.y,

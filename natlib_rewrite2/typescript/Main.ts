@@ -1,4 +1,21 @@
 'use strict'
+import { Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { paintBackground, paintCurtain } from './Background.js'
+import { EARTH_BACK } from './Firefox.js'
+import { Level, LevelState } from './Level.js'
+import { TheWall } from './levels/Level_02_TheWall.js'
+import { Opening } from './levels/Level_03_Opening.js'
+import { Breach } from './levels/Level_04_Breach.js'
+import { Banned } from './levels/Level_05_Banned.js'
+import { Reversal } from './levels/Level_06_Reversal.js'
+import { Moving } from './levels/Level_07_Moving.js'
+import { Distancing } from './levels/Level_08_Distancing.js'
+import { Hopeless } from './levels/Level_09_Hopeless.js'
+import { End } from './levels/Level_10_End.js'
+import { canvas, handleResize } from './natlib/Canvas.js'
+import { pointer } from './natlib/Pointer.js'
+import { Settings } from './natlib/Prelude.js'
+import { easeInOutQuad, lerp } from './natlib/Utils.js'
 
 const Levels = [
     Level,
@@ -17,7 +34,7 @@ let activeLevel: Level
 let nextLevel: Level
 
 (function () {
-    const startingPoint = new NVec2(350, Settings.screenHeight * 0.5)
+    const startingPoint = new Vec2(350, Settings.screenHeight * 0.5)
     const captureDistSquared = Settings.targetCaptureDist ** 2
     const releaseDistSquared = Settings.targetReleaseDist ** 2
 
@@ -127,12 +144,12 @@ let nextLevel: Level
 
             if (pointer.vertex) {
                 const pos = activeLevel.reticle.targetingVertex.position
-                pos.setTo(pointer)
+                pos.copy(pointer)
 
                 const dist = startingPoint.distanceSquared(pos)
                 if (dist > releaseDistSquared) {
                     pos.subtract(startingPoint)
-                    pos.scalarMult(Settings.targetReleaseDist / Math.sqrt(dist))
+                    pos.scale(Settings.targetReleaseDist / Math.sqrt(dist))
                     pos.add(startingPoint)
                 }
 

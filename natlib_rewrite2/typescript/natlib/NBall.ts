@@ -3,9 +3,14 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { NBody } from './NBody.js'
+import { NConstraint } from './NConstraint.js'
+import { NScene } from './NScene.js'
+import { NVertex } from './NVertex.js'
+import { TWOPI } from './Utils.js'
 
 /** A ball. */
-class NBall extends NBody {
+export class NBall extends NBody {
     /** Create a new ball. */
     constructor(scene: NScene, x: number, y: number, r: number, nVertices = 9, stiffness = 0.5, mass = 1) {
         super(scene, mass)

@@ -1,12 +1,17 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { InternetExplorer } from '../InternetExplorer.js'
+import { Level, LevelState } from '../Level.js'
+import { Settings } from '../natlib/Prelude.js'
+import { NoWebsite } from '../NoWebsite.js'
+import { WebsiteBox } from '../WebsiteBox.js'
 
-class Hopeless extends Level {
+export class Hopeless extends Level {
     static getUserAgent() {
         return InternetExplorer
     }
 
-    constructor(startingPoint: NVec2, curtain = 0) {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         this.website = new NoWebsite

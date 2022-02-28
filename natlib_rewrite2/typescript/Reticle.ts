@@ -1,15 +1,25 @@
 'use strict'
+import { IVec2, Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { FAILURE_BACK } from './Background.js'
+import { NBody } from './natlib/NBody.js'
+import { NConstraint } from './natlib/NConstraint.js'
+import { NScene } from './natlib/NScene.js'
+import { NStaticVertex } from './natlib/NStaticVertex.js'
+import { NVertex } from './natlib/NVertex.js'
+import { pointer } from './natlib/Pointer.js'
+import { Settings } from './natlib/Prelude.js'
+import { TWOPI } from './natlib/Utils.js'
 
-class Reticle extends NBody {
+export class Reticle extends NBody {
     startingVertex: NVertex
     targetingVertex: NVertex
-    lastPosition: NVec2
+    lastPosition: Vec2
 
     constructor(scene: NScene, startingPoint: IVec2) {
         super(scene)
         this.startingVertex = new NStaticVertex(this, startingPoint.x, startingPoint.y)
         this.targetingVertex = new NVertex(this, startingPoint.x - 0.001, startingPoint.y)
-        this.lastPosition = new NVec2(startingPoint.x, startingPoint.y)
+        this.lastPosition = new Vec2(startingPoint.x, startingPoint.y)
 
         const cons = new NConstraint(this, this.startingVertex, this.targetingVertex,
             false, Settings.reticleStiffness)
@@ -19,7 +29,7 @@ class Reticle extends NBody {
         cons.solve = () => {
             if (pointer.vertex) return // Do nothing while dragging.
             originalSolve.call(cons)
-            this.startingVertex.position.setTo(startingPoint)
+            this.startingVertex.position.copy(startingPoint)
         }
     }
 

@@ -3,14 +3,18 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { NBody } from './NBody.js'
+import { NVertex } from './NVertex.js'
+import { register0 } from './Prelude.js'
 
 /** A Verlet integration constraint. */
-class NConstraint {
+export class NConstraint {
     parent: NBody
     v0: NVertex
     v1: NVertex
-    p0: NVec2
-    p1: NVec2
+    p0: Vec2
+    p1: Vec2
     dist: number
     edge: boolean
     stiffness: number
@@ -39,7 +43,7 @@ class NConstraint {
 
         // using square root approximation
         const a = this.dist / (register0.dot(register0) + this.dist) - 0.5
-        register0.scalarMult(a * this.stiffness)
+        register0.scale(a * this.stiffness)
 
         this.p0.add(register0)
         this.p1.subtract(register0)

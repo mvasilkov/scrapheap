@@ -3,16 +3,20 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { NConstraint } from './NConstraint.js'
+import { NScene } from './NScene.js'
+import { NVertex } from './NVertex.js'
 
 /** A physical body. */
-class NBody {
+export class NBody {
     scene: NScene
     vertices: NVertex[]
-    positions: NVec2[]
+    positions: Vec2[]
     constraints: NConstraint[]
     edges: NConstraint[]
-    center: NVec2
-    halfExtents: NVec2
+    center: Vec2
+    halfExtents: Vec2
     pMin: number
     pMax: number
     mass: number
@@ -24,8 +28,8 @@ class NBody {
         this.positions = []
         this.constraints = []
         this.edges = []
-        this.center = new NVec2
-        this.halfExtents = new NVec2
+        this.center = new Vec2
+        this.halfExtents = new Vec2
         this.pMin = 0
         this.pMax = 0
         this.mass = mass
@@ -56,7 +60,7 @@ class NBody {
     }
 
     /** Project the vertices onto the axis `a`. */
-    projectOn(a: NVec2) {
+    projectOn(a: Vec2) {
         let product = this.positions[0].dot(a)
         this.pMin = this.pMax = product
 

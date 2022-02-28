@@ -1,6 +1,12 @@
 'use strict'
+import { NBody } from './natlib/NBody.js'
+import { NConstraint } from './natlib/NConstraint.js'
+import { NScene } from './natlib/NScene.js'
+import { NVertex } from './natlib/NVertex.js'
+import { FOURTHPI, HALFPI } from './natlib/Utils.js'
+import { Wall } from './Wall.js'
 
-class Box extends NBody {
+export class Box extends NBody {
     constructor(scene: NScene, x: number, y: number, size: number, stiffness = 0.5, mass = 1) {
         super(scene, mass)
 

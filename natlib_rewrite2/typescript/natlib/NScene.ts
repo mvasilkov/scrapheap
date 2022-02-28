@@ -3,9 +3,14 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { NBody } from './NBody.js'
+import { NConstraint } from './NConstraint.js'
+import { NVertex } from './NVertex.js'
+import { Settings } from './Prelude.js'
+import { satResolve } from './SAT.js'
 
 /** A scene. */
-class NScene {
+export class NScene {
     vertices: NVertex[]
     constraints: NConstraint[]
     bodies: NBody[]

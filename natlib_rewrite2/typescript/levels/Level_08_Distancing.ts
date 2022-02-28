@@ -1,10 +1,14 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { InternetExplorer } from '../InternetExplorer.js'
+import { Level, LevelState } from '../Level.js'
+import { register0, Settings } from '../natlib/Prelude.js'
+import { UserAgent } from '../UserAgent.js'
 
-class Distancing extends Level {
+export class Distancing extends Level {
     clone: UserAgent
 
-    constructor(startingPoint: NVec2, curtain = 0) {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         this.clone = new InternetExplorer(this,
@@ -22,7 +26,7 @@ class Distancing extends Level {
             // normalize
             const length = register0.length()
             if (length < 64) break
-            register0.scalarMult(1 / length)
+            register0.scale(1 / length)
 
             // Move the clone.
             for (const vert of this.clone.vertices) {

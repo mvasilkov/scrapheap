@@ -3,9 +3,11 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { NBody } from './NBody.js'
+import { NVertex } from './NVertex.js'
 
 /** A static vertex. */
-class NStaticVertex extends NVertex {
+export class NStaticVertex extends NVertex {
     x: number
     y: number
 

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "module": "ES2020",
+    "moduleResolution": "node",
     "declaration": false,
     "outDir": "./out",
     "rootDir": "./typescript",
@@ -12,5 +13,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "newLine": "LF"
-  }
+  },
+  "references": [
+    {
+      "path": "./node_modules/natlib"
+    }
+  ]
 }

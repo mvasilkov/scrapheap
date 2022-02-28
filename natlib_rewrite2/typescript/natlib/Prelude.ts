@@ -1,6 +1,7 @@
 'use strict'
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
 
-const enum Settings {
+export const enum Settings {
     kFriction = 0,
     kFrictionGround = 0,
     kGravity = 0,
@@ -22,5 +23,5 @@ const enum Settings {
     websitePicWidth = 88,
 }
 
-const register0 = new NVec2
-const register1 = new NVec2
+export const register0 = new Vec2
+export const register1 = new Vec2

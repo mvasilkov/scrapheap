@@ -1,6 +1,12 @@
 'use strict'
+import { NBody } from './natlib/NBody.js'
+import { NConstraint } from './natlib/NConstraint.js'
+import { NScene } from './natlib/NScene.js'
+import { NVertex } from './natlib/NVertex.js'
+import { register0, register1, Settings } from './natlib/Prelude.js'
+import { WEBSITE_PICTURE } from './Website.js'
 
-class WebsiteBox extends NBody {
+export class WebsiteBox extends NBody {
     constructor(scene: NScene, x: number, y: number, stiffness = 0.5, mass = 1) {
         super(scene, mass)
 

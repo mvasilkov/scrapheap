@@ -1,6 +1,11 @@
 'use strict'
+import { NBody } from './natlib/NBody.js'
+import { NConstraint } from './natlib/NConstraint.js'
+import { NScene } from './natlib/NScene.js'
+import { NVertex } from './natlib/NVertex.js'
+import { HALFPI } from './natlib/Utils.js'
 
-class FiringPin extends NBody {
+export class FiringPin extends NBody {
     constructor(scene: NScene, x: number, y: number, r: number, angle = 0, stiffness = 1, mass = 9) {
         super(scene, mass)
 

@@ -1,4 +1,5 @@
 'use strict'
+import { UserAgent } from './UserAgent.js'
 
 /* Traced using the Polar Bears tool:
  * https://codepen.io/mvasilkov/details/VwaMMPK
@@ -62,7 +63,7 @@ const CHROME_BLUE = [
     [15, 14, 0.44, 0.01],
 ]
 
-class BigBrother extends UserAgent {
+export class BigBrother extends UserAgent {
     paint(canvas: CanvasRenderingContext2D, t: number) {
         this.interpolate(t)
 

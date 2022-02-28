@@ -1,8 +1,11 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { FAILURE_MOVED_PICTURE } from '../Background.js'
+import { Level, LevelState } from '../Level.js'
+import { MovingWebsite } from '../MovingWebsite.js'
 
-class Moving extends Level {
-    constructor(startingPoint: NVec2, curtain = 0) {
+export class Moving extends Level {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         this.website = new MovingWebsite

@@ -1,8 +1,12 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Level } from '../Level.js'
+import { Settings } from '../natlib/Prelude.js'
+import { EIGHTHPI } from '../natlib/Utils.js'
+import { Wall } from '../Wall.js'
 
-class Opening extends Level {
-    constructor(startingPoint: NVec2, curtain = 0) {
+export class Opening extends Level {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         new Wall(this, startingPoint.x + 256, (Settings.screenHeight - 256) * 0.5 - 140, 1, 9999)

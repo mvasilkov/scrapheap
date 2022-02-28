@@ -1,4 +1,8 @@
 'use strict'
+import { canvas } from './natlib/Canvas.js'
+import { Settings } from './natlib/Prelude.js'
+import { enclose } from './natlib/Utils.js'
+import { UserAgent } from './UserAgent.js'
 
 /* Traced using the Polar Bears tool:
  * https://codepen.io/mvasilkov/details/VwaMMPK
@@ -56,7 +60,7 @@ FIREFOX_BACK.addColorStop(1 - 0.53, '#ff3647')
 FIREFOX_BACK.addColorStop(1 - 0.37, '#ff980e')
 FIREFOX_BACK.addColorStop(1 - 0.05, '#fff44f')
 
-const EARTH_BACK = canvas.createLinearGradient(
+export const EARTH_BACK = canvas.createLinearGradient(
     0, Settings.screenHeight,
     Settings.screenWidth, 0
 )
@@ -64,7 +68,7 @@ const EARTH_BACK = canvas.createLinearGradient(
 EARTH_BACK.addColorStop(0, '#4facfe')
 EARTH_BACK.addColorStop(1, '#00f2fe')
 
-class Firefox extends UserAgent {
+export class Firefox extends UserAgent {
     paint(canvas: CanvasRenderingContext2D, t: number) {
         this.interpolate(t)
 

@@ -1,6 +1,7 @@
 'use strict'
+import { Website } from './Website.js'
 
-class NoWebsite extends Website {
+export class NoWebsite extends Website {
     contains() {
         return false
     }

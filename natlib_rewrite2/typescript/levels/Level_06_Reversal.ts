@@ -1,8 +1,11 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Box } from '../Box.js'
+import { Level } from '../Level.js'
+import { register0, Settings } from '../natlib/Prelude.js'
 
-class Reversal extends Level {
-    constructor(startingPoint: NVec2, curtain = 0) {
+export class Reversal extends Level {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         register0.set(

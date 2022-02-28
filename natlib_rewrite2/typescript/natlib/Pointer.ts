@@ -1,4 +1,7 @@
 'use strict'
+import { IVec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { $canvas, uiScale } from './Canvas.js'
+import { NVertex } from './NVertex.js'
 
 interface IPointer extends IVec2 {
     dragging: boolean
@@ -8,7 +11,7 @@ interface IPointer extends IVec2 {
 }
 
 /** The pointer. */
-const pointer: IPointer = {
+export const pointer: IPointer = {
     dragging: false,
     x: 0,
     y: 0,

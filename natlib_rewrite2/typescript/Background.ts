@@ -1,6 +1,12 @@
 'use strict'
+import { EARTH_BACK } from './Firefox.js'
+import { Level, LevelState } from './Level.js'
+import { End } from './levels/Level_10_End.js'
+import { canvas, systemFont, systemFontHeading } from './natlib/Canvas.js'
+import { Settings } from './natlib/Prelude.js'
+import { easeInQuad, easeOutQuad, prerender } from './natlib/Utils.js'
 
-const FAILURE_BACK = canvas.createLinearGradient(0, 0, Settings.screenWidth, 0)
+export const FAILURE_BACK = canvas.createLinearGradient(0, 0, Settings.screenWidth, 0)
 // Colors: https://uigradients.com/#DayTripper
 FAILURE_BACK.addColorStop(0, '#f857a6')
 FAILURE_BACK.addColorStop(1, '#ff5858')
@@ -18,21 +24,21 @@ function walloftext(canvas: CanvasRenderingContext2D, text: string) {
     }
 }
 
-const FAILURE_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const FAILURE_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.fillStyle = FAILURE_BACK
     canvas.fillRect(0, 0, Settings.screenWidth, Settings.screenHeight)
 
     walloftext(canvas, '404 Not Found')
 })
 
-const FAILURE_MOVED_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const FAILURE_MOVED_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.fillStyle = FAILURE_BACK
     canvas.fillRect(0, 0, Settings.screenWidth, Settings.screenHeight)
 
     walloftext(canvas, '301 Moved')
 })
 
-const WALL_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const WALL_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.beginPath()
 
     for (let x = 0; x < Settings.screenWidth + Settings.screenHeight; x += 20) {
@@ -44,7 +50,7 @@ const WALL_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canv
     canvas.stroke()
 })
 
-function paintBackground(canvas: CanvasRenderingContext2D, t: number, level: Level) {
+export function paintBackground(canvas: CanvasRenderingContext2D, t: number, level: Level) {
     canvas.clearRect(0, 0, Settings.screenWidth, Settings.screenHeight)
 
     if (level.constructor === Level) {
@@ -72,7 +78,7 @@ function paintBackground(canvas: CanvasRenderingContext2D, t: number, level: Lev
     }
 }
 
-function paintCurtain(canvas: CanvasRenderingContext2D, t: number, level: Level) {
+export function paintCurtain(canvas: CanvasRenderingContext2D, t: number, level: Level) {
     let width: number
 
     if (level.state === LevelState.WAITING) {

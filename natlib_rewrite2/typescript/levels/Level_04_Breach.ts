@@ -1,8 +1,12 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Box } from '../Box.js'
+import { Settings } from '../natlib/Prelude.js'
+import { Wall } from '../Wall.js'
+import { TheWall } from './Level_02_TheWall.js'
 
-class Breach extends TheWall {
-    constructor(startingPoint: NVec2, curtain = 0) {
+export class Breach extends TheWall {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         const y0 = (Settings.screenHeight - 64 * 8) * 0.5

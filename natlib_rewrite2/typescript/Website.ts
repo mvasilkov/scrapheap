@@ -1,11 +1,14 @@
 'use strict'
+import { IVec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { Settings } from './natlib/Prelude.js'
+import { prerender } from './natlib/Utils.js'
 
 const G_BLUE = '#4285f4'
 const G_RED = '#ea4335'
 const G_YELLOW = '#fbbc05'
 const G_GREEN = '#34a853'
 
-const WEBSITE_PICTURE = prerender(Settings.websitePicWidth, Settings.websitePicHeight, canvas => {
+export const WEBSITE_PICTURE = prerender(Settings.websitePicWidth, Settings.websitePicHeight, canvas => {
     canvas.fillStyle = '#f1f1f1'
     canvas.fillRect(0, 0, Settings.websitePicWidth, Settings.websitePicHeight)
 
@@ -50,7 +53,7 @@ const WEBSITE_PICTURE = prerender(Settings.websitePicWidth, Settings.websitePicH
     canvas.restore()
 })
 
-class Website {
+export class Website {
     x: number
     y: number
     width: number

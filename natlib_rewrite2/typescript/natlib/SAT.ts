@@ -3,10 +3,15 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { NBody } from './NBody.js'
+import { NConstraint } from './NConstraint.js'
+import { NVertex } from './NVertex.js'
+import { register0, register1, Settings } from './Prelude.js'
 
 /** Separating Axis Theorem collision testing and resolution. */
-const satResolve = (function () {
-    const a = new NVec2
+export const satResolve = (function () {
+    const a = new Vec2
     let cDist: number
     let cEdge: NConstraint
     let cVert: NVertex
@@ -37,7 +42,7 @@ const satResolve = (function () {
             return
 
         cDist = pDistance(b0, b1, cEdge = b0.edges[0])
-        a.setTo(register0)
+        a.copy(register0)
 
         for (let i = 1; i < b0EdgesLength; ++i) {
             const edge = b0.edges[i]
@@ -48,7 +53,7 @@ const satResolve = (function () {
             if (dist > cDist) {
                 cDist = dist
                 cEdge = edge
-                a.setTo(register0)
+                a.copy(register0)
             }
             // end copypasta
         }
@@ -62,7 +67,7 @@ const satResolve = (function () {
             if (dist > cDist) {
                 cDist = dist
                 cEdge = edge
-                a.setTo(register0)
+                a.copy(register0)
             }
             // end copypasta
         }
@@ -77,7 +82,7 @@ const satResolve = (function () {
 
         // Ensure that the collision normal is pointing at `b1`.
         register0.setSubtract(b0.center, b1.center)
-        if (register0.dot(a) < 0) a.scalarMult(-1)
+        if (register0.dot(a) < 0) a.scale(-1)
 
         // Find the collision vertex.
         register0.setSubtract(b0.positions[0], b1.center)
@@ -107,7 +112,7 @@ const satResolve = (function () {
         const old = cVert.oldPosition
 
         // response vector
-        register0.setScalarMult(a, -cDist)
+        register0.setMultiplyScalar(a, -cDist)
 
         // Find the position of the collision vertex on the edge.
         register1.setSubtract(pos1, pos0)
@@ -146,7 +151,7 @@ const satResolve = (function () {
 
             // project the relative velocity onto tangent
             register1.set(-a.y, a.x)
-            register0.setScalarMult(register1, register0.dot(register1))
+            register0.setMultiplyScalar(register1, register0.dot(register1))
 
             // apply tangent friction
             old0.x -= register0.x * Settings.kFriction * k0

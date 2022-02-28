@@ -1,4 +1,7 @@
 'use strict'
+import { canvas } from './natlib/Canvas.js'
+import { enclose } from './natlib/Utils.js'
+import { UserAgent } from './UserAgent.js'
 
 /* Traced using the Polar Bears tool:
  * https://codepen.io/mvasilkov/details/VwaMMPK
@@ -56,7 +59,7 @@ INTERNET_EXPLORER_BACK.addColorStop(1 - 1, '#0d79c8')
 INTERNET_EXPLORER_BACK.addColorStop(1 - 0.2624, '#86e8fd')
 INTERNET_EXPLORER_BACK.addColorStop(1 - 0, '#89eafe')
 
-class InternetExplorer extends UserAgent {
+export class InternetExplorer extends UserAgent {
     paint(canvas: CanvasRenderingContext2D, t: number) {
         this.interpolate(t)
 

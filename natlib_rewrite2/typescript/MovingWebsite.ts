@@ -1,4 +1,7 @@
 'use strict'
+import { Settings } from './natlib/Prelude.js'
+import { easeInQuad, easeOutQuad, lerp } from './natlib/Utils.js'
+import { Website, WEBSITE_PICTURE } from './Website.js'
 
 const enum MW {
     // start
@@ -19,7 +22,7 @@ const enum MW {
     height2 = Settings.websiteWidth,
 }
 
-class MovingWebsite extends Website {
+export class MovingWebsite extends Website {
     n: number
     old: {
         x: number

@@ -1,15 +1,19 @@
 'use strict'
-/// <reference path="../js13k2020.d.ts" />
+import { IVec2, Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { NStaticVertex } from '../natlib/NStaticVertex.js'
+import { register0 } from '../natlib/Prelude.js'
+import { HALFPI } from '../natlib/Utils.js'
+import { TheWall } from './Level_02_TheWall.js'
 
-class Banned extends TheWall {
-    constructor(startingPoint: NVec2, curtain = 0) {
+export class Banned extends TheWall {
+    constructor(startingPoint: Vec2, curtain = 0) {
         super(startingPoint, curtain)
 
         this.duration = 196
     }
 
     updateTargeting(pos: IVec2) {
-        this.reticle.lastPosition.setTo(pos)
+        this.reticle.lastPosition.copy(pos)
 
         // Place the wall.
         register0.setSubtract(this.startingPoint, pos)
@@ -19,7 +23,7 @@ class Banned extends TheWall {
         const cos64 = 64 * Math.cos(a)
         const sin64 = 64 * Math.sin(a)
 
-        register0.scalarMult(256 / register0.length())
+        register0.scale(256 / register0.length())
         register0.add(this.startingPoint)
 
         const v = <NStaticVertex[]>this.wall.vertices

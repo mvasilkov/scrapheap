@@ -1,6 +1,12 @@
 'use strict'
+import { FAILURE_BACK, WALL_PICTURE } from './Background.js'
+import { NBody } from './natlib/NBody.js'
+import { NConstraint } from './natlib/NConstraint.js'
+import { NScene } from './natlib/NScene.js'
+import { NStaticVertex } from './natlib/NStaticVertex.js'
+import { register0, Settings } from './natlib/Prelude.js'
 
-class Wall extends NBody {
+export class Wall extends NBody {
     constructor(scene: NScene, x: number, y: number, stiffness = 1, mass = 9) {
         super(scene, mass)
 

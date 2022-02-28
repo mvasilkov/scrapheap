@@ -1,15 +1,19 @@
 'use strict'
+import { Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { NBall } from './natlib/NBall.js'
+import { NScene } from './natlib/NScene.js'
+import { register0, register1 } from './natlib/Prelude.js'
 
-class UserAgent extends NBall {
+export class UserAgent extends NBall {
     /** Interpolated vertices relative to center. */
-    relInterp: NVec2[]
+    relInterp: Vec2[]
 
     constructor(scene: NScene, x: number, y: number) {
         super(scene, x, y, 32, 16, 0.016)
 
         this.relInterp = []
         for (let n = 0; n < 16; ++n) {
-            this.relInterp.push(new NVec2)
+            this.relInterp.push(new Vec2)
         }
     }
 
@@ -50,8 +54,8 @@ class UserAgent extends NBall {
         canvas.beginPath()
 
         for (const [v1, v2, a, b] of path) {
-            register0.setScalarMult(this.relInterp[v1], a)
-            register1.setScalarMult(this.relInterp[v2], b)
+            register0.setMultiplyScalar(this.relInterp[v1], a)
+            register1.setMultiplyScalar(this.relInterp[v2], b)
             register0.add(register1)
             register0.add(this.center)
             canvas.lineTo(register0.x, register0.y)
