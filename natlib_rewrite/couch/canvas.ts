@@ -1,14 +1,16 @@
-const cwidth = 960
-const cheight = 540
+import { endScreen, startScreen } from './game.js'
+
+export const cwidth = 960
+export const cheight = 540
 const aspect = 16 / 9
 
-let cscale = 1
+export let cscale = 1
 
-const container = <HTMLElement>document.getElementById('container')
-const backcanvas = <HTMLCanvasElement>document.getElementById('backcanvas')
-const canvas = <HTMLCanvasElement>document.getElementById('canvas')
-const backcontext = <CanvasRenderingContext2D>backcanvas.getContext('2d')
-const context = <CanvasRenderingContext2D>canvas.getContext('2d')
+export const container = <HTMLElement>document.getElementById('container')
+export const backcanvas = <HTMLCanvasElement>document.getElementById('backcanvas')
+export const canvas = <HTMLCanvasElement>document.getElementById('canvas')
+export const backcontext = <CanvasRenderingContext2D>backcanvas.getContext('2d')
+export const context = <CanvasRenderingContext2D>canvas.getContext('2d')
 
 let transformProperty = 'transform'
 if (!(transformProperty in container.style)) {
@@ -26,7 +28,7 @@ function setSize(x: HTMLElement, property: string, value: number) {
     x.style[<any>property] = `${value}px`
 }
 
-function handleResize() {
+export function handleResize() {
     let w = window.innerWidth
     let h = window.innerHeight
 

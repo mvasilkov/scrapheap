@@ -1,4 +1,9 @@
-class Constraint {
+import { Body } from './Body.js'
+import { constraints, register0 } from './main.js'
+import { Point } from './Point.js'
+import { Vec2 } from './Vec2.js'
+
+export class Constraint {
     parent: Body
     v0: Point
     v1: Point
@@ -19,7 +24,7 @@ class Constraint {
         this.isBoundary = isBoundary
 
         parent.constraints.push(this)
-        if (isBoundary) parent.boundaries.push(this)
+        if (isBoundary) parent.edges.push(this)
         constraints.push(this)
     }
 
@@ -28,7 +33,7 @@ class Constraint {
 
         const length = register0.length()
         if (length) {
-            register0.multiplyScalar(this.stiffness * (this.length - length) / length)
+            register0.scale(this.stiffness * (this.length - length) / length)
 
             this.p0.add(register0)
             this.p1.subtract(register0)

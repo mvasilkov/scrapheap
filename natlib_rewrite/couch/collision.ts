@@ -1,4 +1,10 @@
-const [sat, resolve] = (function () {
+import { Body } from './Body.js'
+import { Constraint } from './Constraint.js'
+import { kFriction, register0, register1 } from './main.js'
+import { Point } from './Point.js'
+import { Vec2 } from './Vec2.js'
+
+export const [sat, resolve] = (function () {
     let satDistance: number
     const satAxis = new Vec2
     let satBoundary: Constraint
@@ -14,7 +20,7 @@ const [sat, resolve] = (function () {
         satDistance = 99999
 
         for (let b of [b0, b1]) {
-            for (let boundary of b.boundaries) {
+            for (let boundary of b.edges) {
                 register0.setNormal(boundary.p0, boundary.p1)
                 b0.project(register0)
                 b1.project(register0)
@@ -25,7 +31,7 @@ const [sat, resolve] = (function () {
                 distance *= -1 // == Math.abs(distance)
                 if (distance < satDistance) {
                     satDistance = distance
-                    satAxis.setTo(register0)
+                    satAxis.copy(register0)
                     satBoundary = boundary
                 }
             }
@@ -40,7 +46,7 @@ const [sat, resolve] = (function () {
 
         register0.setSubtract(b0.center, b1.center)
         if (register0.dot(satAxis) < 0) {
-            satAxis.multiplyScalar(-1)
+            satAxis.scale(-1)
         }
 
         let minDistance = 99999
@@ -110,4 +116,4 @@ const [sat, resolve] = (function () {
     }
 
     return [sat, resolve]
-} ()) as [(b0: Body, b1: Body) => boolean, () => void]
+}()) as [(b0: Body, b1: Body) => boolean, () => void]

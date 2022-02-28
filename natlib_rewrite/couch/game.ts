@@ -1,10 +1,14 @@
-const isMobile = navigator.userAgent.match(/Android|iPhone|iPad/i) != null
+import { container, cscale } from './canvas.js'
+import { bodies, constraints, draggingPoint, init, vertices } from './main.js'
+import { pointer } from './pointer.js'
 
-const loadingScreen = <HTMLElement>document.getElementById('load')
-const startScreen = <HTMLElement>document.getElementById('home')
-const startButton = <HTMLElement>document.getElementById('start')
-const endScreen = <HTMLElement>document.getElementById('end')
-const resetButton = <HTMLElement>document.getElementById('reset')
+export const isMobile = navigator.userAgent.match(/Android|iPhone|iPad/i) != null
+
+export const loadingScreen = <HTMLElement>document.getElementById('load')
+export const startScreen = <HTMLElement>document.getElementById('home')
+export const startButton = <HTMLElement>document.getElementById('start')
+export const endScreen = <HTMLElement>document.getElementById('end')
+export const resetButton = <HTMLElement>document.getElementById('reset')
 
 startScreen.addEventListener('mousedown', cancel)
 startScreen.addEventListener('touchstart', cancel)
@@ -34,16 +38,16 @@ function start() {
     }
 }
 
-function gameover() {
+export function gameover() {
     endScreen.style.display = 'block'
 }
 
 function reset() {
     endScreen.style.display = 'none'
 
-    bodies = []
-    vertices = []
-    constraints = []
+    bodies.length = 0
+    vertices.length = 0
+    constraints.length = 0
 
     draggingPoint = null
     pointer.dragging = false

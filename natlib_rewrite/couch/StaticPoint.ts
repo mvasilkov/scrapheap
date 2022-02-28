@@ -1,4 +1,7 @@
-class StaticPoint extends Point {
+import { Body } from './Body.js'
+import { Point } from './Point.js'
+
+export class StaticPoint extends Point {
     x: number
     y: number
 

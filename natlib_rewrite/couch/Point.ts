@@ -1,4 +1,9 @@
-class Point {
+import { Body } from './Body.js'
+import { canvas } from './canvas.js'
+import { kFrictionGround, kGravity, vertices } from './main.js'
+import { Vec2 } from './Vec2.js'
+
+export class Point {
     parent: Body
     position: Vec2
     oldPosition: Vec2

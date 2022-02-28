@@ -1,10 +1,14 @@
-interface IPointer extends IVec2 {
+import { container, cscale } from './canvas.js'
+import { draggingPoint } from './main.js'
+import { IVec2 } from './Vec2.js'
+
+export interface IPointer extends IVec2 {
     dragging: boolean
     x: number
     y: number
 }
 
-const pointer: IPointer = {
+export const pointer: IPointer = {
     dragging: false,
     x: 0,
     y: 0,

@@ -1,3 +1,10 @@
+import { initBackground, paintBackground } from './background.js'
+import { container, handleResize } from './canvas.js'
+import { Cushion } from './Cushion.js'
+import { isMobile, loadingScreen } from './game.js'
+import { init, mainloop } from './main.js'
+import { Piece } from './Piece.js'
+
 function initMainMenu() {
     if (isMobile) document.body.className = 'mobile'
 

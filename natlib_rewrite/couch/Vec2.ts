@@ -1,9 +1,9 @@
-interface IVec2 {
+export interface IVec2 {
     x: number
     y: number
 }
 
-class Vec2 implements IVec2 {
+export class Vec2 implements IVec2 {
     x: number
     y: number
 
@@ -17,7 +17,7 @@ class Vec2 implements IVec2 {
         this.y = y
     }
 
-    setTo(other: IVec2) {
+    copy(other: IVec2) {
         this.x = other.x
         this.y = other.y
     }
@@ -51,7 +51,7 @@ class Vec2 implements IVec2 {
         return this.x * other.x + this.y * other.y
     }
 
-    multiplyScalar(a: number) {
+    scale(a: number) {
         this.x *= a
         this.y *= a
     }

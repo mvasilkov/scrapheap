@@ -1,4 +1,4 @@
-function debounce(proc: () => void, wait: number): () => void {
+export function debounce(proc: () => void, wait: number): () => void {
     let timeout: number | null = null
     let lastCall: number
 

@@ -1,3 +1,8 @@
+import { Body } from './Body.js'
+import { Constraint } from './Constraint.js'
+import { bodies, count } from './main.js'
+import { Point } from './Point.js'
+
 let FILL_COLOR: { [n: number]: string } = {}
 ~[
     'eee4da', 'ede0c8', 'f2b179', 'f59563',
@@ -11,7 +16,7 @@ function numberOfPoints(r: number) {
     return Math.min((0 | 0.04 * Math.PI * r) << 1, 16)
 }
 
-class Piece extends Body {
+export class Piece extends Body {
     n: number
     r: number
     font: string
@@ -79,10 +84,10 @@ class Piece extends Body {
     paintLow(context: CanvasRenderingContext2D) {
         context.beginPath()
 
-        const {p0} = this.boundaries[0]
+        const {p0} = this.edges[0]
         context.moveTo(p0.x, p0.y)
 
-        for (let {p1} of this.boundaries) {
+        for (let {p1} of this.edges) {
             context.lineTo(p1.x, p1.y)
         }
 

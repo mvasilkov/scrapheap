@@ -1,24 +1,36 @@
-const kGravity = 0.6
-const kAttractiveForce = 0.1
-const kNumIterations = 40
-const kFriction = 0.9
-const kFrictionGround = 0.6
-const kForceDrag = 0.24
+import { Body } from './Body.js'
+import { cheight, context, cwidth } from './canvas.js'
+import { resolve, sat } from './collision.js'
+import { Constraint } from './Constraint.js'
+import { Cushion } from './Cushion.js'
+import { debounce } from './debounce.js'
+import { gameover } from './game.js'
+import { Piece } from './Piece.js'
+import { Point } from './Point.js'
+import { pointer } from './pointer.js'
+import { Vec2 } from './Vec2.js'
 
-let bodies = [] as Body[]
-let vertices = [] as Point[]
-let constraints = [] as Constraint[]
+export const kGravity = 0.6
+export const kAttractiveForce = 0.1
+export const kNumIterations = 40
+export const kFriction = 0.9
+export const kFrictionGround = 0.6
+export const kForceDrag = 0.24
 
-let draggingPoint: Point | null = null
+export let bodies = [] as Body[]
+export let vertices = [] as Point[]
+export let constraints = [] as Constraint[]
 
-const register0 = new Vec2
-const register1 = new Vec2
+export let draggingPoint: Point | null = null
 
-const count: { [n: number]: number } = {}
+export const register0 = new Vec2
+export const register1 = new Vec2
+
+export const count: { [n: number]: number } = {}
 
 //const numberOfCushions = 3
 
-function mainloop() {
+export function mainloop() {
     context.clearRect(0, 0, cwidth, cheight)
 
     for (let p of vertices) {
@@ -180,11 +192,11 @@ const addPiecesRateLimit = debounce(function () {
     }
 }, 300)
 
-let couch: Cushion | null = null
-let armrest0: Cushion | null = null
-let armrest1: Cushion | null = null
+export let couch: Cushion | null = null
+export let armrest0: Cushion | null = null
+export let armrest1: Cushion | null = null
 
-function init() {
+export function init() {
     for (let n = 2; n <= 2048; n *= 2) {
         count[n] = 0
     }

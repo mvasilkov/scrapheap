@@ -1,8 +1,15 @@
-abstract class Body {
+import { context } from './canvas.js'
+import { Constraint } from './Constraint.js'
+import { draggingPoint } from './main.js'
+import { Point } from './Point.js'
+import { pointer } from './pointer.js'
+import { Vec2 } from './Vec2.js'
+
+export abstract class Body {
     vertices: Point[]
     positions: Vec2[]
     constraints: Constraint[]
-    boundaries: Constraint[]
+    edges: Constraint[]
     center: Vec2
     halfExtents: Vec2
     mass: number
@@ -11,7 +18,7 @@ abstract class Body {
         this.vertices = []
         this.positions = []
         this.constraints = []
-        this.boundaries = []
+        this.edges = []
         this.center = new Vec2
         this.halfExtents = new Vec2
         this.mass = mass
