@@ -5,5 +5,10 @@
         "noImplicitThis": true,
         "strictNullChecks": true,
         "target": "ES5"
-    }
+    },
+    "references": [
+        {
+            "path": "./node_modules/natlib"
+        }
+    ]
 }

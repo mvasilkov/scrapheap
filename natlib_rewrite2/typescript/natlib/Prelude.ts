@@ -1,5 +1,5 @@
 'use strict'
-import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Vec2 } from '../../node_modules/natlib/out/Vec2.js'
 
 export const enum Settings {
     kFriction = 0,

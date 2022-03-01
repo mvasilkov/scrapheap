@@ -1,5 +1,5 @@
 import { container, cscale } from './canvas.js'
-import { draggingPoint } from './main.js'
+import { setDraggingPoint } from './main.js'
 import { IVec2 } from './Vec2.js'
 
 export interface IPointer extends IVec2 {
@@ -41,7 +41,7 @@ addEventListener('mouseup', event => {
     event.preventDefault()
 
     pointer.dragging = false
-    draggingPoint = null
+    setDraggingPoint(null)
 })
 
 document.addEventListener('touchstart', event => {
@@ -62,10 +62,10 @@ document.addEventListener('touchmove', event => {
 
 document.addEventListener('touchend', event => {
     pointer.dragging = false
-    draggingPoint = null
+    setDraggingPoint(null)
 })
 
 document.addEventListener('touchcancel', event => {
     pointer.dragging = false
-    draggingPoint = null
+    setDraggingPoint(null)
 })

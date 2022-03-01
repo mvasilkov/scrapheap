@@ -23,6 +23,10 @@ export let constraints = [] as Constraint[]
 
 export let draggingPoint: Point | null = null
 
+export function setDraggingPoint(point: Point | null) {
+    draggingPoint = point
+}
+
 export const register0 = new Vec2
 export const register1 = new Vec2
 

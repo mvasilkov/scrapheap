@@ -1,5 +1,5 @@
 import { container, cscale } from './canvas.js'
-import { bodies, constraints, draggingPoint, init, vertices } from './main.js'
+import { bodies, constraints, init, setDraggingPoint, vertices } from './main.js'
 import { pointer } from './pointer.js'
 
 export const isMobile = navigator.userAgent.match(/Android|iPhone|iPad/i) != null
@@ -49,7 +49,7 @@ function reset() {
     vertices.length = 0
     constraints.length = 0
 
-    draggingPoint = null
+    setDraggingPoint(null)
     pointer.dragging = false
 
     init()

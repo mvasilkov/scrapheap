@@ -1,5 +1,5 @@
 'use strict'
-import { IVec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { IVec2 } from '../node_modules/natlib/out/Vec2.js'
 import { Settings } from './natlib/Prelude.js'
 import { prerender } from './natlib/Utils.js'
 

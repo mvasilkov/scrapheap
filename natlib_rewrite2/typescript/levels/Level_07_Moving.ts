@@ -1,5 +1,5 @@
 'use strict'
-import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Vec2 } from '../../node_modules/natlib/out/Vec2.js'
 import { FAILURE_MOVED_PICTURE } from '../Background.js'
 import { Level, LevelState } from '../Level.js'
 import { MovingWebsite } from '../MovingWebsite.js'

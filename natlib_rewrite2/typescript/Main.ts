@@ -1,5 +1,5 @@
 'use strict'
-import { Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { Vec2 } from '../node_modules/natlib/out/Vec2.js'
 import { paintBackground, paintCurtain } from './Background.js'
 import { EARTH_BACK } from './Firefox.js'
 import { Level, LevelState } from './Level.js'

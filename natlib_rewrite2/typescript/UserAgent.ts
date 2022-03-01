@@ -1,5 +1,5 @@
 'use strict'
-import { Vec2 } from '../node_modules/natlib/typescript/Vec2.js'
+import { Vec2 } from '../node_modules/natlib/out/Vec2.js'
 import { NBall } from './natlib/NBall.js'
 import { NScene } from './natlib/NScene.js'
 import { register0, register1 } from './natlib/Prelude.js'

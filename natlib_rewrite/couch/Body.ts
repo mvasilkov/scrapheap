@@ -1,6 +1,6 @@
 import { context } from './canvas.js'
 import { Constraint } from './Constraint.js'
-import { draggingPoint } from './main.js'
+import { draggingPoint, setDraggingPoint } from './main.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
 import { Vec2 } from './Vec2.js'
@@ -67,7 +67,7 @@ export abstract class Body {
                 const distance = p.position.distance(pointer)
                 if (distance < minDistance) {
                     minDistance = distance
-                    draggingPoint = p
+                    setDraggingPoint(p)
                 }
             }
         }

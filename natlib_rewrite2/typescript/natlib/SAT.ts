@@ -3,7 +3,7 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-import { Vec2 } from '../../node_modules/natlib/typescript/Vec2.js'
+import { Vec2 } from '../../node_modules/natlib/out/Vec2.js'
 import { NBody } from './NBody.js'
 import { NConstraint } from './NConstraint.js'
 import { NVertex } from './NVertex.js'
@@ -19,8 +19,9 @@ export const satResolve = (function () {
     /** Projected distance function. */
     function pDistance(b0: NBody, b1: NBody, edge: NConstraint): number {
         // Compute the normal to this edge.
-        register0.setNormal(edge.p0, edge.p1)
-
+        register0.setPerpendicular(edge.p0, edge.p1)
+        register0.normalize()
+    
         // Project both bodies onto the normal.
         b0.projectOn(register0)
         b1.projectOn(register0)
