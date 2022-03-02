@@ -1,6 +1,7 @@
 import { Body } from './Body.js'
-import { Constraint } from './Constraint.js'
 import { bodies } from './main.js'
+import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
 import { Point } from './Point.js'
 import { StaticPoint } from './StaticPoint.js'
 
@@ -10,8 +11,8 @@ export class Cushion extends Body {
 
     static chamfer = 10
 
-    constructor(x: number, y: number, width: number, height: number, append: boolean = true) {
-        super(250)
+    constructor(scene: Scene, x: number, y: number, width: number, height: number, append: boolean = true) {
+        super(scene, 250)
 
         const p0 = this.handle0 = new Point(this, x, y + Cushion.chamfer)
         const p1 = new Point(this, x + Cushion.chamfer, y)
@@ -20,20 +21,33 @@ export class Cushion extends Body {
         const p4 = new StaticPoint(this, x + width, y + height)
         const p5 = new StaticPoint(this, x, y + height)
 
-        new Constraint(this, p0, p1, 0.1, true)
-        new Constraint(this, p1, p2, 0.1, true)
-        new Constraint(this, p2, p3, 0.1, true)
-        new Constraint(this, p3, p4, 0.1, true)
-        new Constraint(this, p4, p5, 0.1, true)
-        new Constraint(this, p5, p0, 0.1, true)
+        // @ts-ignore
+        new Constraint(this, p0, p1, true, 0.1)
+        // @ts-ignore
+        new Constraint(this, p1, p2, true, 0.1)
+        // @ts-ignore
+        new Constraint(this, p2, p3, true, 0.1)
+        // @ts-ignore
+        new Constraint(this, p3, p4, true, 0.1)
+        // @ts-ignore
+        new Constraint(this, p4, p5, true, 0.1)
+        // @ts-ignore
+        new Constraint(this, p5, p0, true, 0.1)
 
-        new Constraint(this, p0, p3, 0.1)
-        new Constraint(this, p0, p4, 0.1)
-        new Constraint(this, p1, p4, 0.1)
-        new Constraint(this, p1, p5, 0.1)
-        new Constraint(this, p2, p4, 0.1)
-        new Constraint(this, p2, p5, 0.1)
-        new Constraint(this, p3, p5, 0.1)
+        // @ts-ignore
+        new Constraint(this, p0, p3, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p0, p4, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p1, p4, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p1, p5, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p2, p4, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p2, p5, false, 0.1)
+        // @ts-ignore
+        new Constraint(this, p3, p5, false, 0.1)
 
         if (append) {
             bodies.push(this)

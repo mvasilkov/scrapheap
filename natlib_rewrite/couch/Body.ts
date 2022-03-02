@@ -1,7 +1,8 @@
 import { context } from './canvas.js'
-import { Constraint } from './Constraint.js'
 import { draggingPoint, setDraggingPoint } from './main.js'
 import { Vec2 } from './node_modules/natlib/out/Vec2.js'
+import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
 
@@ -13,8 +14,10 @@ export abstract class Body {
     center: Vec2
     halfExtents: Vec2
     mass: number
+    scene: Scene
 
-    constructor(mass: number = 1) {
+    constructor(scene: Scene, mass: number = 1) {
+        this.scene = scene
         this.vertices = []
         this.positions = []
         this.constraints = []

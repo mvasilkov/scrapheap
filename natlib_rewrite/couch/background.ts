@@ -1,11 +1,11 @@
 import { backcontext, cheight, cwidth } from './canvas.js'
 import { Cushion } from './Cushion.js'
-import { armrest0, armrest1, couch } from './main.js'
+import { armrest0, armrest1, couch, scene } from './main.js'
 
 let backCushion: Cushion | null = null
 
 export function initBackground() {
-    backCushion = new Cushion(255, 360, 450, 180, false)
+    backCushion = new Cushion(scene, 255, 360, 450, 180, false)
 }
 
 export function paintBackground() {

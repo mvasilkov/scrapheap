@@ -1,7 +1,7 @@
 import { Body } from './Body.js'
-import { Constraint } from './Constraint.js'
 import { kFriction, register0, register1 } from './main.js'
 import { Vec2 } from './node_modules/natlib/out/Vec2.js'
+import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
 import { Point } from './Point.js'
 
 export const [sat, resolve] = (function () {
@@ -23,7 +23,7 @@ export const [sat, resolve] = (function () {
             for (let boundary of b.edges) {
                 register0.setPerpendicular(boundary.p0, boundary.p1)
                 register0.normalize()
-                        b0.project(register0)
+                b0.project(register0)
                 b1.project(register0)
 
                 let distance = (b0._min < b1._min) ? b1._min - b0._max : b0._min - b1._max
@@ -38,7 +38,8 @@ export const [sat, resolve] = (function () {
             }
         }
 
-        if (satBoundary.parent != b1) {
+        // @ts-ignore
+        if (satBoundary.body != b1) {
             // [b0, b1] = [b1, b0]
             const t = b0
             b0 = b1
@@ -82,7 +83,7 @@ export const [sat, resolve] = (function () {
         const u = 1 / (t * t + (1 - t) * (1 - t))
 
         let m0 = satPoint.parent.mass
-        let m1 = satBoundary.parent.mass
+        let m1 = satBoundary.body.mass
         const tm = m0 + m1
         m0 /= tm * 2
         m1 /= tm

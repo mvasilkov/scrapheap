@@ -1,6 +1,7 @@
 import { Body } from './Body.js'
-import { Constraint } from './Constraint.js'
 import { bodies, count } from './main.js'
+import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
 import { Point } from './Point.js'
 
 let FILL_COLOR: { [n: number]: string } = {}
@@ -21,8 +22,8 @@ export class Piece extends Body {
     r: number
     font: string
 
-    constructor(x: number, y: number = -40, n: number = 2, append: boolean = true) {
-        super(1 + 0.2 * Math.log10(n))
+    constructor(scene: Scene, x: number, y: number = -40, n: number = 2, append: boolean = true) {
+        super(scene, 1 + 0.2 * Math.log10(n))
 
         ++count[this.n = n]
         this.r = 40 + 4 * (Math.log2(n) - 1)
@@ -38,7 +39,8 @@ export class Piece extends Body {
 
         for (let i = 0; i < nPoints - 1; ++i) {
             for (let j = i + 1; j < nPoints; ++j) {
-                new Constraint(this, this.vertices[i], this.vertices[j], 0.005, j == i + 1)
+                // @ts-ignore
+                new Constraint(this, this.vertices[i], this.vertices[j], j == i + 1, 0.005)
             }
         }
 

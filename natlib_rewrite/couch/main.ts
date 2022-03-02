@@ -1,11 +1,12 @@
 import { Body } from './Body.js'
 import { cheight, context, cwidth } from './canvas.js'
 import { resolve, sat } from './collision.js'
-import { Constraint } from './Constraint.js'
 import { Cushion } from './Cushion.js'
 import { debounce } from './debounce.js'
 import { gameover } from './game.js'
 import { Vec2 } from './node_modules/natlib/out/Vec2.js'
+import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
 import { Piece } from './Piece.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
@@ -17,9 +18,11 @@ export const kFriction = 0.9
 export const kFrictionGround = 0.6
 export const kForceDrag = 0.24
 
-export let bodies = [] as Body[]
-export let vertices = [] as Point[]
-export let constraints = [] as Constraint[]
+export const scene = new Scene(960, 540, 10, kFriction)
+
+export let bodies = scene.bodies as unknown as Body[]
+export let vertices = scene.vertices as unknown as Point[]
+export let constraints = scene.constraints as Constraint[]
 
 export let draggingPoint: Point | null = null
 
@@ -48,7 +51,8 @@ export function mainloop() {
         //if (!(b instanceof Piece)) continue
 
         if (b.center.y >= cheight + b.r) {
-            constraints = constraints.filter(c => c.parent != b)
+            // @ts-ignore
+            constraints = constraints.filter(c => c.body != b)
             vertices = vertices.filter(p => p.parent != b)
 
             if (draggingPoint && draggingPoint.parent == b) {
@@ -105,7 +109,8 @@ export function mainloop() {
             }
         }
         else {
-            constraints = constraints.filter(c => c.parent != b && c.parent != other)
+            // @ts-ignore
+            constraints = constraints.filter(c => c.body != b && c.body != other)
             vertices = vertices.filter(p => p.parent != b && p.parent != other)
 
             if (draggingPoint && (draggingPoint.parent == b || draggingPoint.parent == other)) {
@@ -114,7 +119,7 @@ export function mainloop() {
             }
 
             bodies.splice(index, 1)
-            bodies[i] = new Piece(x, y, b.n << 1, false)
+            bodies[i] = new Piece(scene, x, y, b.n << 1, false)
 
             count[b.n] -= 2
 
@@ -176,23 +181,23 @@ const addPiecesRateLimit = debounce(function () {
     const has256 = count[256] || count[512] || count[1024]
 
     if (count[2]) {
-        new Piece(spawnLocation())
+        new Piece(scene, spawnLocation())
     }
     else if (count[4]) {
-        new Piece(spawnLocation(), -44, 4)
+        new Piece(scene, spawnLocation(), -44, 4)
     }
     else if (has256) {
         if (count[8]) {
-            new Piece(spawnLocation(), -48, 8)
+            new Piece(scene, spawnLocation(), -48, 8)
         }
         else {
-            new Piece(0.35 * cwidth, -44, 4)
-            new Piece(0.65 * cwidth, -44, 4)
+            new Piece(scene, 0.35 * cwidth, -44, 4)
+            new Piece(scene, 0.65 * cwidth, -44, 4)
         }
     }
     else {
-        new Piece(0.35 * cwidth)
-        new Piece(0.65 * cwidth)
+        new Piece(scene, 0.35 * cwidth)
+        new Piece(scene, 0.65 * cwidth)
     }
 }, 300)
 
@@ -205,15 +210,17 @@ export function init() {
         count[n] = 0
     }
 
-    couch = new Cushion(280, 480, 400, 60)
-    armrest0 = new Cushion(220, 420, 60, 120)
-    armrest1 = new Cushion(680, 420, 60, 120)
+    couch = new Cushion(scene, 280, 480, 400, 60)
+    armrest0 = new Cushion(scene, 220, 420, 60, 120)
+    armrest1 = new Cushion(scene, 680, 420, 60, 120)
 
-    new Constraint(couch, couch.handle0, armrest0.handle0, 0.1)
-    new Constraint(couch, couch.handle1, armrest1.handle1, 0.1)
+    // @ts-ignore
+    new Constraint(couch, couch.handle0, armrest0.handle0, false, 0.1)
+    // @ts-ignore
+    new Constraint(couch, couch.handle1, armrest1.handle1, false, 0.1)
 
     const y = cheight * 0.5
 
-    new Piece(0.35 * cwidth, y)
-    new Piece(0.65 * cwidth, y)
+    new Piece(scene, 0.35 * cwidth, y)
+    new Piece(scene, 0.65 * cwidth, y)
 }
