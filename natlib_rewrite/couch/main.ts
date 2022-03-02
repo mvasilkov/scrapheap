@@ -51,9 +51,17 @@ export function mainloop() {
         //if (!(b instanceof Piece)) continue
 
         if (b.center.y >= cheight + b.r) {
-            // @ts-ignore
-            constraints = constraints.filter(c => c.body != b)
-            vertices = vertices.filter(p => p.parent != b)
+            for (let n = 0; n < constraints.length; ++n) {
+                // @ts-ignore
+                if (constraints[n].body == b) {
+                    constraints.splice(n, 1)
+                }
+            }
+            for (let n = 0; n < vertices.length; ++n) {
+                if (vertices[n].parent == b) {
+                    vertices.splice(n, 1)
+                }
+            }
 
             if (draggingPoint && draggingPoint.parent == b) {
                 draggingPoint = null
@@ -109,9 +117,17 @@ export function mainloop() {
             }
         }
         else {
-            // @ts-ignore
-            constraints = constraints.filter(c => c.body != b && c.body != other)
-            vertices = vertices.filter(p => p.parent != b && p.parent != other)
+            for (let n = 0; n < constraints.length; ++n) {
+                // @ts-ignore
+                if (constraints[n].body == b || constraints[n].body == other) {
+                    constraints.splice(n, 1)
+                }
+            }
+            for (let n = 0; n < vertices.length; ++n) {
+                if (vertices[n].parent == b || vertices[n].parent == other) {
+                    vertices.splice(n, 1)
+                }
+            }
 
             if (draggingPoint && (draggingPoint.parent == b || draggingPoint.parent == other)) {
                 draggingPoint = null
