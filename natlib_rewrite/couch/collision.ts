@@ -1,8 +1,8 @@
 import { Body } from './Body.js'
 import { Constraint } from './Constraint.js'
 import { kFriction, register0, register1 } from './main.js'
+import { Vec2 } from './node_modules/natlib/out/Vec2.js'
 import { Point } from './Point.js'
-import { Vec2 } from './Vec2.js'
 
 export const [sat, resolve] = (function () {
     let satDistance: number
@@ -21,8 +21,9 @@ export const [sat, resolve] = (function () {
 
         for (let b of [b0, b1]) {
             for (let boundary of b.edges) {
-                register0.setNormal(boundary.p0, boundary.p1)
-                b0.project(register0)
+                register0.setPerpendicular(boundary.p0, boundary.p1)
+                register0.normalize()
+                        b0.project(register0)
                 b1.project(register0)
 
                 let distance = (b0._min < b1._min) ? b1._min - b0._max : b0._min - b1._max

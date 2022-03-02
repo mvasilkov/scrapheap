@@ -1,9 +1,9 @@
 import { context } from './canvas.js'
 import { Constraint } from './Constraint.js'
 import { draggingPoint, setDraggingPoint } from './main.js'
+import { Vec2 } from './node_modules/natlib/out/Vec2.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
-import { Vec2 } from './Vec2.js'
 
 export abstract class Body {
     vertices: Point[]
@@ -64,7 +64,7 @@ export abstract class Body {
             let minDistance = 99999
 
             for (let p of this.vertices) {
-                const distance = p.position.distance(pointer)
+                const distance = p.position.distanceSquared(pointer) ** 0.5
                 if (distance < minDistance) {
                     minDistance = distance
                     setDraggingPoint(p)

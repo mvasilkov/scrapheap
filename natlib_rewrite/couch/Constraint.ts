@@ -1,7 +1,7 @@
 import { Body } from './Body.js'
 import { constraints, register0 } from './main.js'
+import { Vec2 } from './node_modules/natlib/out/Vec2.js'
 import { Point } from './Point.js'
-import { Vec2 } from './Vec2.js'
 
 export class Constraint {
     parent: Body
@@ -19,7 +19,7 @@ export class Constraint {
         this.v1 = v1
         this.p0 = v0.position
         this.p1 = v1.position
-        this.length = this.p0.distance(this.p1)
+        this.length = this.p0.distanceSquared(this.p1) ** 0.5
         this.stiffness = stiffness
         this.isBoundary = isBoundary
 

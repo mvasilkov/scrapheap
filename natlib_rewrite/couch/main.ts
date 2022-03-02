@@ -5,10 +5,10 @@ import { Constraint } from './Constraint.js'
 import { Cushion } from './Cushion.js'
 import { debounce } from './debounce.js'
 import { gameover } from './game.js'
+import { Vec2 } from './node_modules/natlib/out/Vec2.js'
 import { Piece } from './Piece.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
-import { Vec2 } from './Vec2.js'
 
 export const kGravity = 0.6
 export const kAttractiveForce = 0.1
@@ -80,7 +80,7 @@ export function mainloop() {
             //if (!(bb instanceof Piece)) continue
             if (b.n != bb.n) continue
 
-            const distance = b.center.distance(bb.center)
+            const distance = b.center.distanceSquared(bb.center) ** 0.5
             if (distance < attractDistance && distance < minDistance) {
                 minDistance = distance
                 other = bb

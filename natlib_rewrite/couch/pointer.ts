@@ -1,6 +1,6 @@
 import { container, cscale } from './canvas.js'
 import { setDraggingPoint } from './main.js'
-import { IVec2 } from './Vec2.js'
+import { IVec2 } from './node_modules/natlib/out/Vec2.js'
 
 export interface IPointer extends IVec2 {
     dragging: boolean
