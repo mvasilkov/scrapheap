@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "clean-css-cli": "^4.3.0",
+    "clean-css-cli": "^5.5.2",
     "html-minifier": "^4.0.0",
-    "natlib": "^0.0.3",
-    "terser": "^5.3.1"
+    "natlib": "^0.0.4",
+    "terser": "^5.12.0"
   }
 }

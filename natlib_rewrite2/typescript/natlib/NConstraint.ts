@@ -3,7 +3,7 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
-import { Vec2 } from '../../node_modules/natlib/out/Vec2.js'
+import { Vec2 } from '../../node_modules/natlib/Vec2.js'
 import { NBody } from './NBody.js'
 import { NVertex } from './NVertex.js'
 import { register0 } from './Prelude.js'

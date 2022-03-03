@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-natlib@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/natlib/-/natlib-0.0.3.tgz#bb0ad8ac432e8b49850d746d1e8bac69dceb4793"
-  integrity sha512-7dYWYK2/stPk0V7L+8iWUfUBsS3uIncdM/nein0s/NatRZG3b35OJt9SXs5aFpDKSvjmE36+LI3RRouL0T/L4A==
+natlib@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/natlib/-/natlib-0.0.4.tgz#ee8c6ea13c4faf914266fa408b026c4e2e2ba74f"
+  integrity sha512-rPC7WVdZ79ia5ob5MSClPUehu+GCat+yHZlclMg4UOWeLCcCOUmRVjvdqlpyPYP0jKqLBbKXe6JCs88NsN2qyw==

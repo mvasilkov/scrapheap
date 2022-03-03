@@ -1,5 +1,5 @@
 'use strict'
-import { IVec2, Vec2 } from '../node_modules/natlib/out/Vec2.js'
+import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
 import { FAILURE_PICTURE } from './Background.js'
 import { BigBrother } from './BigBrother.js'
 import { Firefox } from './Firefox.js'

@@ -1,5 +1,5 @@
 'use strict'
-import { IVec2 } from '../../node_modules/natlib/out/Vec2.js'
+import { IVec2 } from '../../node_modules/natlib/Vec2.js'
 import { $canvas, uiScale } from './Canvas.js'
 import { NVertex } from './NVertex.js'
 

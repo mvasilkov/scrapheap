@@ -1,7 +1,7 @@
 import { Body } from './Body.js'
 import { kFriction, register0, register1 } from './main.js'
-import { Vec2 } from './node_modules/natlib/out/Vec2.js'
-import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
+import { Vec2 } from './node_modules/natlib/Vec2.js'
+import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Point } from './Point.js'
 
 export const [sat, resolve] = (function () {

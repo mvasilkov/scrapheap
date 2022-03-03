@@ -1,5 +1,5 @@
 'use strict'
-import { Vec2 } from '../../node_modules/natlib/out/Vec2.js'
+import { Vec2 } from '../../node_modules/natlib/Vec2.js'
 import { Box } from '../Box.js'
 import { Level } from '../Level.js'
 import { register0, Settings } from '../natlib/Prelude.js'

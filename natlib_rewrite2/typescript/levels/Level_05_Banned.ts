@@ -1,5 +1,5 @@
 'use strict'
-import { IVec2, Vec2 } from '../../node_modules/natlib/out/Vec2.js'
+import { IVec2, Vec2 } from '../../node_modules/natlib/Vec2.js'
 import { NStaticVertex } from '../natlib/NStaticVertex.js'
 import { register0 } from '../natlib/Prelude.js'
 import { HALFPI } from '../natlib/Utils.js'

@@ -1,8 +1,8 @@
 import { context } from './canvas.js'
 import { draggingPoint, setDraggingPoint } from './main.js'
-import { Vec2 } from './node_modules/natlib/out/Vec2.js'
-import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
-import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
+import { Vec2 } from './node_modules/natlib/Vec2.js'
+import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/verlet/Scene.js'
 import { Point } from './Point.js'
 import { pointer } from './pointer.js'
 

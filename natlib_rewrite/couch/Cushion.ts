@@ -1,7 +1,7 @@
 import { Body } from './Body.js'
 import { bodies } from './main.js'
-import { Constraint } from './node_modules/natlib/out/verlet/Constraint.js'
-import { Scene } from './node_modules/natlib/out/verlet/Scene.js'
+import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
+import { Scene } from './node_modules/natlib/verlet/Scene.js'
 import { Point } from './Point.js'
 import { StaticPoint } from './StaticPoint.js'
 

@@ -1,5 +1,5 @@
 'use strict'
-import { IVec2, Vec2 } from '../node_modules/natlib/out/Vec2.js'
+import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
 import { FAILURE_BACK } from './Background.js'
 import { NBody } from './natlib/NBody.js'
 import { NConstraint } from './natlib/NConstraint.js'
