@@ -1,25 +1,26 @@
 import { Body } from './Body.js'
 import { bodies } from './main.js'
+import { Body as XBody } from './node_modules/natlib/verlet/Body.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
-import { Point } from './Point.js'
-import { StaticPoint } from './StaticPoint.js'
+import { StaticVertex } from './node_modules/natlib/verlet/StaticVertex.js'
+import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
 
 export class Cushion extends Body {
-    handle0: Point
-    handle1: Point
+    handle0: Vertex
+    handle1: Vertex
 
     static chamfer = 10
 
     constructor(scene: Scene, x: number, y: number, width: number, height: number, append: boolean = true) {
         super(scene, 250)
 
-        const p0 = this.handle0 = new Point(this, x, y + Cushion.chamfer)
-        const p1 = new Point(this, x + Cushion.chamfer, y)
-        const p2 = new Point(this, x + width - Cushion.chamfer, y)
-        const p3 = this.handle1 = new Point(this, x + width, y + Cushion.chamfer)
-        const p4 = new StaticPoint(this, x + width, y + height)
-        const p5 = new StaticPoint(this, x, y + height)
+        const p0 = this.handle0 = new Vertex(this as unknown as XBody, x, y + Cushion.chamfer)
+        const p1 = new Vertex(this as unknown as XBody, x + Cushion.chamfer, y)
+        const p2 = new Vertex(this as unknown as XBody, x + width - Cushion.chamfer, y)
+        const p3 = this.handle1 = new Vertex(this as unknown as XBody, x + width, y + Cushion.chamfer)
+        const p4 = new StaticVertex(this as unknown as XBody, x + width, y + height)
+        const p5 = new StaticVertex(this as unknown as XBody, x, y + height)
 
         // @ts-ignore
         new Constraint(this, p0, p1, true, 0.1)

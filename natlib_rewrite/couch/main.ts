@@ -7,8 +7,8 @@ import { gameover } from './game.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
+import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
 import { Piece } from './Piece.js'
-import { Point } from './Point.js'
 import { pointer } from './pointer.js'
 
 export const kGravity = 0.6
@@ -21,12 +21,12 @@ export const kForceDrag = 0.24
 export const scene = new Scene(960, 540, 10, kFriction)
 
 export let bodies = scene.bodies as unknown as Body[]
-export let vertices = scene.vertices as unknown as Point[]
+export let vertices = scene.vertices as unknown as Vertex[]
 export let constraints = scene.constraints as Constraint[]
 
-export let draggingPoint: Point | null = null
+export let draggingPoint: Vertex | null = null
 
-export function setDraggingPoint(point: Point | null) {
+export function setDraggingPoint(point: Vertex | null) {
     draggingPoint = point
 }
 
@@ -41,7 +41,7 @@ export function mainloop() {
     context.clearRect(0, 0, cwidth, cheight)
 
     for (let p of vertices) {
-        p.integrate()
+        p.integrate(scene.width, scene.height)
     }
 
     let addPieces = false
@@ -58,12 +58,14 @@ export function mainloop() {
                 }
             }
             for (let n = 0; n < vertices.length; ++n) {
-                if (vertices[n].parent == b) {
+                // @ts-ignore
+                if (vertices[n].body == b) {
                     vertices.splice(n, 1)
                 }
             }
 
-            if (draggingPoint && draggingPoint.parent == b) {
+            // @ts-ignore
+            if (draggingPoint && draggingPoint.body == b) {
                 draggingPoint = null
                 pointer.dragging = false
             }
@@ -124,12 +126,14 @@ export function mainloop() {
                 }
             }
             for (let n = 0; n < vertices.length; ++n) {
-                if (vertices[n].parent == b || vertices[n].parent == other) {
+                // @ts-ignore
+                if (vertices[n].body == b || vertices[n].body == other) {
                     vertices.splice(n, 1)
                 }
             }
 
-            if (draggingPoint && (draggingPoint.parent == b || draggingPoint.parent == other)) {
+            // @ts-ignore
+            if (draggingPoint && (draggingPoint.body == b || draggingPoint.body == other)) {
                 draggingPoint = null
                 pointer.dragging = false
             }

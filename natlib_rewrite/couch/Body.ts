@@ -1,13 +1,13 @@
 import { context } from './canvas.js'
-import { draggingPoint, setDraggingPoint } from './main.js'
+import { draggingPoint, kFrictionGround, setDraggingPoint } from './main.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
-import { Point } from './Point.js'
+import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
 import { pointer } from './pointer.js'
 
 export abstract class Body {
-    vertices: Point[]
+    vertices: Vertex[]
     positions: Vec2[]
     constraints: Constraint[]
     edges: Constraint[]
@@ -15,6 +15,7 @@ export abstract class Body {
     halfExtents: Vec2
     mass: number
     scene: Scene
+    groundFriction: number
 
     constructor(scene: Scene, mass: number = 1) {
         this.scene = scene
@@ -25,6 +26,7 @@ export abstract class Body {
         this.center = new Vec2
         this.halfExtents = new Vec2
         this.mass = mass
+        this.groundFriction = kFrictionGround
     }
 
     boundingBox() {
@@ -44,17 +46,17 @@ export abstract class Body {
         this.halfExtents.set((xmax - xmin) * 0.5, (ymax - ymin) * 0.5)
     }
 
-    _min: number
-    _max: number
+    intervalLeft: number
+    intervalRight: number
 
     project(a: Vec2) {
-        this._min = 99999
-        this._max = -99999
+        this.intervalLeft = 99999
+        this.intervalRight = -99999
 
         for (let p of this.positions) {
             const product = p.dot(a)
-            if (product < this._min) this._min = product
-            if (product > this._max) this._max = product
+            if (product < this.intervalLeft) this.intervalLeft = product
+            if (product > this.intervalRight) this.intervalRight = product
         }
     }
 

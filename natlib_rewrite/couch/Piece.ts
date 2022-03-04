@@ -1,8 +1,9 @@
 import { Body } from './Body.js'
 import { bodies, count } from './main.js'
+import { Body as XBody } from './node_modules/natlib/verlet/Body.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
-import { Point } from './Point.js'
+import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
 
 let FILL_COLOR: { [n: number]: string } = {}
 ~[
@@ -34,7 +35,7 @@ export class Piece extends Body {
 
         for (let i = 0; i < nPoints; ++i) {
             let a = i * aStep
-            new Point(this, x + this.r * Math.cos(a), y + this.r * Math.sin(a))
+            new Vertex(this as unknown as XBody, x + this.r * Math.cos(a), y + this.r * Math.sin(a))
         }
 
         for (let i = 0; i < nPoints - 1; ++i) {

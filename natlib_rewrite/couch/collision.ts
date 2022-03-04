@@ -2,13 +2,13 @@ import { Body } from './Body.js'
 import { kFriction, register0, register1 } from './main.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
-import { Point } from './Point.js'
+import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
 
 export const [sat, resolve] = (function () {
     let satDistance: number
     const satAxis = new Vec2
     let satBoundary: Constraint
-    let satPoint: Point
+    let satPoint: Vertex
 
     // Separating Axis Theorem collision test
     function sat(b0: Body, b1: Body): boolean {
@@ -26,7 +26,7 @@ export const [sat, resolve] = (function () {
                 b0.project(register0)
                 b1.project(register0)
 
-                let distance = (b0._min < b1._min) ? b1._min - b0._max : b0._min - b1._max
+                let distance = (b0.intervalLeft < b1.intervalLeft) ? b1.intervalLeft - b0.intervalRight : b0.intervalLeft - b1.intervalRight
                 if (distance > 0) return false
 
                 distance *= -1 // == Math.abs(distance)
@@ -82,7 +82,7 @@ export const [sat, resolve] = (function () {
             (pp.y - register0.y - p0.y) / (p1.y - p0.y)
         const u = 1 / (t * t + (1 - t) * (1 - t))
 
-        let m0 = satPoint.parent.mass
+        let m0 = satPoint.body.mass
         let m1 = satBoundary.body.mass
         const tm = m0 + m1
         m0 /= tm * 2
