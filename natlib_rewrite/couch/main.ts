@@ -4,6 +4,7 @@ import { resolve, sat } from './collision.js'
 import { Cushion } from './Cushion.js'
 import { debounce } from './debounce.js'
 import { gameover } from './game.js'
+import { integrateVertex } from './node_modules/natlib/examples/couch2048/functions.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
@@ -226,6 +227,8 @@ export let armrest0: Cushion | null = null
 export let armrest1: Cushion | null = null
 
 export function init() {
+    Vertex.prototype.integrate = integrateVertex
+
     for (let n = 2; n <= 2048; n *= 2) {
         count[n] = 0
     }
