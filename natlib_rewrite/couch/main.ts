@@ -6,6 +6,7 @@ import { debounce } from './debounce.js'
 import { gameover } from './game.js'
 import { integrateVertex } from './node_modules/natlib/examples/couch2048/functions.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
+import { Body as XBody, detachBody } from './node_modules/natlib/verlet/Body.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
 import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
@@ -52,26 +53,13 @@ export function mainloop() {
         //if (!(b instanceof Piece)) continue
 
         if (b.center.y >= cheight + b.r) {
-            for (let n = 0; n < constraints.length; ++n) {
-                // @ts-ignore
-                if (constraints[n].body == b) {
-                    constraints.splice(n, 1)
-                }
-            }
-            for (let n = 0; n < vertices.length; ++n) {
-                // @ts-ignore
-                if (vertices[n].body == b) {
-                    vertices.splice(n, 1)
-                }
-            }
+            detachBody(b as unknown as XBody)
 
             // @ts-ignore
             if (draggingPoint && draggingPoint.body == b) {
                 draggingPoint = null
                 pointer.dragging = false
             }
-
-            bodies.splice(i, 1)
 
             --count[b.n]
 
@@ -120,18 +108,8 @@ export function mainloop() {
             }
         }
         else {
-            for (let n = 0; n < constraints.length; ++n) {
-                // @ts-ignore
-                if (constraints[n].body == b || constraints[n].body == other) {
-                    constraints.splice(n, 1)
-                }
-            }
-            for (let n = 0; n < vertices.length; ++n) {
-                // @ts-ignore
-                if (vertices[n].body == b || vertices[n].body == other) {
-                    vertices.splice(n, 1)
-                }
-            }
+            detachBody(b as unknown as XBody)
+            detachBody(other as unknown as XBody)
 
             // @ts-ignore
             if (draggingPoint && (draggingPoint.body == b || draggingPoint.body == other)) {
@@ -139,8 +117,7 @@ export function mainloop() {
                 pointer.dragging = false
             }
 
-            bodies.splice(index, 1)
-            bodies[i] = new Piece(scene, x, y, b.n << 1, false)
+            new Piece(scene, x, y, b.n << 1)
 
             count[b.n] -= 2
 

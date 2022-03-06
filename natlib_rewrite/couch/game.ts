@@ -34,7 +34,7 @@ function start() {
     container.removeChild(startScreen)
 
     if ((isMobile || cscale > 1) && document.body.requestFullscreen) {
-        document.body.requestFullscreen()
+        // document.body.requestFullscreen()
     }
 }
 
