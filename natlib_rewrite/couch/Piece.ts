@@ -46,7 +46,7 @@ export class Piece extends Body {
         }
 
         if (append) {
-            this.boundingBox()
+            this.updateBoundingBox()
 
             bodies.push(this)
         }

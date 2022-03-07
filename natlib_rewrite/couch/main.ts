@@ -1,9 +1,9 @@
 import { Body } from './Body.js'
 import { cheight, context, cwidth } from './canvas.js'
-import { resolve, sat } from './collision.js'
 import { Cushion } from './Cushion.js'
 import { debounce } from './debounce.js'
 import { gameover } from './game.js'
+import { findCollision, resolveCollision } from './node_modules/natlib/collision/sat.js'
 import { integrateVertex } from './node_modules/natlib/examples/couch2048/functions.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
 import { Body as XBody, detachBody } from './node_modules/natlib/verlet/Body.js'
@@ -144,13 +144,13 @@ export function mainloop() {
         }
 
         for (let b of bodies) {
-            b.boundingBox()
+            b.updateBoundingBox()
         }
 
         for (let i = 0; i < bodies.length - 1; ++i) {
             for (let j = i + 1; j < bodies.length; ++j) {
-                if (sat(bodies[i], bodies[j])) {
-                    resolve()
+                if (findCollision(bodies[i] as unknown as XBody, bodies[j] as unknown as XBody)) {
+                    resolveCollision(bodies[i] as unknown as XBody, bodies[j] as unknown as XBody, kFriction)
                 }
             }
         }

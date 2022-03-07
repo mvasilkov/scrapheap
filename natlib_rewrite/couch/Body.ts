@@ -1,6 +1,7 @@
 import { context } from './canvas.js'
 import { draggingPoint, kFrictionGround, setDraggingPoint } from './main.js'
 import { Vec2 } from './node_modules/natlib/Vec2.js'
+import { Body as XBody } from './node_modules/natlib/verlet/Body.js'
 import { Constraint } from './node_modules/natlib/verlet/Constraint.js'
 import { Scene } from './node_modules/natlib/verlet/Scene.js'
 import { Vertex } from './node_modules/natlib/verlet/Vertex.js'
@@ -29,7 +30,7 @@ export abstract class Body {
         this.groundFriction = kFrictionGround
     }
 
-    boundingBox() {
+    updateBoundingBox() {
         let xmin = 99999
         let ymin = 99999
         let xmax = -99999
@@ -49,7 +50,7 @@ export abstract class Body {
     intervalLeft: number
     intervalRight: number
 
-    project(a: Vec2) {
+    projectInterval(a: Vec2) {
         this.intervalLeft = 99999
         this.intervalRight = -99999
 
@@ -58,6 +59,10 @@ export abstract class Body {
             if (product < this.intervalLeft) this.intervalLeft = product
             if (product > this.intervalRight) this.intervalRight = product
         }
+    }
+
+    farthestPointInDirection(a: Vec2) {
+        return XBody.prototype.farthestPointInDirection.call(this, a)
     }
 
     abstract paint(context: CanvasRenderingContext2D): void
