@@ -3,15 +3,15 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
 import { NConstraint } from './NConstraint.js'
-import { NVertex } from './NVertex.js'
 import { Settings } from './Prelude.js'
 import { satResolve } from './SAT.js'
 
 /** A scene. */
 export class NScene {
-    vertices: NVertex[]
+    vertices: Vertex[]
     constraints: NConstraint[]
     bodies: NBody[]
 
@@ -25,7 +25,7 @@ export class NScene {
     /** Verlet integration loop. */
     integrate() {
         for (let i = 0; i < this.vertices.length; ++i) {
-            this.vertices[i].integrate()
+            this.vertices[i].integrate(Settings.screenWidth, Settings.screenHeight)
         }
     }
 

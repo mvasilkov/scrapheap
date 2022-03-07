@@ -4,15 +4,15 @@
  */
 'use strict'
 import { Vec2 } from '../../node_modules/natlib/Vec2.js'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
-import { NVertex } from './NVertex.js'
 import { register0 } from './Prelude.js'
 
 /** A Verlet integration constraint. */
 export class NConstraint {
     parent: NBody
-    v0: NVertex
-    v1: NVertex
+    v0: Vertex
+    v1: Vertex
     p0: Vec2
     p1: Vec2
     dist: number
@@ -20,7 +20,7 @@ export class NConstraint {
     stiffness: number
 
     /** Create a new constraint. */
-    constructor(parent: NBody, v0: NVertex, v1: NVertex, edge = false, stiffness = 1) {
+    constructor(parent: NBody, v0: Vertex, v1: Vertex, edge = false, stiffness = 1) {
         this.parent = parent
         this.v0 = v0
         this.v1 = v1

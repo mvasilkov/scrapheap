@@ -3,10 +3,10 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
 import { NConstraint } from './NConstraint.js'
 import { NScene } from './NScene.js'
-import { NVertex } from './NVertex.js'
 import { TWOPI } from './Utils.js'
 
 /** A ball. */
@@ -20,7 +20,7 @@ export class NBall extends NBody {
         // Create vertices.
         for (let i = 0; i < nVertices; ++i) {
             const a = theta * i
-            new NVertex(this, x + r * Math.cos(a), y + r * Math.sin(a))
+            new Vertex(this as any, x + r * Math.cos(a), y + r * Math.sin(a))
         }
 
         // Create constraints.

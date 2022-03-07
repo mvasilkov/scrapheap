@@ -4,14 +4,14 @@
  */
 'use strict'
 import { Vec2 } from '../../node_modules/natlib/Vec2.js'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NConstraint } from './NConstraint.js'
 import { NScene } from './NScene.js'
-import { NVertex } from './NVertex.js'
 
 /** A physical body. */
 export class NBody {
     scene: NScene
-    vertices: NVertex[]
+    vertices: Vertex[]
     positions: Vec2[]
     constraints: NConstraint[]
     edges: NConstraint[]

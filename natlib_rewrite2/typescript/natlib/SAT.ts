@@ -4,9 +4,9 @@
  */
 'use strict'
 import { Vec2 } from '../../node_modules/natlib/Vec2.js'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
 import { NConstraint } from './NConstraint.js'
-import { NVertex } from './NVertex.js'
 import { register0, register1, Settings } from './Prelude.js'
 
 /** Separating Axis Theorem collision testing and resolution. */
@@ -14,7 +14,7 @@ export const satResolve = (function () {
     const a = new Vec2
     let cDist: number
     let cEdge: NConstraint
-    let cVert: NVertex
+    let cVert: Vertex
 
     /** Projected distance function. */
     function pDistance(b0: NBody, b1: NBody, edge: NConstraint): number {
@@ -123,7 +123,7 @@ export const satResolve = (function () {
                 (pos.y - register0.y - pos0.y) / register1.y
 
         // Mass coefficients.
-        let c0 = cVert.parent.mass
+        let c0 = cVert.body.mass
         let c1 = cEdge.parent.mass
         const c = c0 + c1
         c0 /= c * 2

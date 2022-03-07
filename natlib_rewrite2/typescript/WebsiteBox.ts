@@ -1,8 +1,8 @@
 'use strict'
+import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './natlib/NBody.js'
 import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
-import { NVertex } from './natlib/NVertex.js'
 import { register0, register1, Settings } from './natlib/Prelude.js'
 import { WEBSITE_PICTURE } from './Website.js'
 
@@ -11,10 +11,10 @@ export class WebsiteBox extends NBody {
         super(scene, mass)
 
         // Create vertices.
-        const v0 = new NVertex(this, x, y)
-        const v1 = new NVertex(this, x + Settings.websiteWidth, y)
-        const v2 = new NVertex(this, x + Settings.websiteWidth, y + Settings.websiteHeight)
-        const v3 = new NVertex(this, x, y + Settings.websiteHeight)
+        const v0 = new Vertex(this as any, x, y)
+        const v1 = new Vertex(this as any, x + Settings.websiteWidth, y)
+        const v2 = new Vertex(this as any, x + Settings.websiteWidth, y + Settings.websiteHeight)
+        const v3 = new Vertex(this as any, x, y + Settings.websiteHeight)
 
         // Create edges.
         new NConstraint(this, v0, v1, true, stiffness)

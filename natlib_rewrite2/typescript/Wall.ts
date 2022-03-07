@@ -1,9 +1,9 @@
 'use strict'
+import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { FAILURE_BACK, WALL_PICTURE } from './Background.js'
 import { NBody } from './natlib/NBody.js'
 import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
-import { NStaticVertex } from './natlib/NStaticVertex.js'
 import { register0, Settings } from './natlib/Prelude.js'
 
 export class Wall extends NBody {
@@ -11,10 +11,10 @@ export class Wall extends NBody {
         super(scene, mass)
 
         // Create vertices.
-        const v0 = new NStaticVertex(this, x, y)
-        const v1 = new NStaticVertex(this, x + 64, y)
-        const v2 = new NStaticVertex(this, x + 64, y + 256)
-        const v3 = new NStaticVertex(this, x, y + 256)
+        const v0 = new StaticVertex(this as any, x, y)
+        const v1 = new StaticVertex(this as any, x + 64, y)
+        const v2 = new StaticVertex(this as any, x + 64, y + 256)
+        const v3 = new StaticVertex(this as any, x, y + 256)
 
         // Create edges.
         new NConstraint(this, v0, v1, true, stiffness)
@@ -34,13 +34,11 @@ export class Wall extends NBody {
         const cos = Math.cos(angle)
         const sin = Math.sin(angle)
 
-        for (const vert of <NStaticVertex[]>this.vertices) {
+        for (const vert of <StaticVertex[]>this.vertices) {
             register0.setSubtract(vert.position, this.center)
-            vert.set(
-                this.center.x + register0.x * cos - register0.y * sin,
-                this.center.y + register0.x * sin + register0.y * cos
-            )
-            vert.integrate()
+            vert.x = this.center.x + register0.x * cos - register0.y * sin
+            vert.y = this.center.y + register0.x * sin + register0.y * cos
+            vert.integrate(Settings.screenWidth, Settings.screenHeight)
         }
     }
 

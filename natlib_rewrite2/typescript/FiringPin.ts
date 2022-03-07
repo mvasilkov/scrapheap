@@ -1,8 +1,8 @@
 'use strict'
+import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './natlib/NBody.js'
 import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
-import { NVertex } from './natlib/NVertex.js'
 import { HALFPI } from './natlib/Utils.js'
 
 export class FiringPin extends NBody {
@@ -14,7 +14,7 @@ export class FiringPin extends NBody {
         // Create vertices.
         for (let i = 0; i < 4; ++i) {
             const a = theta * i + angle
-            new NVertex(this, x + r * Math.cos(a), y + r * Math.sin(a))
+            new Vertex(this as any, x + r * Math.cos(a), y + r * Math.sin(a))
         }
 
         // Create constraints.

@@ -1,13 +1,13 @@
 'use strict'
 import { IVec2 } from '../../node_modules/natlib/Vec2.js'
+import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { $canvas, uiScale } from './Canvas.js'
-import { NVertex } from './NVertex.js'
 
 interface IPointer extends IVec2 {
     dragging: boolean
     x: number
     y: number
-    vertex?: NVertex
+    vertex?: Vertex
 }
 
 /** The pointer. */
