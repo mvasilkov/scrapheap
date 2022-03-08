@@ -37,8 +37,13 @@ export class Hopeless extends Level {
             fg = Settings.kFrictionGround
         }
 
+        for (const b of this.bodies) {
+            b.groundFriction = fg
+        }
+
         for (let i = 0; i < this.vertices.length; ++i) {
-            this.vertices[i].integrate(gravity, fg)
+            this.vertices[i].gravity = gravity
+            this.vertices[i].integrate(Settings.screenWidth, Settings.screenHeight)
         }
     }
 

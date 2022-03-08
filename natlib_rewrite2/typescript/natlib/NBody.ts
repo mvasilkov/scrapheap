@@ -20,6 +20,7 @@ export class NBody {
     pMin: number
     pMax: number
     mass: number
+    groundFriction: number
 
     /** Create a new body. */
     constructor(scene: NScene, mass = 1) {
@@ -33,6 +34,7 @@ export class NBody {
         this.pMin = 0
         this.pMax = 0
         this.mass = mass
+        this.groundFriction = 0
 
         scene.bodies.push(this)
     }
