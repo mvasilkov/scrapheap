@@ -4,24 +4,24 @@
  */
 'use strict'
 import { Vec2 } from '../../node_modules/natlib/Vec2.js'
+import { Constraint } from '../../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
-import { NConstraint } from './NConstraint.js'
 import { register0, register1, Settings } from './Prelude.js'
 
 /** Separating Axis Theorem collision testing and resolution. */
 export const satResolve = (function () {
     const a = new Vec2
     let cDist: number
-    let cEdge: NConstraint
+    let cEdge: Constraint
     let cVert: Vertex
 
     /** Projected distance function. */
-    function pDistance(b0: NBody, b1: NBody, edge: NConstraint): number {
+    function pDistance(b0: NBody, b1: NBody, edge: Constraint): number {
         // Compute the normal to this edge.
         register0.setPerpendicular(edge.p0, edge.p1)
         register0.normalize()
-    
+
         // Project both bodies onto the normal.
         b0.projectOn(register0)
         b1.projectOn(register0)
@@ -75,7 +75,7 @@ export const satResolve = (function () {
 
         // There is no separating axis.
         // Ensure collision edge in `b1` and collision vertex in `b0`.
-        if (cEdge.parent !== b1) {
+        if (cEdge.body as unknown as NBody !== b1) {
             const t = b0
             b0 = b1
             b1 = t
@@ -124,7 +124,7 @@ export const satResolve = (function () {
 
         // Mass coefficients.
         let c0 = cVert.body.mass
-        let c1 = cEdge.parent.mass
+        let c1 = cEdge.body.mass
         const c = c0 + c1
         c0 /= c * 2
         c1 /= c

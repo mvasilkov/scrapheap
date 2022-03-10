@@ -3,16 +3,16 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Constraint } from '../../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './NBody.js'
-import { NConstraint } from './NConstraint.js'
 import { Settings } from './Prelude.js'
 import { satResolve } from './SAT.js'
 
 /** A scene. */
 export class NScene {
     vertices: Vertex[]
-    constraints: NConstraint[]
+    constraints: Constraint[]
     bodies: NBody[]
 
     /** Create a new scene. */

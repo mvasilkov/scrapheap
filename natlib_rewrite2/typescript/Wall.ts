@@ -1,8 +1,8 @@
 'use strict'
+import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { FAILURE_BACK, WALL_PICTURE } from './Background.js'
 import { NBody } from './natlib/NBody.js'
-import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
 import { register0, Settings } from './natlib/Prelude.js'
 
@@ -17,14 +17,14 @@ export class Wall extends NBody {
         const v3 = new StaticVertex(this as any, x, y + 256)
 
         // Create edges.
-        new NConstraint(this, v0, v1, true, stiffness)
-        new NConstraint(this, v1, v2, true, stiffness)
-        new NConstraint(this, v2, v3, true, stiffness)
-        new NConstraint(this, v3, v0, true, stiffness)
+        new Constraint(this as any, v0, v1, true, stiffness)
+        new Constraint(this as any, v1, v2, true, stiffness)
+        new Constraint(this as any, v2, v3, true, stiffness)
+        new Constraint(this as any, v3, v0, true, stiffness)
 
         // Create constraints.
-        new NConstraint(this, v0, v2, false, stiffness)
-        new NConstraint(this, v1, v3, false, stiffness)
+        new Constraint(this as any, v0, v2, false, stiffness)
+        new Constraint(this as any, v1, v3, false, stiffness)
 
         this.center.set(x + 32, y + 128)
         this.halfExtents.set(32, 128)

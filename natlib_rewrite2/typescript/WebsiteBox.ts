@@ -1,7 +1,7 @@
 'use strict'
+import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './natlib/NBody.js'
-import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
 import { register0, register1, Settings } from './natlib/Prelude.js'
 import { WEBSITE_PICTURE } from './Website.js'
@@ -17,14 +17,14 @@ export class WebsiteBox extends NBody {
         const v3 = new Vertex(this as any, x, y + Settings.websiteHeight)
 
         // Create edges.
-        new NConstraint(this, v0, v1, true, stiffness)
-        new NConstraint(this, v1, v2, true, stiffness)
-        new NConstraint(this, v2, v3, true, stiffness)
-        new NConstraint(this, v3, v0, true, stiffness)
+        new Constraint(this as any, v0, v1, true, stiffness)
+        new Constraint(this as any, v1, v2, true, stiffness)
+        new Constraint(this as any, v2, v3, true, stiffness)
+        new Constraint(this as any, v3, v0, true, stiffness)
 
         // Create constraints.
-        new NConstraint(this, v0, v2, false, stiffness)
-        new NConstraint(this, v1, v3, false, stiffness)
+        new Constraint(this as any, v0, v2, false, stiffness)
+        new Constraint(this as any, v1, v3, false, stiffness)
 
         this.center.set(x + 0.5 * Settings.websiteWidth, y + 0.5 * Settings.websiteHeight)
         this.halfExtents.set(0.5 * Settings.websiteWidth, 0.5 * Settings.websiteHeight)

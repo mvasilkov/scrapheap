@@ -1,7 +1,7 @@
 'use strict'
+import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { NBody } from './natlib/NBody.js'
-import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
 import { FOURTHPI, HALFPI } from './natlib/Utils.js'
 import { Wall } from './Wall.js'
@@ -25,7 +25,7 @@ export class Box extends NBody {
         // Create constraints.
         for (let i = 0; i < this.vertices.length - 1; ++i) {
             for (let j = i + 1; j < this.vertices.length; ++j) {
-                new NConstraint(this, this.vertices[i], this.vertices[j], j === i + 1, stiffness)
+                new Constraint(this as any, this.vertices[i], this.vertices[j], j === i + 1, stiffness)
             }
         }
     }

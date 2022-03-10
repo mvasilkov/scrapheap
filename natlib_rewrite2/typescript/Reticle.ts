@@ -1,10 +1,10 @@
 'use strict'
 import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
+import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { FAILURE_BACK } from './Background.js'
 import { NBody } from './natlib/NBody.js'
-import { NConstraint } from './natlib/NConstraint.js'
 import { NScene } from './natlib/NScene.js'
 import { pointer } from './natlib/Pointer.js'
 import { Settings } from './natlib/Prelude.js'
@@ -21,7 +21,7 @@ export class Reticle extends NBody {
         this.targetingVertex = new Vertex(this as any, startingPoint.x - 0.001, startingPoint.y)
         this.lastPosition = new Vec2(startingPoint.x, startingPoint.y)
 
-        const cons = new NConstraint(this, this.startingVertex, this.targetingVertex,
+        const cons = new Constraint(this as any, this.startingVertex, this.targetingVertex,
             false, Settings.reticleStiffness)
 
         // Make the starting vertex stay in place.
