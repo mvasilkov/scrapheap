@@ -3,9 +3,9 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { Body } from '../../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
-import { NBody } from './NBody.js'
 import { Settings } from './Prelude.js'
 import { satResolve } from './SAT.js'
 
@@ -13,7 +13,7 @@ import { satResolve } from './SAT.js'
 export class NScene {
     vertices: Vertex[]
     constraints: Constraint[]
-    bodies: NBody[]
+    bodies: Body[]
 
     /** Create a new scene. */
     constructor() {
@@ -39,7 +39,7 @@ export class NScene {
 
             // Recalculate the bounding boxes.
             for (const b of this.bodies) {
-                b.boundingBox()
+                b.updateBoundingBox()
             }
 
             // Collision detection.

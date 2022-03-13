@@ -1,11 +1,11 @@
 'use strict'
+import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
-import { NBody } from './natlib/NBody.js'
 import { NScene } from './natlib/NScene.js'
 import { HALFPI } from './natlib/Utils.js'
 
-export class FiringPin extends NBody {
+export class FiringPin extends Body {
     constructor(scene: NScene, x: number, y: number, r: number, angle = 0, stiffness = 1, mass = 9) {
         super(scene, mass)
 

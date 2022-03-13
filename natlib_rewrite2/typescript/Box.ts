@@ -1,12 +1,12 @@
 'use strict'
+import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
-import { NBody } from './natlib/NBody.js'
 import { NScene } from './natlib/NScene.js'
 import { FOURTHPI, HALFPI } from './natlib/Utils.js'
 import { Wall } from './Wall.js'
 
-export class Box extends NBody {
+export class Box extends Body {
     constructor(scene: NScene, x: number, y: number, size: number, stiffness = 0.5, mass = 1) {
         super(scene, mass)
 

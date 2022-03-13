@@ -1,16 +1,16 @@
 'use strict'
 import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
+import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
 import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { FAILURE_BACK } from './Background.js'
-import { NBody } from './natlib/NBody.js'
 import { NScene } from './natlib/NScene.js'
 import { pointer } from './natlib/Pointer.js'
 import { Settings } from './natlib/Prelude.js'
 import { TWOPI } from './natlib/Utils.js'
 
-export class Reticle extends NBody {
+export class Reticle extends Body {
     startingVertex: Vertex
     targetingVertex: Vertex
     lastPosition: Vec2

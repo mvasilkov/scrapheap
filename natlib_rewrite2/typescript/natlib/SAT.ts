@@ -4,9 +4,9 @@
  */
 'use strict'
 import { Vec2 } from '../../node_modules/natlib/Vec2.js'
+import { Body } from '../../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
-import { NBody } from './NBody.js'
 import { register0, register1, Settings } from './Prelude.js'
 
 /** Separating Axis Theorem collision testing and resolution. */
@@ -17,21 +17,21 @@ export const satResolve = (function () {
     let cVert: Vertex
 
     /** Projected distance function. */
-    function pDistance(b0: NBody, b1: NBody, edge: Constraint): number {
+    function pDistance(b0: Body, b1: Body, edge: Constraint): number {
         // Compute the normal to this edge.
         register0.setPerpendicular(edge.p0, edge.p1)
         register0.normalize()
 
         // Project both bodies onto the normal.
-        b0.projectOn(register0)
-        b1.projectOn(register0)
+        b0.projectInterval(register0)
+        b1.projectInterval(register0)
 
         // Compute the distance between the two intervals.
-        return b0.pMin < b1.pMin ? b1.pMin - b0.pMax : b0.pMin - b1.pMax
+        return b0.intervalLeft < b1.intervalLeft ? b1.intervalLeft - b0.intervalRight : b0.intervalLeft - b1.intervalRight
     }
 
     /** Separating Axis Theorem collision detection. */
-    function sat(b0: NBody, b1: NBody) {
+    function sat(b0: Body, b1: Body) {
         const b0EdgesLength = b0.edges.length
         const b1EdgesLength = b1.edges.length
         if (b0EdgesLength === 0 || b1EdgesLength === 0) return
@@ -75,7 +75,7 @@ export const satResolve = (function () {
 
         // There is no separating axis.
         // Ensure collision edge in `b1` and collision vertex in `b0`.
-        if (cEdge.body as unknown as NBody !== b1) {
+        if (cEdge.body !== b1) {
             const t = b0
             b0 = b1
             b1 = t
