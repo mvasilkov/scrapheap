@@ -30,3 +30,8 @@ form {
     display: inline-block;
     max-width: 200px;
 }
+
+.delete {
+    color: #fd3b54;
+    font-weight: bold;
+}

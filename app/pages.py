@@ -32,20 +32,40 @@ TEMPLATE_POST = '''
 </div>
 '''
 
+TEMPLATE_POST_SUPERUSER = '''
+<div class="post">
+    <img src="/static/uploads/%s" title="%s"><br>
+    <span class="title">%s</span><br>
+    <a href="/delete/%d" class="delete">Delete</a>
+</div>
+'''
 
-def render_start_page():
+
+def render_start_page(is_superuser: bool):
     session = Session()
 
     posts = session.query(Post).order_by(Post.id.desc()).all()
-    rendered_posts = ''.join(
-        TEMPLATE_POST
-        % (
-            post.picture,
-            post.title,
-            html.escape(post.title),
+    if is_superuser:
+        rendered_posts = ''.join(
+            TEMPLATE_POST_SUPERUSER
+            % (
+                post.picture,
+                post.title,
+                html.escape(post.title),
+                post.id,
+            )
+            for post in posts
         )
-        for post in posts
-    )
+    else:
+        rendered_posts = ''.join(
+            TEMPLATE_POST
+            % (
+                post.picture,
+                post.title,
+                html.escape(post.title),
+            )
+            for post in posts
+        )
 
     session.close()
 
