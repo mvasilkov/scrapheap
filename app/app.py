@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 from bson import ObjectId
 from flask import Flask, request, redirect
@@ -27,6 +28,7 @@ def publish():
     picture.save(UPLOAD_FOLDER / save_as)
 
     title = request.form.get('title', 'noname')
+    # title = re.sub(r'script|onload', '', title, flags=re.I)
 
     session = Session()
 

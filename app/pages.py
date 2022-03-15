@@ -28,7 +28,7 @@ TEMPLATE_FORM = '''
 TEMPLATE_POST = '''
 <div class="post">
     <img src="/static/uploads/%s" title="%s"><br>
-    <span>%s</span>
+    <span class="title">%s</span>
 </div>
 '''
 
@@ -37,7 +37,7 @@ def render_start_page():
     session = Session()
 
     posts = session.query(Post).order_by(Post.id.desc()).all()
-    rendered_posts = '\n'.join(
+    rendered_posts = ''.join(
         TEMPLATE_POST
         % (
             post.picture,
@@ -49,4 +49,4 @@ def render_start_page():
 
     session.close()
 
-    return TEMPLATE_BASE % '\n'.join([TEMPLATE_FORM, rendered_posts])
+    return TEMPLATE_BASE % ''.join([TEMPLATE_FORM, rendered_posts])
