@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+body {
+    font-family: -apple-system, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
+    margin: 1vw;
+}
+
+form {
+    background-color: #fcdf8a;
+    border: 1px solid #fbbc2a;
+    line-height: 2;
+    padding: 1em 1.5em;
+}
+
+.post {
+    background-color: #defee8;
+    border: 1px solid #5ce1d8;
+    display: inline-block;
+    margin: 1em 1em 0 0;
+    padding: 1em;
+    text-align: center;
+}
+
+.post img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.post span {
+    display: inline-block;
+    max-width: 200px;
+}
