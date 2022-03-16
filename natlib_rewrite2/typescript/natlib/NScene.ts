@@ -3,11 +3,11 @@
  * https://github.com/mvasilkov/natlib
  */
 'use strict'
+import { findCollision, resolveCollision } from '../../node_modules/natlib/collision/sat.js'
 import { Body } from '../../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../../node_modules/natlib/verlet/Constraint.js'
 import { Vertex } from '../../node_modules/natlib/verlet/Vertex.js'
 import { Settings } from './Prelude.js'
-import { satResolve } from './SAT.js'
 
 /** A scene. */
 export class NScene {
@@ -45,7 +45,9 @@ export class NScene {
             // Collision detection.
             for (let i = 0; i < this.bodies.length - 1; ++i) {
                 for (let j = i + 1; j < this.bodies.length; ++j) {
-                    satResolve(this.bodies[i], this.bodies[j])
+                    if (findCollision(this.bodies[i], this.bodies[j])) {
+                        resolveCollision(this.bodies[i], this.bodies[j], Settings.kFriction)
+                    }
                 }
             }
         }
