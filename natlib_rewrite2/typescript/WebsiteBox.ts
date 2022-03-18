@@ -1,13 +1,13 @@
 'use strict'
 import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
-import { NScene } from './natlib/NScene.js'
 import { register0, register1, Settings } from './natlib/Prelude.js'
 import { WEBSITE_PICTURE } from './Website.js'
 
 export class WebsiteBox extends Body {
-    constructor(scene: NScene, x: number, y: number, stiffness = 0.5, mass = 1) {
+    constructor(scene: Scene, x: number, y: number, stiffness = 0.5, mass = 1) {
         super(scene, mass)
 
         // Create vertices.

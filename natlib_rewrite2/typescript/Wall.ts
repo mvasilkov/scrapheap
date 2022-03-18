@@ -1,13 +1,13 @@
 'use strict'
 import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { FAILURE_BACK, WALL_PICTURE } from './Background.js'
-import { NScene } from './natlib/NScene.js'
 import { register0, Settings } from './natlib/Prelude.js'
 
 export class Wall extends Body {
-    constructor(scene: NScene, x: number, y: number, stiffness = 1, mass = 9) {
+    constructor(scene: Scene, x: number, y: number, stiffness = 1, mass = 9) {
         super(scene, mass)
 
         // Create vertices.

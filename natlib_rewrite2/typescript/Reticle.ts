@@ -2,10 +2,10 @@
 import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
 import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { StaticVertex } from '../node_modules/natlib/verlet/StaticVertex.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
 import { FAILURE_BACK } from './Background.js'
-import { NScene } from './natlib/NScene.js'
 import { pointer } from './natlib/Pointer.js'
 import { Settings } from './natlib/Prelude.js'
 import { TWOPI } from './natlib/Utils.js'
@@ -15,7 +15,7 @@ export class Reticle extends Body {
     targetingVertex: Vertex
     lastPosition: Vec2
 
-    constructor(scene: NScene, startingPoint: IVec2) {
+    constructor(scene: Scene, startingPoint: IVec2) {
         super(scene)
         this.startingVertex = new StaticVertex(this as any, startingPoint.x, startingPoint.y)
         this.targetingVertex = new Vertex(this as any, startingPoint.x - 0.001, startingPoint.y)

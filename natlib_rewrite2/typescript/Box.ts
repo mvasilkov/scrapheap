@@ -1,13 +1,13 @@
 'use strict'
 import { Body } from '../node_modules/natlib/verlet/Body.js'
 import { Constraint } from '../node_modules/natlib/verlet/Constraint.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { Vertex } from '../node_modules/natlib/verlet/Vertex.js'
-import { NScene } from './natlib/NScene.js'
 import { FOURTHPI, HALFPI } from './natlib/Utils.js'
 import { Wall } from './Wall.js'
 
 export class Box extends Body {
-    constructor(scene: NScene, x: number, y: number, size: number, stiffness = 0.5, mass = 1) {
+    constructor(scene: Scene, x: number, y: number, size: number, stiffness = 0.5, mass = 1) {
         super(scene, mass)
 
         this.center.set(x, y)

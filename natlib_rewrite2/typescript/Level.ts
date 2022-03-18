@@ -1,10 +1,10 @@
 'use strict'
 import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { FAILURE_PICTURE } from './Background.js'
 import { BigBrother } from './BigBrother.js'
 import { Firefox } from './Firefox.js'
 import { FiringPin } from './FiringPin.js'
-import { NScene } from './natlib/NScene.js'
 import { register0, Settings } from './natlib/Prelude.js'
 import { FOURTHPI, inverseRescale } from './natlib/Utils.js'
 import { Reticle } from './Reticle.js'
@@ -21,7 +21,7 @@ export const enum LevelState {
     WINNING,
 }
 
-export class Level extends NScene {
+export class Level extends Scene {
     startingPoint: Vec2
     reticle: Reticle
     projectile: UserAgent
@@ -42,7 +42,7 @@ export class Level extends NScene {
     }
 
     constructor(startingPoint: Vec2, curtain = 0) {
-        super()
+        super(Settings.screenWidth, Settings.screenHeight, Settings.kNumIterations, Settings.kFriction)
         this.startingPoint = startingPoint
         this.reticle = new Reticle(this, startingPoint)
         this.projectile = new ((<typeof Level>this.constructor).getUserAgent())

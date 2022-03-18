@@ -45,8 +45,7 @@ let nextLevel: Level
     activeLevel = new Levels[0](startingPoint)
 
     function update() {
-        activeLevel.integrate()
-        activeLevel.solve()
+        activeLevel.update()
 
         if (activeLevel.state === LevelState.FIRING) {
             if (--updatesToRetractFiringPin <= 0) {

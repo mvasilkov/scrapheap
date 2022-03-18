@@ -1,14 +1,14 @@
 'use strict'
 import { Vec2 } from '../node_modules/natlib/Vec2.js'
+import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { NBall } from './natlib/NBall.js'
-import { NScene } from './natlib/NScene.js'
 import { register0, register1 } from './natlib/Prelude.js'
 
 export class UserAgent extends NBall {
     /** Interpolated vertices relative to center. */
     relInterp: Vec2[]
 
-    constructor(scene: NScene, x: number, y: number) {
+    constructor(scene: Scene, x: number, y: number) {
         super(scene, x, y, 32, 16, 0.016)
 
         this.relInterp = []
