@@ -16,8 +16,7 @@ export class Distancing extends Level {
             Settings.screenHeight * 0.5)
     }
 
-    /** Verlet integration loop. */
-    integrate() {
+    update() {
         do {
             if (this.state !== LevelState.WAITING) break
 
@@ -35,7 +34,7 @@ export class Distancing extends Level {
         }
         while (false)
 
-        super.integrate()
+        super.update()
     }
 
     getIndex() {

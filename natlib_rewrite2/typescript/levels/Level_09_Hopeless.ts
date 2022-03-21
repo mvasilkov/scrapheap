@@ -23,8 +23,7 @@ export class Hopeless extends Level {
             (Settings.screenHeight - Settings.websiteHeight) * 0.5)
     }
 
-    /** Verlet integration loop. */
-    integrate() {
+    update() {
         let gravity: number
         let fg: number
 
@@ -43,8 +42,9 @@ export class Hopeless extends Level {
 
         for (let i = 0; i < this.vertices.length; ++i) {
             this.vertices[i].gravity = gravity
-            this.vertices[i].integrate(Settings.screenWidth, Settings.screenHeight)
         }
+
+        super.update()
     }
 
     getIndex() {

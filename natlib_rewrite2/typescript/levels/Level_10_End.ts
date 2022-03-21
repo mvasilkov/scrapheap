@@ -36,9 +36,8 @@ export class End extends Level {
         }
     }
 
-    /** Solve constraints and collisions. */
-    solve() {
-        super.solve()
+    update() {
+        super.update()
 
         if (this.state === LevelState.WAITING) {
             this.state = LevelState.INITIAL
