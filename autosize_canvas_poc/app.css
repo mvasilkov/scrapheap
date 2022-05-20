@@ -1,0 +1,8 @@
+canvas {
+    display: block;
+}
+
+#can {
+    height: 540px;
+    width: 960px;
+}
