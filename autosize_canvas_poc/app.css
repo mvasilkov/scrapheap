@@ -2,7 +2,15 @@ canvas {
     display: block;
 }
 
-#can {
+.autoscale {
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform-origin: 0 0;
+}
+
+#autoscale1,
+#canvas1 {
     height: 540px;
     width: 960px;
 }
