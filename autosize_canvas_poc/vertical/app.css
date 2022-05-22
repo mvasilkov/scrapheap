@@ -1,0 +1,16 @@
+canvas {
+    display: block;
+}
+
+.autoscale {
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform-origin: 0 0;
+}
+
+#autoscale1,
+#canvas1 {
+    height: 960px;
+    width: 540px;
+}
