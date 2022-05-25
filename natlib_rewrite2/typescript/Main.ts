@@ -1,4 +1,5 @@
 'use strict'
+import { startMainloop } from '../node_modules/natlib/scheduling/mainloop.js'
 import { Vec2 } from '../node_modules/natlib/Vec2.js'
 import { paintBackground, paintCurtain } from './Background.js'
 import { EARTH_BACK } from './Firefox.js'
