@@ -60,7 +60,7 @@ export class Wall extends Body {
 
         canvas.clip()
 
-        canvas.drawImage(WALL_PICTURE, 0, 0, Settings.screenWidth, Settings.screenHeight)
+        canvas.drawImage(WALL_PICTURE.canvas, 0, 0, Settings.screenWidth, Settings.screenHeight)
 
         canvas.restore()
 

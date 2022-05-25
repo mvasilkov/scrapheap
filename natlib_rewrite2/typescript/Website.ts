@@ -1,14 +1,14 @@
 'use strict'
+import { rasterize } from '../node_modules/natlib/canvas/canvas.js'
 import { IVec2 } from '../node_modules/natlib/Vec2.js'
 import { Settings } from './natlib/Prelude.js'
-import { prerender } from './natlib/Utils.js'
 
 const G_BLUE = '#4285f4'
 const G_RED = '#ea4335'
 const G_YELLOW = '#fbbc05'
 const G_GREEN = '#34a853'
 
-export const WEBSITE_PICTURE = prerender(Settings.websitePicWidth, Settings.websitePicHeight, canvas => {
+export const WEBSITE_PICTURE = rasterize(Settings.websitePicWidth, Settings.websitePicHeight, canvas => {
     canvas.fillStyle = '#f1f1f1'
     canvas.fillRect(0, 0, Settings.websitePicWidth, Settings.websitePicHeight)
 
@@ -80,7 +80,7 @@ export class Website {
         canvas.fillStyle = '#f1f1f1'
         canvas.fillRect(this.x, this.y, this.width, this.height)
 
-        canvas.drawImage(WEBSITE_PICTURE,
+        canvas.drawImage(WEBSITE_PICTURE.canvas,
             this.x + (Settings.websiteWidth - Settings.websitePicWidth) * 0.5,
             this.y + (Settings.websiteHeight - Settings.websitePicHeight) * 0.5,
             Settings.websitePicWidth, Settings.websitePicHeight)

@@ -1,10 +1,12 @@
 'use strict'
+import { rasterize } from '../node_modules/natlib/canvas/canvas.js'
+import type { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle'
 import { EARTH_BACK } from './Firefox.js'
 import { Level, LevelState } from './Level.js'
 import { End } from './levels/Level_10_End.js'
 import { canvas, systemFont, systemFontHeading } from './natlib/Canvas.js'
 import { Settings } from './natlib/Prelude.js'
-import { easeInQuad, easeOutQuad, prerender } from './natlib/Utils.js'
+import { easeInQuad, easeOutQuad } from './natlib/Utils.js'
 
 export const FAILURE_BACK = canvas.createLinearGradient(0, 0, Settings.screenWidth, 0)
 // Colors: https://uigradients.com/#DayTripper
@@ -24,21 +26,21 @@ function walloftext(canvas: CanvasRenderingContext2D, text: string) {
     }
 }
 
-export const FAILURE_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const FAILURE_PICTURE = rasterize(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.fillStyle = FAILURE_BACK
     canvas.fillRect(0, 0, Settings.screenWidth, Settings.screenHeight)
 
     walloftext(canvas, '404 Not Found')
 })
 
-export const FAILURE_MOVED_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const FAILURE_MOVED_PICTURE = rasterize(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.fillStyle = FAILURE_BACK
     canvas.fillRect(0, 0, Settings.screenWidth, Settings.screenHeight)
 
     walloftext(canvas, '301 Moved')
 })
 
-export const WALL_PICTURE = prerender(Settings.screenWidth, Settings.screenHeight, canvas => {
+export const WALL_PICTURE = rasterize(Settings.screenWidth, Settings.screenHeight, canvas => {
     canvas.beginPath()
 
     for (let x = 0; x < Settings.screenWidth + Settings.screenHeight; x += 20) {
@@ -105,7 +107,7 @@ export function paintCurtain(canvas: CanvasRenderingContext2D, t: number, level:
     }
 }
 
-function _paintCurtain(canvas: CanvasRenderingContext2D, picture: HTMLCanvasElement, x: number, y: number, width: number, start = 0) {
+function _paintCurtain(canvas: CanvasRenderingContext2D, picture: CanvasHandle, x: number, y: number, width: number, start = 0) {
     canvas.save()
 
     canvas.translate(x, y)
@@ -126,7 +128,7 @@ function _paintCurtain(canvas: CanvasRenderingContext2D, picture: HTMLCanvasElem
 
     // canvas.fillStyle = FAILURE_BACK
     // canvas.fillRect(0, 0, Settings.screenWidth, Settings.screenHeight)
-    canvas.drawImage(picture, 0, 0, Settings.screenWidth, Settings.screenHeight)
+    canvas.drawImage(picture.canvas, 0, 0, Settings.screenWidth, Settings.screenHeight)
 
     canvas.restore()
 }

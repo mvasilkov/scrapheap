@@ -92,7 +92,7 @@ export class MovingWebsite extends Website {
         canvas.fillStyle = '#f1f1f1'
         canvas.fillRect(x, y, width, height)
 
-        canvas.drawImage(WEBSITE_PICTURE,
+        canvas.drawImage(WEBSITE_PICTURE.canvas,
             x + (width - Settings.websitePicWidth) * 0.5,
             y + (height - Settings.websitePicHeight) * 0.5,
             Settings.websitePicWidth, Settings.websitePicHeight)

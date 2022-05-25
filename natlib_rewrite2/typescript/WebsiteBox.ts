@@ -64,7 +64,7 @@ export class WebsiteBox extends Body {
         canvas.translate(0.25 * xx, 0.25 * yy)
         canvas.rotate(0.5 * (Math.atan2(register0.y, register0.x) + Math.atan2(register1.y, register1.x)))
 
-        canvas.drawImage(WEBSITE_PICTURE,
+        canvas.drawImage(WEBSITE_PICTURE.canvas,
             -0.5 * Settings.websitePicWidth,
             -0.5 * Settings.websitePicHeight,
             Settings.websitePicWidth, Settings.websitePicHeight)

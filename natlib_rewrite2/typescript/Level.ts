@@ -1,4 +1,5 @@
 'use strict'
+import type { CanvasHandle } from '../node_modules/natlib/canvas/CanvasHandle'
 import { IVec2, Vec2 } from '../node_modules/natlib/Vec2.js'
 import { Scene } from '../node_modules/natlib/verlet/Scene.js'
 import { FAILURE_PICTURE } from './Background.js'
@@ -31,7 +32,7 @@ export class Level extends Scene {
     duration: number
     waited: number
     curtain: number
-    curtainPicture: HTMLCanvasElement
+    curtainPicture: CanvasHandle
     autoWin: boolean
 
     static getUserAgent() {

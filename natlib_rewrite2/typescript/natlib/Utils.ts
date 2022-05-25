@@ -1,6 +1,6 @@
 'use strict'
 
-import { canvas, setSize } from './Canvas.js'
+import { canvas } from './Canvas.js'
 
 export const TWOPI = 2 * Math.PI
 export const HALFPI = 0.5 * Math.PI
@@ -45,18 +45,4 @@ export function $$(selector: string) {
 export function enclose(x0: number, y0: number, x1: number, y1: number) {
     canvas.translate(x0, y0)
     canvas.scale((x1 - x0) / 512, (y1 - y0) / 512)
-}
-
-/** A rendering function. */
-type RenderFun = (canvas: CanvasRenderingContext2D) => void
-
-/** Render a static picture on canvas. */
-export function prerender(width: number, height: number, render: RenderFun): HTMLCanvasElement {
-    const $can = document.createElement('canvas')
-    const can = $can.getContext('2d')!
-
-    setSize($can, can, width, height)
-    render(can)
-
-    return $can
 }
