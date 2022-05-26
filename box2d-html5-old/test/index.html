@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>box2d-html5 :: Testbed</title>
+    </head>
+    <body>
+        <script src="../requirements/promise.js"></script>
+        <script src="../requirements/require.js"></script>
+        <script>
+            "use strict"
+
+            function concatObj() {
+                var args = Array.prototype.slice.call(arguments), result = {}
+
+                args.forEach(function (obj) {
+                    for (var p in obj)
+                        if (obj.hasOwnProperty(p))
+                            result[p] = obj[p]
+                })
+
+                return result
+            }
+
+            if (window.console) {
+                window.alert = function (msg) {
+                    console.log(msg)
+                    document.title = msg
+                }
+            }
+
+            var allPaths = [ promise.get("paths.json"), promise.get("../paths.json"), promise.get("../util/paths.json") ]
+
+            promise.join(allPaths).then(function (results) {
+                var err = results.some(function (args) { return args.shift() })
+                if (err) {
+                    alert("Error loading paths.json")
+                    return
+                }
+
+                var paths = concatObj.apply(null,
+                    results.map(function (args) { return JSON.parse(args.shift()) }))
+
+                require.config({ baseUrl: "../", paths: paths })
+
+                require(["box2d-html5", "box2d-test"], function (box2d, app) {
+                    app.start()
+                })
+            })
+        </script>
+    </body>
+</html>

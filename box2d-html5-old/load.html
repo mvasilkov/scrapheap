@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>box2d-html5 :: A 2D Physics Engine for HTML5 Games</title>
+    </head>
+    <body>
+        <script src="requirements/promise.js"></script>
+        <script src="requirements/require.js"></script>
+        <script>
+            "use strict"
+
+            if (window.console) {
+                window.alert = function (msg) {
+                    console.log(msg)
+                    document.title = msg
+                }
+            }
+
+            promise.get("paths.json").then(function (err, result) {
+                if (err) {
+                    alert("Error loading paths.json")
+                    return
+                }
+
+                require.config({ paths: JSON.parse(result) })
+
+                require(["box2d-html5"], function (box2d) {
+                    alert("Box2D version " + box2d.b2_version + " revision " + box2d.b2_changelist)
+                })
+            })
+        </script>
+    </body>
+</html>

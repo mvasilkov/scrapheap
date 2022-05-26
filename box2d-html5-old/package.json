@@ -1,0 +1,12 @@
+{
+    "name": "box2d-html5",
+    "version": "0.0.4",
+    "description": "A 2D Physics Engine for HTML5 Games",
+    "jam": {
+        "include": ["box2d-html5.js"],
+        "main": "box2d-html5.js",
+        "packageDir": "Build/lib",
+        "dependencies": {
+        }
+    }
+}
