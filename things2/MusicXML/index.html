@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MusicXML</title>
+    </head>
+    <body>
+        <button id="play">Play</button>
+
+        <script src="reverbgen.js"></script>
+        <script src="snd.js"></script>
+        <script src="out.js"></script>
+        <script>
+            document.getElementById('play').addEventListener('click', function () {
+                init().then(() => {
+                    play(0)
+                    play(1)
+                    play(2)
+                    play(3)
+                })
+            })
+        </script>
+    </body>
+</html>
