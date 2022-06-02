@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "chi-squared-test": "^1.1.0"
+  }
+}
