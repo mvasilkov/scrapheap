@@ -6,6 +6,38 @@
 //   return std::powf(10.0f, db / 10.0f);
 // }
 
+
+/* This file is part of natlib.
+ * https://github.com/mvasilkov/natlib
+ * MIT License | Copyright (c) 2022 Mark Vasilkov
+ */
+'use strict'
+/** Convert decibels to power ratio. */
+function convertDecibelsToPowerRatio(decibels) {
+    return 10 ** (decibels / 10)
+}
+/** Convert decibels to amplitude ratio. */
+function convertDecibelsToAmplitudeRatio(decibels) {
+    return 10 ** (decibels / 20)
+}
+/** Convert power ratio to decibels. */
+function convertPowerRatioToDecibels(linear) {
+    return 10 * Math.log10(linear)
+}
+/** Convert amplitude ratio to decibels. */
+function convertAmplitudeRatioToDecibels(linear) {
+    return 20 * Math.log10(linear)
+}
+/** Fast decibels to power ratio. */
+function convertDecibelsToPowerRatioFast(decibels) {
+    return Math.exp(Math.LN10 / 10 * decibels)
+}
+/** Fast decibels to amplitude ratio. */
+function convertDecibelsToAmplitudeRatioFast(decibels) {
+    return Math.exp(Math.LN10 / 20 * decibels)
+}
+
+
 // 3x faster
 function decibelsToPowerRatio(decibels) {
     return Math.exp((Math.LN10 / 10) * decibels)
@@ -22,8 +54,8 @@ let errors = []
 
 for (let n = -100000; n <= 100000; ++n) {
     let decibels = 0.001 * n
-    let power = decibelsToPowerRatio(decibels)
-    let power2 = decibelsToPowerRatio2(decibels)
+    let power = convertDecibelsToPowerRatioFast(decibels)
+    let power2 = convertDecibelsToPowerRatio(decibels)
     if (power != power2) {
         console.log(`${decibels} dB ${power} ${power2}`)
         ++notEqual
@@ -48,7 +80,7 @@ console.time('1')
 
 for (let n = -100000; n <= 100000; ++n) {
     let decibels = 0.001 * n
-    x = decibelsToPowerRatio(decibels)
+    x = convertDecibelsToPowerRatioFast(decibels)
 }
 
 console.timeEnd('1')
@@ -60,7 +92,7 @@ console.time('2')
 
 for (let n = -100000; n <= 100000; ++n) {
     let decibels = 0.001 * n
-    x = decibelsToPowerRatio2(decibels)
+    x = convertDecibelsToPowerRatio(decibels)
 }
 
 console.timeEnd('2')
